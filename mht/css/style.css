@@ -492,7 +492,7 @@ article, div.message {
             height: 22px; }
           article form fieldset div.row div.label, div.message form fieldset div.row div.label {
             margin-top: 0.1em; }
-      article form fieldset div.rowActive, div.message form fieldset div.rowActive {
+      article form fieldset div.rowActive, div.message form fieldset div.rowActive, div.qCont fieldset div.rowActive { 
         background: #93c55b;
         background: -moz-linear-gradient(top, #93c55b 0%, #6ba13a 100%);
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #93c55b), color-stop(100%, #6ba13a));
@@ -500,7 +500,7 @@ article, div.message {
         background: -o-linear-gradient(top, #93c55b 0%, #6ba13a 100%);
         background: -ms-linear-gradient(top, #93c55b 0%, #6ba13a 100%);
         background: linear-gradient(to bottom, #93c55b 0%, #6ba13a 100%); }
-        article form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label {
+        article form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label,div.qCont fieldset div.rowActive div.label {
           color: #FFF; }
     article form .tag-container, div.message form .tag-container {
       margin-top: 10px; }

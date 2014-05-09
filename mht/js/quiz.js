@@ -469,6 +469,12 @@ var Quiz = (function() {
 		}
 		// Run the multiple four choices set-up functionality...
 		Mc.init(id);
+		
+			
+		$('.radioCheck, .label').click(function(){
+			$('.row').removeClass('rowActive');
+			$(this).parent().addClass('rowActive');
+		});
 		// Set the sizes for the browser contents based on the device\'s orientation...
 		// Resize.setSizes();
 	};
@@ -503,14 +509,16 @@ var Quiz = (function() {
 			$('#a--1').attr('name', 'a-' + id).attr('id', 'a-' + id + '-1').attr('value', 'Anchor_1');
 			$('#label--1').attr('for', 'a-' + id + '-1').attr('id', 'label-' + id + '-1').html(questionnaire.questions[id].anchors[1]);
 			
+			$('#a--2').attr('name', 'a-' + id).attr('id', 'a-' + id + '-2').attr('value', 'Anchor_2');
+			$('#label--2').attr('for', 'a-' + id + '-2').attr('id', 'label-' + id + '-2').html(questionnaire.questions[id].anchors[2]);			
+			
 			$('#a--3').attr('name', 'a-' + id).attr('id', 'a-' + id + '-3').attr('value', 'Anchor_3');
 			$('#label--3').attr('for', 'a-' + id + '-3').attr('id', 'label-' + id + '-3').html(questionnaire.questions[id].anchors[3]);
 			
 			$('#a--4').attr('name', 'a-' + id).attr('id', 'a-' + id + '-4').attr('value', 'Anchor_4');
 			$('#label--4').attr('for', 'a-' + id + '-4').attr('id', 'label-' + id + '-4').html(questionnaire.questions[id].anchors[4]);
 		// }
-		$('#a--2').attr('name', 'a-' + id).attr('id', 'a-' + id + '-2').attr('value', 'Anchor_2');
-		$('#label--2').attr('for', 'a-' + id + '-2').attr('id', 'label-' + id + '-2').html(questionnaire.questions[id].anchors[2]);
+
 		
 		
 		
@@ -560,6 +568,12 @@ var Quiz = (function() {
 		}
 		// Run the multiple four choices set-up functionality...
 		Mc.init(id);
+	
+		
+		$('.radioCheck, .label').click(function(){
+			$('.row').removeClass('rowActive');
+			$(this).parent().addClass('rowActive');
+		});
 		// Set the sizes for the browser contents based on the device\'s orientation...
 		// Resize.setSizes();
 	};
