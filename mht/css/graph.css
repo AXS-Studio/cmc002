@@ -1,0 +1,1440 @@
+div#graph .path1 {
+	stroke: steelblue;
+	stroke-width: 1;
+	fill: none;
+	opacity: 0.5;
+}
+
+div#graph .path2 {
+	stroke: red;
+	stroke-width: 1;
+	fill: none;
+	opacity: 0.5;
+}
+
+div#graph .mean1 {
+	stroke: steelblue;
+	stroke-width: 2;
+	stroke-opacity: 1;
+	fill: none;
+}
+
+div#graph .mean2 {
+	stroke: darkred;
+	stroke-width: 2;
+	stroke-opacity: 1;
+	fill: none;
+}
+
+div#graph .area1 {
+	fill: steelblue;
+	stroke: steelblue;
+	stroke-width: 1;
+	stroke-opacity: 0.5;
+	fill-opacity: 0.25;
+}
+
+div#graph .area2 {
+	fill: darkred;
+	stroke: darkred;
+	stroke-width: 1;
+	stroke-opacity: 0.5;
+	fill-opacity: 0.25;
+}
+
+div#graph .axis path,div#graph .axis line {
+	fill: none;
+	stroke: grey;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+
+div#graph .rangeSlider {
+	display: inline-block;
+	margin-bottom: -5px;
+}
+
+div#graph .brush .extent {
+	stroke: #fff;
+	fill-opacity: .10;
+	shape-rendering: crispEdges;
+}
+
+div#graph rect.pane {
+	cursor: move;
+	fill: none;
+	pointer-events: all;
+}
+
+article.grapher {
+	width: 1160px;
+	margin: 0 auto;
+}
+
+article.grapher form#dataVisForm {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+article.grapher form#dataVisForm fieldset {
+	width: 50%;
+	margin-top: 18px;
+	float: left;
+}
+
+article.grapher form#dataVisForm fieldset label {
+	margin-right: 10px;
+}
+
+div.containerForGraphs {
+	position: relative;
+}
+
+.inlinePopup,div.svgWrap div.commentInline,div.svgWrap div.noteInline {
+	width: 160px;
+	height: 160px;
+	position: absolute;
+}
+
+.inlinePopup img.arrow,div.svgWrap div.commentInline img.arrow,div.svgWrap div.noteInline img.arrow
+	{
+	position: absolute;
+	bottom: -18px;
+}
+
+.inlinePopup h6,div.svgWrap div.commentInline h6,div.svgWrap div.noteInline h6
+	{
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: normal;
+	position: absolute;
+	top: 1px;
+}
+
+.inlinePopup div.scroll,div.svgWrap div.commentInline div.scroll,div.svgWrap div.noteInline div.scroll,.inlinePopup form,div.svgWrap div.commentInline form,div.svgWrap div.noteInline form
+	{
+	width: 150px;
+	height: 138px;
+	position: absolute;
+	left: 5px;
+	top: 17px;
+}
+
+.inlinePopup div.scroll,div.svgWrap div.commentInline div.scroll,div.svgWrap div.noteInline div.scroll
+	{
+	overflow-y: auto;
+	background-color: #fff;
+}
+
+.inlinePopup div.scroll div.content,div.svgWrap div.commentInline div.scroll div.content,div.svgWrap div.noteInline div.scroll div.content
+	{
+	padding: 0.3em;
+}
+
+.inlinePopup div.scroll div.content p,div.svgWrap div.commentInline div.scroll div.content p,div.svgWrap div.noteInline div.scroll div.content p
+	{
+	font-size: 0.9em;
+	line-height: 1.3em;
+}
+
+.inlinePopup form fieldset textarea,div.svgWrap div.commentInline form fieldset textarea,div.svgWrap div.noteInline form fieldset textarea
+	{
+	width: 150px;
+	height: 138px;
+	padding: 0.3em;
+	font-size: 0.9em;
+	line-height: 1.3em;
+	resize: none;
+	background-color: #fff;
+}
+
+.inlinePopup a,div.svgWrap div.commentInline a,div.svgWrap div.noteInline a
+	{
+	width: 7px;
+	position: absolute;
+}
+
+.inlinePopup a.btnCloseCI,div.svgWrap div.commentInline a.btnCloseCI,div.svgWrap div.noteInline a.btnCloseCI
+	{
+	height: 7px;
+	background-image: url(../images/comments_box_close.png);
+	right: 5px;
+	top: 5px;
+}
+
+.inlinePopup a.btnCloseDelete,div.svgWrap div.commentInline a.btnCloseDelete,div.svgWrap div.noteInline a.btnCloseDelete
+	{
+	height: 9px;
+	background-image: url(../images/trash_can_final.png);
+	left: 5px;
+	top: 4px;
+}
+
+a.topBtn {
+	width: 37px;
+	height: 30px;
+	position: absolute;
+	top: 0;
+}
+
+a.topBtn:hover {
+	background-position: left -30px;
+}
+
+a.topBtn.btnMa {
+	background-image: url(../images/dataVis_button_ma.gif);
+	right: 55px;
+}
+
+div.containerForGraphs div.movingAverage a.topBtn.btnMa {
+	background-position: left -30px;
+}
+
+div.containerForGraphs div.movingAverage a.topBtn.btnMa:hover {
+	background-position: left 0;
+}
+
+a.topBtn.btnIntegrals {
+	background-image: url(../images/dataVis_button_graph.gif);
+	right: 0;
+}
+
+div.containerForGraphs div.integrals a.topBtn.btnIntegrals {
+	background-position: left -30px;
+}
+
+div.containerForGraphs div.integrals a.topBtn.btnIntegrals:hover {
+	background-position: left 0;
+}
+
+div.integralData {
+	min-width: 80px;
+	padding: 5px 10px;
+	border: 1px solid #b3b3b3;
+	background-color: #fff;
+	position: absolute;
+	right: 5px;
+	top: 45px;
+	display: none;
+}
+
+div.containerForGraphs div.integrals div.integralData {
+	display: block;
+}
+
+div.integralData p {
+	text-align: center;
+}
+
+div.integralData table {
+	min-width: 80px;
+}
+
+div.integralData table tbody tr td {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+div.integralData table tbody tr td:first-child {
+	width: 15px;
+	padding-right: 5px;
+}
+
+div.integralData table tbody tr td:first-child div {
+	height: 2px;
+	overflow: hidden;
+	position: relative;
+	top: 8px;
+}
+
+div.integralData table tbody tr td:last-child {
+	font-size: 0.8em;
+	line-height: 1em;
+	text-align: right;
+}
+
+div.svgWrap {
+	width: 1098px;
+	height: 307px;
+	/*  margin-top: 25px;
+	margin-left: 62px;
+	padding-top: 14px;*/
+	position: relative;
+}
+
+div.svgWrap#svgParent {
+	height: 350px;
+	/*padding-top: 40px;*/
+}
+
+div.svgWrap#svgParent p.lbl {
+	width: 135px;
+	text-align: right;
+	position: absolute;
+	left: -145px;
+}
+
+div.svgWrap#svgParent p.lbl.lblCn {
+	top: 292px;
+}
+
+div.svgWrap#svgParent p.lbl.lblPc {
+	top: 316px;
+}
+
+div.svgWrap#svgParent div.clinicianNote {
+	width: 18px;
+	height: 28px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	left: 12px;
+	top: 285px;
+}
+
+div.svgWrap#svgParent div.clinicianNote:hover {
+	cursor: pointer;
+}
+
+div.svgWrap#svgParent div.clinicianNote.cnStart {
+	background-image: url(../images/visualizer_clinician_note_add.png);
+}
+
+div.svgWrap#svgParent div.clinicianNote.cnMark {
+	background-image: url(../images/visualizer_clinician_note.png);
+}
+
+div.svgWrap h2 {
+	font-size: 0.9em;
+	font-weight: normal;
+	text-transform: uppercase;
+	position: absolute;
+	left: 33px;
+	top: 18px;
+}
+
+div.svgWrap div.commentInline {
+	margin-left: -18px;
+	background-color: rgba(82, 91, 242, 0.75);
+	top: 140px;
+}
+
+div.svgWrap div.commentInline img.arrow {
+	left: 12px;
+}
+
+div.svgWrap div.commentInline h6 {
+	width: 140px;
+	left: 5px;
+}
+
+div.svgWrap div.noteInline {
+	height: 176px;
+	margin-left: -48px;
+	background-color: rgba(93, 181, 221, 0.75);
+	top: 90px;
+}
+
+div.svgWrap div.noteInline img.arrow {
+	left: 74px;
+}
+
+div.svgWrap div.noteInline h5 {
+	width: 132px;
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: normal;
+	position: absolute;
+	left: 15px;
+	top: 1px;
+}
+
+div.svgWrap div.noteInline h6 {
+	width: 132px;
+	left: 15px;
+	top: 15px;
+}
+
+div.svgWrap div.noteInline form {
+	top: 32px;
+}
+
+svg {
+	font-size: 12px;
+}
+
+svg g path {
+	fill: none;
+	stroke: #f00;
+}
+
+svg g path.domain,svg g path.dataMa { /*display: none;*/
+	
+}
+
+svg g path.dataMa {
+	stroke-width: 2;
+	stroke-dasharray: 6, 2;
+}
+
+div.containerForGraphs div.movingAverage svg g path.dataMa {
+	display: inline;
+}
+
+div.containerForGraphs div.movingAverage svg g path.dataPath {
+	opacity: 0.25;
+}
+
+svg g.bgFocus rect {
+	fill: #fff;
+}
+
+svg g rect.mask {
+	fill: #e5f3da;
+}
+
+svg g#focus rect.comment {
+	fill: #525bf2;
+	cursor: pointer;
+}
+
+svg g#focus rect.mask {
+	fill: #f2f2f2;
+}
+
+svg g#focus g#r-1 rect.extent {
+	fill: rgba(90, 171, 226, 0.7);
+}
+
+svg g#focus g#r-2 rect.extent {
+	fill: rgba(82, 82, 204, 0.7);
+}
+
+svg g.fgFocus rect {
+	fill: none;
+}
+
+svg g.axis path,svg g.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+svg g.axis.x g.tick line,svg g.axis.y g.tick line {
+	stroke: #000;
+	opacity: 0.125;
+}
+
+svg g.bgContext rect {
+	fill: none;
+}
+
+svg g#context g.x g.tick line {
+	display: none;
+}
+
+svg g.brush text {
+	font-size: 20px;
+	fill: rgba(0, 0, 0, 0.25);
+}
+
+svg g.brush rect.extent {
+	fill: #339999;
+	fill-opacity: 0.4;
+	shape-rendering: crispEdges;
+}
+
+svg#parentSvg {
+	/*border: 2px solid #b3b3b3;
+	background-color: #f2f2f2;*/
+	
+}
+
+svg#parentSvg image#cnAdd {
+	cursor: pointer;
+}
+
+svg#range1Svg g.bgColour rect {
+	fill: rgba(90, 171, 226, 0.7);
+	fill-opacity: 0.4;
+}
+
+svg#range2Svg g.bgColour rect {
+	fill: rgba(82, 82, 204, 0.7);
+	fill-opacity: 0.4;
+}
+
+div.swatchColumns {
+	width: 100%;
+	margin: 0.8em 0;
+	/*padding-left: 62px;*/
+	/*-moz-column-count: 4;
+  -webkit-column-count: 4;
+  column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;*/
+}
+
+div.swatchColumns h2 {
+	padding-bottom: 0.8em;
+	font-size: 0.9em;
+}
+
+div.swatchColumns ul.swatches {
+	padding-bottom: 0.8em;
+	list-style: none;
+}
+
+div.swatchColumns ul.swatches li {
+	padding-top: 0.5em;
+	padding-right: 40px;
+	padding-bottom: 0.5em;
+	padding-left: 30px;
+	position: relative;
+}
+
+div.swatchColumns ul.swatches li.disabled {
+	opacity: 0.5;
+}
+
+div.swatchColumns ul.swatches li a {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #9e9e9e;
+	background-image:
+		url(../images/visualizer_colour_select_transparent.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	left: 0;
+	top: 4px;
+}
+
+div.swatchColumns ul.swatches li span {
+	font-size: 0.9em;
+}
+
+a.img {
+	display: block;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: relative;
+}
+
+a div.left {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+a.img span,a div.left span {
+	display: none;
+}
+
+a.img em {
+	font-style: normal;
+	position: absolute;
+}
+
+div.colFl,ul.floatLeft li,img.floatLeft {
+	float: left;
+}
+
+div.colFr,ul.floatRight li,img.floatRight {
+	float: right;
+}
+
+ul.pagLeft li {
+	float: left;
+	line-height: 1em;
+	border-right-width: 1px;
+	border-right-style: solid;
+}
+
+ul.pagRight li {
+	float: right;
+	line-height: 1em;
+	border-left-width: 1px;
+	border-left-style: solid;
+}
+
+form,form fieldset {
+	/*overflow: hidden;*/
+}
+
+form fieldset legend {
+	display: none;
+}
+
+form fieldset div.textField {
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: relative;
+}
+
+form fieldset div.textField input {
+	border-width: 0;
+	background: url(../images/background_transparent.gif) repeat;
+	position: absolute;
+}
+
+form.quickSearch fieldset {
+	position: relative;
+}
+
+form.quickSearch fieldset div.textField {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+form.quickSearch fieldset a.img {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+ol {
+	list-style: decimal;
+}
+
+.ulNav,footer nav ul {
+	margin: 0;
+	list-style: none;
+}
+
+.o0 {
+	opacity: 0.0;
+}
+
+.o1 {
+	opacity: 1.0;
+}
+
+.uLight,body,form fieldset input[type="text"],form fieldset input[type="password"],form fieldset input[type="email"],form fieldset input[type="tel"],form fieldset input[type="number"],form fieldset input[type="time"],form fieldset input[type="date"],form fieldset input.date,form fieldset textarea,form fieldset div.row table th,form fieldset div.row table td,.inlinePopup h6,div.svgWrap div.commentInline h6,div.svgWrap div.noteInline h6,.inlinePopup div.scroll div.content,div.svgWrap div.commentInline div.scroll div.content,div.svgWrap div.noteInline div.scroll div.content,.inlinePopup div.scroll div.content p,div.svgWrap div.commentInline div.scroll div.content p,div.svgWrap div.noteInline div.scroll div.content p,.inlinePopup form fieldset textarea,div.svgWrap div.commentInline form fieldset textarea,div.svgWrap div.noteInline form fieldset textarea,div.integralData table tbody tr td:last-child,div.svgWrap div.noteInline h5
+	{
+	font-weight: normal;
+	font-family: 'ubuntu_lightregular', sans-serif;
+}
+
+.uReg,form fieldset div.row table th,header form,article.loginBox form fieldset input[type="text"],article.loginBox form fieldset input[type="password"],article.loginBox form fieldset textarea,article.mainBox p,svg,div.swatchColumns ul.swatches li span
+	{
+	font-weight: normal;
+	font-family: 'ubunturegular', sans-serif;
+}
+
+.uMed,.formButton,form fieldset input[type="submit"],form fieldset input[type="button"],form fieldset button,article.cqArt form fieldset div.borders h3
+	{
+	font-weight: normal;
+	font-family: 'ubuntu_lightbold', sans-serif;
+}
+
+.uBold,header h1 strong,article.loginBox h2 strong,article.mainBox p strong,div.swatchColumns h2
+	{
+	font-weight: normal;
+	font-family: 'ubuntubold', sans-serif;
+}
+
+.rectStroke,svg g.bgFocus rect,svg g.fgFocus rect {
+	/*stroke: #dbdcde;
+	stroke-width: 1;
+	stroke-linecap: square;*/
+}
+
+.o0 {
+	opacity: 0.0;
+}
+
+.o1 {
+	opacity: 1.0;
+}
+
+.genFont,p,form fieldset div.row table th,form fieldset div.row table td,header form label,header form a,footer nav ul li
+	{
+	font-size: 0.9em;
+	line-height: 1.3em;
+}
+
+/*.botMarg {
+	margin: 0 0 0.3em;
+}*/
+.formInputs,.formButton,form fieldset input[type="submit"],form fieldset input[type="button"],form fieldset button,article.loginBox form fieldset input[type="text"],article.loginBox form fieldset input[type="password"],article.loginBox form fieldset textarea
+	{
+	margin-bottom: 0;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	font-size: 0.9em;
+	border-color: #9e9e9e;
+	border-radius: 6px;
+}
+
+.formButton,form fieldset input[type="submit"],form fieldset input[type="button"],form fieldset button
+	{
+	margin-top: 0.6em;
+	padding-right: 11px;
+	padding-left: 11px;
+	text-align: left;
+	color: #4d4d4d;
+	text-shadow: 1px 1px 0 #fff;
+	border: 1px solid #9e9e9e;
+	background:
+		url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZkZmRmZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkNmQ4ZDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, #fdfdfd 0%, #d6d8d9 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd),
+		color-stop(100%, #d6d8d9) );
+}
+
+.formButton:hover,form fieldset input[type="submit"]:hover,form fieldset input[type="button"]:hover,form fieldset button:hover
+	{
+	background:
+		url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q2ZDhkOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZGZkZmQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, #d6d8d9 0%, #fdfdfd 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d6d8d9),
+		color-stop(100%, #fdfdfd) );
+}
+
+.formButton:active,form fieldset input[type="submit"]:active,form fieldset input[type="button"]:active,form fieldset button:active
+	{
+	position: relative;
+	left: 2px;
+	top: 2px;
+}
+
+html.ie9 .formButton,html.ie9 form fieldset input[type="submit"],form fieldset html.ie9 input[type="submit"],html.ie9 form fieldset input[type="button"],form fieldset html.ie9 input[type="button"],html.ie9 form fieldset button,form fieldset html.ie9 button
+	{
+	filter: none;
+}
+
+.ulNav,footer nav ul {
+	margin: 0;
+	list-style: none;
+}
+
+p#created {
+	margin-top: 1em;
+}
+
+p.alert {
+	color: red;
+	-moz-transition: opacity 0.5s ease-out;
+	-webkit-transition: opacity 0.5s ease-out;
+	transition: opacity 0.5s ease-out;
+}
+
+a {
+	color: #0b67b1;
+}
+
+div.minHeight {
+	position: relative;
+}
+
+body.login div.minHeight {
+	position: static;
+}
+
+article.cedArt {
+	margin-top: 75px;
+	display: inline-block;
+}
+
+article.cedArt div.cedfCont {
+	display: inline-block;
+}
+
+article.cedArt div.cedfCont h2 {
+	margin-bottom: 0.8em;
+}
+
+article.acpaArt,article.cqArt {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+article.acpaArt div.floatCont,article.cqArt div.floatCont {
+	width: 500px;
+	float: right;
+}
+
+article.acpaArt h2,article.cqArt h2 {
+	margin-bottom: 0.4em;
+	padding-top: 75px;
+}
+
+article.cqArt form {
+	overflow: visible;
+}
+
+article.cqArt form fieldset {
+	overflow: visible;
+}
+
+article.cqArt form fieldset div.patientSelect {
+	position: absolute;
+	left: -300px;
+	top: 8px;
+}
+
+article.cqArt form fieldset div.patientSelect+h3 {
+	padding-bottom: 0.5em;
+}
+
+article.cedArt div.cedfCont form {
+	overflow: visible;
+}
+
+form fieldset {
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+	position: relative;
+}
+
+article.cedArt div.cedfCont form fieldset {
+	overflow: visible;
+}
+
+form fieldset input[type="text"],form fieldset input[type="password"],form fieldset input[type="email"],form fieldset input[type="tel"],form fieldset input[type="number"],form fieldset input[type="time"],form fieldset input[type="date"],form fieldset input.date,form fieldset textarea
+	{
+	width: 245px;
+	padding-top: 3px;
+	padding-right: 6px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	font-size: 0.9em;
+	color: #000;
+	border: 1px solid #9e9e9e;
+}
+
+form fieldset input[type="text"].number,form fieldset input[type="password"].number,form fieldset input[type="email"].number,form fieldset input[type="tel"].number,form fieldset input[type="number"].number,form fieldset input[type="time"].number,form fieldset input[type="date"].number,form fieldset input.date.number,form fieldset textarea.number
+	{
+	width: 32px;
+}
+
+article.cqArt form fieldset input[type="text"],article.cqArt form fieldset input[type="password"],article.cqArt form fieldset input[type="email"],article.cqArt form fieldset input[type="tel"],article.cqArt form fieldset input[type="number"],article.cqArt form fieldset input[type="time"],article.cqArt form fieldset input[type="date"],article.cqArt form fieldset input.date,article.cqArt form fieldset textarea
+	{
+	float: none;
+}
+
+form fieldset span.ui-spinner {
+	border-color: #9e9e9e;
+	border-radius: 0;
+}
+
+form fieldset span.ui-spinner input {
+	padding: 1px 1px 0;
+	font-size: 1em;
+	border-width: 0;
+}
+
+form fieldset textarea {
+	padding-top: 2%;
+	padding-bottom: 2%;
+	border-radius: 0;
+}
+
+form fieldset div.fRight {
+	float: right;
+	display: inline-block;
+}
+
+form fieldset input[type="checkbox"] {
+	border-color: #9e9e9e;
+}
+
+form fieldset label {
+	font-size: 0.9em;
+}
+
+form fieldset input[type="submit"],form fieldset input[type="button"],form fieldset button
+	{ /*&#subDelete, &#subEmail, &#subEditAccess, &#subRevert {
+    	opacity: 0.5;
+    }*/
+	
+}
+
+form fieldset input[type="submit"].disabled,form fieldset input[type="button"].disabled,form fieldset button.disabled
+	{
+	opacity: 0.5;
+}
+
+form fieldset button {
+	position: relative;
+	top: 5px;
+}
+
+form fieldset button:active {
+	top: 7px;
+}
+
+form fieldset div.row {
+	padding-bottom: 0.5em;
+	position: relative;
+}
+
+article.cqArt form fieldset div.row {
+	width: 100%;
+	display: inline-block;
+	float: none;
+}
+
+article.cqArt form fieldset div.row span {
+	font-size: 0.9em;
+}
+
+article.cqArt form fieldset div.row.tod {
+	margin-top: 0.5em;
+}
+
+article.cqArt form fieldset div.row.tod p.alert {
+	padding-left: 87px;
+}
+
+article.cqArt form fieldset div.row.tod>label {
+	position: absolute;
+	left: 0;
+	top: 5px;
+}
+
+article.cqArt form fieldset div.row.tod div.row {
+	margin-left: 87px;
+}
+
+article.cqArt form fieldset div.row.tod div.row input {
+	width: 86px;
+}
+
+article.cqArt form fieldset div.row input[type="date"],article.cqArt form fieldset div.row input.date
+	{
+	width: 135px;
+}
+
+article.cqArt form fieldset div.row input[type="radio"]+label {
+	margin-right: 0.5em;
+}
+
+form fieldset div.row label {
+	text-align: right;
+/* 	position: absolute; MK - commented this out because its breaking the questions*/ 
+	clear:both;
+	top: 7px;
+}
+
+article.clinician form fieldset div.row label {
+	width: 90px;
+	left: -100px;
+}
+
+article.patient form fieldset div.row label {
+	width: 145px;
+	left: -155px;
+}
+
+article.cqArt form fieldset div.row label {
+	position: static;
+	text-align: left;
+}
+
+article.cqArt form fieldset div.row label {
+	margin-right: 5px;
+}
+
+article.cqArt form fieldset div.row label.noRightMarg {
+	margin-right: 0;
+}
+
+form fieldset div.row input[type="checkbox"] {
+	position: relative;
+	top: 5px;
+}
+
+form fieldset div.row.select {
+	padding-top: 0.3em;
+	padding-bottom: 0.8em;
+}
+
+form fieldset div.row.select label {
+	top: 8px;
+}
+
+form fieldset div.row.submit {
+	padding-top: 0.3em;
+}
+
+form fieldset div.row table {
+	width: 100%;
+}
+
+form fieldset div.row table th,form fieldset div.row table td {
+	padding-top: 4px;
+	padding-right: 6px;
+	padding-bottom: 4px;
+	padding-left: 6px;
+}
+
+form fieldset div.row table th {
+	text-align: left;
+	background-color: #cfe9bf;
+}
+
+form fieldset div.borders {
+	padding-bottom: 0.8em;
+	border: 1px solid black;
+	border-width: 1px 0;
+	/*div#qfRows {
+    	width: auto;
+    	float: none;
+    	background-color: pink;
+    	
+    	div.row {
+    		width: 100%;
+    	}
+    	
+    }*/
+}
+
+article.cqArt form fieldset div.borders {
+	padding-top: 0.5em;
+	padding-bottom: 0;
+	border-top-width: 0;
+}
+
+article.cqArt form fieldset div.borders:first-child {
+	border-top-width: 1px;
+}
+
+form fieldset div.borders>div {
+	width: 35%;
+	float: left;
+}
+
+form fieldset div.borders>div+div {
+	width: 30%;
+}
+
+form fieldset div.borders>div+div+div {
+	width: 35%;
+}
+
+form fieldset div.borders>div h3 {
+	margin-top: 1.4em;
+	margin-bottom: 0.7em;
+	font-size: 0.9em;
+}
+
+article.cqArt form fieldset div.borders>div h3 {
+	margin-top: 0;
+}
+
+form fieldset div.borders>div a.btnAssignment {
+	width: 136px;
+	height: 197px;
+	margin-top: 0.9em;
+	background: url(../images/button_assignment_cropped.png) no-repeat left
+		top;
+}
+
+form fieldset div.borders>div a.btnAssignment:hover {
+	background-position: -136px top;
+}
+
+form fieldset div.borders>div div.row input[type="checkbox"] {
+	position: absolute;
+	left: 0;
+	top: -1px;
+}
+
+form fieldset div.borders>div div.row label { /*margin: {
+        	left: 22px;
+        }*/
+	text-align: left;
+	position: static;
+}
+
+form fieldset div.borders>div div.row td input[type="checkbox"] {
+	position: static;
+}
+
+form fieldset div.borders div#patientChecklistDiv div.row,form fieldset div.borders div#clinicianChecklistDiv div.row
+	{
+	padding-left: 25px;
+}
+
+article.cqArt form fieldset div.borders h3 {
+	padding-top: 0.5em;
+	font-size: 0.9em;
+}
+
+article.terms {
+	width: 600px;
+	padding-bottom: 50px;
+}
+
+article.terms p {
+	margin-top: 1em;
+}
+
+article.grapher {
+	width: 1160px;
+	margin: 0 auto;
+}
+
+article.grapher form#dataVisForm {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+article.grapher form#dataVisForm fieldset {
+	width: 50%;
+	margin-top: 18px;
+	float: left;
+}
+
+article.grapher form#dataVisForm fieldset label {
+	margin-right: 10px;
+}
+
+div.containerForGraphs {
+	position: relative;
+	/*overflow: auto;*/
+	width: 100%;
+}
+
+.inlinePopup,div.svgWrap div.commentInline,div.svgWrap div.noteInline {
+	width: 160px;
+	height: 160px;
+	position: absolute;
+}
+
+.inlinePopup img.arrow,div.svgWrap div.commentInline img.arrow,div.svgWrap div.noteInline img.arrow
+	{
+	position: absolute;
+	bottom: -18px;
+}
+
+.inlinePopup h6,div.svgWrap div.commentInline h6,div.svgWrap div.noteInline h6
+	{
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: normal;
+	position: absolute;
+	top: 1px;
+}
+
+.inlinePopup div.scroll,div.svgWrap div.commentInline div.scroll,div.svgWrap div.noteInline div.scroll,.inlinePopup form,div.svgWrap div.commentInline form,div.svgWrap div.noteInline form
+	{
+	width: 150px;
+	height: 138px;
+	position: absolute;
+	left: 5px;
+	top: 17px;
+}
+
+.inlinePopup div.scroll,div.svgWrap div.commentInline div.scroll,div.svgWrap div.noteInline div.scroll
+	{
+	overflow-y: auto;
+	background-color: #fff;
+}
+
+.inlinePopup div.scroll div.content,div.svgWrap div.commentInline div.scroll div.content,div.svgWrap div.noteInline div.scroll div.content
+	{
+	padding: 0.3em;
+}
+
+.inlinePopup div.scroll div.content p,div.svgWrap div.commentInline div.scroll div.content p,div.svgWrap div.noteInline div.scroll div.content p
+	{
+	font-size: 0.9em;
+	line-height: 1.3em;
+}
+
+.inlinePopup form fieldset textarea,div.svgWrap div.commentInline form fieldset textarea,div.svgWrap div.noteInline form fieldset textarea
+	{
+	width: 150px;
+	height: 138px;
+	padding: 0.3em;
+	font-size: 0.9em;
+	line-height: 1.3em;
+	resize: none;
+	background-color: #fff;
+}
+
+.inlinePopup a,div.svgWrap div.commentInline a,div.svgWrap div.noteInline a
+	{
+	width: 7px;
+	position: absolute;
+}
+
+.inlinePopup a.btnCloseCI,div.svgWrap div.commentInline a.btnCloseCI,div.svgWrap div.noteInline a.btnCloseCI
+	{
+	height: 7px;
+	background-image: url(../images/comments_box_close.png);
+	right: 5px;
+	top: 5px;
+}
+
+.inlinePopup a.btnCloseDelete,div.svgWrap div.commentInline a.btnCloseDelete,div.svgWrap div.noteInline a.btnCloseDelete
+	{
+	height: 9px;
+	background-image: url(../images/trash_can_final.png);
+	left: 5px;
+	top: 4px;
+}
+
+a.topBtn {
+	width: 37px;
+	height: 30px;
+	position: absolute;
+	top: 0;
+}
+
+a.topBtn:hover {
+	background-position: left -30px;
+}
+
+a.topBtn.btnMa {
+	background-image: url(../images/dataVis_button_ma.gif);
+	right: 55px;
+}
+
+div.containerForGraphs div.movingAverage a.topBtn.btnMa {
+	background-position: left -30px;
+}
+
+div.containerForGraphs div.movingAverage a.topBtn.btnMa:hover {
+	background-position: left 0;
+}
+
+a.topBtn.btnIntegrals {
+	background-image: url(../images/dataVis_button_graph.gif);
+	right: 0;
+}
+
+div.containerForGraphs div.integrals a.topBtn.btnIntegrals {
+	background-position: left -30px;
+}
+
+div.containerForGraphs div.integrals a.topBtn.btnIntegrals:hover {
+	background-position: left 0;
+}
+
+div.integralData {
+	min-width: 80px;
+	padding: 5px 10px;
+	border: 1px solid #b3b3b3;
+	background-color: #fff;
+	position: absolute;
+	right: 5px;
+	top: 45px;
+	display: none;
+}
+
+div.containerForGraphs div.integrals div.integralData {
+	display: block;
+}
+
+div.integralData p {
+	text-align: center;
+}
+
+div.integralData table {
+	min-width: 80px;
+}
+
+div.integralData table tbody tr td {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+div.integralData table tbody tr td:first-child {
+	width: 15px;
+	padding-right: 5px;
+}
+
+div.integralData table tbody tr td:first-child div {
+	height: 2px;
+	overflow: hidden;
+	position: relative;
+	top: 8px;
+}
+
+div.integralData table tbody tr td:last-child {
+	font-size: 0.8em;
+	line-height: 1em;
+	text-align: right;
+}
+
+div.svgWrap#svgParent p.lbl {
+	width: 135px;
+	text-align: right;
+	position: absolute;
+	left: -145px;
+}
+
+div.svgWrap#svgParent p.lbl.lblCn {
+	top: 292px;
+}
+
+div.svgWrap#svgParent p.lbl.lblPc {
+	top: 316px;
+}
+
+div.svgWrap#svgParent div.clinicianNote {
+	width: 18px;
+	height: 28px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	left: 12px;
+	top: 285px;
+}
+
+div.svgWrap#svgParent div.clinicianNote:hover {
+	cursor: pointer;
+}
+
+div.svgWrap#svgParent div.clinicianNote.cnStart {
+	background-image: url(../images/visualizer_clinician_note_add.png);
+}
+
+div.svgWrap#svgParent div.clinicianNote.cnMark {
+	background-image: url(../images/visualizer_clinician_note.png);
+}
+
+div.svgWrap h2 {
+	font-size: 0.9em;
+	font-weight: normal;
+	text-transform: uppercase;
+	position: absolute;
+	left: 33px;
+	top: 18px;
+}
+
+div.svgWrap div.commentInline {
+	margin-left: -18px;
+	background-color: rgba(82, 91, 242, 0.75);
+	top: 140px;
+}
+
+div.svgWrap div.commentInline img.arrow {
+	left: 12px;
+}
+
+div.svgWrap div.commentInline h6 {
+	width: 140px;
+	left: 5px;
+}
+
+div.svgWrap div.noteInline {
+	height: 176px;
+	margin-left: -48px;
+	background-color: rgba(93, 181, 221, 0.75);
+	top: 90px;
+}
+
+div.svgWrap div.noteInline img.arrow {
+	left: 74px;
+}
+
+div.svgWrap div.noteInline h5 {
+	width: 132px;
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: normal;
+	position: absolute;
+	left: 15px;
+	top: 1px;
+}
+
+div.svgWrap div.noteInline h6 {
+	width: 132px;
+	left: 15px;
+	top: 15px;
+}
+
+div.svgWrap div.noteInline form {
+	top: 32px;
+}
+
+svg#parentSvg image#cnAdd {
+	cursor: pointer;
+}
+
+div.swatchColumns {
+	width: 100%;
+	margin: 0.8em 0;
+	/*padding-left: 62px;*/
+	/* -moz-column-count: 4;
+  -webkit-column-count: 4;
+  column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;*/
+}
+
+div.swatchColumns h2 {
+	padding-bottom: 0.8em;
+	font-size: 0.9em;
+}
+
+div.swatchColumns ul.swatches {
+	padding-bottom: 0.8em;
+	list-style: none;
+}
+
+div.swatchColumns ul.swatches li {
+	padding-top: 0.5em;
+	padding-right: 40px;
+	padding-bottom: 0.5em;
+	padding-left: 30px;
+	position: relative;
+}
+
+div.swatchColumns ul.swatches li.disabled {
+	opacity: 0.5;
+}
+
+div.swatchColumns ul.swatches li a {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #9e9e9e;
+	-o-border-radius: 14px;
+	-webkit-border-radius: 14px;
+	-moz-border-radius: 14px;
+	border-radius: 14px;
+	background-image:
+		url(../images/visualizer_colour_select_transparent.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	left: 0;
+	top: 4px;
+}
+
+div.swatchColumns ul.swatches li span {
+	font-size: 0.9em;
+}
+
+.tagswatch {
+	display: inline-block;
+	width: 16px;
+	margin-right: 5px;
+}
+
+#tags ul li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 20px;
+}
+
+ul#questions-legend li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 20px;
+}

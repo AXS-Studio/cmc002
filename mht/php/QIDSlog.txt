@@ -1,0 +1,1462 @@
+--------Log for Record09---------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 2 (LOCF 2013-04-30 14:31:52)
+QIDS_1 2 max app is 2
+QIDS_2 1 (LOCF 2013-04-30 14:31:52)
+QIDS_2 1 max app is 2
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 2
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 2
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 3
+Depression_score 4 over 9
+QIDS_7 0 (LOCF )
+Depression_score 4 over 12
+QIDS_8 0
+Depression_score 4 over 15
+QIDS_9 3
+Depression_score 7 over 18
+QIDS_10 2
+QIDS_10 2 max psycho is 2
+QIDS_11 1
+QIDS_11 1 max psycho is 2
+VAS_4 79
+VAS_4 (Hours Slept) 87
+Depression_score 7.87 over 19.5
+VAS_8 20
+VAS_8 (Quality of Sleep) 1.2
+Depression_score 9.07 over 21
+Added up app and psycho - Depression_score 13.07 over 27
+---------Depression_score 13.07 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 0
+QIDS_2 0 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 0
+QIDS_2 0 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 2
+QIDS_2 2 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 0
+QIDS_2 0 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 1
+QIDS_2 1 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for Record09---------
+QIDS_0 0
+Depression_score 0 over 3
+QIDS_1 2 (LOCF 2013-04-30 14:31:52)
+QIDS_1 2 max app is 2
+QIDS_2 1 (LOCF 2013-04-30 14:31:52)
+QIDS_2 1 max app is 2
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 2
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 2
+QIDS_5 0 (LOCF )
+Depression_score 0 over 6
+QIDS_6 0
+Depression_score 0 over 9
+QIDS_7 0 (LOCF )
+Depression_score 0 over 12
+QIDS_8 2
+Depression_score 2 over 15
+QIDS_9 3
+Depression_score 5 over 18
+QIDS_10 1
+QIDS_10 1 max psycho is 1
+QIDS_11 2
+QIDS_11 2 max psycho is 2
+VAS_4 24
+VAS_4 (Hours Slept) 78
+Depression_score 5.78 over 19.5
+VAS_8 24
+VAS_8 (Quality of Sleep) 1.14
+Depression_score 6.92 over 21
+Added up app and psycho - Depression_score 10.92 over 27
+---------Depression_score 10.92 over 27------------------
+
+--------Log for Record09---------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 2
+QIDS_1 2 max app is 2
+QIDS_2 2
+QIDS_2 2 max app is 2
+QIDS_3 0
+QIDS_3 0 max app is 2
+QIDS_4 1
+QIDS_4 1 max app is 2
+QIDS_5 2
+Depression_score 3 over 6
+QIDS_6 0
+Depression_score 3 over 9
+QIDS_7 3
+Depression_score 6 over 12
+QIDS_8 1
+Depression_score 7 over 15
+QIDS_9 0
+Depression_score 7 over 18
+QIDS_10 2
+QIDS_10 2 max psycho is 2
+QIDS_11 1
+QIDS_11 1 max psycho is 2
+VAS_4 32
+VAS_4 (Hours Slept) 54
+Depression_score 7.54 over 19.5
+VAS_8 39
+VAS_8 (Quality of Sleep) 0.915
+Depression_score 8.455 over 21
+Added up app and psycho - Depression_score 12.455 over 27
+---------Depression_score 12.455 over 27------------------
+
+--------Log for Record09---------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 2 (LOCF 2013-07-15 10:13:01)
+QIDS_1 2 max app is 2
+QIDS_2 1 (LOCF 2013-07-15 10:13:01)
+QIDS_2 1 max app is 2
+QIDS_3 0 (LOCF 2013-07-15 10:13:01)
+QIDS_3 0 max app is 2
+QIDS_4 1 (LOCF 2013-07-15 10:13:01)
+QIDS_4 1 max app is 2
+QIDS_5 2 (LOCF 2013-07-15 10:13:01)
+Depression_score 3 over 6
+QIDS_6 0
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-07-15 10:13:01)
+Depression_score 6 over 12
+QIDS_8 3
+Depression_score 9 over 15
+QIDS_9 0
+Depression_score 9 over 18
+QIDS_10 2
+QIDS_10 2 max psycho is 2
+QIDS_11 2
+QIDS_11 2 max psycho is 2
+VAS_4 24
+VAS_4 (Hours Slept) 78
+Depression_score 9.78 over 19.5
+VAS_8 75
+VAS_8 (Quality of Sleep) 0.375
+Depression_score 10.155 over 21
+Added up app and psycho - Depression_score 14.155 over 27
+---------Depression_score 14.155 over 27------------------
+
+--------Log for clau---------
+QIDS_0 0
+Depression_score 0 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 1 over 6
+QIDS_6 0
+Depression_score 1 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 4 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 4 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 7 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 7.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 8.29 over 21
+Added up app and psycho - Depression_score 11.29 over 27
+---------Depression_score 11.29 over 27------------------
+
+--------Log for Record08---------
+QIDS_0 1 (LOCF 2013-05-07 05:55:26)
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-03-27 00:45:30)
+QIDS_1 3 max app is 3
+QIDS_2 2
+QIDS_2 2 max app is 3
+QIDS_3 0 (LOCF )
+QIDS_3 0 max app is 3
+QIDS_4 0 (LOCF )
+QIDS_4 0 max app is 3
+QIDS_5 0 (LOCF )
+Depression_score 1 over 6
+QIDS_6 0 (LOCF )
+Depression_score 1 over 9
+QIDS_7 0 (LOCF )
+Depression_score 1 over 12
+QIDS_8 0 (LOCF )
+Depression_score 1 over 15
+QIDS_9 0 (LOCF )
+Depression_score 1 over 18
+QIDS_10 0 (LOCF )
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF )
+QIDS_11 0 max psycho is 0
+VAS_4 0 (LOCF )
+VAS_4 (Hours Slept) 150
+Depression_score 2.5 over 19.5
+VAS_8 0 (LOCF )
+VAS_8 (Quality of Sleep) 1.5
+Depression_score 4 over 21
+Added up app and psycho - Depression_score 7 over 27
+---------Depression_score 7 over 27------------------
+
+--------Log for clau (2013-09-09 14:54:15)--------
+QIDS_0 0
+Depression_score 0 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 1 over 6
+QIDS_6 0
+Depression_score 1 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 4 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 4 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 7 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 7.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 8.29 over 21
+Added up app and psycho - Depression_score 11.29 over 27
+---------Depression_score 11.29 over 27------------------
+
+--------Log for clau (2013-09-09 14:55:36)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-23 11:09:49)--------
+QIDS_0 0
+Depression_score 0 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 1 over 6
+QIDS_6 1
+Depression_score 2 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 5 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 5 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 8 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 8.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 9.29 over 21
+Added up app and psycho - Depression_score 12.29 over 27
+---------Depression_score 12.29 over 27------------------
+
+--------Log for clau (2013-11-24 15:31:27)--------
+QIDS_0 2
+Depression_score 2 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 3 over 6
+QIDS_6 1
+Depression_score 4 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 7 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 7 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 10 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 10.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 11.29 over 21
+Added up app and psycho - Depression_score 14.29 over 27
+---------Depression_score 14.29 over 27------------------
+
+--------Log for clau (2013-11-24 17:51:41)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-24 17:52:43)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-24 17:55:48)--------
+QIDS_0 0
+Depression_score 0 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 1 over 6
+QIDS_6 0
+Depression_score 1 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 4 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 4 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 7 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 7.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 8.29 over 21
+Added up app and psycho - Depression_score 11.29 over 27
+---------Depression_score 11.29 over 27------------------
+
+--------Log for clau (2013-11-24 17:57:48)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:19:41)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:19:48)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:19:55)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:20:41)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:21:06)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:22:40)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:27:32)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:29:15)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:30:32)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:33:14)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:35:59)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:40:03)--------
+QIDS_0 2
+Depression_score 2 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 3 over 6
+QIDS_6 1
+Depression_score 4 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 7 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 7 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 10 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 10.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 11.29 over 21
+Added up app and psycho - Depression_score 14.29 over 27
+---------Depression_score 14.29 over 27------------------
+
+--------Log for clau (2013-11-25 06:44:47)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 3 (LOCF 2013-05-13 09:39:28)
+QIDS_1 3 max app is 3
+QIDS_2 0 (LOCF 2013-05-13 09:39:28)
+QIDS_2 0 max app is 3
+QIDS_3 1 (LOCF 2013-05-13 09:39:28)
+QIDS_3 1 max app is 3
+QIDS_4 1 (LOCF 2013-05-13 09:39:28)
+QIDS_4 1 max app is 3
+QIDS_5 1 (LOCF 2013-05-13 09:39:28)
+Depression_score 2 over 6
+QIDS_6 1
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-05-13 09:39:28)
+Depression_score 6 over 12
+QIDS_8 0 (LOCF 2013-06-12 11:56:07)
+Depression_score 6 over 15
+QIDS_9 3 (LOCF 2013-06-12 11:56:07)
+Depression_score 9 over 18
+QIDS_10 0 (LOCF 2013-06-12 11:56:07)
+QIDS_10 0 max psycho is 0
+QIDS_11 0 (LOCF 2013-06-12 11:56:07)
+QIDS_11 0 max psycho is 0
+VAS_4 32 (LOCF 2013-06-12 11:56:07)
+VAS_4 (Hours Slept) 54
+Depression_score 9.54 over 19.5
+VAS_8 50 (LOCF 2013-06-12 11:56:07)
+VAS_8 (Quality of Sleep) 0.75
+Depression_score 10.29 over 21
+Added up app and psycho - Depression_score 13.29 over 27
+---------Depression_score 13.29 over 27------------------
+
+--------Log for Record09 (2014-05-06 11:36:45)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 2 (LOCF 2013-07-15 10:13:01)
+QIDS_1 2 max app is 2
+QIDS_2 1 (LOCF 2013-07-15 10:13:01)
+QIDS_2 1 max app is 2
+QIDS_3 0 (LOCF 2013-07-15 10:13:01)
+QIDS_3 0 max app is 2
+QIDS_4 1 (LOCF 2013-07-15 10:13:01)
+QIDS_4 1 max app is 2
+QIDS_5 2 (LOCF 2013-07-15 10:13:01)
+Depression_score 3 over 6
+QIDS_6 2
+Depression_score 5 over 9
+QIDS_7 3 (LOCF 2013-07-15 10:13:01)
+Depression_score 8 over 12
+QIDS_8 2
+Depression_score 10 over 15
+QIDS_9 1
+Depression_score 11 over 18
+QIDS_10 1
+QIDS_10 1 max psycho is 1
+QIDS_11 2
+QIDS_11 2 max psycho is 2
+VAS_4 73
+VAS_4 (Hours Slept) 69
+Depression_score 11.69 over 19.5
+VAS_8 100
+VAS_8 (Quality of Sleep) 0
+Depression_score 11.69 over 21
+Added up app and psycho - Depression_score 15.69 over 27
+---------Depression_score 15.69 over 27------------------
+
+--------Log for Record09 (2014-05-09 12:53:03)--------
+QIDS_0 1
+Depression_score 1 over 3
+QIDS_1 2 (LOCF 2013-07-15 10:13:01)
+QIDS_1 2 max app is 2
+QIDS_2 1 (LOCF 2013-07-15 10:13:01)
+QIDS_2 1 max app is 2
+QIDS_3 0 (LOCF 2013-07-15 10:13:01)
+QIDS_3 0 max app is 2
+QIDS_4 1 (LOCF 2013-07-15 10:13:01)
+QIDS_4 1 max app is 2
+QIDS_5 2 (LOCF 2013-07-15 10:13:01)
+Depression_score 3 over 6
+QIDS_6 0
+Depression_score 3 over 9
+QIDS_7 3 (LOCF 2013-07-15 10:13:01)
+Depression_score 6 over 12
+QIDS_8 1
+Depression_score 7 over 15
+QIDS_9 2
+Depression_score 9 over 18
+QIDS_10 1
+QIDS_10 1 max psycho is 1
+QIDS_11 1
+QIDS_11 1 max psycho is 1
+VAS_4 85
+VAS_4 (Hours Slept) 105
+Depression_score 10.05 over 19.5
+VAS_8 25
+VAS_8 (Quality of Sleep) 1.125
+Depression_score 11.175 over 21
+Added up app and psycho - Depression_score 14.175 over 27
+---------Depression_score 14.175 over 27------------------
+

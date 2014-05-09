@@ -1,0 +1,85 @@
+div.shareAlert {
+	width: 128px;
+	margin-left: -75px;
+	padding: {
+		top: 8px;
+		right: 10px;
+		bottom: 8px;
+		left: 10px;
+	}
+	overflow: visible;
+	@include bord1px($border);
+	border-radius: 3px;
+	background-color: $paleWhite;
+	position: fixed;
+	left: 50%;
+	bottom: 16px;
+	z-index: 100;
+	-webkit-transition: opacity 0.25s ease-out;
+	
+	@media screen and (orientation: portrait) {
+		& {
+			left: 50%;
+		}
+	}
+	
+	@media screen and (orientation: landscape) {
+		& {
+			left: 43%;
+		}
+	}
+	
+	a {
+		margin-top: 0.3em;
+		font: {
+			size: 0.7em;
+			weight: bold;
+		}
+		@extend .uBold;
+		color: $blue;
+		text-align: center;
+		display: inline-block;
+		
+		&.img {
+			width: 10px;
+			height: 10px;
+			margin: {
+				top: 1px;
+				bottom: 5px;
+				left: 5px;
+			}
+			overflow: hidden;
+			float: right;
+			@include bgImage100('../images/button_shareAlert_close.png');
+			
+			span {
+				display: none;
+			}
+			
+		}
+		
+	}
+	
+	p {
+		margin: 0;
+		font-size: 0.8em;
+		line-height: 1.3em;
+		
+		strong {
+			@extend .uBold;
+			font-weight: normal;
+		}
+		
+	}
+	
+	div {
+		width: 21px;
+		height: 11px;
+		margin-left: -10px;
+		@include bgImage100('../images/icon_share_arrow.png');
+		position: absolute;
+		left: 50%;
+		bottom: -11px;
+	}
+	
+}

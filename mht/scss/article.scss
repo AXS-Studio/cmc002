@@ -1,0 +1,893 @@
+div#acWrap {
+	overflow: hidden;
+	position: relative;
+	-webkit-transition: opacity 0.25s ease-out;
+}
+
+div#ac {
+	position: absolute;
+	top: 0;
+}
+
+#content article{
+	margin: 0;
+}
+
+
+// autocomplete
+.ac_results {
+	padding: 0px;
+	background-color: Window;
+	overflow: hidden;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results iframe {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	filter:mask();
+	width:3000px;
+	height:3000px;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 0.7em 1em;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	font: menu;
+	font-size: 12px;
+	overflow: hidden;
+	border-bottom: 1px solid #FFF;
+	width: 200px;
+}
+
+.ac_loading {
+	//background : Window url('./indicator.gif') right center no-repeat;
+}
+
+.ac_over {
+	background-color: $green;
+	color: #FFF;
+}
+
+
+article, div.message {
+	margin: 20px 20px 0 20px;
+	position: relative;
+	// top: 0;
+	-webkit-transition: opacity 0.25s ease-out;
+	
+	.twenty{
+		margin: 20px 20px 0 20px;
+	}
+
+	div#settings{
+		
+		text-align: center;
+		padding-top: 30px;
+		button{
+
+			width: 180px;
+			margin: 20px auto 0;
+		}
+
+	}
+
+	div.about{
+
+		padding: 1em;
+
+		.headings{
+			padding-top: 20px;
+			text-align: center;
+
+			button{
+				margin-top: 20px;
+				margin-bottom: 40px;
+			}
+
+		}
+
+		p{
+			margin: 0;
+		}
+	}
+
+	.faq{
+		p{
+			margin: 0;
+			padding: 1em;
+		}
+	}
+
+	div.change-pwd{
+		padding: 1em;
+	}
+
+	div#middle {
+		width: 100%;
+		// margin-left: -110px; 
+		text-align: center;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		
+		div.progress {
+			width: 100%;
+			height: 16px;
+			margin-bottom: 5px;
+			font-size: 1%;
+			overflow: hidden;
+			@include bord1px($dGrey);
+			border-radius: 16px;
+			position: relative;
+			
+			div {
+				// width: 75%;
+				width: 1%;
+				height: 100%;
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(253, 252, 251, 1.0)), color-stop(100%, rgba(207, 206, 202, 1.0)));
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+		}
+		
+		h2 {
+			font-size: 1.1em;
+			line-height: 1.2em;
+			@extend .genFont;
+			font-weight: normal;
+			padding: 0 20px;
+		}
+		
+	}
+	
+	h1 {
+		@extend .botMarg;
+		padding: 0;
+		@extend .genFont;
+		color: $titleGrey;
+		
+		&.title {
+			font-size: 1.2em;
+			
+			strong {
+				font: {
+					size: 1.2em;
+					weight: normal;
+				}
+				@extend .uBold;
+				color: $green;
+				
+				span {
+					color: $blue;
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	p {
+		@extend .botMarg;
+		@extend .genFont;
+		
+		&.forgot {
+			margin: {
+				top: 0.75em;
+				bottom: 0;
+			}
+			//text-align: center;
+		}
+		
+		&.alert {
+			color: $red;
+			-webkit-transition: opacity 0.5s ease-out;
+		}
+		
+		a {
+			color: $blue;
+		}
+		
+	}
+	
+	div#middle p a {
+		@extend .uMed;
+		text-decoration: none;
+	}
+	
+	div#middle p strong {
+		@extend .uMed;
+		font-weight: normal;
+		color: $blue;
+	}
+	
+	ol {
+		margin: 0 0 0 17px;
+		padding: 0;
+		@extend .genFont;
+		
+		li {
+			@extend .botMarg;
+			padding: 0;
+		}
+		
+	}
+	
+	form {
+		margin-top: 1em;
+		
+		fieldset {
+			margin: 0;
+			padding: 0;
+			border-width: 0;
+			position: relative;
+
+			
+			input[type="text"], input[type="password"], input[type="email"], textarea {
+				width: 92%;
+				padding: {
+					right: 4%;
+					left: 4%;
+				}
+				@extend .formInputs;
+				@extend .uReg;
+				color: $dGrey;
+
+				border-radius: 15px;
+				-moz-box-shadow:    inset 0 1px 3px rgba(0,0,0,0.25);
+			    -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+			    box-shadow:         inset 0 1px 3px rgba(0,0,0,0.25);
+				
+				&.top {
+					border-radius: 15px 15px 0 0;
+					-moz-box-shadow:    inset 0 1px 3px rgba(0,0,0,0.25);
+				    -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+				    box-shadow:         inset 0 1px 3px rgba(0,0,0,0.25);
+				    border-bottom: 0;
+				}
+				
+				&.bottom {
+					margin-top: 0;
+					border-radius:  0 0 15px 15px;
+					-moz-box-shadow:    inset 0 -1px 3px rgba(0,0,0,0.25);
+				    -webkit-box-shadow: inset 0 -1px 3px rgba(0,0,0,0.25);
+				    box-shadow:         inset 0 -1px 3px rgba(0,0,0,0.25);
+					
+				}
+				
+			}
+			
+			textarea {
+				padding: {
+					top: 2%;
+					bottom: 2%;
+				}
+				border-radius: 0;
+				margin-bottom: 5px;
+			}
+
+			#tags{
+				border-radius: 0;
+				width: 185px;
+				float: left;
+			}
+
+			.add-tag{
+				margin-top: 1px;
+				border-radius: 5px;
+				padding: 5px 13px;
+				margin-left: 1em;
+				font-size: 22px;
+				float: left;
+			}
+			
+			
+
+			div.fRight {
+				float: right;
+				display: inline-block;
+			}
+			
+			input[type="checkbox"] {
+				border-color: $border;
+				opacity: 0;
+				width: 1px;
+				height: 1px;
+    			float: left;
+			}
+
+
+			
+			label {
+				font-size: 0.9em;
+				position: relative;
+				top: 6px;
+				
+				&[for="remember"] {
+					top: 3px;
+				}
+				
+			}
+			
+			input[type='checkbox'] + label{
+				margin: 0;
+				clear: none;
+				height: 25px;
+				background: transparent url('../images/checkbox.png') no-repeat top left;
+				padding: 3px 10px 4px 35px;
+				cursor: pointer;
+			}
+
+			input[type='checkbox']:checked + label{
+				background: transparent url('../images/checkbox.png') no-repeat  left -25px;
+
+			}
+
+			/*input[type="range"] {
+				width: 280px;
+				height: 12px;
+				@include bgImage100('../images/slider_bar.png');
+				border-radius: 0;
+				background-color: transparent;
+				@include absPosCenter(6px, 140px);
+				
+				html.ios & {
+					-webkit-appearance: none;
+				}
+				
+				&::-webkit-slider-thumb {
+					width: 20px;
+					height: 40px;
+					border-width: 0;
+					background: transparent url(../images/slider_button.png) no-repeat;
+					background-size: 100% 28px;
+					position: relative;
+					top: 7px;
+				
+					html.ios & {
+						-webkit-appearance: none;
+					}
+				
+				}
+				
+			}*/
+			
+			div.rangeBar {
+				width: 252px;
+				height: 12px;
+				clear: both;
+				font-size: 1%;
+				@include bgImage100('../images/slider_bar_252.png');
+				@include absPosCenter(6px, 126px);
+				
+				div.whiteEdgeRight {
+					width: 1px;
+					height: 11px;
+					overflow: hidden;
+					background-color: #fff;
+					position: absolute;
+					right: -1px;
+					top: 1px;
+				}
+				
+				div.grip {
+					width: 30.5px;
+					height: 42px;
+					margin-left: -15px;
+					overflow: hidden;
+					@include bgImage100('../images/leaf-marker.png');
+					position: absolute;
+					left: 140px;
+					top: -36px;
+					-webkit-transition: opacity 1s ease-out;
+					
+					&.op0 {
+						opacity: 0.0;
+					}
+					
+					&.op1 {
+						opacity: 1.0;
+					}
+					
+				}
+				
+			}
+			
+			div.noVal {
+				width: 252px;
+				height: 48px;
+				margin: 0 auto;
+				position: relative;
+				top: -36px;
+				// background-color: rgba(255, 0, 0, 0.25);
+			}
+			
+			input[type="radio"] {
+				width: 24px;
+				height: 24px;
+				-webkit-appearance: none;
+				@include bord1px(#CCC);
+				border-radius: 12px;
+				background: #dcddde;
+				background: -moz-linear-gradient(top, #dcddde 0%, #ffffff 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcddde), color-stop(100%,#ffffff));
+				background: -webkit-linear-gradient(top, #dcddde 0%,#ffffff 100%);
+				background: -o-linear-gradient(top, #dcddde 0%,#ffffff 100%);
+				background: linear-gradient(to bottom, #dcddde 0%,#ffffff 100%);
+				position: relative;
+				
+				&:checked {
+					
+					&:after {
+						content: ' ';
+						width: 12px;
+						height: 12px;
+						@include bgImage100('../images/checkmark.png');
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						margin-left: -6px;
+						margin-top: -6px;
+					}
+					
+				}
+				
+			}
+			
+			input[type="submit"] {
+				@extend .formButton;
+			}
+			
+			div.row {
+				//clear: both;
+				padding:0.5em 1em  0em 1em;
+				
+				div {
+					margin-bottom: 1em;
+					float: left;
+					
+					&.radioCheck {
+						height: 22px;
+					}
+					
+					&.label {
+						margin-top: 0.1em;
+					}
+					
+				}
+					
+				&:last-child div {
+					//margin-bottom: 0;
+				}
+				
+			}
+
+			div.rowActive{
+				background: #93c55b;
+				background: -moz-linear-gradient(top,  #93c55b 0%, #6ba13a 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#93c55b), color-stop(100%,#6ba13a));
+				background: -webkit-linear-gradient(top,  #93c55b 0%,#6ba13a 100%);
+				background: -o-linear-gradient(top,  #93c55b 0%,#6ba13a 100%);
+				background: -ms-linear-gradient(top,  #93c55b 0%,#6ba13a 100%);
+				background: linear-gradient(to bottom,  #93c55b 0%,#6ba13a 100%);
+
+				div {
+					&.label {
+						color: #FFF;
+					}
+				}
+			}
+			
+		}
+		
+		.tag-container{
+			margin-top: 10px;
+
+			.tag{
+				border-radius: 6px;
+				border-radius: 5px;
+				padding: 5px 20px 5px 5px;
+				background: #ffffff;
+				float: left;
+				font-size:15px;
+				line-height: 15px;
+				background: -moz-linear-gradient(top,  #ffffff 0%, #e6e7e8 11%, #dcddde 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(11%,#e6e7e8), color-stop(100%,#dcddde));
+				background: -webkit-linear-gradient(top,  #ffffff 0%,#e6e7e8 11%,#dcddde 100%);
+				background: linear-gradient(to bottom,  #ffffff 0%,#e6e7e8 11%,#dcddde 100%);
+				border: #BCBEC0 1px solid;
+				position: relative;
+				margin-right: 8px;
+
+				.tag-close{
+					color: #BCBEC0;
+					font-size: 14px;
+					position: absolute;
+					top: 2px;
+					right: 6px;
+					cursor: pointer;
+				}
+			}
+
+			
+
+		}
+
+		&#login {
+			
+			div.fRight {
+				margin-top: 2.5em;
+			}
+			
+		}
+		
+		&.range {
+			margin-top: 45px;
+			
+			fieldset {
+				height: 12px;
+			}
+			
+		}
+		
+	}
+	
+	div.markers {
+		width: 252px;
+		margin: {
+			top: 0px;
+			right: auto;
+			left: auto;
+		}
+
+		padding-top: 14px;
+		
+		p.range {
+			width: 90px;
+			padding: {
+				top: 13px;
+				right: 13px;
+				bottom: 13px;
+				left: 13px;
+			}
+			overflow: visible;
+			@include bord1px(#E6E7E8);
+			border-radius: 12px;
+			background-color: #E6E7E8;
+			position: relative;
+			
+			em {
+				font-style: normal;
+			}
+			
+			span {
+				width: 11px;
+				height: 12px;
+				display: inline-block;
+				overflow: hidden;
+				position: absolute;
+				top: -8px;
+			}
+			
+			&.left {
+				text-align: left;
+				float: left;
+				border-top-left-radius: 0;
+				
+				& span {
+					@include bgImage100('../images/anchor_box_arrow_left.png');
+					left: -1px;
+				}
+				
+			}
+			
+			&.right {
+				text-align: right;
+				float: right;
+				border-top-right-radius: 0;
+				
+				& span {
+					@include bgImage100('../images/anchor_box_arrow_right.png');
+					right: -1px;
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	div.qCont {
+		//@include bord1px($border);
+		//background-color: $lightGreen;
+		
+		&#qcIscroll {
+			height: 120px;
+			margin-bottom: 46px;
+		}
+		
+		div.question {
+			margin: 0;
+			
+			h1 {
+				@extend .uBold;
+				color: $mGrey;
+				
+				span {
+					color: #000;
+				}
+				
+				& + span {
+					font-size: 0.9em;
+					@extend .uReg;
+				}
+				
+				em {
+					font-style: normal;
+				}
+				
+			}
+			
+			p {
+				@extend .uReg;
+				color: $mGrey;
+				
+				&.instruction {
+					margin: 1em 1em 1.5em;
+					padding-bottom: 1.5em;
+					border-bottom: 1px dashed $border;
+				}
+			
+				& + p {
+					color: #000;
+					
+					& + p {
+						color: $mGrey;
+					}
+					
+				}
+				
+			}
+			
+			form {
+				
+			}
+			
+		}
+		
+	}
+	
+	nav.backNext {
+		padding-top: 1px;
+		clear: both;
+		height: 40px;
+		border-bottom: 1px solid #D1D3D4;
+		background: #dcddde;
+		background: -moz-linear-gradient(top, #ffffff 0%, #dcddde 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dcddde));
+		background: -webkit-linear-gradient(top, #ffffff 0%,#dcddde 100%);
+		background: -o-linear-gradient(top, #ffffff 0%,#dcddde 100%);
+		background: linear-gradient(to bottom, #ffffff 0%,#dcddde 100%);
+
+		-moz-box-shadow:    0 1px 5px 1px rgba(0,0,0,0.1);
+	  	-webkit-box-shadow: 0 1px 4px 1px rgba(0,0,0,0.1);
+	  	box-shadow:         0 1px 5px 1px rgba(0,0,0,0.1);
+		
+		ul {
+			height: 22px;
+			padding-left: 0;
+			margin: 5px 10px;
+
+			
+			li, li a {
+				height: 22px;
+			}
+			
+			li a {
+				// background-color: rgba(0, 0, 0, 0.25);
+				@include bord1px(#D1D3D4);
+				border-radius: 12px;
+			}
+			
+			li {
+				@extend .ulNav;
+
+				&.count {
+					float: left;
+					line-height: 30px;
+					position: absolute;
+					width: 120px;
+					left: 50%;
+					margin-left: -60px;
+					z-index: 1;
+					text-align: center;
+				}
+				
+				&.setting-title{
+					float: right;
+					line-height: 30px;
+				}
+
+				&.back {
+					float: left;
+					z-index: 2;
+					
+					a {
+						background: #FFF url('../images/prev-inactive.png') no-repeat center left;
+						padding:2px 16px 2px 28px;
+						text-transform: none;
+						
+						span {
+							left: 37px;
+						}
+						
+						&.active {
+							background-image: url(../images/prev-active.png);
+							
+							span {
+								color: $black;
+							}
+							
+						}
+						
+					}
+					
+				}
+				
+				&.next {
+					float: right;
+					z-index: 2;
+
+					a {
+						background: #FFF url('../images/next-inactive.png') no-repeat center right;
+						padding:2px 28px 2px 16px;
+						text-transform: none;
+						
+						&.active {
+							background-image: url(../images/next-active.png);
+							
+							span {
+								color: $black;
+							}
+							
+						}
+						
+					}
+					
+				}
+				
+				&.btnSubmit{
+					a{
+						background-image: url(../images/next-active.png);
+					}
+				}
+
+				a {
+					display: inline-block;
+					overflow: visible;
+					text-decoration: none;
+					position: relative;
+					
+					span {
+						//text-transform: uppercase;
+						@extend .uReg;
+						color: $lGrey2;
+						line-height: 24px;
+						//position: absolute;
+						//top: 2px;
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	button {
+		@extend .formButton;
+		width: auto;
+		color: $buttonGrey;
+	}
+	
+	button.start-survey{
+		text-align: center;
+		position: relative;
+		top: 150px;
+		left: 50%;
+		margin-left: -70px;
+	}
+
+	div.bbWrap {
+		width: 30px;
+		height: 20px;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		
+		a.backBtn {
+			width: 30px;
+			height: 20px;
+			overflow: visible;
+			display: block;
+			text-decoration: none;
+			color: $blue;
+			@include bgImage100('../images/arrow_blue_back.png');
+			position: relative;
+			
+			span {
+				@extend .uReg;
+				text-transform: uppercase;
+				position: absolute;
+				left: 37px;
+				top: 2px;
+			}
+		
+		}
+		
+	}
+	
+}
+
+@media screen and (orientation: portrait) {
+	
+article form fieldset div.row div {
+
+	&.radioCheck {
+		width: 15%;
+	}
+	
+	&.label {
+		width: 85%;
+		
+		html.bbBoldish & {
+			background-color: lime;
+		}
+		
+	}
+	
+}
+	
+}
+
+@media screen and (orientation: landscape) {
+	
+article form fieldset div.row div {
+
+	&.radioCheck {
+		width: 7.5%;
+		
+		html.bbBoldish & {
+			width: 11.5%;
+		}
+		
+	}
+	
+	&.label {
+		width: 92.5%;	// ALERT: I'm pretty sure that this is where the BlackBerry Bold issue is happening
+		
+		html.bbBoldish & {
+			width: 88.5%;
+		}
+		
+	}
+	
+}
+
+}
