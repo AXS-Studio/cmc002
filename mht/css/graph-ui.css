@@ -43,10 +43,13 @@
 #scs {
 	display: none;
 	margin: 0;
-	float:right;
+/* 	float:right; */
 	width: 75%;
+	height:100%;
 	position:absolute;
 	z-index:650;
+	right:0px; 
+	top:0px;
 }
 
 #scs-menu{
