@@ -118,27 +118,27 @@ var Pages = {
 						<span id="p-"></span></h1>\
 					<form class="radioButtons">\
 						<fieldset>\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--0" value=""></div>\
 								<div class="label"><label for="a--0" id="label--0"></label></div>\
 							</div>\
 							<!-- end row -->\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--1" value=""></div>\
 								<div class="label"><label for="a--1" id="label--1"></label></div>\
 							</div>\
 							<!-- end row -->\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--2" value=""></div>\
 								<div class="label"><label for="a--2" id="label--2"></label></div>\
 							</div>\
 							<!-- end row -->\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--3" value=""></div>\
 								<div class="label"><label for="a--3" id="label--3"></label></div>\
 							</div>\
 							<!-- end row -->\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--4" value=""></div>\
 								<div class="label"><label for="a--4" id="label--4"></label></div>\
 							</div>\
@@ -159,12 +159,12 @@ var Pages = {
 					<p><span id="p-"></span> in the last <span id="days-"></span> <span id="dayDays-"></span>?</p>\
 					<form class="radioButtons">\
 						<fieldset>\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--0" value=""></div>\
 								<div class="label"><label for="a--0" id="label--0"></label></div>\
 							</div>\
 							<!-- end row -->\
-							<div class="row">\
+							<div class="row clearfix">\
 								<div class="radioCheck"><input type="radio" name="a-" id="a--1" value=""></div>\
 								<div class="label"><label for="a--1" id="label--1"></label></div>\
 							</div>\

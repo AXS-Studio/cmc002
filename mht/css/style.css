@@ -500,7 +500,7 @@ article, div.message {
         background: -o-linear-gradient(top, #93c55b 0%, #6ba13a 100%);
         background: -ms-linear-gradient(top, #93c55b 0%, #6ba13a 100%);
         background: linear-gradient(to bottom, #93c55b 0%, #6ba13a 100%); }
-        article form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label {
+        article form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label, div.message form fieldset div.rowActive div.label {
           color: #FFF; }
     article form .tag-container, div.message form .tag-container {
       margin-top: 10px; }
