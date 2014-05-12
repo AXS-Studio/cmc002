@@ -16,6 +16,43 @@ $("#menubtn").live('click', function(e){
 	return false;
 });
 
+$(document).ready(function() {
+/* 	$("#graph") */
+
+/* 	var  */
+
+	var graphMenuWidth =  $('#graph-menu').width() + 10;
+	graphMenuWidth = -graphMenuWidth;
+
+	$('#graph-menu').css("right", graphMenuWidth);
+	
+	$(".tab").click(function(e) {
+		$(".tab").removeClass('selected');
+		$(".tab_content").removeClass('active');
+		
+		$(this).addClass('selected');
+		
+		
+		var modID = "#" + $(this).attr("id") + "_content";
+		$(modID).addClass('active');
+		
+		
+		
+	})
+
+	$(".btnmenu.external").click(function(e) {
+		$('#graph-menu').animate({right: '0'});
+	});
+	
+	$(".btnmenu.internal").click(function(e) {
+		$('#graph-menu').animate({right: graphMenuWidth});
+	});
+	
+
+	
+	
+});
+
 
 
 $("#scs li h2 a").live('click', function(e){

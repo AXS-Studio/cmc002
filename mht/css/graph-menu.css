@@ -1,0 +1,128 @@
+#tempContainer {
+	position: relative;
+	width:100%;
+}
+
+#graph-header {
+	width:100%;
+	position: absolute;
+	top:0px;
+	left:0px;
+	z-index: 0;
+	height: 40px;
+	background: rgba(209,211,212,128);
+}
+
+
+#graph-menu {
+	width: 85%; 
+	height: 100%;
+	background: rgba(241,242,242,128);
+	position: fixed;
+	right:0px;
+	top:0px;
+	z-index: 10;
+	-webkit-box-shadow: -2px 0px 4px 0px rgba(50, 50, 50, 0.50);
+	-moz-box-shadow:    -2px 0px 4px 0px rgba(50, 50, 50, 0.50);
+	box-shadow:         -2px 0px 4px 0px rgba(50, 50, 50, 0.50);
+	}
+	
+.navwrapper {
+	float:right;
+	height: 40px;  
+	width:100%;
+}
+	
+#graph-nav {
+	width:100%;
+	height:40px;
+	background: rgba(209,211,212,128);
+}
+
+	#graph-nav a.tab {
+		margin:0px;
+		padding:0px;
+		width:27%;
+		height:39px;
+		display: block;
+		float:left;
+		list-style: none;
+		border:1px solid rgba(188,190,192,128);
+		border-top:none;
+		border-left:none;
+/* 		border-bottom: none; */
+		text-align: center;
+		line-height: 39px;
+		color: #6d6e71;
+		text-decoration: none;
+	}
+	
+
+	
+	#graph-nav a.tab.selected {
+		background: rgba(241,242,242,128);
+		border-bottom: 1px solid rgba(241,242,242,128);
+		color:#000;
+	}
+	
+	#graph-nav a.btnmenu, #graph-header a.btnmenu{
+/* 		width:13%; */
+		position: absolute;
+		top:0px;
+		right:0px;
+		width:44px;
+/* 		z-index: 10; */
+		height: 39px;
+		background: url(../images/ui/ico-menu.png) no-repeat center center;
+		background-size: 10px 12px;
+		float:right;
+		border: :1px solid rgba(188,190,192,128);
+	
+	}
+	
+	#graph-nav a {
+		margin:0px;
+		padding:0px;
+		width:28%;
+		height:39px;
+		display: block;
+		float:right;
+		list-style: none;
+		border:1px solid rgba(188,190,192,128);
+		border-top:none;
+		border-left:none;
+		border-bottom: none;
+		text-align: center;
+		line-height: 39px;
+	}
+	
+	.tab_content {
+		display: none;
+		padding:3%;
+	}
+	
+	.tab_content.active {
+		display: block;
+	}
+	
+	@media 
+	(-webkit-min-device-pixel-ratio: 2), 
+	(min-resolution: 192dpi) { 
+		#graph-nav a.tab {
+			height: 68px;
+			line-height: 68px;	
+		}
+		#graph-header,#graph-nav {
+			height: 70px;
+		}
+		#graph-nav a.tab.selected {
+			border-bottom: 2px solid rgba(241,242,242,128);
+		}
+		
+		#graph-nav a.btnmenu, #graph-header a.btnmenu {
+			background-size: 20px 24px;
+			width:56px;
+			height:69px;
+		}
+	
+	}
