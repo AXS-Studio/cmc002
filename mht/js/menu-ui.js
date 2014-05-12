@@ -16,10 +16,8 @@ $("#menubtn").live('click', function(e){
 	return false;
 });
 
-$(document).ready(function() {
-/* 	$("#graph") */
+var initGraphMenu =(function() {
 
-/* 	var  */
 
 	var graphMenuWidth =  $('#graph-menu').width() + 10;
 	graphMenuWidth = -graphMenuWidth;
@@ -47,9 +45,6 @@ $(document).ready(function() {
 	$(".btnmenu.internal").click(function(e) {
 		$('#graph-menu').animate({right: graphMenuWidth});
 	});
-	
-
-	
 	
 });
 

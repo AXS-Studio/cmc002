@@ -5,9 +5,11 @@
 
 #graph-header {
 	width:100%;
-	position: absolute;
+	position: relative;
+/*
 	top:0px;
 	left:0px;
+*/
 	z-index: 0;
 	height: 40px;
 	background: rgba(209,211,212,128);

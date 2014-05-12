@@ -954,6 +954,7 @@ var D3graph = (function() {
 	
 	var init = function() {
 		setup();
+		initGraphMenu();
 	};
 
 	return {
