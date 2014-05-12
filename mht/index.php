@@ -226,12 +226,11 @@ if ($detect -> isTablet()) {
 			var pos3;
 			var loggedIn = false;
 
-			var uname = <? echo '"' . $_COOKIE['e'] . '"'; ?>;
+			var uname = <?php echo '"' . $_COOKIE['e'] . '"'; ?>;
 			var pword = <?php
 			if (isset($_COOKIE['n'])){
 				$arr = explode("_", $_COOKIE['n'], 2); //explode at "_"
 				$length = (int) $arr[0]; //take the first item
-				
 				echo  '"'.str_repeat("*", $length).'"';
 			}
 			else

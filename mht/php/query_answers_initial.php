@@ -7,10 +7,13 @@ $jsonArray = array(); //Final array returned for AJAX
 
 $patientID=$_REQUEST["patientID"];
 
-$clinicianID=$_SESSION["userName"];
+//if (isset($_SESSION["userName"]))
+//$clinicianID=$_SESSION["userName"];
 
-if($clinicianID == NULL)
-$clinicianID=$_REQUEST["clinicianID"];
+if(!isset($clinicianID))
+$clinicianID="axstest";
+//if (isset($_REQUEST["clinicianID"]))
+//$clinicianID=$_REQUEST["clinicianID"];
 
 if (isset($_REQUEST["sessionName"]))
 	$sessionName=$_REQUEST["sessionName"];
