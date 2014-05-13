@@ -768,8 +768,10 @@ var D3graph = (function() {
 			$('#scs-menu').append('<li><h2><a href="#">Edit</a></h2><div class="menu-section" id="menu-edit"></ul><ul id="tags-legend"></ul></li>');
 			$('#scs-menu').append('<li><h2><a href="#">Share</a></h2><div class="menu-section" id="menu-share"><ul><li><button>Save As PDF</button></li><li><button>Email PDF</button></li></ul></div></ul></li>');
 
-			$('#menu-legend').append('<h2>Survey Questions</h2><ul class="swatches" id="swtchs-legend"></ul>');
-			$('#menu-edit').append('<h2>Survey Questions</h2><ul class="swatches" id="swtchs-edit"></ul>');
+			$('#legend_content').append('<h2>Survey Questions</h2><ul class="swatches" id="swtchs-legend"></ul>');
+			$('#edit_content').append('<h2>Survey Questions</h2><ul class="swatches" id="swtchs-edit"></ul>');
+			$('#share_content').append('<ul><li><button>Save As PDF</button></li><li><button>Email PDF</button></li></ul></div></ul></li>');
+			
 
 			for (var i = 0; i < questions.length; i++) {
 				var category = questions[i].category;

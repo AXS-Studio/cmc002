@@ -274,9 +274,9 @@ var Pages = {
 			<a href="#" id="share" class="tab">Share</a>\
 		</nav>\
 	<div id="content">\
-		<div id="legend_content" class="tab_content active">CONTENT FOR THE LEGEND SECTION</div>\
-		<div id="edit_content" class="tab_content">CONTENT FOR THE EDIT SECTION</div>\
-		<div id="share_content" class="tab_content">CONTENT FOR THE SHARE SECTION</div>\
+		<div id="legend_content" class="tab_content active"></div>\
+		<div id="edit_content" class="tab_content"></div>\
+		<div id="share_content" class="tab_content"></div>\
 	</div>\
 	</aside>\
 		<div class="containerForGraphs" id="cfg"><div id="cfgGraphs">&nbsp;</div></div>\

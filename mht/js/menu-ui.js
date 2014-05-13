@@ -22,7 +22,10 @@ var initGraphMenu =(function() {
 	var graphMenuWidth =  $('#graph-menu').width() + 10;
 	graphMenuWidth = -graphMenuWidth;
 
-	$('#graph-menu').css("right", graphMenuWidth);
+	$('#graph-menu').css({
+	"right" : graphMenuWidth,
+	"display" : "block"
+	});
 	
 	$(".tab").click(function(e) {
 		$(".tab").removeClass('selected');

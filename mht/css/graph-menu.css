@@ -6,23 +6,20 @@
 #graph-header {
 	width:100%;
 	position: relative;
-/*
-	top:0px;
-	left:0px;
-*/
 	z-index: 0;
 	height: 40px;
 	background: rgba(209,211,212,128);
 }
-
 
 #graph-menu {
 	width: 85%; 
 	height: 100%;
 	background: rgba(241,242,242,128);
 	position: fixed;
+	overflow: scroll;
 	right:0px;
 	top:0px;
+	display: none;
 	z-index: 10;
 	-webkit-box-shadow: -2px 0px 4px 0px rgba(50, 50, 50, 0.50);
 	-moz-box-shadow:    -2px 0px 4px 0px rgba(50, 50, 50, 0.50);
@@ -52,7 +49,6 @@
 		border:1px solid rgba(188,190,192,128);
 		border-top:none;
 		border-left:none;
-/* 		border-bottom: none; */
 		text-align: center;
 		line-height: 39px;
 		color: #6d6e71;
@@ -60,7 +56,6 @@
 	}
 	
 
-	
 	#graph-nav a.tab.selected {
 		background: rgba(241,242,242,128);
 		border-bottom: 1px solid rgba(241,242,242,128);
@@ -73,7 +68,6 @@
 		top:0px;
 		right:0px;
 		width:44px;
-/* 		z-index: 10; */
 		height: 39px;
 		background: url(../images/ui/ico-menu.png) no-repeat center center;
 		background-size: 10px 12px;

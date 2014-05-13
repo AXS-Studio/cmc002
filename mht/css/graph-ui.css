@@ -102,6 +102,22 @@ ul#tags-legend li, #menu-share ul li {
 	list-style: none;
 }
 
+ul.swatches {
+	list-style: none;
+	margin:0px;
+	padding:0px;
+/* 	line-height: 20px; */
+}
+
+ul.swatches li {
+	list-style: none;
+	margin:0px;
+	padding:0px;
+	/* line-height: 30px; */
+	float:left;
+	clear:both;
+	margin-bottom: 10px;
+}
 
 ul.swatches li a {
     background-image: url("../images/visualizer_colour_select_transparent.gif");
@@ -110,10 +126,16 @@ ul.swatches li a {
     border: 1px solid #9E9E9E;
     border-radius: 14px;
     height: 20px !important;
-    left: 0;
-    position: absolute;
-    top: 4px;
+    float:left;
+/*     left: 0; */
+/*     position: absolute; */
+/*     top: 4px; */
     width: 20px !important;
+}
+ul.swatches li span {
+	    margin-left:10px;
+
+	    line-height: 25px;
 }
 
 
@@ -137,9 +159,23 @@ ul li span.swatches {
     border-radius: 14px;
     display:inline-block;
     height: 20px !important;
-    width: 20px !important;
+    width: 20px !important;	
 }
 
 #top-legend > ul {
     margin-top: 0;
+}
+
+.ui-colorpicker, ui-dialog.ui-colorpicker {
+	background: #fff;
+	padding:30px;
+	border-radius: 15px;
+}
+
+
+#graph-menu #content #share_content ul{
+	/* margin */:20px 0px 0px 0px;
+	list-style: none;
+	text-align: center;
+	padding:20px 0px 0px 0px;
 }
