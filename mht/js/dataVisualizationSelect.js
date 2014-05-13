@@ -1,9 +1,9 @@
 var DataVisualizationSelect = (function() {
 	
 	var selectChanged = function(ajaxPath) {		
-/* 		ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  */
-		
-		//console.log(results);
+ 		//ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
+		//console.log("ajaxPath " + ajaxPath);
+		console.log(results);
 		
 		ajaxPath = 'php/query_answers_initial.php?patientID=' + results.patientID;
 		patient = ajaxPath.split('=')[1];
@@ -61,7 +61,7 @@ var DataVisualizationSelect = (function() {
 			},
 			complete: function(){
 				selectChanged();
-				//console.log(questions);
+				console.log(questions);
 			},
 			error: function() {
 				window.alert('Error Querry Questions!');

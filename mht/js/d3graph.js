@@ -59,7 +59,7 @@ var D3graph = (function() {
 		brush1: null,
 		brush2: null
 	};
-	
+	/* Cindy: Do not need context graph from PATH anymore, not in wireframe
 	var mgContext = {
 		width: null,
 		height: null,
@@ -77,7 +77,7 @@ var D3graph = (function() {
 		area: null,
 		brush: null
 	};
-
+	*/
 	var pgWidth = $(window).width(), //1094,	// Originally 960
 		pgHeight = 346;	// Originally 500
 	
@@ -258,7 +258,7 @@ var D3graph = (function() {
 			// ...add a rect mapped to the date x position
 			graph.insert('rect', '.y.axis')
 				.attr({
-					'width': 4,
+					'width': 2,
 					'height': 15,
 					'title': tags[i].Data,
 					'x': getDateX(mgFocus.x, tags[i]) - 2,	// NOTE: Very, very important!!!
@@ -345,7 +345,7 @@ var D3graph = (function() {
 	
 	/* Declare zoom behavior */
 	var zoom = d3.behavior.zoom()
-		.scaleExtent([1, 10])
+		.scaleExtent([0, 10])
 		.on("zoom", zoomed);
 
 	
@@ -657,13 +657,13 @@ var D3graph = (function() {
 		focusVertGreyAdj();
 		
 		// Set the graph settings for the parent graph's context bar
-		graphSettings(mgContext, pgWidth, pgHeight);
+		//graphSettings(mgContext, pgWidth, pgHeight);
 		
 		// Set the range of x positions along the context graph (dates)
-		mgContext.x.domain(mgFocus.x.domain());
+		//mgContext.x.domain(mgFocus.x.domain());
 
 		// Set the range of y positions along the context graph (0 - 100)
-		mgContext.y.domain(mgFocus.y.domain());
+		//mgContext.y.domain(mgFocus.y.domain());
 
 		// This is the left vertical data bar
 		focus.append('g')
