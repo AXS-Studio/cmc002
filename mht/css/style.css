@@ -764,8 +764,8 @@ footer {
         text-decoration: none;
         padding: 23px 0 0 0;
         font-size: 12px;
-        border-top: 1px solid #BCBEC0;
-        border-left: 1px solid #BCBEC0;
+/*         border-top: 1px solid #BCBEC0; */
+/*         border-left: 1px solid #BCBEC0; */
         border-right: 1px solid #BCBEC0; }
       footer .nav li a#nav-timeline {
         background: transparent url("../images/timeline-icon.png") no-repeat center 5px; }
