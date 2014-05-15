@@ -1,11 +1,11 @@
-<div id="content_settings">
-
+<article id="art-settings">
 				<div id="settings">
-					<button class="logout-setting">Logout</button>
-					<button class="change-setting">Change password</button>
-					<button class="faq-setting">FAQ</button>
-					<button class="about-setting">About</button>
+				<ul>
+					<li><button class="logout-setting">Logout</button></li>
+					<li><button class="change-setting">Change password</button></li>
+					<li><button class="faq-setting">FAQ</button></li>
+					<li><button class="about-setting">About</button></li>
+				</ul>
 				</div>
 				<!-- end settings -->
-
-</div>
+		</article>

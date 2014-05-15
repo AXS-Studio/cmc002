@@ -334,7 +334,7 @@ var Quiz = (function() {
 			Middle.init();*/
 			setTimeout(function() {
 				$('#art-' + id).remove();
-				$('#content').html(Pages.loading);
+				$('#content_quiz').html(Pages.loading);
 				// Resize.setSizes();
 				// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
 				$('#art-loading').show().attr('class', 'o1');
@@ -369,7 +369,7 @@ var Quiz = (function() {
 						$('#art-loading').attr('class', 'o0');
 						setTimeout(function() {
 							$('#art-loading').remove();
-							$('#content').html(Pages.thanks);
+							$('#content_quiz').html(Pages.thanks);
 							// Resize.setSizes();
 							// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
 							$('#art-thanks').show().attr('class', 'o1');
@@ -778,11 +778,16 @@ var Quiz = (function() {
 	};
 
 	var startQuiz = function(){
+	
+		$('#page_login').hide();
+		$('#page_quiz').show();
+		$('.forgot').hide();
+		
+		$('.nav li a').removeClass('active');
+		$('#nav-survey').addClass('active');
 
 		$('#content_quiz').html(Pages.startQuiz);
-		
 		$('.start-quiz').show();
-
 		$('.start-survey').click(function(){
 			typeArt(currQuest);
 		});
@@ -850,13 +855,14 @@ var Quiz = (function() {
 	};
 
 
+/*
 	var settings = function() {
 		$('#art-loading').removeClass('o1').addClass('o0');
 		// After the Loading spinner icon fades out...
 		setTimeout(function() {
 			// Remove the Loading spinner icon...
 			$('#art-loading').remove();
-			$('#content').html(Pages.settings).removeClass('o0').addClass('o1');
+			//$('#content').html(Pages.settings).removeClass('o0').addClass('o1');
 			$('#art-settings').removeClass('o0').addClass('o1').show();
 
 			// settings buttons
@@ -919,6 +925,7 @@ var Quiz = (function() {
 
 		}, 250);
 	}
+*/
 	
 	return {
 		isOdd: isOdd,

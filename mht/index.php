@@ -82,13 +82,13 @@ if ($detect -> isTablet()) {
 				<?php include './page_login.php'; ?>		
 			</div>
 			
-			<div id="page_graph">
+			<div id="page_graph" style="display:none;">
 			
 				<?php include './page_graph.php'; ?>
 				
 			</div>
 			
-			<div id="page_quiz">
+			<div id="page_quiz" style="display:none;">
 			 <?php include './page_quiz.php'; ?>
 			
 			</div>

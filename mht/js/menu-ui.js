@@ -83,23 +83,27 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
 			
-						DataVisualizationSelect.init();
+			DataVisualizationSelect.init();
+			
+/* 			initGraphMenu(); */
+			
+					/* 	DataVisualizationSelect.init(); */
 			//start
 	
-/*
+
 		$('#art-loading').removeClass('o1').addClass('o0');
 			// After the Loading spinner icon fades out...
 			setTimeout(function() {
 				// Remove the Loading spinner icon...
 				$('#art-loading').remove();
-				$('#content').html(Pages.timeline).removeClass('o0').addClass('o1');
+			//	$('#content').html(Pages.timeline).removeClass('o0').addClass('o1');
 				$('#art-timeline').removeClass('o0').addClass('o1').show();
 								
 				$('html').removeClass('no-js').addClass('js');
 				DataVisualizationSelect.init();
 				
 			}, 250);
-*/
+
 
 			//end
 
@@ -114,6 +118,8 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_graph').hide();
 			$('#page_quiz').hide();
 			$('#page_settings').show();		
+			
+			$('#art-settings').removeClass('o0').addClass('o1');
 		
 			settings();			
 /* 			Quiz.settings(); */
