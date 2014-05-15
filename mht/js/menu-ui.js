@@ -33,12 +33,8 @@ var initGraphMenu =(function() {
 		
 		$(this).addClass('selected');
 		
-		
 		var modID = "#" + $(this).attr("id") + "_content";
 		$(modID).addClass('active');
-		
-		
-		
 	})
 
 	$(".btnmenu.external").click(function(e) {
@@ -49,8 +45,74 @@ var initGraphMenu =(function() {
 		$('#graph-menu').animate({right: graphMenuWidth});
 	});
 	
+	$(".forgot").hide();
+	
+	$("footer .nav").show();
+	
 });
 
+var initAppMenu = (function() {
+	
+		$('#nav-survey').click(function(){
+			$('.nav li a').removeClass('active');
+			$(this).addClass('active');
+			
+			$('#page_login').hide();
+			$('#page_graph').hide();
+			$('#page_quiz').show();
+
+			/*
+$('#art-loading').removeClass('o1').addClass('o0');
+			// After the Loading spinner icon fades out...
+			setTimeout(function() {
+				// Remove the Loading spinner icon...
+				$('#art-loading').remove();
+				Quiz.init();
+			}, 250);
+			return false;
+*/
+		});
+
+		$('#nav-timeline').click(function(){
+			$('.nav li a').removeClass('active');
+			$(this).addClass('active');
+
+			$('#page_login').hide();
+			$('#page_graph').show();
+			$('#page_quiz').hide();
+			
+						DataVisualizationSelect.init();
+			//start
+	
+/*
+		$('#art-loading').removeClass('o1').addClass('o0');
+			// After the Loading spinner icon fades out...
+			setTimeout(function() {
+				// Remove the Loading spinner icon...
+				$('#art-loading').remove();
+				$('#content').html(Pages.timeline).removeClass('o0').addClass('o1');
+				$('#art-timeline').removeClass('o0').addClass('o1').show();
+								
+				$('html').removeClass('no-js').addClass('js');
+				DataVisualizationSelect.init();
+				
+			}, 250);
+*/
+
+			//end
+
+			//return false;
+		});
+
+		$('#nav-settings').click(function(){
+			$('.nav li a').removeClass('active');
+			$(this).addClass('active');
+			Quiz.settings();
+			return false;
+		
+		});
+	
+});
 
 
 $("#scs li h2 a").live('click', function(e){

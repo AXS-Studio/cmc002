@@ -751,26 +751,26 @@ var Quiz = (function() {
 		
 			var qstn = questionnaire.questions[id].questionID;
 			if (qstn == 'comment') {
-				$('#content').html(Pages.comment);
+				$('#content_quiz').html(Pages.comment);
 				comment(id);
 			} else if (qstn == 'submit') {	// submit
-				$('#content').html(Pages.submit);
+				$('#content_quiz').html(Pages.submit);
 				submit(id);
 			} else {
 				var type = qstn.split('_')[0];
 				
 				if (type == 'VAS') {
-					$('#content').html(Pages.range);
+					$('#content_quiz').html(Pages.range);
 					vas(id);
 				} else if (type == 'QIDS') {
-					$('#content').html(Pages.mc4);
+					$('#content_quiz').html(Pages.mc4);
 					qids(id);
 					
 				} else if (type == 'ASRM') {
-					$('#content').html(Pages.mc5);
+					$('#content_quiz').html(Pages.mc5);
 					asrm(id);
 				} else /*if (type == 'OTHER') */{
-					$('#content').html(Pages.other);
+					$('#content_quiz').html(Pages.other);
 					other(id);
 				}
 			}
@@ -779,13 +779,16 @@ var Quiz = (function() {
 
 	var startQuiz = function(){
 
-		$('#content').html(Pages.startQuiz);
+		$('#content_quiz').html(Pages.startQuiz);
+		
 		$('.start-quiz').show();
 
 		$('.start-survey').click(function(){
 			typeArt(currQuest);
 		});
-
+		
+		console.log("Started the quiz");
+/*
 
 		$('#nav-survey').click(function(){
 			$('.nav li a').removeClass('active');
@@ -806,7 +809,8 @@ var Quiz = (function() {
 			$(this).addClass('active');
 
 			//start
-			$('#art-loading').removeClass('o1').addClass('o0');
+	
+		$('#art-loading').removeClass('o1').addClass('o0');
 			// After the Loading spinner icon fades out...
 			setTimeout(function() {
 				// Remove the Loading spinner icon...
@@ -818,9 +822,10 @@ var Quiz = (function() {
 				DataVisualizationSelect.init();
 				
 			}, 250);
+
 			//end
 
-			return false;
+			//return false;
 		});
 
 		$('#nav-settings').click(function(){
@@ -830,6 +835,7 @@ var Quiz = (function() {
 			return false;
 		
 		});
+*/
 
 	};
 	
@@ -838,7 +844,7 @@ var Quiz = (function() {
 		startQuiz();
 		$('header').hide();
 		$('footer .nav').show();
-		$('footer').css('border','0');
+/* 		$('footer').css('border','0'); */
 		// typeArt(nextQuest, true, 'pos3');
 
 	};
@@ -855,7 +861,7 @@ var Quiz = (function() {
 
 			// settings buttons
 			$('.logout-setting').click(function(){
-				window.location.href = 'index.php';
+				window.location.href = 'index.php?logout=true';
 			});
 
 			$('.faq-setting').click(function(){

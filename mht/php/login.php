@@ -44,6 +44,7 @@ else if($result == 4){
 else if($result == 1 ) {
 	// Username and password correct, register session variables
 	//$_SESSION['userId'] = $userEmail;
+
 	session_regenerate_id();
 	
 	// http://stackoverflow.com/questions/9998900/maintain-php-session-in-web-app-on-iphone/14594908#14594908

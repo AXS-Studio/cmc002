@@ -235,7 +235,7 @@ div#ac {
   color: #FFF; }
 
 article, div.message {
-  margin: 20px 20px 0 20px;
+/*   margin: 20px 20px 0 20px; */
   position: relative;
   -webkit-transition: opacity 0.25s ease-out; }
   article .twenty, div.message .twenty {
@@ -300,6 +300,7 @@ article, div.message {
         article h1.title strong span, div.message h1.title strong span {
           color: #0b67b1; }
   article p.forgot, div.message p.forgot {
+/*   	display: none; */
     margin-top: 0.75em;
     margin-bottom: 0; }
   article p.alert, div.message p.alert {
@@ -724,14 +725,14 @@ footer {
   width:100%;
   -webkit-transition: opacity 0.5s ease-out;
   height: 40px;
-  border-top: 2px solid #BCBEC0;
+  border-top: 1px solid #BCBEC0;
   background: #ffffff;
   text-align: left;
-  background: -moz-linear-gradient(top, white 0%, #dcddde 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dcddde));
-  background: -webkit-linear-gradient(top, white 0%, #dcddde 100%);
-  background: -o-linear-gradient(top, white 0%, #dcddde 100%);
-  background: linear-gradient(to bottom, white 0%, #dcddde 100%); }
+  background: -moz-linear-gradient(top, white 0%, #eee 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #eee));
+  background: -webkit-linear-gradient(top, white 0%, #eee 100%);
+  background: -o-linear-gradient(top, white 0%, #eee 100%);
+  background: linear-gradient(to bottom, white 0%, #eee 100%); }
   footer article {
     margin-top: 0;
     margin-bottom: 0;
@@ -740,15 +741,18 @@ footer {
       color: #000;
       text-decoration: none; }
   footer .nav {
-/*     display: none; */
+    display: none;
     height: 40px;
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
+/*
     -moz-box-shadow: inset 0 1px 10px 5px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: inset 0 1px 10px 5px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 1px 10px 5px rgba(0, 0, 0, 0.1); }
+    box-shadow: inset 0 1px 10px 5px rgba(0, 0, 0, 0.1); 
+*/
+    }
     footer .nav li {
       display: inline;
       margin: 0;
@@ -772,7 +776,7 @@ footer {
       footer .nav li a#nav-survey {
         background: transparent url("../images/survey-icon.png") no-repeat center 5px; }
       footer .nav li a#nav-settings {
-        background: transparent url("../images/settings-icon.png") no-repeat center 5px; }
+        background: transparent url("../images/settings-icon.png") no-repeat center 5px; border-right:none;}
       footer .nav li a.active {
         background-color: white !important;
         border-left: 1px solid #BCBEC0;
@@ -851,3 +855,7 @@ div.shareAlert {
   *zoom: 1; }
   
   .clear {clear:both;}
+  
+  /* APP CONTROL STYLES */
+  
+  #page_graph { display:  none;}

@@ -78,6 +78,8 @@ var Login = (function() {
 	}
 	
 	var loginSuccess = function(json) {
+		
+	
 		if (localStorage.getItem('lsResults')) {
 			// console.log(localStorage.getItem('lsResults'));
 			$.ajax({
@@ -205,6 +207,7 @@ var Login = (function() {
 				success: function(json) {
 					if (json.result === 1) {
 						loginSuccess(json);
+						console.log(json);
 					} else if (json.result === 0) {
 						// window.alert('Wrong username or password.');
 						rerunLogin('cantConnect');
@@ -257,6 +260,25 @@ var Login = (function() {
 		}
 	}
 	
+	var loginUser = function () {
+			$('#login input.top, #login input.bottom').css('background-color', '#fff');
+			var userId = $('#userId').val();
+			var password = $('#password').val();
+			var remember = $('#remember').is(':checked');
+			validate(userId, password, remember);
+	}
+	
+	var restoreUser = function (username, password, remember) {
+			//$('#login input.top, #login input.bottom').css('background-color', '#fff');
+/* 			$("#login").css('display','none'); */
+alert(username);
+			var userId = username;//$('#userId').val();
+			var password = password;//$('#password').val();
+			var remember = remember;// $('#remember').is(':checked');
+			validate(userId, password, false);
+	}
+	
+	
 	var init = function() {
 		$('#btnLogin').click(function() {
 			// $('p.alert').hide().attr('class', 'alert o0');
@@ -267,14 +289,15 @@ var Login = (function() {
 			validate(userId, password, remember);
 			return false;
 		});
-
 	};
 	
 	return {
 		showAlerts: showAlerts,
 		loginFields: loginFields,
 		loginSuccess: loginSuccess,
-		init: init
+		init: init,
+		loginUser : loginUser,
+		restoreUser : restoreUser
 	};
 	
 })();
