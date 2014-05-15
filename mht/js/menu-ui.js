@@ -60,6 +60,7 @@ var initAppMenu = (function() {
 			$('#page_login').hide();
 			$('#page_graph').hide();
 			$('#page_quiz').show();
+			$('#page_settings').hide();
 
 			/*
 $('#art-loading').removeClass('o1').addClass('o0');
@@ -80,6 +81,7 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_login').hide();
 			$('#page_graph').show();
 			$('#page_quiz').hide();
+			$('#page_settings').hide();
 			
 						DataVisualizationSelect.init();
 			//start
@@ -107,10 +109,18 @@ $('#art-loading').removeClass('o1').addClass('o0');
 		$('#nav-settings').click(function(){
 			$('.nav li a').removeClass('active');
 			$(this).addClass('active');
-			Quiz.settings();
-			return false;
+			
+			$('#page_login').hide();
+			$('#page_graph').hide();
+			$('#page_quiz').hide();
+			$('#page_settings').show();		
+		
+			settings();			
+/* 			Quiz.settings(); */
+/* 			return false; */
 		
 		});
+		
 	
 });
 

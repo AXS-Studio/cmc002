@@ -93,7 +93,7 @@ if ($detect -> isTablet()) {
 			
 			</div>
 			
-			<div id="page_settings">
+			<div id="page_settings" style="display:none;">
 			 <?php include './page_settings.php'; ?>
 			
 			</div>
@@ -124,6 +124,7 @@ if ($detect -> isTablet()) {
 		<script src="js/forgot.js"></script>
 		<script src="js/shareAlert.js"></script>
 		<script src="js/jquery.autocomplete.js"></script>
+		<script src="js/settings.js"></script>
 		
 		
 		<?php
