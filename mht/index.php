@@ -116,8 +116,8 @@ if ($detect -> isTablet()) {
 		<script src="js/range.js"></script>
 		<script src="js/middle.js"></script>
 		<script src="js/quiz.js"></script>
-		<script src="js/dataVisualizationSelect.js"></script>
-		<!--<script src="js/d3graph.js"></script><?php /*?>*/?>-->
+		<!--<script src="js/dataVisualizationSelect.js"></script>
+		<script src="js/d3graph.js"></script><?php /*?>*/?>-->
 		<?php /*<script src="js/d3graph-mod.js"></script>*/?>
 		<!--<script src="js/d3graph-data-only.js"></script>-->
 		<script src="js/login.js"></script>
@@ -188,7 +188,6 @@ if ($detect -> isTablet()) {
 			echo '""';
 		
 			?>;
-			
 			
 			$(document).ready(function() {
 				$('html').removeClass('no-js').addClass('js');

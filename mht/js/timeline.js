@@ -13,14 +13,11 @@
 
 		     var loadAnswersInitial = function(ajaxPath) {
 		         //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
-		         //console.log("ajaxPath " + ajaxPath);
 		         //console.log(results);
 
 		         ajaxPath = 'php/query_answers_initial.php?patientID=' + results.patientID;
 		         patient = ajaxPath.split('=')[1];
 		         // console.log(patient);
-
-		         //$('#cfgGraphs').html('<div class="svgWrap" id="svgParent" style="display: none;"></div>');
 
 		         $.ajax({
 		             url: ajaxPath,
@@ -61,9 +58,6 @@
 		         loadDataInitial: loadQuestionsInitial
 		     };
 		 })();
-
-		  //load initial data
-		 DataVisualizationInitialization.loadDataInitial();
 
 		  //Set up graph parameters
 		 var margin = {

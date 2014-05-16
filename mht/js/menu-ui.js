@@ -83,9 +83,12 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
 			
+			//load initial data
+		 	DataVisualizationInitialization.loadDataInitial();
+
 			//DataVisualizationSelect.init();
 			
-/* 			initGraphMenu(); */
+			/* 			initGraphMenu(); */
 			
 					/* 	DataVisualizationSelect.init(); */
 			//start
