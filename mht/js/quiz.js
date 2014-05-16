@@ -933,8 +933,8 @@ var Quiz = (function() {
 		next: next,
 		vas: vas,
 		typeArt: typeArt,
-		init: init,
-		settings: settings
+		init: init
+		//settings: settings
 	};
 	
 })();

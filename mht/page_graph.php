@@ -14,9 +14,13 @@
 			<div id="share_content" class="tab_content"></div>
 		</div>
 	</aside>
-	<div class="containerForGraphs" id="cfg"><div id="cfgGraphs">&nbsp;</div></div>
+	<div class="containerForGraphs" id="cfg">
+		<div id="cfgGraphs">
+			
+		</div>
+	</div>
 	</article>
 </div>
-
-
-
+<?php
+	//include 'timeline.php';
+?>

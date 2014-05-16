@@ -19,7 +19,8 @@ $page;
 $tablet = false;
 $desktop = false;
 $uri = explode('?n=', $_SERVER['REQUEST_URI']);
-if(isset($_GET["logout"])) { 
+
+if(isset($_GET["logout"])) { 
 	session_destroy();
 }
 
@@ -116,7 +117,7 @@ if ($detect -> isTablet()) {
 		<script src="js/middle.js"></script>
 		<script src="js/quiz.js"></script>
 		<script src="js/dataVisualizationSelect.js"></script>
-		<script src="js/d3graph.js"></script><?php /*?>*/?>
+		<!--<script src="js/d3graph.js"></script><?php /*?>*/?>-->
 		<?php /*<script src="js/d3graph-mod.js"></script>*/?>
 		<!--<script src="js/d3graph-data-only.js"></script>-->
 		<script src="js/login.js"></script>
@@ -125,7 +126,7 @@ if ($detect -> isTablet()) {
 		<script src="js/shareAlert.js"></script>
 		<script src="js/jquery.autocomplete.js"></script>
 		<script src="js/settings.js"></script>
-		
+		<script src="js/timeline.js"></script>
 		
 		<?php
 			if ($page == 'reset') {

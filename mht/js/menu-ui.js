@@ -83,7 +83,7 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
 			
-			DataVisualizationSelect.init();
+			//DataVisualizationSelect.init();
 			
 /* 			initGraphMenu(); */
 			
@@ -100,7 +100,7 @@ $('#art-loading').removeClass('o1').addClass('o0');
 				$('#art-timeline').removeClass('o0').addClass('o1').show();
 								
 				$('html').removeClass('no-js').addClass('js');
-				DataVisualizationSelect.init();
+				//DataVisualizationSelect.init();
 				
 			}, 250);
 
