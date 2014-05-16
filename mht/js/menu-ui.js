@@ -88,7 +88,11 @@ $('#art-loading').removeClass('o1').addClass('o0');
 
 			//DataVisualizationSelect.init();
 			
+<<<<<<< HEAD
 			/* 			initGraphMenu(); */
+=======
+			initGraphMenu();
+>>>>>>> b2d23e35ae584fe00224e69da7e199fc1316c34e
 			
 					/* 	DataVisualizationSelect.init(); */
 			//start
