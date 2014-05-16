@@ -19,7 +19,7 @@ $("#menubtn").live('click', function(e){
 var initGraphMenu =(function() {
 
 
-	var graphMenuWidth =  $('#graph-menu').width() + 10;
+	var graphMenuWidth =  $(document).width() - ( $(document).width() *0.15) + 10;// $('#graph-menu').width() + 10;
 	graphMenuWidth = -graphMenuWidth;
 
 	$('#graph-menu').css({
@@ -52,6 +52,8 @@ var initGraphMenu =(function() {
 });
 
 var initAppMenu = (function() {
+
+
 	
 		$('#nav-survey').click(function(){
 			$('.nav li a').removeClass('active');
@@ -84,8 +86,9 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_settings').hide();
 			
 			//load initial data
-		 	DataVisualizationInitialization.loadDataInitial();
 			initGraphMenu();
+		 	DataVisualizationInitialization.loadDataInitial();
+
 
 	
 
