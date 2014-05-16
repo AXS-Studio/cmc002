@@ -50,7 +50,7 @@
 	background: -webkit-linear-gradient(top,  #f4f5f5 0%,#dcddde 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top,  #f4f5f5 0%,#dcddde 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top,  #f4f5f5 0%,#dcddde 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #f4f5f5 0%,#dcddde 100%); /* W3C */
+	background: linear-gradient(to bottom,  #f4f5f5 0%,#dcddde 100%); /* W3C */	
 }
 
 	#graph-nav a.tab {
