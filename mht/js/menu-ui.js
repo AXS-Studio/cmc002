@@ -85,7 +85,7 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			
 			//DataVisualizationSelect.init();
 			
-/* 			initGraphMenu(); */
+			initGraphMenu();
 			
 					/* 	DataVisualizationSelect.init(); */
 			//start
