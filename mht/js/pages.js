@@ -114,8 +114,6 @@ var Pages = {
 			<div class="qCont">\
 				<div class="question">\
 					<p class="instruction">Choose which statement best describes the way you have been feeling for the past <span id="days-"></span> <span id="dayDays-"></span>.</p>\
-					<h1>Question <em id="cq-"></em> of <em id="tq-"></em>\
-						<span id="p-"></span></h1>\
 					<form class="radioButtons">\
 						<fieldset>\
 							<div class="row clearfix">\

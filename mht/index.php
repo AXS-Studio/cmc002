@@ -125,6 +125,7 @@ if ($detect -> isTablet()) {
 		<script src="js/forgot.js"></script>
 		<script src="js/shareAlert.js"></script>
 		<script src="js/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="js/spectrum.js"></script>
 		<script src="js/settings.js"></script>
 		<script src="js/timeline.js"></script>
 		
