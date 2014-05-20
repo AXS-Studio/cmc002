@@ -3,7 +3,7 @@
 	<body>
 		<div class="containerForGraphs" id="cfg"><div id="cfgGraphs">&nbsp;</div></div>
 	</body>
-	
+
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="js/jquery.colorpicker.js"></script>
@@ -25,3 +25,6 @@
 
 
 	<script src="js/timeline.js"></script>
+	<script>
+		DataVisualizationInitialization.loadDataInitial();
+	</script>

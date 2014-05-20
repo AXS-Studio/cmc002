@@ -9,7 +9,7 @@
 		<title>MHT</title>
 		<link rel="stylesheet" media="screen" href="css/stylesheet.css">
 		<link rel="stylesheet" media="screen" href="css/graph-ui.css">
-		<link rel="stylesheet" media="screen" href="css/graph.css">
+		<!-- <link rel="stylesheet" media="screen" href="css/graph.css"> -->
 		<link rel="stylesheet" media="screen" href="css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="css/graph-menu.css"> <!-- mk -->
 		<link rel="stylesheet" media="screen" href="css/timeline.css">

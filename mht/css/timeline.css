@@ -1,5 +1,25 @@
-body { font: 12px Helvetica,Arial,sans-serif;}
+/*body { font: 12px Helvetica,Arial,sans-serif;}*/
+svg .areaFill {
+	    /*fill: steelblue;
+	    stroke: steelblue;*/
+	    fill-opacity: 0.5;
+	    stroke-width: 1;
+	    stroke-opacity: 0.75;
+	}
 
+svg .axis path,
+	.axis line {
+	    fill: none;
+	    stroke: grey;
+	    stroke-width: 1;
+	    shape-rendering: crispEdges;
+	}
+
+svg .axis text {
+  		font: 10px sans-serif;
+	}
+
+/*NOT USED FOR NOW*/
 	.path1 { 
 	    stroke: steelblue;
 	    stroke-width: 1;
@@ -39,16 +59,7 @@ body { font: 12px Helvetica,Arial,sans-serif;}
 		fill-opacity: 0.25;
 	}
 
-	.axis path,
-	.axis line {
-	    fill: none;
-	    stroke: grey;
-	    stroke-width: 1;
-	    shape-rendering: crispEdges;
-	}
-	.axis text {
-  		font: 10px sans-serif;
-	}
+	
 
 	.rangeSlider {
 		display: inline-block;
