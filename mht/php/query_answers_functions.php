@@ -24,7 +24,8 @@ function getAnswers($patientID, $questionID, $questionType){
 	$answerArray = array();
 	
 	$q = "SELECT `Date`, `Answer` FROM `Answers` 
-	WHERE `PatientID` = '$patientID' AND `QuestionID` = '$questionID'";
+	WHERE `PatientID` = '$patientID' AND `QuestionID` = '$questionID'
+	ORDER BY `Date`";
 	if ($result = $mysqli->query($q)){
 		
 		while($row = $result->fetch_assoc()){
@@ -104,7 +105,8 @@ function getComments($patientID){
 	$answerArray = array();
 	
 	$q = "SELECT `Date`, `Answer` FROM `Answers` 
-	WHERE `PatientID` = '$patientID' AND `QuestionID` = 'comments'";
+	WHERE `PatientID` = '$patientID' AND `QuestionID` = 'comments'
+	ORDER BY `Date`";
 	if ($result = $mysqli->query($q)){		
 		while($row = $result->fetch_assoc()){
 			
@@ -125,7 +127,8 @@ function getClinicianNotes($patientID, $clinicianID){
 	$returnArray = array();
 	
 	$q = "SELECT * FROM `ClinicianNotes`
-	WHERE `PatientID` = '$patientID' AND `ClinicianID` = '$clinicianID'";
+	WHERE `PatientID` = '$patientID' AND `ClinicianID` = '$clinicianID'
+	ORDER BY `Date`";
 	if ($result = $mysqli->query($q)){		
 		while($row = $result->fetch_assoc()){
 			$bus = array('noteID' => $row['NoteID'],'clinicianID' => $row['ClinicianID'],'Date' => $row['Date'],'data' => $row['Data']);
@@ -149,11 +152,11 @@ function getTags($patientID){
 	$answerArray = array();
 
 	$q = "SELECT `Date`, `Tag` FROM `questiontags`
-	WHERE `PatientID` = '$patientID'";
+	WHERE `PatientID` = '$patientID' ORDER BY `Date`";
 	if ($result = $mysqli->query($q)){
 		while($row = $result->fetch_assoc()){
 			//$bus[trim($row['Tag'])][] = $row['Date'];
-			$bus = array('Date' => $row['Date'], 'Data' => nl2br($row['Tag']));
+			$bus = array('Date' => $row['Date'], 'Data' => nl2br($row['Tag'])); 
 			array_push($answerArray, $bus);
 		}
 		$result->free();
@@ -163,6 +166,81 @@ function getTags($patientID){
 	return $answerArray;
 }
 //end getTags
+
+//--------------------------------------------------------------------------------------------
+//Get Unique Tags for Patient and number of occurences
+function getUniqueTagList($patientID){
+	global $mysqli;
+	$answerArray = array();
+
+	$q = "SELECT `Tag`, COUNT(*) as `Count` FROM `questionTags` WHERE `PatientID` = '$patientID' GROUP BY `Tag`";
+
+	if ($result = $mysqli->query($q)){
+		while($row = $result->fetch_assoc()){
+			$uniqueTags = array('Tag' => nl2br($row['Tag']),
+								'Count' => $row['Count']); //nlbr removes \n breaks
+			
+			array_push($answerArray, $uniqueTags);
+		}
+		$result->free();
+		unset($uniqueTags);
+	}
+
+	return $answerArray;
+}
+//end getUniqueTags
+
+//--------------------------------------------------------------------------------------------
+//Get all Tag for Patients and sorted
+function getUniqueTags($patientID){
+	global $mysqli;
+	$answerArray = array();
+	$uniqueTags = array();
+	$tagBus = array();
+
+	//Get list of unique tags first
+	$q = "SELECT `Tag`, COUNT(*) as `Count` FROM `questionTags` WHERE `PatientID` = '$patientID' GROUP BY `Tag`";
+	if ($result = $mysqli->query($q)){
+		while($row = $result->fetch_assoc()){
+			$bus = array('Tag' => nl2br($row['Tag']),
+								'Count' => $row['Count']); //nlbr removes \n breaks
+			array_push($uniqueTags, $bus);
+		}
+		$result->free();
+	}
+	unset($bus);
+
+	//for each unique tag, return an array
+	for($i=0; $i<sizeof($uniqueTags); $i++) {
+    	//Perform query for each tag
+		$thisTag = $uniqueTags[$i]['Tag'];
+
+		$q = "SELECT * FROM `questionTags` WHERE `PatientID` = '$patientID' AND `Tag` = '$thisTag' ORDER BY `Date`";
+		if ($result = $mysqli->query($q)){
+			while($row = $result->fetch_assoc()){
+				$bus = array(	'PatientID' => $row['PatientID'],
+								'SessionID' => $row['SessionID'],
+								'Tag' => nl2br($row['Tag']),
+								'Date' => $row['Date']); //nlbr removes \n breaks
+				
+				array_push($tagBus, $bus);
+			}
+			$result->free();
+		}
+		//eg. $answerArray["cats"] = [{entry}, {entry}, {entry} ...]
+		$answerArray[$i]["tag"] = $thisTag;
+		$answerArray[$i]["count"] = $uniqueTags[$i]['Count'];
+		$answerArray[$i]["results"] = $tagBus;
+		$tagBus=array(); //clear array after insertion to prevent errors
+ 	}
+ 	unset($bus);
+ 	unset($tagBus);
+	unset($uniqueTags);
+
+	return $answerArray;
+}
+//end getUniqueTags
+
 //--------------------------------------------------------------------------------------------
 //Get Sessions
 function getSessions($patientID, $clinicianID, $sessionName){

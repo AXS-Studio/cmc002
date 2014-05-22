@@ -26,5 +26,6 @@
 
 	<script src="js/timeline.js"></script>
 	<script>
-		DataVisualizationInitialization.loadDataInitial();
+		var timeline = new Timeline();
+		timeline.loadQuestionsInitial();//.loadDataInitial();//DataVisualizationInitialization.
 	</script>

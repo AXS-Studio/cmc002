@@ -98,10 +98,13 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			
 			//load initial data
 			
-		 	DataVisualizationInitialization.loadDataInitial();
+		 	//DataVisualizationInitialization.loadDataInitial();
+		 	var timeline = new Timeline();
+			timeline.loadQuestionsInitial();
+
 		 	initGraphMenu();
 
-<<<<<<< HEAD
+
 			//DataVisualizationSelect.init();
 			
 			/* 			initGraphMenu(); */
@@ -111,8 +114,6 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			
 					/* 	DataVisualizationSelect.init(); */
 			//start
-=======
->>>>>>> 1423a9bba3485ee255178844f7b6a2f20dc0d9cd
 	
 
 		$('#art-loading').removeClass('o1').addClass('o0');

@@ -238,11 +238,15 @@ var D3graph = (function() {
 	var colors_arr = new Array();
 	
 	function plotTags(graph) {	
+
+
 		graph.selectAll('rect.tag').remove();
 		$('#svgParent div.tagInline').remove();
 		// For each tag data set...
 
 		var tags_arr = getUnique( tags );
+		console.log("tags_arr", tags_arr);
+		console.log("tags", tags);
 
 		if (tags_arr.length > 0 ){
 			$('#svgParent').append("<div id=\"tags\"><ul></ul></div>");	

@@ -112,12 +112,19 @@ $answerArray["length"] = count($answerArray["results"]);
 array_push($jsonArray, $answerArray);
 
 //-------------------------------------------------
-//Grab tags
+//Grab unique tags
 unset($answerArray);
-$answerArray["id"] = "tags";
-$answerArray["results"] = getTags($patientID);
-$answerArray["length"] = count($answerArray["results"]);
+$answerArray["id"] = "uniqueTags";
+$answerArray["results"] = getUniqueTags($patientID);
+//$answerArray["length"] = count($answerArray["results"]);
 array_push($jsonArray, $answerArray);
+
+//Grab tags
+// unset($answerArray);
+// $answerArray["id"] = "tags";
+// $answerArray["results"] = getTags($patientID);
+// $answerArray["length"] = count($answerArray["results"]);
+// array_push($jsonArray, $answerArray);
 
 
 //-------------------------------------------------

@@ -16,7 +16,9 @@
 	</aside>
 	<div class="containerForGraphs" id="cfg">
 		<div id="cfgGraphs">
-			
+		</div>
+		<div id="commentDiv">
+			Hello World
 		</div>
 	</div>
 	</article>
