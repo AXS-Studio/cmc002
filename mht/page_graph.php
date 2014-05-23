@@ -18,7 +18,8 @@
 		<div id="cfgGraphs">
 		</div>
 		<div id="commentDiv">
-			Hello World
+			<div id="commentDateDiv">Date</div>
+			<div id="commentDataDiv">Data</div>
 		</div>
 	</div>
 	</article>

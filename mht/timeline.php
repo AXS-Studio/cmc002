@@ -2,6 +2,10 @@
 
 	<body>
 		<div class="containerForGraphs" id="cfg"><div id="cfgGraphs">&nbsp;</div></div>
+		<div id="commentDiv">
+			<div id="commentDateDiv">Date</div>
+			<div id="commentDataDiv">Data</div>
+		</div>
 	</body>
 
 	<script src="js/jquery.min.js"></script>

@@ -1,4 +1,14 @@
 /*body { font: 12px Helvetica,Arial,sans-serif;}*/
+#commentDiv #commentDateDiv {
+	margin: 15px 20px 15px 20px;
+	color: grey;
+}
+
+#commentDiv #commentDataDiv {
+	margin: 15px 20px 15px 20px;
+
+}
+
 svg .areaFill {
 	    /*fill: steelblue;
 	    stroke: steelblue;*/

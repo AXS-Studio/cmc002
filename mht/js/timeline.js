@@ -55,6 +55,7 @@ var Timeline = function() {
     };
 
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
+    var commentDateFormat = d3.time.format("%d %B %Y, %I:%M %p, %A");
 
     //Set up scales (to map input data to output in pixels)
     //----------scales----------
@@ -365,7 +366,7 @@ var Timeline = function() {
                                                         else
                                                         return colours[0];
                                                 })
-                        //.style('stroke', 'rgba(256,256,256,1.0)')
+                        .style('stroke', 'rgba(256,256,256,1.0)')
                         .attr('class', "rect_" + j)
                         .attr('x', function(d) {
                             return x(d.date);
@@ -422,14 +423,25 @@ var Timeline = function() {
 
     //Add a radio tuner style strip
         focus.append("rect")
-        .style('fill','rgba(256,0,0,0.5)')
+        .style('fill','rgba(0,0,0,0.5)')
         .attr("clip-path", "url(#clip)")
         .attr({
-                    'width': 2,
+                    'width': 1,
                     'height': height,
                     'x': width/2, 
                     'y': 0,
                     'id': 'tuner'
+                });
+
+        focus.append("rect")
+        .style('fill','rgba(256,0,0,0.25)')
+        .attr("clip-path", "url(#clip)")
+        .attr({
+                    'width': 1,
+                    'height': height,
+                    'x': width/2, 
+                    'y': 0,
+                    'id': 'tuner_guide'
                 });
 
         //Axis
@@ -447,14 +459,15 @@ var Timeline = function() {
 
         //Add Brush function for zooming and panning
         //.attr("clip-path", "url(#clip)")
-        focus.append("g")
-            .attr("class", "x brush")
-            .call(brush)
-            .selectAll("rect")
-            .style('fill','rgba(0,0,256,0.5)')
-            .attr("y", 0)
-            .attr("x", 0)
-            .attr("height", height2 + 7);
+        // focus.append("g")
+        //     .attr("class", "x brush")
+        //     // .call(brush)
+        //     // .call(brush.event)
+        //     .selectAll("rect")
+        //     .style('fill','rgba(0,0,256,0.5)')
+        //     .attr("y", 0)
+        //     .attr("x", 0)
+        //     .attr("height", height2 + 7);
 
         //Add Rect for zoom function and call zoom for first time
         focus.append("rect")
@@ -466,23 +479,36 @@ var Timeline = function() {
     } //end makeGraph function
 
     //----------Setup brush-------------------------------------------------------------
-    var brush = d3.svg.brush()
-        .x(x2)
-        .on("brush", brushed);
+    // var brush = d3.svg.brush()
+    //     //.x(x2)
+    //     .on("brush", brushed)
+    //     .on("brushend", brushended);
 
     //.x(x).scaleExtent([1,10]) limits zoom from 1X to 10X
     var zoom = d3.behavior.zoom().x(x)
-        .scaleExtent([0, 1000])
-        .on("zoom", zoomed);
+        .scaleExtent([0.1, 1000])
+        .on("zoom", zoomed)
+        .on("zoomend", zoomEnded);
 
-    function brushed() {
-        x.domain(brush.empty() ? x2.domain() : brush.extent());
+    // function brushed() {
+    //     x.domain(brush.empty() ? x2.domain() : brush.extent());
 
-        updateGraph();
+    //     updateGraph();
 
-        //Since domain has been modified, call zoom again
-        zoom.x(x);
-    }
+    //     //Since domain has been modified, call zoom again
+    //     zoom.x(x);
+    // }
+
+    // function brushended() {
+    //     console.log("brush ended");
+
+    //     x.domain(brush.empty() ? x2.domain() : brush.extent());
+
+    //     updateGraph();
+
+    //     //Since domain has been modified, call zoom again
+    //     zoom.x(x);
+    // }
 
     //----------Setup zoom-------------------------------------------------------------
 
@@ -493,6 +519,13 @@ var Timeline = function() {
         //Update context graph
         //var brushExtent = [x.invert(0), x.invert(width)]; 
         //context.select(".brush").call(brush.extent(brushExtent));
+    }
+
+    function zoomEnded() {
+        getComment();
+        shiftGraph();
+        //zoom.event(focus);
+
     }
 
     function reset() {
@@ -540,26 +573,59 @@ var Timeline = function() {
 
         focus.select(".x.axis").call(xAxis);
 
-        getComment();
     }//end updateGraph()
 
-    //----------Retrieve a comment-------------------------------------------------------------
+    //Decalre global to capture x-pixel of current comment
+    var xCommentDate = width/2;
+
+    //----------Retrieve a comment based on closest entry to the midpoint, move the tuner----------------------
     function getComment() {
-        //first let's get where the date the midpoint (ie. the ticker) has landed
-        var midpoint = x.invert(width/2);
-        console.log("midpoint", midpoint);
+        //Get where the date the midpoint (ie. the ticker) has landed
+        var midpointDate = x.invert(width/2);
 
-        var bisect = d3.bisector(function(d) { return d.date; }).right;
-        var commentIndex = bisect(initialData[initialDataCommentIndex].results, midpoint);
-        var commentData = initialData[initialDataCommentIndex].results[commentIndex].Data;
+        var lastDateinDomain = x0.domain()[1]; //Remember x0? A copy of the domain before any zooming/scaling done
+        
+        var bisect; //define bisect function depending if midpoint tuner strip is to the right of the last point in graph
+        var commentIndex; //index of comment to be displayed
+
+        //if tuner strip is to the left of last data entry in graph
+        if (midpointDate < lastDateinDomain){
+            bisect = d3.bisector(function(d) { return d.date; }).left;//returns index of data to the right of bisector
+            commentIndex = bisect(initialData[initialDataCommentIndex].results, midpointDate);
+        }
+        //if to the right of last entry, snap to last entry
+        else if (midpointDate > lastDateinDomain){
+            bisect = d3.bisector(function(d) { return d.date; }).right;//returns index of data to the left of bisector
+            commentIndex = initialData[initialDataCommentIndex].results.length-1;
+        }
+        
         var commentDate = initialData[initialDataCommentIndex].results[commentIndex].date;
+        
+        xCommentDate = x(commentDate); //pixel point of selected comment
 
-        console.log("test", initialData[initialDataCommentIndex].results[commentIndex]);
+        if (initialData[initialDataCommentIndex].results[commentIndex].Data!=null){
+            var commentData = initialData[initialDataCommentIndex].results[commentIndex].Data;
+            $("#commentDateDiv").html(commentDateFormat(commentDate) );
+            $("#commentDataDiv").html(commentData);
+        }
 
         var tuner = focus.select('#tuner').transition();
          if (!tuner.empty()) {
-            tuner.attr('x', x(commentDate));
-         }
+            tuner.attr('x', xCommentDate); //move tuner to that point   
+        }
+
+    }//end getComment
+    
+    //----------Shift the graph to snap to selected comment-------------------------------------------------------------
+    function shiftGraph() {
+
+        //translate graph to closest comment
+        var translateGraph = xCommentDate-width/2;//zoom.translate()[0]
+
+        zoom.translate([zoom.translate()[0]-translateGraph,0]);//zoom.scale()*
+        
+        updateGraph();
+        getComment();
     }
 
     //----------Return values for var Timeline-------------------------------------------------------------
