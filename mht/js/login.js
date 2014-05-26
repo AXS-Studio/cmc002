@@ -66,13 +66,15 @@ var Login = (function() {
 	};
 	
 	function rerunLogin(id) {
-		$('#art-loading').removeClass('o1').addClass('o0');
+			$('#art-loading').removeClass('o1').addClass('o0');
 		setTimeout(function() {
+			
 			$('#art-loading').remove();
-			$('body').prepend(Pages.login);
+			//$('body').prepend(Pages.login);
 			$('header, article').show().removeClass('o0').addClass('o1');
 			Middle.destroyMiddle();
 			loginFields();
+
 			showAlerts(id);
 		}, 250);
 	}

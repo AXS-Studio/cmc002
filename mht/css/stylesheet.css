@@ -131,6 +131,7 @@ table {
 html, body {
   width: 100%;
   overflow: hidden;
+  overflow-y:  scroll;
   height: 100%; }
 
 body {
@@ -864,7 +865,7 @@ div.shareAlert {
   
   /* APP CONTROL STYLES */
   
-  #page_graph { display:  none;}
+  #page_graph { display:  none; margin-top:40px;}
   
   form#login {
 	      margin:5%;
