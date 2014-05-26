@@ -107,7 +107,7 @@ for ($i = 0; $i < count($fullQuestionArray2); $i++){
 //Grab comments
 unset($answerArray);
 $answerArray["id"] = "comment";
-$answerArray["results"] = getComments($patientID);
+$answerArray["results"] = getCommentsTags($patientID);
 $answerArray["length"] = count($answerArray["results"]);
 array_push($jsonArray, $answerArray);
 

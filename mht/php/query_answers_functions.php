@@ -104,13 +104,53 @@ function getComments($patientID){
 	global $mysqli;
 	$answerArray = array();
 	
-	$q = "SELECT `Date`, `Answer` FROM `Answers` 
+	$q = "SELECT `SessionID`, `Date`, `Answer` FROM `Answers` 
 	WHERE `PatientID` = '$patientID' AND `QuestionID` = 'comments'
 	ORDER BY `Date`";
 	if ($result = $mysqli->query($q)){		
 		while($row = $result->fetch_assoc()){
 			
-			$bus = array('Date' => $row['Date'], 'Data' => nl2br($row['Answer']));
+			$bus = array('SessionID' => $row['SessionID'], 'Date' => $row['Date'], 'Data' => nl2br($row['Answer']));
+			array_push($answerArray, $bus);
+		}
+		$result->free();
+		unset($bus);
+	}
+	
+	return $answerArray;
+}//end getComments
+//--------------------------------------------------------------------------------------------
+
+//Get comments and tags for patient
+function getCommentsTags($patientID){
+	global $mysqli;
+	$answerArray = array();
+	
+	
+	$q = "SELECT `SessionID`, `Date`, `Answer` FROM `Answers` 
+	WHERE `PatientID` = '$patientID' AND `QuestionID` = 'comments'
+	ORDER BY `Date`";
+
+	
+	if ($result = $mysqli->query($q)){		
+		while($row = $result->fetch_assoc()){
+			
+			$answerArray2 = array();//reset tag array
+
+			$bus = array('SessionID' => $row['SessionID'], 'Date' => $row['Date'], 'Data' => nl2br($row['Answer']));
+			
+			//Grab tags
+			$sessionID = $row['SessionID'];
+			$q2 = "SELECT `Tag` FROM `questionTags` WHERE `PatientID` = '$patientID' AND `SessionID` = '$sessionID'";
+
+			if ($result2 = $mysqli->query($q2)){	
+				while($row2 = $result2->fetch_assoc()){
+					array_push($answerArray2, $row2['Tag']);
+				}
+				$result2->free();
+			}
+			$bus['Tags'] = $answerArray2;
+			
 			array_push($answerArray, $bus);
 		}
 		$result->free();

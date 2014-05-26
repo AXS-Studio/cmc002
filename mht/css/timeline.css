@@ -1,4 +1,8 @@
 /*body { font: 12px Helvetica,Arial,sans-serif;}*/
+#commentDiv {
+	
+}
+
 #commentDiv #commentDateDiv {
 	margin: 15px 20px 15px 20px;
 	color: grey;
@@ -7,6 +11,21 @@
 #commentDiv #commentDataDiv {
 	margin: 15px 20px 15px 20px;
 
+}
+
+#commentDiv #commentTagDiv {
+	margin: 15px 20px 15px 20px;
+
+}
+
+#commentDiv #commentTagUL{
+	padding: 0px;
+	list-style-type: none;
+}
+
+#commentDiv #commentTagUL li{
+	margin: 15px 20px 15px 0px;
+	display: inline;
 }
 
 svg .areaFill {
@@ -29,7 +48,7 @@ svg .axis text {
   		font: 10px sans-serif;
 	}
 
-/*NOT USED FOR NOW*/
+/*---------------NOT USED FOR NOW-----------------*/
 	.path1 { 
 	    stroke: steelblue;
 	    stroke-width: 1;

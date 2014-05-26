@@ -4,7 +4,12 @@
 		<div class="containerForGraphs" id="cfg"><div id="cfgGraphs">&nbsp;</div></div>
 		<div id="commentDiv">
 			<div id="commentDateDiv">Date</div>
-			<div id="commentDataDiv">Data</div>
+			<div id="commentDataDiv">This section displays comments for the questionnaire</div>
+			<div id="commentTagDiv">
+				<ul id="commentTagUL">
+
+				</ul>
+			</div>
 		</div>
 	</body>
 

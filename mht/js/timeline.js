@@ -368,6 +368,7 @@ var Timeline = function() {
                                                 })
                         .style('stroke', 'rgba(256,256,256,1.0)')
                         .attr('class', "rect_" + j)
+                        .attr("data-sessionID", function(d) { return d.SessionID; })
                         .attr('x', function(d) {
                             return x(d.date);
                         })
@@ -399,9 +400,10 @@ var Timeline = function() {
                 .data(initialData[i]["results"], function(d) { return d.date; });
 
                 commentRects.enter().append('rect')
-                    .style('fill','rgba(100,100,100,1.0)')
+                    .style('fill','rgba(200,200,200,1.0)')
                     .style('stroke', 'rgba(256,256,256,1.0)')
                     .attr('class', "rect_comment")
+                    .attr("data-sessionID", function(d) { return d.SessionID; })
                     .attr('x', function(d) {return x(d.date);})
                     .attr('y', 0)
                     .attr('width',5)
@@ -433,17 +435,6 @@ var Timeline = function() {
                     'id': 'tuner'
                 });
 
-        focus.append("rect")
-        .style('fill','rgba(256,0,0,0.25)')
-        .attr("clip-path", "url(#clip)")
-        .attr({
-                    'width': 1,
-                    'height': height,
-                    'x': width/2, 
-                    'y': 0,
-                    'id': 'tuner_guide'
-                });
-
         //Axis
         if (d3.select('#xAxis_g').empty()) {
             focus.append("g")
@@ -457,7 +448,7 @@ var Timeline = function() {
             .attr("class", "y axis")
             .call(yAxis);
 
-        //Add Brush function for zooming and panning
+        //Add Brush function for zooming and panning (don't need brushing anymore if radio ticker is at center)
         //.attr("clip-path", "url(#clip)")
         // focus.append("g")
         //     .attr("class", "x brush")
@@ -478,6 +469,7 @@ var Timeline = function() {
 
     } //end makeGraph function
 
+
     //----------Setup brush-------------------------------------------------------------
     // var brush = d3.svg.brush()
     //     //.x(x2)
@@ -487,6 +479,7 @@ var Timeline = function() {
     //.x(x).scaleExtent([1,10]) limits zoom from 1X to 10X
     var zoom = d3.behavior.zoom().x(x)
         .scaleExtent([0.1, 1000])
+        .center([width/2, 0])
         .on("zoom", zoomed)
         .on("zoomend", zoomEnded);
 
@@ -534,6 +527,9 @@ var Timeline = function() {
     }
 
     //----------Update whole graph-------------------------------------------------------------
+    //Global to capture x-pixel of current comment
+    var xCommentDate = width/2;
+    var commentDate;
 
     function updateGraph() {
 
@@ -544,7 +540,7 @@ var Timeline = function() {
 
             //Update line graph
             focus.select("#data_" + settings[i].id).attr("d", areaFill);
-            // focus.select("#mean1").attr("d", meanline(data1)); //update meanline whem in place
+            // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
 
             //Update dots on line graphs
             var dots = focus.selectAll(".dot_" + settings[i].id);
@@ -573,10 +569,16 @@ var Timeline = function() {
 
         focus.select(".x.axis").call(xAxis);
 
+        // var tuner = focus.select('#tuner').transition(); //move tuner
+        //  if (!tuner.empty()) {
+        //     tuner.attr('x', xCommentDate); //move tuner to that point   
+        // }
+
     }//end updateGraph()
 
-    //Decalre global to capture x-pixel of current comment
-    var xCommentDate = width/2;
+    
+    //Global to capture last midpointDate for snapping to right or left
+    var lastMidpointDate = x.invert(width/2);
 
     //----------Retrieve a comment based on closest entry to the midpoint, move the tuner----------------------
     function getComment() {
@@ -588,31 +590,73 @@ var Timeline = function() {
         var bisect; //define bisect function depending if midpoint tuner strip is to the right of the last point in graph
         var commentIndex; //index of comment to be displayed
 
-        //if tuner strip is to the left of last data entry in graph
+        //if tuner strip is to the left of last data entry in graph (within range)
         if (midpointDate < lastDateinDomain){
             bisect = d3.bisector(function(d) { return d.date; }).left;//returns index of data to the right of bisector
             commentIndex = bisect(initialData[initialDataCommentIndex].results, midpointDate);
+
+            //--Snapping based on direction of scroll right or left  - if user scrolled graph for an older date, snap to left
+            // if (commentIndex > 0 && midpointDate<lastMidpointDate){
+            //         commentIndex = commentIndex-1;
+            // }
+
+            //--Snapping based on whether user is closer to right/left date (works better for pinch-zoom on phones)
+            if (commentIndex > 0){
+            var dateDiff1 = Math.abs(initialData[initialDataCommentIndex].results[commentIndex].date-midpointDate);
+            var dateDiff2 = Math.abs(initialData[initialDataCommentIndex].results[commentIndex-1].date-midpointDate);
+            if (dateDiff2<dateDiff1)
+                commentIndex = commentIndex-1;
+            }
         }
-        //if to the right of last entry, snap to last entry
+        //if to the right of last entry, snap to last entry(out of range)
         else if (midpointDate > lastDateinDomain){
-            bisect = d3.bisector(function(d) { return d.date; }).right;//returns index of data to the left of bisector
-            commentIndex = initialData[initialDataCommentIndex].results.length-1;
-        }
-        
-        var commentDate = initialData[initialDataCommentIndex].results[commentIndex].date;
+           commentIndex = initialData[initialDataCommentIndex].results.length-1;
+        }    
+
+        if (commentIndex==null)
+        commentIndex = initialData[initialDataCommentIndex].results.length-1;//explicitly set to prevent null errors from fast zoom
+
+        commentDate = initialData[initialDataCommentIndex].results[commentIndex].date;
         
         xCommentDate = x(commentDate); //pixel point of selected comment
 
         if (initialData[initialDataCommentIndex].results[commentIndex].Data!=null){
             var commentData = initialData[initialDataCommentIndex].results[commentIndex].Data;
+            var commentTags = initialData[initialDataCommentIndex].results[commentIndex].Tags;
+
             $("#commentDateDiv").html(commentDateFormat(commentDate) );
             $("#commentDataDiv").html(commentData);
+            $("#commentTagUL").html(""); //reset comment list
+            //Append Tags
+            if (commentTags.length >0){
+                
+                commentTags.forEach(
+                    function(item){
+                        $("#commentTagUL").append($(document.createElement('li')).text(item));
+                    }
+                )
+            }
         }
 
-        var tuner = focus.select('#tuner').transition();
-         if (!tuner.empty()) {
-            tuner.attr('x', xCommentDate); //move tuner to that point   
-        }
+        //Get tags and values of graphs
+        var sID = initialData[initialDataCommentIndex].results[commentIndex].SessionID;
+        var thisRect = tagFocus.select("rect[data-sessionID='"+sID+"']");
+        thisRect.attr('sessionID', function(d) { return d.SessionID; });
+
+        // for (var i = 0; i < settings.length; i++) {
+        //     //  var id = settings[i].id;
+        //     //  var colour = settings[i].colour;
+
+        //     //Update line graph
+        //     focus.select("#data_" + settings[i].id).attr("d", areaFill);
+        //     // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
+
+        //     //Update dots on line graphs
+        //     var dots = focus.selectAll(".dot_" + settings[i].id);
+        //     if (!dots.empty()) {
+        //         dots.attr("cx", function(d) { return x(d.date); });
+        //     }
+        // } //end for settings length
 
     }//end getComment
     
@@ -625,7 +669,9 @@ var Timeline = function() {
         zoom.translate([zoom.translate()[0]-translateGraph,0]);//zoom.scale()*
         
         updateGraph();
-        getComment();
+        //getComment();
+
+        lastMidpointDate = commentDate; //remember this midpointDate for use in snapping
     }
 
     //----------Return values for var Timeline-------------------------------------------------------------
