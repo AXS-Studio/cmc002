@@ -632,7 +632,19 @@ var Timeline = function() {
                 
                 commentTags.forEach(
                     function(item){
-                        $("#commentTagUL").append($(document.createElement('li')).text(item));
+                       
+                       jQuery('<li/>', {
+                            id: item+"_li",
+                            text: item
+                        }).appendTo('#commentTagUL');
+
+                       jQuery('<div/>', {
+                            id: item+"_div",
+                            class: "tagDiv",
+                            text: "",
+                        }).prependTo("#"+item+"_li");
+
+                        //$("#commentTagUL").append($(document.createElement('li')).text(item));
                     }
                 )
             }

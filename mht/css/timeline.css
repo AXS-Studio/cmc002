@@ -28,6 +28,14 @@
 	display: inline;
 }
 
+#commentDiv #commentTagUL li .tagDiv{
+	display: inline-block;
+	margin: 0px 10px 0px 0px;
+	width: 15px;
+	height: 15px;
+	background-color:yellow;
+}
+
 svg .areaFill {
 	    /*fill: steelblue;
 	    stroke: steelblue;*/
