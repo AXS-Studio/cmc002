@@ -222,6 +222,7 @@ $("#scs li h2 a").live('click', function(e){
 	function AddColourPicker () {
 		$("#swtchs-edit .swatches").spectrum({
 			color: "red",
+			showPalette: true,
 			change: function(color) {
 				$(this).css('background', color);
 				id = $(this).attr('id').replace("swatch-", "");
@@ -299,6 +300,7 @@ $("#scs li h2 a").live('click', function(e){
 				return graphColors[i].color;
 			}
 		}
+		return null;
 	}
 
 	function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */

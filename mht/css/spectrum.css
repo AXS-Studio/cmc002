@@ -15,6 +15,7 @@ License: MIT
     /* https://github.com/bgrins/spectrum/issues/40 */
     z-index: 9999994;
     overflow: hidden;
+
 }
 .sp-container.sp-flat {
     position: relative;
@@ -250,10 +251,11 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 */
 
 .sp-container {
-    border-radius: 0;
-    background-color: #ECECEC;
-    border: solid 1px #f0c49B;
-    padding: 0;
+    border-radius: 10px;
+
+    background-color: #e8e8e9;
+    border: solid 1px #b6b8ba;
+    padding:20px;
 }
 .sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear
 {
@@ -310,13 +312,14 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 .sp-picker-container
 {
     width: 172px;
-    border-left: solid 1px #fff;
+/*     border-left: solid 1px #fff; */
 }
 
 /* Palettes */
 .sp-palette-container
 {
-    border-right: solid 1px #ccc;
+/*     border-right: solid 1px #ccc; */
+
 }
 
 .sp-palette .sp-thumb-el {
@@ -420,8 +423,28 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     padding-bottom:0;
 }
 
+.sp-container button {
+	padding:6px 15px;
+}
+
+.sp-container button:hover {
+		padding:6px 15px;
+}
+
+.sp-cancel {
+/* 	display: block; */
+	padding:6px 15px;
+	  text-decoration:none;
+	  border:1px solid #A7A9AC;
+	  margin-right:25px;
+}
+.sp-cancel:hover {
+		padding:6px 15px;
+			  border:1px solid #A7A9AC;
+}
 
 /* Buttons: http://hellohappy.org/css3-buttons/ */
+/*
 .sp-container button {
   background-color: #eeeeee;
   background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
@@ -461,6 +484,8 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
     box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 }
+*/
+/*
 .sp-cancel
 {
     font-size: 11px;
@@ -472,11 +497,14 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     text-decoration:none;
 
 }
+*/
+/*
 .sp-cancel:hover
 {
     color: #d93f3f !important;
     text-decoration: underline;
 }
+*/
 
 
 .sp-palette span:hover, .sp-palette span.sp-thumb-active

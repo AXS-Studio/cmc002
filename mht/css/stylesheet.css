@@ -85,7 +85,7 @@ table {
 .botMarg, article h1, div.message h1, article p, div.message p, article ol li, div.message ol li {
   margin: 0 0 0.3em; }
 
-.formInputs, .formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article form fieldset input[type="text"], article form fieldset input[type="password"], article form fieldset input[type="email"], article form fieldset textarea, div.message form fieldset input[type="text"], div.message form fieldset input[type="password"], div.message form fieldset input[type="email"], div.message form fieldset textarea {
+.formInputs, .formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article form fieldset input[type="text"], article form fieldset input[type="password"], article form fieldset input[type="email"], article form fieldset textarea, div.message form fieldset input[type="text"], div.message form fieldset input[type="password"], div.message form fieldset input[type="email"], div.message form fieldset textarea, .sp-container button {
   -webkit-appearance: none;
   margin-bottom: 0;
   padding-top: 0.7em;
@@ -97,7 +97,7 @@ table {
   margin: 0;
   list-style: none; }
 
-.formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button {
+.formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .sp-container button, .sp-cancel {
   margin-top: 2em;
   padding: 11px 30px;
   text-align: center;
@@ -115,7 +115,7 @@ table {
   -ms-transition: color 0.25s, background-color 0.25s ease-out;
   transition: color 0.25s, background-color 0.25s ease-out; }
 
-.formButton:hover, article form fieldset input[type="submit"]:hover, div.message form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover {
+.formButton:hover, article form fieldset input[type="submit"]:hover, div.message form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, .sp-container button:hover, .sp-cancel:hover {
   margin-top: 2em;
   padding: 11px 30px;
   text-align: center;
@@ -866,6 +866,11 @@ div.shareAlert {
   /* APP CONTROL STYLES */
   
   #page_graph { display:  none; margin-top:40px;}
+  
+  #page_graph #commentDiv {
+	  line-height: 20px;
+	  border-top:1px solid #ccc;
+  }
   
   form#login {
 	      margin:5%;

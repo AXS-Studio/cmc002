@@ -3,16 +3,17 @@
 <head>
 		<meta charset="utf-8">
 			<meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1.0">
-		<link rel="stylesheet" media="screen" href="../css/style.css">
+		<link rel="stylesheet" media="screen" href="../css/stylesheet.css">
 		
 		<link rel="stylesheet" media="screen" href="../css/graph-ui.css">
 		<link rel="stylesheet" media="screen" href="../css/graph.css">
 		<link rel="stylesheet" media="screen" href="../css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="../css/graph-menu.css">
+		<link rel="stylesheet" media="screen" href="../css/spectrum.css">
 		
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/menu-ui.js"></script>
-		
+				<script type="text/javascript" src="../js/spectrum.js"></script>
 </head>
 
 <div id="tempContainer">
@@ -29,6 +30,21 @@
 		<div id="edit_content" class="tab_content">CONTENT FOR THE EDIT SECTION</div>	
 		<div id="share_content" class="tab_content">CONTENT FOR THE SHARE SECTION</div>
 	</div>
+	<script>
+	
+			$(document).ready(function() {
+	
+	$(".btnmenu").spectrum({
+			color: "red",
+			showPalette: true,
+			change: function(color) {
+				$(this).css('background', color);
+				id = $(this).attr('id').replace("swatch-", "");
+				StoreColor(id,color.toString());
+			}
+		});
+		});
+			</script>
 	</aside>
 
 </div>
