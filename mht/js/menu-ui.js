@@ -19,7 +19,7 @@ $("#menubtn").live('click', function(e){
 */
 
 var graphMenuActive = false;
-
+var graphColors = new Array();
 
 var initGraphMenu =(function() {
 
@@ -187,6 +187,10 @@ $("#scs li h2 a").live('click', function(e){
 		     //query_answers_initial.php was written originally for PATH, returns a set of default questions and their results
 		     //and for non-default questions, returns the length of their results so that null sets can be greyed out
 		     //Will need to rewrite the php for returning the entire bank of answers for use in the app as a one time download
+		     
+		     graphColors = JSON.parse(localStorage.getItem("graphColors"));
+		     console.log(graphColors);
+		     
 		     var loadQuestions = function() {
 		         $.ajax({
 		             url: 'php/query_questions.php',
@@ -196,6 +200,7 @@ $("#scs li h2 a").live('click', function(e){
 		                 questions = response;
 		                 console.log("questions", questions);
 		                 addSwatches();
+		                 ParseGraphColors();
 		             },
 		             complete: function () {
 			             
@@ -208,7 +213,6 @@ $("#scs li h2 a").live('click', function(e){
 
 		     };
 
-
 		     return {
 		         loadQuestions : loadQuestions
 		     };
@@ -217,29 +221,75 @@ $("#scs li h2 a").live('click', function(e){
 
 	function AddColourPicker () {
 		$("#swtchs-edit .swatches").spectrum({
-			color: "#f00",
+			color: "red",
 			change: function(color) {
 				$(this).css('background', color);
 				id = $(this).attr('id').replace("swatch-", "");
-				StoreColor(id,color)
+				StoreColor(id,color.toString())
 				
 			}
 		});
 		
+		
+		
 	}
 	
-        
-    var graphColors = new Array();
+	function ParseGraphColors() {
+		for (i = 0; i < graphColors.length; i++) {
+			SetSwatchColor(graphColors[i].id, graphColors[i].color);
+			console.log ("Set color for " + graphColors[i].id.toString() + " to " + graphColors[i].color.toString());
+		}
+		
+	}
+       
+     function SetSwatchColor(id,color){
+     	var swatchID = '#swatch-' + id.toString();
+	     $('.swatches ' + swatchID).css('background',color);
+/* 	     $('#swatch-ASRM_0').css('background',color); */
+	  
+	     console.log(swatchID +","+color);
+     }   
+       
+    
+    function GraphColor (id) {
+	    this.id = id;
+	    this.color = "";
+	/*
+    var getColor = function() {
+			 return this.color;
+		};
+*/
+	/*
+	var setColor = function(color){
+			this.color = color;
+		};
+*/
+	    
+    }
+    
+    function IsInGraphColors (id) {
+	    for (i = 0; i < graphColors.length; i++ ){
+			if (graphColors[i].id == id) return true;
+		}
+		return false;
+    }
+       
 	
 	function StoreColor(id,color) {
 		console.log("store request for " + id + " " + color);
 
 		for (i = 0; i < graphColors.length; i++ ){
 			if (graphColors[i].id == id) {
-				graphColors[i].color = color.toString();
+				console.log(graphColors[i].color);
+				console.log(color);
+/* 				graphColors[i].setColor(color);// = color.toString(); */
+				graphColors[i].color = color;
 			}
 		}
-/* 		console.log(graphColors) */
+		console.log(graphColors)
+		
+		localStorage.setItem('graphColors', JSON.stringify(graphColors));
+		console.log("Colors stored");
 /* 		console.log(GetColor(id)); */
 	}
 	
@@ -263,7 +313,17 @@ $("#scs li h2 a").live('click', function(e){
 						var id = questions[i].type[j].id;
 						var name = questions[i].type[j].name;
 						
-						graphColors.push({id : id, color : ""});
+						if(IsInGraphColors(id)) {
+							console.log("Graph Color for " + id.toString() +  " loaded from local storage");
+						} else {
+							console.log("Graph Color for " + id.toString() +  " does not exist");
+							var newGraphColor = new GraphColor (id);
+							newGraphColor.color = 'rgba(0,0,0,0)';
+							graphColors.push(newGraphColor);
+						}
+						
+									
+/* 						graphColors.push({id : id, color : ""}); */
 						
 						$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 						$('#swtchs-legend').append('<li style="display:none;"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
@@ -374,6 +434,8 @@ $("#scs li h2 a").live('click', function(e){
 					return false;
 				});
 			}
+			console.log(graphColors);
+	
 /* 		} */
 	}	
 
