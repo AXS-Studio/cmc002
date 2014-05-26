@@ -18,11 +18,14 @@ $("#menubtn").live('click', function(e){
 });
 */
 
+var graphMenuActive = false;
 
 
 var initGraphMenu =(function() {
 
-
+	if(graphMenuActive) return;
+	graphMenuActive = true;
+	
 	var graphMenuWidth =  $(document).width() - ( $(document).width() *0.15) + 10;// $('#graph-menu').width() + 10;
 	graphMenuWidth = -graphMenuWidth;
 
@@ -109,7 +112,7 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			
 			/* 			initGraphMenu(); */
 
-			initGraphMenu();
+/* 			initGraphMenu(); */
 
 			
 					/* 	DataVisualizationSelect.init(); */
