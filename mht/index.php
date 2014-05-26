@@ -194,7 +194,7 @@ if ($detect -> isTablet()) {
 				$('html').removeClass('no-js').addClass('js');
 				PreloadGraphics.init();
 				initAppMenu();
-			
+				
 			<?php
 			if ($page == 'reset') {
 				echo "

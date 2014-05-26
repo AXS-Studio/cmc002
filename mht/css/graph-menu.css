@@ -120,11 +120,11 @@
 	(-webkit-min-device-pixel-ratio: 2), 
 	(min-resolution: 192dpi) { 
 		#graph-nav a.tab {
-			height: 68px;
-			line-height: 68px;	
+			height: 38px;
+			line-height: 38px;	
 		}
 		#graph-header,#graph-nav {
-			height: 70px;
+			height: 40px;
 		}
 		#graph-nav a.tab.selected {
 			border-bottom: 2px solid rgba(241,242,242,128);
@@ -132,8 +132,8 @@
 		
 		#graph-nav a.btnmenu, #graph-header a.btnmenu {
 			background-size: 20px 24px;
-			width:56px;
-			height:69px;
+			width:36px;
+			height:39px;
 		}
 	
 	}

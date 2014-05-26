@@ -187,8 +187,8 @@ $("#scs li h2 a").live('click', function(e){
 		     //query_answers_initial.php was written originally for PATH, returns a set of default questions and their results
 		     //and for non-default questions, returns the length of their results so that null sets can be greyed out
 		     //Will need to rewrite the php for returning the entire bank of answers for use in the app as a one time download
-		     
-		     graphColors = JSON.parse(localStorage.getItem("graphColors"));
+		
+		   	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
 		     console.log(graphColors);
 		     
 		     var loadQuestions = function() {
@@ -225,8 +225,7 @@ $("#scs li h2 a").live('click', function(e){
 			change: function(color) {
 				$(this).css('background', color);
 				id = $(this).attr('id').replace("swatch-", "");
-				StoreColor(id,color.toString())
-				
+				StoreColor(id,color.toString());
 			}
 		});
 		
@@ -267,7 +266,8 @@ $("#scs li h2 a").live('click', function(e){
 	    
     }
     
-    function IsInGraphColors (id) {
+    var IsInGraphColors = function (id) {
+    	if(graphColors == null) return false;
 	    for (i = 0; i < graphColors.length; i++ ){
 			if (graphColors[i].id == id) return true;
 		}
@@ -302,27 +302,30 @@ $("#scs li h2 a").live('click', function(e){
 	}
 
 	function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
-			
 			console.log(questions.length);
 			for (var i = 0; i < questions.length; i++) {
 				var category = questions[i].category;
-				/*  ALERT: Here's the problem with the items in the "OTHER" category: Two OTHER categories
-					are being included instead of one, so I'm not including the second OTHER object... */
 				if (category != 'Aggregate Scores' /* && (category != 'OTHER' || (category == 'OTHER' && otherCount == 0))*/) {
 					for (var j = 0; j < questions[i].type.length; j++) {
 						var id = questions[i].type[j].id;
 						var name = questions[i].type[j].name;
-						
+					
+
 						if(IsInGraphColors(id)) {
 							console.log("Graph Color for " + id.toString() +  " loaded from local storage");
-						} else {
+
+ 						} else { 
 							console.log("Graph Color for " + id.toString() +  " does not exist");
+	
 							var newGraphColor = new GraphColor (id);
-							newGraphColor.color = 'rgba(0,0,0,0)';
+							newGraphColor.color = "rgba(0,0,0,0)";
+							if(graphColors == null) graphColors = new Array();
 							graphColors.push(newGraphColor);
 						}
-						
-									
+
+
+
+
 /* 						graphColors.push({id : id, color : ""}); */
 						
 						$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
