@@ -10,7 +10,7 @@ License: MIT
     width:80%;
     height:63%;
     min-height: 403px;
-    top:12%;
+    top:5%;
     left:10%;
     display:inline-block;
     *display: inline;
@@ -216,7 +216,10 @@ License: MIT
 /* Clearfix hack */
 .sp-cf:before, .sp-cf:after { content: ""; display: table; }
 .sp-cf:after { clear: both; }
-.sp-cf { *zoom: 1; }
+.sp-cf { *zoom: 1; 
+	width:100%;
+	
+}
 
 /* Mobile devices, make hue slider bigger so it is easier to slide */
 @media (max-device-width: 480px) {
@@ -258,7 +261,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
     background-color: #e8e8e9;
     border: solid 1px #b6b8ba;
-    padding:20px;
+    padding:20px 35px;
 }
 .sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear
 {
@@ -318,11 +321,11 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 .sp-palette-container{
 	padding:0px;
-	margin-left:19px;
+/* 	margin-left:19px; */
 }
 .sp-picker-container
 {
-/*     width: 172px; */
+    width: 100%;
 /*     border-left: solid 1px #fff; */
 }
 
@@ -330,18 +333,20 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 .sp-palette-container
 {
 /*     border-right: solid 1px #ccc; */
-
+width:102%;
+margin-right:-2%;
 }
 
 .sp-palette .sp-thumb-el {
     display: block;
     position:relative;
     float:left;
-    width: 24px;
-    height: 15px;
-    margin: 3px;
+    width: 13.7%;
+    height:32px;
+    margin: 2% 2% 0 0;
     cursor: pointer;
-    border:solid 2px transparent;
+/*     border:solid 2px transparent; */
+ 	border: solid 1px #d0d0d0;
 }
 .sp-palette .sp-thumb-el:hover, .sp-palette .sp-thumb-el.sp-thumb-active {
     border-color: orange;
@@ -350,6 +355,16 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 {
     position:relative;
 }
+
+/*
+.sp-palette .sp-thumb-el
+{
+    width:30px;
+    height: 30px;
+    margin:5px 7px 0px 0px;
+    border: solid 1px #d0d0d0;
+}
+*/
 
 /* Initial */
 .sp-initial
@@ -423,13 +438,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     max-width: 220px;
 */
 }
-.sp-palette .sp-thumb-el
-{
-    width:30px;
-    height: 30px;
-    margin:5px 7px 0px 0px;
-    border: solid 1px #d0d0d0;
-}
+
 
 .sp-container
 {
@@ -446,13 +455,14 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 	height:35px;
 	line-height: 20px;
 	text-align: center;
-	
+	color:#222!important;
+	margin-top:15px;
 }
-
 
 
 .sp-container button:hover {
 	padding:0px;
+	margin-top:15px;
 }
 
 .sp-cancel {
@@ -461,7 +471,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 	padding:0px;
 	  text-decoration:none;
 	  border:1px solid #A7A9AC;
-	  margin-right:25px;
+	  margin-right:20px;
 	
 }
 .sp-cancel:hover {
@@ -477,6 +487,8 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 .sp-choose {
 /* 	padding:6px 20px; */
 }
+
+.transparent-button p {color:#999;}
 
 /* Buttons: http://hellohappy.org/css3-buttons/ */
 /*
