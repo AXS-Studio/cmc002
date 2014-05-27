@@ -626,37 +626,43 @@ var Timeline = function() {
 
         //translate graph to closest comment
         var translateGraph = xCommentDate-width/2;//zoom.translate()[0]
-
-        zoom.translate([zoom.translate()[0]-translateGraph,0]);//zoom.scale()*
+        zoom.translate([zoom.translate()[0]-translateGraph,0]);
         
-        //getComment();
-
         lastMidpointDate = commentDate; //remember this midpointDate for use in snapping
     }
 
     //----------Change all colours of graphs and tags-------------------------------------------------------------
     function changeColours() {
         //console.log("settings", settings);
+        //console.log("graphColors", graphColors);
 
         for (var i = 0; i < settings.length; i++) {
             
             var id = settings[i].id;
+            
+            var type = id.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
+
+            //simple loop to check if colour exists in menu's graphColor object
+            for (var j = 0; j < graphColors.length; j++) {
+                if (graphColors[j].id == id){
+                    settings[i].colour = graphColors[j].color;
+                }
+            }
             var colour = settings[i].colour;
 
-            //if this is a tag
+            //Update tags
             if (settings[i].hasOwnProperty('tag')){
                 $("#"+settings[i].tag+"_div").css("background-color",colour);
             }
 
-            //Update line graph
-            //focus.select("#data_" + settings[i].id).attr("d", areaFill);
-            // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
+            //Update line graphs and dots
+            if (type !="tag"){
+                $("#data_"+id).css("fill",colour);
+                $("#data_"+id).css("stroke",colour);
 
-            //Update dots on line graphs
-            //var dots = focus.selectAll(".dot_" + settings[i].id);
-            //if (!dots.empty()) {
-                //dots.attr("cx", function(d) { return x(d.date); });
-           // }
+                $(".dot_"+id).css("fill",colour);
+            }
+           
         } //end for settings length
     }
 
