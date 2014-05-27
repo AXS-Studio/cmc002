@@ -1,6 +1,6 @@
 /*body { font: 12px Helvetica,Arial,sans-serif;}*/
 #commentDiv {
-	
+	font-size: 13px;
 }
 
 #commentDiv #commentDateDiv {
@@ -33,7 +33,6 @@
 	margin: 0px 10px 0px 0px;
 	width: 15px;
 	height: 15px;
-	background-color:yellow;
 }
 
 svg .areaFill {

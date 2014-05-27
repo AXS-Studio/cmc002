@@ -125,9 +125,13 @@ var Timeline = function() {
     // var context = svg.append("g")
     //     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-    var tagFocus = svg.append("g")
+    var tagFocus = d3.select('#tagFocus_g');
+    if (tagFocus.empty()){
+        tagFocus = svg.append("g")
+        .attr("id", "tagFocus_g")
         .attr("transform", "translate(" + margin.left + "," + marginTagFocus.top + ")")
         .attr('clip-path', 'url(#clip)');
+    }
 
     var x0; //This copy of x captures the original domain setup
 
@@ -216,24 +220,9 @@ var Timeline = function() {
 
     };
 
-    // return {
-    //     loadDataInitial: loadQuestionsInitial
-    // };
-    //})();//end DataVisualizationInitialization
-
     function parseDate(date) {
-        /*
-        This function turns a string into a Date() object (that's what the 
-        .parse function does at the end of the format() function):
-
-        %Y = Year
-        %m = Month
-        %d = Date
-        %H = Hour
-        %M = Minutes
-        %S = Seconds
-
-        parseDate('2013-01-01 12:00:00') returns Date {Tue Jan 01 2013 12:00:00 GMT-0500 (EST)} */
+        //turns a string into a Date() object
+        //parseDate('2013-01-01 12:00:00') returns Date {Tue Jan 01 2013 12:00:00 GMT-0500 (EST)}
 
         var dateObj = d3.time.format('%Y-%m-%d %H:%M:%S').parse(date);
         return dateObj;
@@ -343,48 +332,55 @@ var Timeline = function() {
                 }
             } //end if initialData[i].id != comments, sessions, notes
 
-            //---Plot tags---------------------------------------------------------------------------
+            //---Plot tags--------------------- ------------------------------------------------------
             else if (initialData[i].id == 'uniqueTags') {
                 initialDataTagIndex = i; //remember the index for the tags
 
-                //console.log("uniqueTags", initialData[i].results);
                 for (var j = 0; j < initialData[i].results.length; j++) {
-                    //console.log("we are in tag ", initialData[i].results[j].tag);
                     //Convert date in initialData to a d3 readable format
                     jQuery.each(initialData[i].results[j].results, function(i, d) {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
                     });
 
+                    var thisColour;
+                    if (j < colours.length)
+                        thisColour = colours[j];
+                    else
+                         thisColour = colours[0];
+
                     //append rects for each tag group. In d3 fashion first bind the data
-                    var rects = tagFocus.selectAll(".rect_" + j)
-                        .data(initialData[i].results[j].results, function(d) { return d.date; });
+                    var rects = tagFocus.selectAll(".rect_" + j).data(initialData[i].results[j].results, function(d) { return d.date; });
 
+                    //Append rects for all binded data entering the graph
                     rects.enter().append('rect')
-                        .style('fill', function(){  //white stroked rects with default colours from colour array
-                                                    if (j < colours.length)
-                                                        return colours[j];
-                                                        else
-                                                        return colours[0];
-                                                })
-                        .style('stroke', 'rgba(256,256,256,1.0)')
-                        .attr('class', "rect_" + j)
-                        .attr("data-sessionID", function(d) { return d.SessionID; })
-                        .attr('x', function(d) {
-                            return x(d.date);
-                        })
-                        .attr('y', function(d) {
-                            return 10+ j*21;
-                        })
-                        .attr('width', function(d) {
-                            return 5;
-                        })
-                        .attr('height', function(d) {
-                            return 20;
-                        });
+                    .style('fill', thisColour)
+                    .style('stroke', 'rgba(256,256,256,1.0)')
+                    .attr('class', "rect_" + j)
+                    .attr("data-sessionID", function(d) { return d.SessionID; })
+                    .attr('x', function(d) {
+                        return x(d.date);
+                    })
+                    .attr('y', function(d) {
+                        return 10+ j*21;
+                    })
+                    .attr('width', function(d) {
+                        return 5;
+                    })
+                    .attr('height', function(d) {
+                        return 20;
+                    });
+                    
+                    rects.exit().remove();
 
-                    // rects.exit().remove();
-
+                    // ...create an object in settings for the collected data.
+                    settings.push({
+                        "id": "tag_"+initialData[i].results[j].tag,
+                        "tag": initialData[i].results[j].tag,
+                        "colour": thisColour
+                    });
+                    
                 } //end for
+
 
             } //end if initialData[i].id == 'tags'
             //---Plot comments---------------------------------------------------------------------------
@@ -408,6 +404,8 @@ var Timeline = function() {
                     .attr('y', 0)
                     .attr('width',5)
                     .attr('height',5);
+
+                commentRects.exit().remove();
             }
         } //end for initialData.length
 
@@ -420,10 +418,10 @@ var Timeline = function() {
         x2.domain(x.domain());
         y2.domain(y.domain());
 
-        //-----------Functions called after all datasets loaded-----------
-        x0 = x.copy();
+        x0 = x.copy(); //keep a copy of original domain
+        //-----------Graph elements - axis, tuner strip, transparent zoom rect-----------
 
-    //Add a radio tuner style strip
+        //Add a radio tuner style strip
         focus.append("rect")
         .style('fill','rgba(0,0,0,0.5)')
         .attr("clip-path", "url(#clip)")
@@ -448,33 +446,20 @@ var Timeline = function() {
             .attr("class", "y axis")
             .call(yAxis);
 
-        //Add Brush function for zooming and panning (don't need brushing anymore if radio ticker is at center)
-        //.attr("clip-path", "url(#clip)")
-        // focus.append("g")
-        //     .attr("class", "x brush")
-        //     // .call(brush)
-        //     // .call(brush.event)
-        //     .selectAll("rect")
-        //     .style('fill','rgba(0,0,256,0.5)')
-        //     .attr("y", 0)
-        //     .attr("x", 0)
-        //     .attr("height", height2 + 7);
 
-        //Add Rect for zoom function and call zoom for first time
+        //Add transparent Rect for zoom function and call zoom for first time
         focus.append("rect")
             .attr("class", "pane")
             .attr("width", width)
             .attr("height", height)
             .call(zoom);
 
+        //Temporarily here, ideally should be called during initialization and as callback when user changes settings
+        changeColours();
+
     } //end makeGraph function
 
-
     //----------Setup brush-------------------------------------------------------------
-    // var brush = d3.svg.brush()
-    //     //.x(x2)
-    //     .on("brush", brushed)
-    //     .on("brushend", brushended);
 
     //.x(x).scaleExtent([1,10]) limits zoom from 1X to 10X
     var zoom = d3.behavior.zoom().x(x)
@@ -483,42 +468,18 @@ var Timeline = function() {
         .on("zoom", zoomed)
         .on("zoomend", zoomEnded);
 
-    // function brushed() {
-    //     x.domain(brush.empty() ? x2.domain() : brush.extent());
-
-    //     updateGraph();
-
-    //     //Since domain has been modified, call zoom again
-    //     zoom.x(x);
-    // }
-
-    // function brushended() {
-    //     console.log("brush ended");
-
-    //     x.domain(brush.empty() ? x2.domain() : brush.extent());
-
-    //     updateGraph();
-
-    //     //Since domain has been modified, call zoom again
-    //     zoom.x(x);
-    // }
-
     //----------Setup zoom-------------------------------------------------------------
 
     function zoomed() {
-        updateGraph();
-
-        //Find extent of zoomed area, what's currently at edges of graphed region
-        //Update context graph
-        //var brushExtent = [x.invert(0), x.invert(width)]; 
-        //context.select(".brush").call(brush.extent(brushExtent));
+        updateGraph(); //Continuously update graph while panning and zooming
     }
 
     function zoomEnded() {
-        getComment();
-        shiftGraph();
-        //zoom.event(focus);
-
+        getComment(); //Get closest comment point
+        shiftGraph(); //snap graph to closest point
+        updateGraph(); //Update graph after snapping
+        
+        changeColours();
     }
 
     function reset() {
@@ -531,6 +492,7 @@ var Timeline = function() {
     var xCommentDate = width/2;
     var commentDate;
 
+    //Update graph while panning and zooming and after snapping to closest comment
     function updateGraph() {
 
         //Update all line graphs currently rendered
@@ -646,29 +608,16 @@ var Timeline = function() {
 
                         //$("#commentTagUL").append($(document.createElement('li')).text(item));
                     }
-                )
+                )//end forEach
             }
         }
 
         //Get tags and values of graphs
-        var sID = initialData[initialDataCommentIndex].results[commentIndex].SessionID;
-        var thisRect = tagFocus.select("rect[data-sessionID='"+sID+"']");
-        thisRect.attr('sessionID', function(d) { return d.SessionID; });
+        // var sID = initialData[initialDataCommentIndex].results[commentIndex].SessionID;
+        // var thisRect = tagFocus.select("rect[data-sessionID='"+sID+"']");
+        // thisRect.attr('sessionID', function(d) { return d.SessionID; });
 
-        // for (var i = 0; i < settings.length; i++) {
-        //     //  var id = settings[i].id;
-        //     //  var colour = settings[i].colour;
-
-        //     //Update line graph
-        //     focus.select("#data_" + settings[i].id).attr("d", areaFill);
-        //     // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
-
-        //     //Update dots on line graphs
-        //     var dots = focus.selectAll(".dot_" + settings[i].id);
-        //     if (!dots.empty()) {
-        //         dots.attr("cx", function(d) { return x(d.date); });
-        //     }
-        // } //end for settings length
+       
 
     }//end getComment
     
@@ -680,10 +629,35 @@ var Timeline = function() {
 
         zoom.translate([zoom.translate()[0]-translateGraph,0]);//zoom.scale()*
         
-        updateGraph();
         //getComment();
 
         lastMidpointDate = commentDate; //remember this midpointDate for use in snapping
+    }
+
+    //----------Change all colours of graphs and tags-------------------------------------------------------------
+    function changeColours() {
+        //console.log("settings", settings);
+
+        for (var i = 0; i < settings.length; i++) {
+            
+            var id = settings[i].id;
+            var colour = settings[i].colour;
+
+            //if this is a tag
+            if (settings[i].hasOwnProperty('tag')){
+                $("#"+settings[i].tag+"_div").css("background-color",colour);
+            }
+
+            //Update line graph
+            //focus.select("#data_" + settings[i].id).attr("d", areaFill);
+            // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
+
+            //Update dots on line graphs
+            //var dots = focus.selectAll(".dot_" + settings[i].id);
+            //if (!dots.empty()) {
+                //dots.attr("cx", function(d) { return x(d.date); });
+           // }
+        } //end for settings length
     }
 
     //----------Return values for var Timeline-------------------------------------------------------------
