@@ -188,7 +188,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 						} else { 
 
 						var newGraphColor = new GraphColor (id);
-						newGraphColor.color = "rgba(0,0,0,0)";
+						newGraphColor.color = "rgba(128,128,128,128)";
 						if(graphColors == null) graphColors = new Array();
 						graphColors.push(newGraphColor);
 					}
@@ -208,7 +208,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 						} else { 
 
 						var newGraphColor = new GraphColor ("SCORE_0");
-						newGraphColor.color = "rgba(0,0,0,0)";
+						newGraphColor.color = "rgba(128,128,128,128)";
 						if(graphColors == null) graphColors = new Array();
 						graphColors.push(newGraphColor);
 					}
@@ -289,6 +289,9 @@ var AddColourPicker  = (function() {
 	
 function ParseGraphColors() {
 	for (i = 0; i < graphColors.length; i++) {
+		if(graphColors[i].color == "rgba(0,0,0,0)") {
+			graphColors[i].color = "rgba(128,128,128,128)"
+		}
 		SetSwatchColor(graphColors[i].id, graphColors[i].color);
 	}
 }
