@@ -140,6 +140,10 @@
 		}
 		#graph-header,#graph-nav {
 			height: 40px;
+			
+		}
+		#graph-header {
+			border-bottom: 1px solid #ccc;
 		}
 		#graph-nav a.tab.selected {
 			border-bottom: 2px solid rgba(241,242,242,128);
