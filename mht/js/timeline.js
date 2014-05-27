@@ -29,47 +29,56 @@ var Timeline = function() {
 
     //-----------------------------------------------------------------------------
     //Set up graph layout parameters
-    var margin = {
+    
+    var focusMargin = {
         top: 10,
-        right: 20,
-        bottom: 100,
-        left: 30
-    };
-
-    var width = 320 - margin.left - margin.right,
-        height = 350 - margin.top - margin.bottom;
-
-    var margin2 = {
-        top: height,
         right: 10,
         bottom: 20,
-        left: 40
-    },
-        height2 = 400 - margin2.top - margin2.bottom;
+        left: 30
+    };
 
-    var marginTagFocus = {
-        top: 270,
-        right: 20,
+    var focusDim = {
+        width: $(document).width()-focusMargin.right - focusMargin.left,
+        height: 200
+    }
+
+    var tagFocusDim = {
+        width: focusDim.width,
+        height: 50
+    }
+
+    var tagFocusMargin = {
+        top: 10,
+        right: 10,
         bottom: 20,
         left: 30
     };
 
+    var svgDim = {
+        width: focusDim.width + focusMargin.right + focusMargin.left,
+        height: focusDim.height + tagFocusDim.height 
+                + focusMargin.top + focusMargin.bottom
+                + tagFocusMargin.top  + tagFocusMargin.bottom
+    }
+    
+    var tagDim = {
+        width: 5,
+        height: 20
+    }
+
+    //----------parse functions----------
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
     var commentDateFormat = d3.time.format("%d %B %Y, %I:%M %p, %A");
 
     //Set up scales (to map input data to output in pixels)
     //----------scales----------
-    var x = d3.time.scale().range([0, width]); //focus scale
-    var x2 = d3.time.scale().range([0, width]); //context scale (for zoom and brushing)
-
-    var y = d3.scale.linear().range([height, 0]); //focus
-    var y2 = d3.scale.linear().range([height2, 0]); //context
-
-    //Set up and define graph content
+    var xScale = d3.time.scale().range([0, focusDim.width]);
+    var yScale = d3.scale.linear().range([focusDim.height, 0]);
+    
     //----------axis----------
-    var xAxis = d3.svg.axis().scale(x).ticks(4).orient("bottom");
+    var xAxis = d3.svg.axis().scale(xScale).ticks(4).orient("bottom");
 
-    var yAxis = d3.svg.axis().scale(y).orient("left");
+    var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
     //----------mean line----------
     var alpha = 0.5;
@@ -77,13 +86,13 @@ var Timeline = function() {
     var meanline = d3.svg.line()
         .interpolate("basis")
         .x(function(d, i) {
-            return x(d.date);
+            return xScale(d.date);
         })
         .y(function(d, i) {
             if (i == 0)
-                ypre = y(d.Data);
+                ypre = yScale(d.Data);
 
-            var ythis = alpha * y(d.Data) + (1.0 - alpha) * ypre;
+            var ythis = alpha * yScale(d.Data) + (1.0 - alpha) * ypre;
             ypre = ythis;
             return ythis;
         });
@@ -91,21 +100,21 @@ var Timeline = function() {
     //----------area fill----------
     var areaFill = d3.svg.area()
         .x(function(d) {
-            return x(d.date);
+            return xScale(d.date);
         })
-        .y0(height)
+        .y0(focusDim.height)
         .y1(function(d) {
-            return y(d.Data);
+            return yScale(d.Data);
         });
 
     //Setup groups to organize layout, brush areas and perform clipping
     //----------svg container----------
     var svg = d3.select('#cfgGraphs svg');
-
     if (svg.empty()) {
         svg = d3.select("#cfgGraphs").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom);
+            //.style("background-color", "rgba(0,0,0,0.1)")
+            .attr("width", svgDim.width)
+            .attr("height", svgDim.height );
     }
 
     //----------groups----------
@@ -113,32 +122,37 @@ var Timeline = function() {
         .append("clipPath")
         .attr("id", "clip")
         .append("rect")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", focusDim.width)
+        .attr("height", focusDim.height);
+
+    // svg.append("rect")
+    // .style("fill", "blue")
+    // .attr("width", focusDim.width)
+    // .attr("height", focusDim.height);
 
     var focus = d3.select('#focus_g');
     if (focus.empty())
         focus = svg.append("g")
             .attr("id", "focus_g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    // var context = svg.append("g")
-    //     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+            .attr("transform", "translate(" + focusMargin.left + "," + focusMargin.top + ")");
 
     var tagFocus = d3.select('#tagFocus_g');
     if (tagFocus.empty()){
+
         tagFocus = svg.append("g")
         .attr("id", "tagFocus_g")
-        .attr("transform", "translate(" + margin.left + "," + marginTagFocus.top + ")")
+        .attr("transform", "translate(" + focusMargin.left + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")")
         .attr('clip-path', 'url(#clip)');
     }
 
+    var overlay = d3.select('#overlay_g');
+    if (overlay.empty())
+        overlay = svg.append("g")
+        .attr("id", "overlay_g")
+        .attr("transform", "translate(" + focusMargin.left + "," + 0 + ")");
+
     var x0; //This copy of x captures the original domain setup
-
-    var t = svg.append("g")
-
-    var itemRects;
-    var rects = [];
+    
     //---------------------------------------------------------------------
     //Global variables carried over from last version
     var settings = [];
@@ -151,25 +165,6 @@ var Timeline = function() {
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
-
-    var mgFocus = {
-        width: null,
-        height: null,
-        margin: {
-            top: 27,
-            right: 19,
-            bottom: 103,
-            left: 33
-        },
-        x: null,
-        y: null,
-        xAxis: null,
-        yAxis: null,
-        line: null,
-        area: null,
-        brush1: null,
-        brush2: null
-    };
 
     //Load dataset from database for current user and on success call makeGraph()
     //var DataVisualizationInitialization = (function() {
@@ -293,17 +288,17 @@ var Timeline = function() {
 
                     // Scale the range of the data
                     // TODO: will need to remember the largest domain if datasets have different extents
-                    x.domain(d3.extent(initialData[i]["results"], function(d) {
+                    xScale.domain(d3.extent(initialData[i]["results"], function(d) {
                         return d.date;
                     }));
-                    y.domain([0, 100]);
+                    yScale.domain([0, 100]);
 
                     //----------Add a filled svg path for data in Focus--------------
                     focus.append('path')
                         .datum(initialData[i]["results"]) //use datum to bind to single svg element
                         .attr("id", "data_" + initialData[i].id)
                         .classed('areaFill', true)
-                        .attr("clip-path", "url(#clip)")
+                        .attr('clip-path', 'url(#clip)')
                         .style('fill', initialData[i].colour)
                         .style('stroke', initialData[i].colour); //.attr("class", "areaFill")
 
@@ -318,10 +313,10 @@ var Timeline = function() {
                     .attr('class', "dot_" + initialData[i].id)
                     .attr('clip-path', 'url(#clip)')
                     .attr('cx', function(d) {
-                            return x(d.date);
+                            return xScale(d.date);
                         })
                     .attr('cy', function(d) {
-                            return y(d.Data);
+                            return yScale(d.Data);
                         })
                     .attr('r', function(d) {
                             return 3;
@@ -358,16 +353,16 @@ var Timeline = function() {
                     .attr('class', "rect_" + j)
                     .attr("data-sessionID", function(d) { return d.SessionID; })
                     .attr('x', function(d) {
-                        return x(d.date);
+                        return xScale(d.date)-tagDim.width/2;
                     })
                     .attr('y', function(d) {
-                        return 10+ j*21;
+                        return j*tagDim.height;
                     })
                     .attr('width', function(d) {
-                        return 5;
+                        return tagDim.width;
                     })
                     .attr('height', function(d) {
-                        return 20;
+                        return tagDim.height;
                     });
                     
                     rects.exit().remove();
@@ -400,10 +395,10 @@ var Timeline = function() {
                     .style('stroke', 'rgba(256,256,256,1.0)')
                     .attr('class', "rect_comment")
                     .attr("data-sessionID", function(d) { return d.SessionID; })
-                    .attr('x', function(d) {return x(d.date);})
+                    .attr('x', function(d) {return xScale(d.date)-tagDim.width/2;})
                     .attr('y', 0)
-                    .attr('width',5)
-                    .attr('height',5);
+                    .attr('width',tagDim.width)
+                    .attr('height',tagDim.width);
 
                 commentRects.exit().remove();
             }
@@ -412,23 +407,23 @@ var Timeline = function() {
         //console.log("initialData", initialData);
 
         //Call zoom
-        zoom.x(x);
+        zoom.x(xScale);
 
         //Scale context domains
-        x2.domain(x.domain());
-        y2.domain(y.domain());
+        //x2.domain(x.domain());
+        //y2.domain(y.domain());
 
-        x0 = x.copy(); //keep a copy of original domain
+        x0 = xScale.copy(); //keep a copy of original domain
         //-----------Graph elements - axis, tuner strip, transparent zoom rect-----------
 
         //Add a radio tuner style strip
-        focus.append("rect")
+        overlay.append("rect")
         .style('fill','rgba(0,0,0,0.5)')
-        .attr("clip-path", "url(#clip)")
+        // .attr("clip-path", "url(#clip)")
         .attr({
                     'width': 1,
-                    'height': height,
-                    'x': width/2, 
+                    'height': focusDim.height+ focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom,
+                    'x': focusDim.width/2, 
                     'y': 0,
                     'id': 'tuner'
                 });
@@ -438,7 +433,7 @@ var Timeline = function() {
             focus.append("g")
                 .attr("class", "x axis")
                 .attr("id", "xAxis_g")
-                .attr("transform", "translate(0," + height + ")")
+                .attr("transform", "translate(0," + focusDim.height + ")")
                 .call(xAxis);
         }
 
@@ -450,8 +445,8 @@ var Timeline = function() {
         //Add transparent Rect for zoom function and call zoom for first time
         focus.append("rect")
             .attr("class", "pane")
-            .attr("width", width)
-            .attr("height", height)
+            .attr("width", focusDim.width)
+            .attr("height", focusDim.height)
             .call(zoom);
 
         //Temporarily here, ideally should be called during initialization and as callback when user changes settings
@@ -462,9 +457,9 @@ var Timeline = function() {
     //----------Setup brush-------------------------------------------------------------
 
     //.x(x).scaleExtent([1,10]) limits zoom from 1X to 10X
-    var zoom = d3.behavior.zoom().x(x)
+    var zoom = d3.behavior.zoom().x(xScale)
         .scaleExtent([0.1, 1000])
-        .center([width/2, 0])
+        .center([focusDim.width/2, 0])
         .on("zoom", zoomed)
         .on("zoomend", zoomEnded);
 
@@ -489,7 +484,7 @@ var Timeline = function() {
 
     //----------Update whole graph-------------------------------------------------------------
     //Global to capture x-pixel of current comment
-    var xCommentDate = width/2;
+    var xCommentDate = focusDim.width/2;
     var commentDate;
 
     //Update graph while panning and zooming and after snapping to closest comment
@@ -507,7 +502,7 @@ var Timeline = function() {
             //Update dots on line graphs
             var dots = focus.selectAll(".dot_" + settings[i].id);
             if (!dots.empty()) {
-                dots.attr("cx", function(d) { return x(d.date); });
+                dots.attr("cx", function(d) { return xScale(d.date); });
             }
         } //end for settings length
 
@@ -516,7 +511,7 @@ var Timeline = function() {
         //Update comments
         var commentRects = tagFocus.selectAll('.rect_comment');
         if (!commentRects.empty()) {
-            commentRects.attr('x', function(d) {return x(d.date);})
+            commentRects.attr('x', function(d) {return xScale(d.date)-tagDim.width/2;})
         }
 
         //Update all tags
@@ -524,7 +519,7 @@ var Timeline = function() {
             var rects = tagFocus.selectAll('.rect_' + j);
 
             if (!rects.empty()) {
-                rects.attr('x', function(d) { return x(d.date); });
+                rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; });
                 // .attr('y', function(d, i) { return j * 21; });
             }
         } //end for
@@ -540,12 +535,12 @@ var Timeline = function() {
 
     
     //Global to capture last midpointDate for snapping to right or left
-    var lastMidpointDate = x.invert(width/2);
+    var lastMidpointDate = xScale.invert(focusDim.width/2);
 
     //----------Retrieve a comment based on closest entry to the midpoint, move the tuner----------------------
     function getComment() {
         //Get where the date the midpoint (ie. the ticker) has landed
-        var midpointDate = x.invert(width/2);
+        var midpointDate = xScale.invert(focusDim.width/2);
 
         var lastDateinDomain = x0.domain()[1]; //Remember x0? A copy of the domain before any zooming/scaling done
         
@@ -580,7 +575,7 @@ var Timeline = function() {
 
         commentDate = initialData[initialDataCommentIndex].results[commentIndex].date;
         
-        xCommentDate = x(commentDate); //pixel point of selected comment
+        xCommentDate = xScale(commentDate); //pixel point of selected comment
 
         if (initialData[initialDataCommentIndex].results[commentIndex].Data!=null){
             var commentData = initialData[initialDataCommentIndex].results[commentIndex].Data;
@@ -625,7 +620,7 @@ var Timeline = function() {
     function shiftGraph() {
 
         //translate graph to closest comment
-        var translateGraph = xCommentDate-width/2;//zoom.translate()[0]
+        var translateGraph = xCommentDate-focusDim.width/2;//zoom.translate()[0]
         zoom.translate([zoom.translate()[0]-translateGraph,0]);
         
         lastMidpointDate = commentDate; //remember this midpointDate for use in snapping
