@@ -243,10 +243,10 @@ function addTagSwatches() {
 				}
 		
 		
-			$('.tags').append('<li><span title="Change ' + tags[j] + '\'s colour" class="swatches" id="swatch-tag-' + tags[j] + '"\></span> <span>' + tags[j] + '</span></li>'); // style="background-color:#000"
+			$('.tags').append('<li><a href="#" title="Change ' + tags[j] + '\'s colour" class="swatches" id="swatch-tag-' + tags[j] + '"\></a> <span>' + tags[j] + '</span></li>'); // style="background-color:#000"
 			$('#swatch-tag' + j).css('background-image', 'none');
 
-			$('#scs ul.swatches li span').click(function() {
+			$('#scs ul.swatches li a').click(function() {
 				return false;
 			});
 		}

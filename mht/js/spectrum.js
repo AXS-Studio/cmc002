@@ -23,12 +23,12 @@
         showInitial: false,
         showPalette: false,
         showPaletteOnly: false,
-        showSelectionPalette: true,
+        showSelectionPalette: false,
         localStorageKey: false,
         appendTo: "body",
         maxSelectionSize: 7,
-        cancelText: "cancel",
-        chooseText: "choose",
+        cancelText: "Cancel",
+        chooseText: "OK",
         clearText: "Clear Color Selection",
         preferredFormat: false,
         className: "", // Deprecated - use containerClassName and replacerClassName instead.
@@ -36,7 +36,7 @@
         replacerClassName: "",
         showAlpha: false,
         theme: "sp-light",
-        palette: [["#ffffff", "#000000", "#ff0000", "#ff8000", "#ffff00", "#008000", "#0000ff", "#4b0082", "#9400d3"]],
+        palette: [["#00a8de", "#333391", "#9c298c", "#e9187e", "#f190bc", "#231f20", "#eb2c3b", "#ef8031", "#fde92b", "#91be4a", "#00a055", "#00a9a3"]],
         selectionPalette: [],
         disabled: false
     },
@@ -75,9 +75,7 @@
 
         return [
             "<div class='sp-container sp-hidden'>",
-                "<div class='sp-palette-container'>",
-                    "<div class='sp-palette sp-thumb sp-cf'></div>",
-                "</div>",
+            	"<div class='transparent-button'><button type='button' class='sp-set-graph-invisible'>Set graph invisible</button><p>or choose a graph colour:</p></div>",
                 "<div class='sp-picker-container'>",
                     "<div class='sp-top sp-cf'>",
                         "<div class='sp-fill'></div>",
@@ -98,15 +96,18 @@
                         "</div>",
                         "<div class='sp-alpha'><div class='sp-alpha-inner'><div class='sp-alpha-handle'></div></div></div>",
                     "</div>",
+                    "<div class='sp-palette-container'>",
+					  "<div class='sp-palette sp-thumb sp-cf'></div>",
+					"</div>",
                     "<div class='sp-input-container sp-cf'>",
                         "<input class='sp-input' type='text' spellcheck='false'  />",
                     "</div>",
                     "<div class='sp-initial sp-thumb sp-cf'></div>",
                     "<div class='sp-button-container sp-cf'>",
-                        "<a class='sp-cancel' href='#'></a>",
+                        "<button type='button' class='sp-cancel' href='#'></button>",
                         "<button type='button' class='sp-choose'></button>",
                     "</div>",
-                "</div>",
+                "</div><span style='clear:both;'></span>",
             "</div>"
         ].join("");
     })();
@@ -822,10 +823,12 @@
             alphaWidth = alphaSlider.width();
             alphaSlideHelperWidth = alphaSlideHelper.width();
 
-            if (!flat) {
+        /*
+    if (!flat) {
                 container.css("position", "absolute");
                 container.offset(getOffset(container, offsetElement));
             }
+*/
 
             updateHelperLocations();
 

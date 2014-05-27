@@ -137,7 +137,9 @@ ul.swatches li span {
 
 	    line-height: 25px;
 }
-
+ul.swatches li span.swatches { 
+	margin-left:0px;
+}
 
 ul li a.swatches {
     background-image: url("../images/visualizer_colour_select_transparent.gif");
