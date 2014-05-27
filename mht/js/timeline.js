@@ -459,7 +459,7 @@ var Timeline = function() {
     //.x(x).scaleExtent([1,10]) limits zoom from 1X to 10X
     var zoom = d3.behavior.zoom().x(xScale)
         .scaleExtent([0.1, 1000])
-        .center([focusDim.width/2, 0])
+        .center([focusMargin.left+focusDim.width/2, 0])
         .on("zoom", zoomed)
         .on("zoomend", zoomEnded);
 
