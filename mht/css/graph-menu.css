@@ -36,12 +36,19 @@
 	box-shadow:         -2px 0px 4px 0px rgba(50, 50, 50, 0.50);
 	}
 	
+#graph-menu h3 {
+	font-size:12px;
+	color:#999;	
+}	
+	
 .navwrapper {
 	float:right;
 	height: 40px;  
 	width:100%;
 
 }
+
+
 	
 #graph-nav {
 	width:100%;
@@ -118,6 +125,11 @@
 	.tab_content.active {
 		display: block;
 	}
+	
+#graph-menu .tags {
+	clear:both;
+	border-top:1px solid #ccc;
+}	
 	
 	@media 
 	(-webkit-min-device-pixel-ratio: 2), 

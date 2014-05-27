@@ -1,25 +1,6 @@
-/*
-$("#menubtn").live('click', function(e){
-	//if ($("#scs").css('display') == 'inline-block'){
-	//	$("#scs").css('display', 'none');
-	//	$("#scs").removeAttr('style');
-	//}else{
-	//	$("#scs").css('display', 'inline-block');
-	//}
-	
-	if ($("#scs").hasClass('comeBack')){
-		$("#scs").removeClass('comeBack');
-		$("#scs").addClass('goAway');
-	}else{
-		$("#scs").removeClass('goAway');
-		$("#scs").addClass('comeBack');
-	}
-	return false;
-});
-*/
-
 var graphMenuActive = false;
 var graphColors = new Array();
+var tagColors = new Array();
 
 var initGraphMenu =(function() {
 
@@ -57,17 +38,17 @@ var initGraphMenu =(function() {
 	$("footer .nav").show();
 	
 	
-	$('#legend_content').append('<h2>Survey Questions</h2><ul class="swatches" id="swtchs-legend"></ul>');
-	$('#edit_content').append('<h2>Survey Questions</h2><ul class="swatches" id="swtchs-edit"></ul>');
+	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-legend"></ul><ul class="swatches tags"><h3>Tags</h3></ul>');
+	$('#edit_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul><ul class="swatches tags" id="tags-edit"><h3>Tags</h3></ul>');
 	$('#share_content').append('<ul><li><button>Save As PDF</button></li><li><button>Email PDF</button></li></ul></div></ul></li>');
+		
+	GenerateSwatches.questionSwatches();
 	
-	GenerateSwatches.loadQuestions();
-	
+	GenerateSwatches.tagSwatches();
+
 });
 
 var initAppMenu = (function() {
-
-
 	
 		$('#nav-survey').click(function(){
 			$('.nav li a').removeClass('active');
@@ -78,16 +59,6 @@ var initAppMenu = (function() {
 			$('#page_quiz').show();
 			$('#page_settings').hide();
 
-			/*
-$('#art-loading').removeClass('o1').addClass('o0');
-			// After the Loading spinner icon fades out...
-			setTimeout(function() {
-				// Remove the Loading spinner icon...
-				$('#art-loading').remove();
-				Quiz.init();
-			}, 250);
-			return false;
-*/
 		});
 
 		$('#nav-timeline').click(function(){
@@ -99,43 +70,24 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
 			
-			//load initial data
-			
-		 	//DataVisualizationInitialization.loadDataInitial();
 		 	var timeline = new Timeline();
 			timeline.loadQuestionsInitial();
 
 		 	initGraphMenu();
 
-
-			//DataVisualizationSelect.init();
-			
-			/* 			initGraphMenu(); */
-
-/* 			initGraphMenu(); */
-
-			
-					/* 	DataVisualizationSelect.init(); */
-			//start
-	
-
 		$('#art-loading').removeClass('o1').addClass('o0');
-			// After the Loading spinner icon fades out...
 			setTimeout(function() {
-				// Remove the Loading spinner icon...
+	
 				$('#art-loading').remove();
-			//	$('#content').html(Pages.timeline).removeClass('o0').addClass('o1');
+	
 				$('#art-timeline').removeClass('o0').addClass('o1').show();
 								
 				$('html').removeClass('no-js').addClass('js');
-				//DataVisualizationSelect.init();
+
 				
 			}, 250);
 
 
-			//end
-
-			//return false;
 		});
 
 		$('#nav-settings').click(function(){
@@ -150,8 +102,6 @@ $('#art-loading').removeClass('o1').addClass('o0');
 			$('#art-settings').removeClass('o0').addClass('o1');
 		
 			settings();			
-/* 			Quiz.settings(); */
-/* 			return false; */
 		
 		});
 		
@@ -159,67 +109,152 @@ $('#art-loading').removeClass('o1').addClass('o0');
 });
 
 
-/*
-$("#scs li h2 a").live('click', function(e){
-	//$(".menu-section").css('display', 'none');
-	$("#scs li").removeClass('active');
-	$("#scs li .menu-section").removeClass('comeBack');
+
+var GenerateSwatches = (function() {
+   //  console.log(graphColors);
+     
+     var questionSwatches = function() {
+     
+     	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
+     
+         $.ajax({
+             url: 'php/query_questions.php',
+             type: 'GET',
+             dataType: 'json',
+             success: function(response) {
+                 questions = response;
+                 addSwatches();
+                 ParseGraphColors();
+             },
+             complete: function () {
+	             
+/* 	             AddColourPicker(); */
+
+			AddColourPicker.questionSwatches();	
+             },
+             error: function() {
+                 window.alert('Error: Could not retrieve questions to generate swatches!');
+             }
+         });
+
+     };
+     
+     
+     
+    var tagSwatches = (function(){
+    
+    	 tagColors = JSON.parse(localStorage.getItem("tagColors"));
+		 console.log(tagColors);
+		$.ajax({
+			type: 'GET',
+			url: 'php/get_tags.php',
+			data: {
+				patientID:results.patientID
+			},
+			success: function(message) {
+				console.log(message);
+				tags = jQuery.parseJSON(message);
+				addTagSwatches();
+				ParseTagColors();
+				//AddColourPickerTags();
+				AddColourPicker.tagSwatches();	
+			},
+			error: function() {
+			 	window.alert('Error: Could not retrieve tags to generate swatches!');
+			}
+		});	
+	});
+
+  
+   return {
+         questionSwatches : questionSwatches,
+         tagSwatches : tagSwatches
+     };
+
+ })();
+
 	
-	//if($("#scs li .menu-section").hasClass('comeBack') ){
-	if($(this).parentsUntil( "li" ).find(".menu-section").hasClass('comeBack') ){
-		console.log( $(this).closest("li").find(".menu-section").attr('id') );
-		$(this).closest("li").find(".menu-section").addClass('goAway');
-		$(this).closest("li").find(".menu-section").removeClass('comeBack');
-	}else {
-		$(this).closest("li").find(".menu-section").removeClass('goAway');
-		$(this).closest("li").find(".menu-section").addClass('comeBack');
-		$(this).closest("li").addClass('active');		
-	}
-	return false;
-});
-*/
 
+function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
+		for (var i = 0; i < questions.length; i++) {
+			var category = questions[i].category;
+			if (category != 'Aggregate Scores' /* && (category != 'OTHER' || (category == 'OTHER' && otherCount == 0))*/) {
+				for (var j = 0; j < questions[i].type.length; j++) {
+					var id = questions[i].type[j].id;
+					var name = questions[i].type[j].name;
+				
+					if(IsInGraphColors(id)) {
+							/// do.. nothing I suppose.
+						} else { 
 
+						var newGraphColor = new GraphColor (id);
+						newGraphColor.color = "rgba(0,0,0,0)";
+						if(graphColors == null) graphColors = new Array();
+						graphColors.push(newGraphColor);
+					}
+					
+					$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
+					$('#swtchs-legend').append('<li style="display:none;"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
+					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span>' + name + '</span></li>');
+				}
+			}
+			
+			if (category == 'Aggregate Scores') {
+					//$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" id="swatch-SCORE_0"></a> <span>QIDS Score</span></li>');
+					
+				
+					if(IsInGraphColors("SCORE_0")) {
+							/// do.. nothing I suppose.
+						} else { 
 
+						var newGraphColor = new GraphColor ("SCORE_0");
+						newGraphColor.color = "rgba(0,0,0,0)";
+						if(graphColors == null) graphColors = new Array();
+						graphColors.push(newGraphColor);
+					}
+					
 
- 	var GenerateSwatches = (function() {
- 	
-		     //query_answers_initial.php was written originally for PATH, returns a set of default questions and their results
-		     //and for non-default questions, returns the length of their results so that null sets can be greyed out
-		     //Will need to rewrite the php for returning the entire bank of answers for use in the app as a one time download
+					$('#questions-legend').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
+					$('#swtchs-legend').append('<li><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
+					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span>QIDS Score</span></li>');
+					//$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
+				}			
+
+			$('#scs ul.swatches li a').click(function() {
+				return false;
+			});
+		}
+}	
+
+function addTagSwatches() {	
+	if (tags.length > 0) {
+		for (var j = 0; j < tags.length; j++) {
+				//var id = tags[j];
+				
+				if(IsInTagColors(tags[j])) {
+					/// do.. nothing I suppose.
+					
+				} else { 
+
+					var newTagColor = new GraphColor (tags[j]);
+					newTagColor.color = "rgba(0,0,0,0)";
+					if(tagColors == null) tagColors = new Array();
+					tagColors.push(newTagColor);
+				}
 		
-		   	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
-		     console.log(graphColors);
-		     
-		     var loadQuestions = function() {
-		         $.ajax({
-		             url: 'php/query_questions.php',
-		             type: 'GET',
-		             dataType: 'json',
-		             success: function(response) {
-		                 questions = response;
-		                 console.log("questions", questions);
-		                 addSwatches();
-		                 ParseGraphColors();
-		             },
-		             complete: function () {
-			             
-			             AddColourPicker();
-		             },
-		             error: function() {
-		                 window.alert('Error loadQuestionsInitial!');
-		             }
-		         });
+		
+			$('.tags').append('<li><span title="Change ' + tags[j] + '\'s colour" class="swatches" id="swatch-tag-' + tags[j] + '"\></span> <span>' + tags[j] + '</span></li>'); // style="background-color:#000"
+			$('#swatch-tag' + j).css('background-image', 'none');
 
-		     };
+			$('#scs ul.swatches li span').click(function() {
+				return false;
+			});
+		}
+	}
+}
 
-		     return {
-		         loadQuestions : loadQuestions
-		     };
-		 })();
-
-
-	function AddColourPicker () {
+var AddColourPicker  = (function() {
+	var questionSwatches = (function () {
 		$("#swtchs-edit .swatches").spectrum({
 			color: "red",
 			showPalette: true,
@@ -229,218 +264,122 @@ $("#scs li h2 a").live('click', function(e){
 				StoreColor(id,color.toString());
 			}
 		});
-		
-		
-		
-	}
+	});
 	
-	function ParseGraphColors() {
-		for (i = 0; i < graphColors.length; i++) {
-			SetSwatchColor(graphColors[i].id, graphColors[i].color);
-			console.log ("Set color for " + graphColors[i].id.toString() + " to " + graphColors[i].color.toString());
-		}
-		
-	}
-       
-     function SetSwatchColor(id,color){
-     	var swatchID = '#swatch-' + id.toString();
-	     $('.swatches ' + swatchID).css('background',color);
-/* 	     $('#swatch-ASRM_0').css('background',color); */
+	var tagSwatches = (function () {
+		$("#tags-edit .swatches").spectrum({
+			color: "red",
+			showPalette: true,
+			change: function(color) {
+				$(this).css('background', color);
+				id = $(this).attr('id').replace("swatch-tag-", "");
+				StoreTagColor(id,color.toString());
+			}
+		});
+	});
+	
 	  
-	     console.log(swatchID +","+color);
-     }   
-       
-    
-    function GraphColor (id) {
-	    this.id = id;
-	    this.color = "";
-	/*
-    var getColor = function() {
-			 return this.color;
-		};
-*/
-	/*
-	var setColor = function(color){
-			this.color = color;
-		};
-*/
-	    
-    }
-    
-    var IsInGraphColors = function (id) {
-    	if(graphColors == null) return false;
-	    for (i = 0; i < graphColors.length; i++ ){
-			if (graphColors[i].id == id) return true;
-		}
-		return false;
-    }
-       
+   return {
+         questionSwatches : questionSwatches,
+         tagSwatches : tagSwatches
+     };
 	
-	function StoreColor(id,color) {
-		console.log("store request for " + id + " " + color);
+})();
 
-		for (i = 0; i < graphColors.length; i++ ){
-			if (graphColors[i].id == id) {
-				console.log(graphColors[i].color);
-				console.log(color);
-/* 				graphColors[i].setColor(color);// = color.toString(); */
-				graphColors[i].color = color;
-			}
-		}
-		console.log(graphColors)
-		
-		localStorage.setItem('graphColors', JSON.stringify(graphColors));
-		console.log("Colors stored");
-/* 		console.log(GetColor(id)); */
+	
+function ParseGraphColors() {
+	for (i = 0; i < graphColors.length; i++) {
+		SetSwatchColor(graphColors[i].id, graphColors[i].color);
 	}
-	
-	function GetColor(id) {
-		for (i = 0; i < graphColors.length; i++ ){
-			if (graphColors[i].id == id) {
-				return graphColors[i].color;
-			}
+}
+
+function ParseTagColors() {
+	for (i = 0; i < tagColors.length; i++) {
+		SetTagColor(tagColors[i].id, tagColors[i].color);
+	}
+}
+       
+ function SetSwatchColor(id,color)
+ {
+ 	var swatchID = '#swatch-' + id.toString();
+     $('.swatches ' + swatchID).css('background',color);
+ }   
+ 
+function SetTagColor(id,color)
+ {
+ 	var swatchID = '#swatch-tag-' + id.toString();
+     $('.swatches ' + swatchID).css('background',color);
+ }   
+   
+ var IsInGraphColors = function (id) 
+{
+	if(graphColors == null) return false;
+    for (i = 0; i < graphColors.length; i++ ){
+		if (graphColors[i].id == id) return true;
+	}
+	return false;
+}  
+
+var IsInTagColors = function (id) 
+{
+	if(tagColors == null) return false;
+    for (i = 0; i < tagColors.length; i++ ){
+		if (tagColors[i].id == id) return true;
+	}
+	return false;
+}  
+
+    
+function GraphColor (id) 
+{
+    this.id = id;
+    this.color = "";
+}
+  	
+function StoreColor(id,color) 
+{
+
+	for (i = 0; i < graphColors.length; i++ )
+	{
+		if (graphColors[i].id == id) 
+		{
+			graphColors[i].color = color;
 		}
-		return null;
 	}
 
-	function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
-			console.log(questions.length);
-			for (var i = 0; i < questions.length; i++) {
-				var category = questions[i].category;
-				if (category != 'Aggregate Scores' /* && (category != 'OTHER' || (category == 'OTHER' && otherCount == 0))*/) {
-					for (var j = 0; j < questions[i].type.length; j++) {
-						var id = questions[i].type[j].id;
-						var name = questions[i].type[j].name;
-					
+	localStorage.setItem('graphColors', JSON.stringify(graphColors));
+}
 
-						if(IsInGraphColors(id)) {
-							console.log("Graph Color for " + id.toString() +  " loaded from local storage");
+function StoreTagColor(id,color) 
+{
 
- 						} else { 
-							console.log("Graph Color for " + id.toString() +  " does not exist");
+	for (i = 0; i < tagColors.length; i++ )
+	{
+		if (tagColors[i].id == id) 
+		{
+			tagColors[i].color = color;
+		}
+	}
+
+	localStorage.setItem('tagColors', JSON.stringify(tagColors));
+}
+
+function GetColor(id) {
+	for (i = 0; i < graphColors.length; i++ ){
+		if (graphColors[i].id == id) {
+			return graphColors[i].color;
+		}
+	}
+	return null;
+}	
 	
-							var newGraphColor = new GraphColor (id);
-							newGraphColor.color = "rgba(0,0,0,0)";
-							if(graphColors == null) graphColors = new Array();
-							graphColors.push(newGraphColor);
-						}
+function GetTagColor(id) {
+	for (i = 0; i < tagColors.length; i++ ){
+		if (tagColors[i].id == id) {
+			return tagColors[i].color;
+		}
+	}
+	return null;
+}
 
-
-
-
-/* 						graphColors.push({id : id, color : ""}); */
-						
-						$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
-						$('#swtchs-legend').append('<li style="display:none;"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
-						$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span>' + name + '</span></li>');
-					}
-				}
-
-				/*  ALERT: End OTHER fix.  */
-				if (category == 'Aggregate Scores') {
-					//$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" id="swatch-SCORE_0"></a> <span>QIDS Score</span></li>');
-					$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span>QIDS Score</span></li>');
-					$('#swtchs-legend').append('<li><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
-					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
-				}
-
-				// For each setting...
-				jQuery.each(settings, function(i, s) {
-					$('#swatch-' + s.id).parent().removeClass('disabled');
-
-					/* If the setting's colour is transparent, replace the swatches background colour with a transparency image... */
-					if (s.colour == 'transparent'){					
-						$('#menu-legend #swatch-' + s.id).css('background', 'url(images/visualizer_colour_select_transparent.gif)');
-						$('#menu-edit #swatch-' + s.id).css('background', 'url(images/visualizer_colour_select_transparent.gif)');
-						//$('#menu-legend #swatch-' + s.id).parent('li').remove();
-
-					// ...otherwise, use the setting's background colour
-					}else{ 
-						$('#swatch-' + s.id).css('background', s.colour);
-						$('#menu-edit #swatch-' + s.id).css('background', s.colour);
-						$('#legend-' + s.id + ' .swatches').css('background', s.colour);
-						$('#legend-' + s.id).css('display', 'inline-block');
-						$('#swtchs-legend #swatch-' + s.id).parent('li').css('display', 'block');
-					}
-
-					if (!$('#swatch-' + s.id).parent().hasClass('disabled')) {
-						// Apply ColorPicker plug-in to the swatch
-						$('#swtchs-edit #swatch-' + s.id).colorpicker({
-							alpha: true,
-							color: s.colour,
-							colorFormat: 'RGBA',
-							inline: false,
-							rgb: false,
-							hsv: false,
-							altAlpha: false,
-							preview: false,
-							select: function(event, color) {
-								sessionChanged = true;
-								var newColour = color.formatted;
-								var code = $(this).parents('ul.swatches').attr('id').split('-')[1];
-								var name = $(this).parent().children('span').html();
-								$(this).css('background', newColour);
-								if (newColour.split(',')[3] == '0)') {
-									newColour = 'transparent';
-									$(this).css('background', 'url(images/visualizer_colour_select_transparent.gif)');
-								}
-
-								$('.path-' + s.id).css('stroke', newColour);
-								$('.ma-' + s.id).css('stroke', newColour);
-								$('.path-' + s.id).css('fill', newColour);
-								$('.intLeg-' + s.id + ' div').css('background-color', newColour);
-								$('#legend-'+ s.id ).css('display', "inline-block");
-								$('#legend-'+ s.id ).css('display', "inline-block");
-								$('#legend-' + s.id + ' a').css('background', s.colour);
-								$('#swatch-' + s.id).css('background', s.colour);
-								$('#swtchs-legend #swatch-' + s.id).parent('li').css('display', 'block');
-
-								s.colour = newColour;
-								updateColourRefs(initialData, s.id, newColour);
-								updateColourRefs(settings, s.id, newColour);
-
-								// Ajax calls are going to go in here
-								jQuery.each(initialData, function(i, d) {
-										if (s.id == d.id) {
-											if (d.results == null) {
-												$.ajax({
-													type: 'GET',
-													url: 'php/query_answers.php',
-													data: {
-														"patientID": patient,
-														"questionID": d.id
-													},
-													dataType: 'json',
-													success: function(response) {
-														//console.log(response.results);
-														updateInitial(s.id, code + '_' + name, response.results);
-														// Reset the range1 and range2 brush settings
-														// Re-add the parent SVG's focus graph and context graph
-														addFocusContext();
-														// Update the integrals table
-													},
-													error: function() {
-														window.alert('Swatch Ajax error.');
-													}
-												});
-											}
-										}
-								});
-							},
-							close: function(event, color) {
-								var newColour = color.formatted;
-								updateColourRefs(initialData, s.id, newColour);
-								updateColourRefs(settings, s.id, newColour);
-							}
-						});
-					}
-				});
-				$('#scs ul.swatches li a').click(function() {
-					return false;
-				});
-			}
-			console.log(graphColors);
-	
-/* 		} */
-	}	
 
