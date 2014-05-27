@@ -256,7 +256,7 @@ function addTagSwatches() {
 var AddColourPicker  = (function() {
 	var questionSwatches = (function () {
 		$("#swtchs-edit .swatches").spectrum({
-			color: "red",
+			color: "rgb(119, 120, 49)",
 			showPalette: true,
 			change: function(color) {
 				$(this).css('background', color);
