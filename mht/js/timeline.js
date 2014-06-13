@@ -1,13 +1,14 @@
 var Timeline = function() {
 
     //Session data hardcoded for now
-    var results = {
-        "patientID": 'Record09',
-        "sessionID": null,
-        "date": null,
-        "answers": []
-    };
-
+    if (results == null){
+        var results = {
+            "patientID": "Record09",
+            "sessionID": null,
+            "date": null,
+            "answers": []
+        };
+    }
     //----------default colours----------
     var colours = [
         'rgba(85,98,112,1.0)', // Mighty Slate
@@ -176,7 +177,7 @@ var Timeline = function() {
         //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
         //console.log(results);
 
-        ajaxPath = 'php/query_answers_initial.php?patientID=' + results.patientID;
+        ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         patient = ajaxPath.split('=')[1];
         // console.log(patient);
 
