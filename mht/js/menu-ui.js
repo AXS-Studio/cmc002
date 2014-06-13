@@ -258,10 +258,19 @@ var AddColourPicker  = (function() {
 		$("#swtchs-edit .swatches").spectrum({
 			color: "rgb(119, 120, 49)",
 			showPalette: true,
+			 allowEmpty: true,
 			change: function(color) {
-				$(this).css('background', color);
+				
 				id = $(this).attr('id').replace("swatch-", "");
-				StoreColor(id,color.toString());
+				if(color == null) {
+					$(this).css('background', 'rgba(0,0,0,0)');
+					StoreColor(id,"rgba(0,0,0,0)");
+				}
+				else {
+					$(this).css('background', color);
+					StoreColor(id,color.toString());
+				}
+				
 			}
 		});
 	});
@@ -286,6 +295,12 @@ var AddColourPicker  = (function() {
 	
 })();
 
+
+function TurnOff(id) {
+	var swatchID = '#swatch-' + id.toString();
+   	  $('.swatches ' + swatchID).css('background',RGBA(0,0,0,0));
+
+}
 	
 function ParseGraphColors() {
 	for (i = 0; i < graphColors.length; i++) {
