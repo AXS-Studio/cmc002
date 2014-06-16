@@ -26,7 +26,8 @@
 	height: 100%;
 	background: rgba(241,242,242,128);
 	position: fixed;
-	overflow: scroll;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	right:0px;
 	top:0px;
 	display: none;
@@ -130,6 +131,7 @@
 	clear:both;
 	border-top:1px solid #ccc;
 }	
+
 	
 	@media 
 	(-webkit-min-device-pixel-ratio: 2), 

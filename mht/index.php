@@ -107,7 +107,7 @@ if ($detect -> isTablet()) {
 		<?php /*?><script src="js/jquery-ui-1.10.2.custom.js"></script>*/?>
 		<script src="js/jquery-ui-1.10.4.custom.js"></script>
 		<script src="js/jquery.colorpicker.js"></script>
-		<script src="js/menu-ui.js"></script>
+	
 		<script src="js/d3.js"></script>		
 		<script src="js/min/scripts-min.js"></script>
 		<script src="js/preloadGraphics.js"></script>
@@ -128,7 +128,7 @@ if ($detect -> isTablet()) {
 		<script type="text/javascript" src="js/spectrum.js"></script>
 		<script src="js/settings.js"></script>
 		<script src="js/timeline.js"></script>
-		
+		<script src="js/menu-ui.js"></script>
 		<?php
 			if ($page == 'reset') {
 				echo '

@@ -152,6 +152,17 @@ ul li a.swatches {
     width: 20px !important;
 }
 
+ul.tags li a.swatches {
+    background-image: url("../images/visualizer_colour_select_transparent.gif");
+    background-position: left top;
+    background-repeat: no-repeat;
+    border: 1px solid #9E9E9E;
+    border-radius: 0px;
+    display:inline-block;
+    height: 15px !important;
+    width: 15px !important;
+}
+
 
 ul li span.swatches {
     background-image: url("../images/visualizer_colour_select_transparent.gif");

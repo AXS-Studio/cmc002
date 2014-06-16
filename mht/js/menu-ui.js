@@ -1,6 +1,7 @@
 var graphMenuActive = false;
 var graphColors = new Array();
 var tagColors = new Array();
+var timeline = new Timeline();
 
 var initGraphMenu =(function() {
 
@@ -48,6 +49,8 @@ var initGraphMenu =(function() {
 
 });
 
+
+
 var initAppMenu = (function() {
 	
 		$('#nav-survey').click(function(){
@@ -70,7 +73,7 @@ var initAppMenu = (function() {
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
 			
-		 	var timeline = new Timeline();
+		
 			timeline.loadQuestionsInitial();
 
 		 	initGraphMenu();
@@ -116,6 +119,7 @@ var GenerateSwatches = (function() {
      var questionSwatches = function() {
      
      	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
+     	 console.log(graphColors);
      
          $.ajax({
              url: 'php/query_questions.php',
@@ -185,17 +189,24 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 				
 					if(IsInGraphColors(id)) {
 							/// do.. nothing I suppose.
+
+
 						} else { 
 
 						var newGraphColor = new GraphColor (id);
-						newGraphColor.color = "rgba(128,128,128,128)";
+						newGraphColor.color = "rgba(0,0,0,0)";
 						if(graphColors == null) graphColors = new Array();
 						graphColors.push(newGraphColor);
 					}
 					
 					$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
-					$('#swtchs-legend').append('<li style="display:none;"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
+					$('#swtchs-legend').append('<li id="legend-menu-'+id+'"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span>' + name + '</span></li>');
+
+					// if(IsTransparent(id)) {
+					// 	console.log(id + " is transparent");
+					// 		$("#swatch-" + id).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');	
+					// }
 				}
 			}
 			
@@ -208,14 +219,14 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 						} else { 
 
 						var newGraphColor = new GraphColor ("SCORE_0");
-						newGraphColor.color = "rgba(128,128,128,128)";
+						newGraphColor.color = "rgba(0,0,0,0)";
 						if(graphColors == null) graphColors = new Array();
 						graphColors.push(newGraphColor);
 					}
 					
 
 					$('#questions-legend').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
-					$('#swtchs-legend').append('<li><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
+					$('#swtchs-legend').append('<li id="legend-menu-SCORE_0"><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span>QIDS Score</span></li>');
 					//$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
 				}			
@@ -243,7 +254,7 @@ function addTagSwatches() {
 				}
 		
 		
-			$('.tags').append('<li><a href="#" title="Change ' + tags[j] + '\'s colour" class="swatches" id="swatch-tag-' + tags[j] + '"\></a> <span>' + tags[j] + '</span></li>'); // style="background-color:#000"
+			$('.tags').append('<li id="swatch-menu-tag-' + tags[j] + '""\><a href="#" title="Change ' + tags[j] + '\'s colour" class="swatches tag" id="swatch-tag-' + tags[j] + '"\></a> <span>' + tags[j] + '</span></li>'); // style="background-color:#000"
 			$('#swatch-tag' + j).css('background-image', 'none');
 
 			$('#scs ul.swatches li a').click(function() {
@@ -262,15 +273,21 @@ var AddColourPicker  = (function() {
 			change: function(color) {
 				
 				id = $(this).attr('id').replace("swatch-", "");
-				if(color == null) {
-					$(this).css('background', 'rgba(0,0,0,0)');
-					StoreColor(id,"rgba(0,0,0,0)");
-				}
-				else {
-					$(this).css('background', color);
-					StoreColor(id,color.toString());
-				}
-				
+				if(color == null) color = "rgba(0,0,0,0)";
+				SetSwatchColor(id,color);
+				StoreColor(id,color.toString());
+
+				// if(color == null || color == "rgba(0,0,0,0)") {
+				// 	$(this).css('background', 'rgba(0,0,0,0)');
+				// 	$(this).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');
+				// 	StoreColor(id,"rgba(0,0,0,0)");
+				// }
+				// else {
+				// 	$(this).css('background', color);
+				// 	StoreColor(id,color.toString());
+				// }
+
+				// timeline.updateGraph();
 			}
 		});
 	});
@@ -304,9 +321,10 @@ function TurnOff(id) {
 	
 function ParseGraphColors() {
 	for (i = 0; i < graphColors.length; i++) {
-		if(graphColors[i].color == "rgba(0,0,0,0)") {
-			graphColors[i].color = "rgba(128,128,128,128)"
-		}
+		// if(graphColors[i].color == "rgba(0,0,0,0)") {
+			
+		// 	graphColors[i].color = "rgba(128,128,128,128)"
+		// }
 		SetSwatchColor(graphColors[i].id, graphColors[i].color);
 	}
 }
@@ -320,13 +338,31 @@ function ParseTagColors() {
  function SetSwatchColor(id,color)
  {
  	var swatchID = '#swatch-' + id.toString();
-     $('.swatches ' + swatchID).css('background',color);
+ 	var legendID = '#legend-menu-' + id.toString();
+ 		$('.swatches ' + swatchID).css('background',color);
+ 		if(color == "rgba(0,0,0,0)") {
+ 			$('.swatches ' + swatchID).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');
+ 			$('#swtchs-legend').find(legendID).hide();
+ 		} 
+ 		else
+ 		{
+ 			$('#swtchs-legend').find(legendID).show();
+ 		}
  }   
  
 function SetTagColor(id,color)
  {
  	var swatchID = '#swatch-tag-' + id.toString();
+ 	var legendID = '#swatch-menu-tag-' + id.toString();
      $('.swatches ' + swatchID).css('background',color);
+     	if(color == "rgba(0,0,0,0)") {
+ 			$('.swatches ' + swatchID).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');
+ 			$('#legend_content').find(legendID).hide();
+ 		}
+ 		else
+ 	{
+ 		$('#legend_content').find(legendID).show();
+ 	}
  }   
    
  var IsInGraphColors = function (id) 
@@ -346,6 +382,16 @@ var IsInTagColors = function (id)
 	}
 	return false;
 }  
+
+var IsTransparent = function (id)
+{
+	if(graphColors == null) return false;
+
+	for (i = 0; i < graphColors.length; i++) {
+		if(graphColors[i].color == null|| graphColors[i].color == "rgba(0,0,0,0)") return true;
+	}
+	return false;
+}
 
     
 function GraphColor (id) 
