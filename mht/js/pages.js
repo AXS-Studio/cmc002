@@ -150,11 +150,17 @@ var Pages = {
 			<!-- end qcIscroll -->\
 		</article>',
 	other: '<article class="o0" id="art-" style="display: none;">\
+			<nav class="backNext">\
+				<ul>\
+					<li class="back"><a href="#" title="Back" class="active" id="back-"><span>Back</span></a></li>\
+					<li class="count"><span id="cq-"></span> of <span id="tq-"></span></li>\
+					<li class="next"><a href="#" title="Next" id="next-"><span>Next</span></a></li>\
+				</ul>\
+			</nav>\
+			<!-- end backNext -->\
 			<div class="qCont">\
 				<div class="question">\
-					<h1>Question <em id="cq-"></em> of <em id="tq-"></em></h1>\
-					<p>Please indicate</p>\
-					<p><span id="p-"></span> in the last <span id="days-"></span> <span id="dayDays-"></span>?</p>\
+					<p class="instruction">Please indicate <br/><span id="p-"></span> in the last <span id="days-"></span> <span id="dayDays-"></span>?</p>\
 					<form class="radioButtons">\
 						<fieldset>\
 							<div class="row clearfix">\
@@ -174,13 +180,6 @@ var Pages = {
 				<!-- end question -->\
 			</div>\
 			<!-- end qcIscroll -->\
-			<nav class="backNext">\
-				<ul>\
-					<li class="back"><a href="#" title="Back" class="active" id="back-"><span>Back</span></a></li>\
-					<li class="next"><a href="#" title="Next" id="next-"><span>Next</span></a></li>\
-				</ul>\
-			</nav>\
-			<!-- end backNext -->\
 		</article>',
 	comment: '<article class="o0" id="art-" style="display: none;">\
 			  <nav class="backNext">\
