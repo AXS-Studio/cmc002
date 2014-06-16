@@ -452,7 +452,7 @@ var Timeline = function() {
         //Temporarily here, ideally should be called during initialization and as callback when user changes settings
         changeColours();
 
-        updateHeader();
+        //updateHeader();
 
     } //end makeGraph function
 
@@ -477,7 +477,7 @@ var Timeline = function() {
         updateGraph(); //Update graph after snapping
         
         changeColours();
-        updateHeader();
+        //updateHeader();
     }
 
     function reset() {
@@ -695,6 +695,7 @@ var Timeline = function() {
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
         loadQuestionsInitial: loadQuestionsInitial
+        changeColours: changeColours
     };
 
 }; //end var Timeline
