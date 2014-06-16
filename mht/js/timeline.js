@@ -319,7 +319,7 @@ var Timeline = function() {
                             return yScale(d.Data);
                         })
                     .attr('r', function(d) {
-                            return 3;
+                            return 1;
                         });
 
                     dots.exit().remove();
@@ -477,6 +477,7 @@ var Timeline = function() {
         updateGraph(); //Update graph after snapping
         
         changeColours();
+        updateHeader();
     }
 
     function reset() {
@@ -669,20 +670,23 @@ var Timeline = function() {
             var type = qid.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
             var colour = settings[i].colour;
 
-            if (colour!= "rgba(128,128,128,128)" && type !="tag"){
+            if (colour!= "rgba(0,0,0,0)" && type !="tag"){
                 //console.log("colour", colour);
                 
-                jQuery('<li/>', { 
-                    id: qid+"_header_li",
-                    text: qid
-                }).appendTo('#graph-header');
-            
-                jQuery('<div/>', {
-                            id: qid+"_menu_div",
-                            class: "headerDiv",
-                            text: "",
-                }).prependTo("#"+qid+"_header_li");
-
+                //If header does not contain the graph item
+                if (jQuery("#"+qid+"_header_li").length==0){
+                    jQuery('<li/>', { 
+                        id: qid+"_header_li",
+                        text: qid
+                    }).appendTo('#graph-header');
+                
+                    jQuery('<div/>', {
+                                id: qid+"_menu_div",
+                                class: "headerDiv",
+                                text: "",
+                    }).prependTo("#"+qid+"_header_li");
+                }
+                $("#"+qid+"_menu_div").css("background-color",colour);
             }
 
         }
