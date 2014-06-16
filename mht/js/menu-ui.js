@@ -227,7 +227,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 						graphColors.push(newGraphColor);
 					}
 					
-					$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
+					$('#graph-header').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-'+id+'"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span id="text-' + id +'">' + name + '</span></li>');
 
@@ -253,7 +253,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 					}
 					
 
-					$('#questions-legend').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
+					$('#graph-header').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-SCORE_0"><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span id="text-SCORE_0">QIDS Score</span></li>');
 					//$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
@@ -315,7 +315,7 @@ var AddColourPicker  = (function() {
 				// 	StoreColor(id,color.toString());
 				// }
 
-				timeline.changeColours();
+				// timeline.changeColours();
 			}
 		});
 	});
@@ -375,6 +375,7 @@ function ParseTagColors() {
  		else
  		{
  			$('#swtchs-legend').find(legendID).show();
+ 			// $('#swtchs-legend').find(legendID).show();
  		}
  }   
 
