@@ -485,6 +485,11 @@ var Timeline = function() {
         zoom.translate([0, 0]);
     }
 
+    function onEditGraph() {
+        updateGraph();
+        changeColours();
+    }
+
     //----------Update whole graph-------------------------------------------------------------
     //Global to capture x-pixel of current comment
     var xCommentDate = focusDim.width/2;
@@ -695,7 +700,7 @@ var Timeline = function() {
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
         loadQuestionsInitial: loadQuestionsInitial,
-        changeColours: changeColours
+        onEditGraph: onEditGraph
     };
 
 }; //end var Timeline
