@@ -694,7 +694,7 @@ var Timeline = function() {
 
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
-        loadQuestionsInitial: loadQuestionsInitial
+        loadQuestionsInitial: loadQuestionsInitial,
         changeColours: changeColours
     };
 
