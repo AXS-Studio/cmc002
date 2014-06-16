@@ -315,7 +315,7 @@ var AddColourPicker  = (function() {
 				// 	StoreColor(id,color.toString());
 				// }
 
-				// timeline.changeColours();
+				timeline.onEditGraph();
 			}
 		});
 	});
