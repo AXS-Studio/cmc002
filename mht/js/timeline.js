@@ -261,30 +261,29 @@ var Timeline = function() {
                     //initialData[i].results.sort(dateSortAsc2);
 
                     //Apply default colours if no colour specified
-                    if (initialData[i].colour == null) {
-                        if (initialData[i].results != null) {
-                            // ...apply one of the preset default colours to the initial value
-                            if (colourCount < colours.length){
-                                initialData[i].colour = colours[colourCount];
-                                // Increase the colourCount variable by 1
-                                colourCount++;
-                            }
-                            else{
-                                colourCount = 0; //reset to first colour
-                                initialData[i].colour = colours[colourCount];
-                            }
-                        } else
-                            // Otherwise, apply transparent to the data object's colour property
-                            initialData[i].colour = 'transparent';
-                    }
-                    //Change the colour for the fill
-                    $('.' + "area_" + initialData[i].id).css('fill', initialData[i].colour);
+                    // if (initialData[i].colour == null) {
+                    //     if (initialData[i].results != null) {
+                    //         // ...apply one of the preset default colours to the initial value
+                    //         if (colourCount < colours.length){
+                    //             initialData[i].colour = colours[colourCount];
+                    //             // Increase the colourCount variable by 1
+                    //             colourCount++;
+                    //         }
+                    //         else{
+                    //             colourCount = 0; //reset to first colour
+                    //             initialData[i].colour = colours[colourCount];
+                    //         }
+                    //     } else
+                    //         // Otherwise, apply transparent to the data object's colour property
+                    //         initialData[i].colour = 'transparent';
+                    // }
+                    // //Change the colour for the fill
+                    // $('.' + "area_" + initialData[i].id).css('fill', initialData[i].colour);
 
                     // ...create an object in settings for the collected data.
                     settings.push({
                         "id": initialData[i].id,
-                        "name": initialData[i].name,
-                        "colour": initialData[i].colour
+                        "name": initialData[i].name//,"colour": initialData[i].colour
                     });
 
                     // Scale the range of the data
@@ -299,9 +298,9 @@ var Timeline = function() {
                         .datum(initialData[i]["results"]) //use datum to bind to single svg element
                         .attr("id", "data_" + initialData[i].id)
                         .classed('areaFill', true)
-                        .attr('clip-path', 'url(#clip)')
-                        .style('fill', initialData[i].colour)
-                        .style('stroke', initialData[i].colour); //.attr("class", "areaFill")
+                        .attr('clip-path', 'url(#clip)');
+                        //.style('fill', initialData[i].colour)
+                        //.style('stroke', initialData[i].colour); //.attr("class", "areaFill")
 
                     focus.select("#data_" + initialData[i].id).attr("d", areaFill);
 
@@ -452,6 +451,8 @@ var Timeline = function() {
 
         //Temporarily here, ideally should be called during initialization and as callback when user changes settings
         changeColours();
+
+        updateHeader();
 
     } //end makeGraph function
 
@@ -629,16 +630,15 @@ var Timeline = function() {
 
     //----------Change all colours of graphs and tags-------------------------------------------------------------
     function changeColours() {
-        //console.log("settings", settings);
+        console.log("settings", settings);
         //console.log("graphColors", graphColors);
 
         for (var i = 0; i < settings.length; i++) {
             
-            var id = settings[i].id;
-            
+            var id = settings[i].id; 
             var type = id.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
 
-            //simple loop to check if colour exists in menu's graphColor object
+            //simple loop to check if colour exists in menu's graphColor object, if yes sync
             for (var j = 0; j < graphColors.length; j++) {
                 if (graphColors[j].id == id){
                     settings[i].colour = graphColors[j].color;
@@ -660,7 +660,33 @@ var Timeline = function() {
             }
            
         } //end for settings length
-    }
+    }//end changeColours
+
+    function updateHeader() {
+        for (var i = 0; i < settings.length; i++) {
+
+            var qid = settings[i].id; 
+            var type = qid.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
+            var colour = settings[i].colour;
+
+            if (colour!= "rgba(128,128,128,128)" && type !="tag"){
+                //console.log("colour", colour);
+                
+                jQuery('<li/>', { 
+                    id: qid+"_header_li",
+                    text: qid
+                }).appendTo('#graph-header');
+            
+                jQuery('<div/>', {
+                            id: qid+"_menu_div",
+                            class: "headerDiv",
+                            text: "",
+                }).prependTo("#"+qid+"_header_li");
+
+            }
+
+        }
+    }//end updateHeaders
 
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
