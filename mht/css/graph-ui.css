@@ -150,6 +150,7 @@ ul li a.swatches, ul li span.swatches {
     display:inline-block;
     height: 20px !important;
     width: 20px !important;
+    float:left;
 }
 
 ul.tags li a.swatches {
@@ -193,6 +194,7 @@ ul#legend-header li span.swatches {
     line-height: auto;
     margin:0px;
     border:none;
+    float:none;
 
 }
 
