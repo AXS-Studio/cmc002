@@ -148,6 +148,7 @@
 		}
 		#graph-header,#graph-nav {
 			height: 40px;
+			overflow: hidden;
 			
 		}
 		#graph-header {

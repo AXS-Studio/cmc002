@@ -227,7 +227,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 						graphColors.push(newGraphColor);
 					}
 					
-					$('#graph-header').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
+					$('#legend-header').append('<li id="legend-'+id+'" style="display:none;"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-'+id+'"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span id="text-' + id +'">' + name + '</span></li>');
 
@@ -253,7 +253,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 					}
 					
 
-					$('#graph-header').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
+					$('#legend-header').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-SCORE_0"><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span id="text-SCORE_0">QIDS Score</span></li>');
 					//$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
@@ -367,15 +367,19 @@ function ParseTagColors() {
  {
  	var swatchID = '#swatch-' + id.toString();
  	var legendID = '#legend-menu-' + id.toString();
+ 	var headerID = '#legend-' + id.toString();
+ 		
  		$('.swatches ' + swatchID).css('background',color);
+ 		
  		if(color == "rgba(0,0,0,0)") {
  			$('.swatches ' + swatchID).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');
  			$('#swtchs-legend').find(legendID).hide();
+ 			$('#legend-header').find(headerID).hide();
  		} 
  		else
  		{
  			$('#swtchs-legend').find(legendID).show();
- 			// $('#swtchs-legend').find(legendID).show();
+ 			$('#legend-header').find(headerID).show();
  		}
  }   
 

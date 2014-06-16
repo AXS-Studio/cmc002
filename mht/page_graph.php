@@ -1,6 +1,9 @@
 <div id="content_graph">
 	<article class="o0" id="art-timeline" style="display: none;">
-	<nav id="graph-header"><a href="#" class="btnmenu external"></a></nav><div style="clear:both;"></div>
+	<nav id="graph-header">
+	<ul id="legend-header" class="swatches">
+	</ul>
+	<a href="#" class="btnmenu external"></a></nav><div style="clear:both;"></div>
 		<aside id="graph-menu">
 	<nav id="graph-nav">
 		<a href="#" class="btnmenu internal"></a>
