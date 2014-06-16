@@ -47,6 +47,8 @@ var initGraphMenu =(function() {
 	
 	GenerateSwatches.tagSwatches();
 
+	GenerateSwatches.filterSwatches();
+
 });
 
 
@@ -115,6 +117,31 @@ var initAppMenu = (function() {
 
 var GenerateSwatches = (function() {
    //  console.log(graphColors);
+
+      var filterSwatches = function() {
+        //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
+        //console.log(results);
+
+        ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
+        patient = ajaxPath.split('=')[1];
+        // console.log(patient);
+
+        $.ajax({
+            url: ajaxPath,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                initialData = response;
+                console.log("initialData", initialData);
+                //makeGraph();
+               DisableSwatches();
+            },
+            error: function() {
+                window.alert('Error loadAnswersInitial!');
+            }
+        });
+
+    };
      
      var questionSwatches = function() {
      
@@ -172,7 +199,8 @@ var GenerateSwatches = (function() {
   
    return {
          questionSwatches : questionSwatches,
-         tagSwatches : tagSwatches
+         tagSwatches : tagSwatches,
+         filterSwatches : filterSwatches
      };
 
  })();
@@ -201,7 +229,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 					
 					$('#questions-legend').append('<li id="legend-'+id+'" style="display:none;"><span href="#" class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-'+id+'"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
-					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span>' + name + '</span></li>');
+					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span id="text-' + id +'">' + name + '</span></li>');
 
 					// if(IsTransparent(id)) {
 					// 	console.log(id + " is transparent");
@@ -227,7 +255,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 
 					$('#questions-legend').append('<li id="legend-SCORE_0" style="display:none;"><span>QIDS Score</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-SCORE_0"><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
-					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span>QIDS Score</span></li>');
+					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span id="text-SCORE_0">QIDS Score</span></li>');
 					//$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
 				}			
 
@@ -349,6 +377,26 @@ function ParseTagColors() {
  			$('#swtchs-legend').find(legendID).show();
  		}
  }   
+
+ function DisableSwatches () {
+ 	for (var i = 0; i < initialData.length; i++) {
+ 		if (initialData[i].id != 'comment' && initialData[i].id != 'tags' && initialData[i].id != 'uniqueTags' && initialData[i].id != 'notes' && initialData[i].id != 'sessions') {
+
+                if (initialData[i].results == null || initialData[i].results.length <= 0) {
+                	DisableSwatch(initialData[i].id);	
+                	SetSwatchColor(initialData[i].id,"rgba(0,0,0,0)")	
+                }
+            }
+ 	}
+ }
+
+ function DisableSwatch(id) {
+ 	var textID = '#text-' + id.toString();
+ 	var swatchID = '#swatch-' + id.toString();
+ 	// var legendID = '#legend-menu-' + id.toString();
+ 	$(textID).css('color', 'grey');
+ 	$("#swtchs-edit " + swatchID).spectrum("disable");
+ }
  
 function SetTagColor(id,color)
  {
