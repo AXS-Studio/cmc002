@@ -865,7 +865,7 @@ div.shareAlert {
   
   /* APP CONTROL STYLES */
   
-  #page_graph { display:  none; margin-top:40px;}
+  #page_graph { display:  none; }
   
   #page_graph #commentDiv {
 	  line-height: 20px;
