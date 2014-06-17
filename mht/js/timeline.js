@@ -73,7 +73,6 @@ var Timeline = function() {
     function parseDate(date) {
         //turns a string into a Date() object
         //parseDate('2013-01-01 12:00:00') returns Date {Tue Jan 01 2013 12:00:00 GMT-0500 (EST)}
-
         var dateObj = d3.time.format('%Y-%m-%d %H:%M:%S').parse(date);
         return dateObj;
     }
@@ -239,7 +238,6 @@ var Timeline = function() {
                     //Convert date in initialData to a d3 readable format
                     jQuery.each(initialData[i].results, function(i, d) {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
-                        console.log("d.date");
                     });
 
                     // ...create an object in settings for the collected data.
@@ -445,7 +443,7 @@ var Timeline = function() {
         shiftGraph(); //snap graph to closest point
         updateGraph(); //Update graph after snapping
         
-        //changeColours();
+        changeColours();
         //updateHeader();
     }
 
@@ -498,7 +496,7 @@ var Timeline = function() {
                 rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; });
                 // .attr('y', function(d, i) { return j * 21; });
             }
-        } //end for
+        }
 
         focus.select(".x.axis").call(xAxis);
 
@@ -523,8 +521,7 @@ var Timeline = function() {
         var bisect; //define bisect function depending if midpoint tuner strip is to the right of the last point in graph
         var commentIndex; //index of comment to be displayed
 
-        //if (initialData[initialDataCommentIndex].results.length ==0)
-        //return;
+        //if (initialData[initialDataCommentIndex].results.length ==0) return;
 
         //if tuner strip is to the left of last data entry in graph (within range)
         if (midpointDate < lastDateinDomain){
@@ -559,9 +556,6 @@ var Timeline = function() {
             var commentData = initialData[initialDataCommentIndex].results[commentIndex].Data;
             var commentTags = initialData[initialDataCommentIndex].results[commentIndex].Tags;
 
-            console.log ("in case of error", initialData[initialDataCommentIndex].results[commentIndex]);
-            //console.log ("commentDate", commentDate);
-
             $("#commentDateDiv").html(commentDateFormat(commentDate) );
             $("#commentDataDiv").html(commentData);
             $("#commentTagUL").html(""); //reset comment list
@@ -570,14 +564,13 @@ var Timeline = function() {
                 
                 commentTags.forEach(
                     function(item){
-                       
                        jQuery('<li/>', {
                             id: item+"_li",
                             text: item
                         }).appendTo('#commentTagUL');
 
                        jQuery('<div/>', {
-                            id: item+"_div",
+                            id: "div_"+item,
                             class: "tagDiv",
                             text: "",
                         }).prependTo("#"+item+"_li");
@@ -593,8 +586,6 @@ var Timeline = function() {
         // var thisRect = tagFocus.select("rect[data-sessionID='"+sID+"']");
         // thisRect.attr('sessionID', function(d) { return d.SessionID; });
 
-       
-
     }//end getComment
     
     //----------Shift the graph to snap to selected comment-------------------------------------------------------------
@@ -609,35 +600,43 @@ var Timeline = function() {
 
     //----------Change all colours of graphs and tags-------------------------------------------------------------
     function changeColours() {
-        console.log("changing tag colour", settings);
+       
         for (var i = 0; i < settings.length; i++) {
             
             var id = settings[i].id; 
             var type = id.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
+            var tag = id.split("_")[1];
 
             //simple loop to check if colour exists in menu's graphColor object, if yes sync
-            for (var j = 0; j < graphColors.length; j++) {
-                if (graphColors[j].id == id){
-                    settings[i].colour = graphColors[j].color;
+            if (type != "tag"){
+                for (var j = 0; j < graphColors.length; j++) {
+                    if (graphColors[j].id == id){
+                        settings[i].colour = graphColors[j].color;
+                    }
                 }
             }
-            var colour = settings[i].colour;
-
-           
+            else if (type == "tag"){
+                //simple loop to check if colour exists in menu's tagColor object, if yes sync
+                for (var j = 0; j < tagColors.length; j++) {
+                    if (tagColors[j].id == tag){
+                        settings[i].colour = tagColors[j].color;
+                    }
+                }
+            }
+            var thisColour = settings[i].colour;
 
             //Update tags
-            if (settings[i].hasOwnProperty('tag')){
-                
-                $(".rect_"+settings[i].tag).css("fill",colour);
-                $("#"+settings[i].tag+"_div").css("background-color",colour);//item+"_div",
+            if (type == "tag" && settings[i].hasOwnProperty('tag')){             
+                $(".rect_"+settings[i].tag).css("fill",thisColour);
+                $("#div_"+settings[i].tag).css("background-color",thisColour);//item+"_div",
             }
+            else if (type !="tag"){
+                //Update line graphs and dots
+            
+                $("#data_"+id).css("fill",thisColour);
+                $("#data_"+id).css("stroke",thisColour);
 
-            //Update line graphs and dots
-            if (type !="tag"){
-                $("#data_"+id).css("fill",colour);
-                $("#data_"+id).css("stroke",colour);
-
-                $(".dot_"+id).css("fill",colour);
+                $(".dot_"+id).css("fill",thisColour);
             }
            
         } //end for settings length
