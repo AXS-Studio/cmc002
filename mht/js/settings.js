@@ -18,11 +18,12 @@ var settings = function() {
 			setTimeout(function() {
 				// Remove the Loading spinner icon...
 				$('#art-loading').remove();
-				$('#content').html(Pages.faq).removeClass('o0').addClass('o1');
+				$('#art-settings').html(Pages.faq).removeClass('o0').addClass('o1');
 				$('#art-faq').removeClass('o0').addClass('o1').show();
 
 				$('.cancel').click(function(){
-					Quiz.settings();
+					
+					settings();
 				});
 
 			}, 250);
@@ -35,11 +36,12 @@ var settings = function() {
 			setTimeout(function() {
 				// Remove the Loading spinner icon...
 				$('#art-loading').remove();
-				$('#content').html(Pages.about).removeClass('o0').addClass('o1');
+				$('#art-settings').html(Pages.about).removeClass('o0').addClass('o1');
 				$('#art-about').removeClass('o0').addClass('o1').show();
 
 				$('.cancel').click(function(){
-					Quiz.settings();
+					alert("CLICKED");
+					settings();
 				});
 
 				$('.about-contact').click(function(){
@@ -55,15 +57,16 @@ var settings = function() {
 			setTimeout(function() {
 				// Remove the Loading spinner icon...
 				$('#art-loading').remove();
-				$('#content').html(Pages.changePassword).removeClass('o0').addClass('o1');
+				$('#art-settings').html(Pages.changePassword).removeClass('o0').addClass('o1');
 				$('#art-about').removeClass('o0').addClass('o1').show();
 
 				$('.cancel').click(function(){
-					Quiz.settings();
+					settings();
 				});
 
 			}, 250);
 		});
 
 //	}, 250);
+
 }

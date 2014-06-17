@@ -131,8 +131,8 @@ var GenerateSwatches = (function() {
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                initialData = response;
-                console.log("initialData", initialData);
+                answerData = response;
+                console.log("answerData", answerData);
                 //makeGraph();
                DisableSwatches();
             },
@@ -188,8 +188,11 @@ var GenerateSwatches = (function() {
 				addTagSwatches();
 				ParseTagColors();
 				//AddColourPickerTags();
-				AddColourPicker.tagSwatches();	
+				
 			},
+			     complete: function () {
+			     		AddColourPicker.tagSwatches();	
+			     },
 			error: function() {
 			 	window.alert('Error: Could not retrieve tags to generate swatches!');
 			}
@@ -325,9 +328,13 @@ var AddColourPicker  = (function() {
 			color: "red",
 			showPalette: true,
 			change: function(color) {
+				if(color == null) color = "rgba(0,0,0,0)";	
+
 				$(this).css('background', color);
 				id = $(this).attr('id').replace("swatch-tag-", "");
 				StoreTagColor(id,color.toString());
+
+				timeline.onEditGraph();
 			}
 		});
 	});
@@ -384,12 +391,12 @@ function ParseTagColors() {
  }   
 
  function DisableSwatches () {
- 	for (var i = 0; i < initialData.length; i++) {
- 		if (initialData[i].id != 'comment' && initialData[i].id != 'tags' && initialData[i].id != 'uniqueTags' && initialData[i].id != 'notes' && initialData[i].id != 'sessions') {
+ 	for (var i = 0; i < answerData.length; i++) {
+ 		if (answerData[i].id != 'comment' && answerData[i].id != 'tags' && answerData[i].id != 'uniqueTags' && answerData[i].id != 'notes' && answerData[i].id != 'sessions') {
 
-                if (initialData[i].results == null || initialData[i].results.length <= 0) {
-                	DisableSwatch(initialData[i].id);	
-                	SetSwatchColor(initialData[i].id,"rgba(0,0,0,0)")	
+                if (answerData[i].results == null || answerData[i].results.length <= 0) {
+                	DisableSwatch(answerData[i].id);	
+                	SetSwatchColor(answerData[i].id,"rgba(0,0,0,0)")	
                 }
             }
  	}

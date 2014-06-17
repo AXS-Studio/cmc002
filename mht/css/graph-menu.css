@@ -139,9 +139,9 @@
 }	
 
 	
-	@media 
+/*	@media 
 	(-webkit-min-device-pixel-ratio: 2), 
-	(min-resolution: 192dpi) { 
+	(min-resolution: 192dpi) { */
 		#graph-nav a.tab {
 			height: 38px;
 			line-height: 38px;	
@@ -149,6 +149,7 @@
 		#graph-header,#graph-nav {
 			height: auto;
 			max-height: 60px;
+			min-height: 40px;
 			overflow: hidden;
 			
 		}
@@ -165,4 +166,4 @@
 			height:39px;
 		}
 	
-	}
+	/*}*/

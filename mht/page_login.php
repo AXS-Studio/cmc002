@@ -21,14 +21,14 @@
 							</fieldset>
 						</form>
 					</article>';
-				} else if ($desktop == true || $tablet == true) {
-					echo '<div class="message o1" id="art-deskTab">
-						<div id="middle">
-							<p>We\'re sorry, it appears you\'re not using a smartphone<br>
-								that features an HTML5/Webkit-based Web browser.</p>
-						</div>
-						<!-- end middle -->
-					</div>';
+				// } else if ($desktop == true || $tablet == true) {
+				// 	echo '<div class="message o1" id="art-deskTab">
+				// 		<div id="middle">
+				// 			<p>We\'re sorry, it appears you\'re not using a smartphone<br>
+				// 				that features an HTML5/Webkit-based Web browser.</p>
+				// 		</div>
+				// 		<!-- end middle -->
+				// 	</div>';
 				} else {
 					echo '
 					<article class="login o1 clearfix">

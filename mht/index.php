@@ -200,9 +200,9 @@ if ($detect -> isTablet()) {
 				echo "
 						Reset.init();
 						// Resize.init();";
-			} else if ($desktop == true || $tablet == true) {
-				echo "
-						Middle.init();";
+			// } else if ($desktop == true || $tablet == true) {
+			// 	echo "
+			// 			Middle.init();";
 			} else {
 				echo "
 						Login.loginFields();
