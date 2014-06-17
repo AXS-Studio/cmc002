@@ -1,14 +1,14 @@
 var Timeline = function() {
 
     //Session data hardcoded for now
-    if (results == null){
-        var results = {
-            "patientID": "Record09",
-            "sessionID": null,
-            "date": null,
-            "answers": []
-        };
-    }
+    // if (results == null){
+    //     var results = {
+    //         "patientID": "Record09",
+    //         "sessionID": null,
+    //         "date": null,
+    //         "answers": []
+    //     };
+    // }
     //----------default colours----------
     var colours = [
         'rgba(85,98,112,1.0)', // Mighty Slate
@@ -70,6 +70,14 @@ var Timeline = function() {
     //----------parse functions----------
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
     var commentDateFormat = d3.time.format("%d %B %Y, %I:%M %p, %A");
+    function parseDate(date) {
+        //turns a string into a Date() object
+        //parseDate('2013-01-01 12:00:00') returns Date {Tue Jan 01 2013 12:00:00 GMT-0500 (EST)}
+
+        var dateObj = d3.time.format('%Y-%m-%d %H:%M:%S').parse(date);
+        return dateObj;
+    }
+
 
     //Set up scales (to map input data to output in pixels)
     //----------scales----------
@@ -187,7 +195,9 @@ var Timeline = function() {
             dataType: 'json',
             success: function(response) {
                 initialData = response;
-                console.log("initialData", initialData);
+                //console.log("initialData", initialData);
+            },
+            complete: function() {
                 makeGraph();
             },
             error: function() {
@@ -216,32 +226,6 @@ var Timeline = function() {
 
     };
 
-    function parseDate(date) {
-        //turns a string into a Date() object
-        //parseDate('2013-01-01 12:00:00') returns Date {Tue Jan 01 2013 12:00:00 GMT-0500 (EST)}
-
-        var dateObj = d3.time.format('%Y-%m-%d %H:%M:%S').parse(date);
-        return dateObj;
-    }
-
-    function dateSortAsc(date1, date2) {
-        /* Sort the items by date; oldest to newest  */
-        if (date1.DayTime < date2.DayTime)
-            return -1;
-        if (date1.DayTime > date2.DayTime)
-            return 1;
-        return 0;
-    }
-
-    function dateSortAsc2(date1, date2) {
-        /* Sort the items by date; oldest to newest  */
-        if (date1.date < date2.date)
-            return -1;
-        if (date1.date > date2.date)
-            return 1;
-        return 0;
-    }
-
     function makeGraph() {
         var colourCount = 0;
 
@@ -255,30 +239,8 @@ var Timeline = function() {
                     //Convert date in initialData to a d3 readable format
                     jQuery.each(initialData[i].results, function(i, d) {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
+                        console.log("d.date");
                     });
-
-                    //Sort all entries by date ascending (doing this server-side to lessen client-side)
-                    //initialData[i].results.sort(dateSortAsc2);
-
-                    //Apply default colours if no colour specified
-                    // if (initialData[i].colour == null) {
-                    //     if (initialData[i].results != null) {
-                    //         // ...apply one of the preset default colours to the initial value
-                    //         if (colourCount < colours.length){
-                    //             initialData[i].colour = colours[colourCount];
-                    //             // Increase the colourCount variable by 1
-                    //             colourCount++;
-                    //         }
-                    //         else{
-                    //             colourCount = 0; //reset to first colour
-                    //             initialData[i].colour = colours[colourCount];
-                    //         }
-                    //     } else
-                    //         // Otherwise, apply transparent to the data object's colour property
-                    //         initialData[i].colour = 'transparent';
-                    // }
-                    // //Change the colour for the fill
-                    // $('.' + "area_" + initialData[i].id).css('fill', initialData[i].colour);
 
                     // ...create an object in settings for the collected data.
                     settings.push({
@@ -337,20 +299,31 @@ var Timeline = function() {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
                     });
 
+                    var thisTag = initialData[i].results[j].tag;
                     var thisColour;
-                    if (j < colours.length)
-                        thisColour = colours[j];
-                    else
-                         thisColour = colours[0];
+
+                    //$("#"+settings[i].tag+"_div").css("background-color",colour);
+                    //simple loop to check if colour exists in menu's graphColor object, if yes sync
+                    for (var k = 0; k < tagColors.length; k++) {
+                        if (tagColors[k].id == thisTag){
+                           thisColour = tagColors[k].color;
+                        }
+                    }
+                    // var colour = settings[i].colour;
+
+                    // if (j < colours.length)
+                    //     thisColour = colours[j];
+                    // else
+                    //      thisColour = colours[0];
 
                     //append rects for each tag group. In d3 fashion first bind the data
-                    var rects = tagFocus.selectAll(".rect_" + j).data(initialData[i].results[j].results, function(d) { return d.date; });
+                    var rects = tagFocus.selectAll(".rect_" + thisTag).data(initialData[i].results[j].results, function(d) { return d.date; });
 
                     //Append rects for all binded data entering the graph
                     rects.enter().append('rect')
                     .style('fill', thisColour)
                     .style('stroke', 'rgba(256,256,256,1.0)')
-                    .attr('class', "rect_" + j)
+                    .attr('class', "rect_" + thisTag)
                     .attr("data-sessionID", function(d) { return d.SessionID; })
                     .attr('x', function(d) {
                         return xScale(d.date)-tagDim.width/2;
@@ -404,8 +377,6 @@ var Timeline = function() {
             }
         } //end for initialData.length
 
-        //console.log("initialData", initialData);
-
         //Call zoom
         zoom.x(xScale);
 
@@ -449,10 +420,8 @@ var Timeline = function() {
             .attr("height", focusDim.height)
             .call(zoom);
 
-        //Temporarily here, ideally should be called during initialization and as callback when user changes settings
+        //Apply colours
         changeColours();
-
-        //updateHeader();
 
     } //end makeGraph function
 
@@ -476,7 +445,7 @@ var Timeline = function() {
         shiftGraph(); //snap graph to closest point
         updateGraph(); //Update graph after snapping
         
-        changeColours();
+        //changeColours();
         //updateHeader();
     }
 
@@ -500,8 +469,8 @@ var Timeline = function() {
 
         //Update all line graphs currently rendered
         for (var i = 0; i < settings.length; i++) {
-            //  var id = settings[i].id;
-            //  var colour = settings[i].colour;
+            var id = settings[i].id;
+            var colour = settings[i].colour;
 
             //Update line graph
             focus.select("#data_" + settings[i].id).attr("d", areaFill);
@@ -514,8 +483,6 @@ var Timeline = function() {
             }
         } //end for settings length
 
-        // var domainDays = (x.invert(width) - x.invert(0))/(1000*60*60*24);
-
         //Update comments
         var commentRects = tagFocus.selectAll('.rect_comment');
         if (!commentRects.empty()) {
@@ -524,7 +491,8 @@ var Timeline = function() {
 
         //Update all tags
         for (var j = 0; j < initialData[initialDataTagIndex].results.length; j++) {
-            var rects = tagFocus.selectAll('.rect_' + j);
+
+            var rects = tagFocus.selectAll('.rect_' + initialData[initialDataTagIndex].results[j].tag);
 
             if (!rects.empty()) {
                 rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; });
@@ -555,6 +523,9 @@ var Timeline = function() {
         var bisect; //define bisect function depending if midpoint tuner strip is to the right of the last point in graph
         var commentIndex; //index of comment to be displayed
 
+        //if (initialData[initialDataCommentIndex].results.length ==0)
+        //return;
+
         //if tuner strip is to the left of last data entry in graph (within range)
         if (midpointDate < lastDateinDomain){
             bisect = d3.bisector(function(d) { return d.date; }).left;//returns index of data to the right of bisector
@@ -582,12 +553,14 @@ var Timeline = function() {
         commentIndex = initialData[initialDataCommentIndex].results.length-1;//explicitly set to prevent null errors from fast zoom
 
         commentDate = initialData[initialDataCommentIndex].results[commentIndex].date;
-        
         xCommentDate = xScale(commentDate); //pixel point of selected comment
 
         if (initialData[initialDataCommentIndex].results[commentIndex].Data!=null){
             var commentData = initialData[initialDataCommentIndex].results[commentIndex].Data;
             var commentTags = initialData[initialDataCommentIndex].results[commentIndex].Tags;
+
+            console.log ("in case of error", initialData[initialDataCommentIndex].results[commentIndex]);
+            //console.log ("commentDate", commentDate);
 
             $("#commentDateDiv").html(commentDateFormat(commentDate) );
             $("#commentDataDiv").html(commentData);
@@ -636,9 +609,7 @@ var Timeline = function() {
 
     //----------Change all colours of graphs and tags-------------------------------------------------------------
     function changeColours() {
-        console.log("settings", settings);
-        //console.log("graphColors", graphColors);
-
+        console.log("changing tag colour", settings);
         for (var i = 0; i < settings.length; i++) {
             
             var id = settings[i].id; 
@@ -652,9 +623,13 @@ var Timeline = function() {
             }
             var colour = settings[i].colour;
 
+           
+
             //Update tags
             if (settings[i].hasOwnProperty('tag')){
-                $("#"+settings[i].tag+"_div").css("background-color",colour);
+                
+                $(".rect_"+settings[i].tag).css("fill",colour);
+                $("#"+settings[i].tag+"_div").css("background-color",colour);//item+"_div",
             }
 
             //Update line graphs and dots

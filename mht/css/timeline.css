@@ -51,6 +51,7 @@
 	margin: 0px 10px 0px 0px;
 	width: 15px;
 	height: 15px;
+	border: 1px solid gray;
 }
 
 svg .areaFill {
