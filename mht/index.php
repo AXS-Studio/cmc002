@@ -213,5 +213,6 @@ if ($detect -> isTablet()) {
 			});
 			
 		</script>
+		<div id="bgplate" style="display:none;"></div>
 	</body>
 </html>

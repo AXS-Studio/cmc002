@@ -202,6 +202,30 @@ ul#legend-header li span.swatches {
     margin-top: 0;
 }
 
+#bgplate {
+    background: rgba(0,0,0,0.5);
+    width:100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 10;
+}
+
+#legend-popup {
+    position: fixed;
+    top:10%;
+    left:10%;
+    width:80%;
+    min-height: 100px;
+    padding:10px;
+    z-index: 1000;
+    background: #fff;
+    border-radius:10px;
+}
+
+#legend-popup .close-popup {float:right; text-decoration: none; color:#333;}
+
 .ui-colorpicker, ui-dialog.ui-colorpicker {
 	background: #fff;
 	padding:30px;

@@ -31,6 +31,8 @@
 		</div>
 	</div>
 	</article>
+
+	<div id="legend-popup" style="display:none;"><a href="#" class="close-popup">x</a></div>
 </div>
 <?php
 	//include 'timeline.php';
