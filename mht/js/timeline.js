@@ -70,13 +70,6 @@ var Timeline = function() {
     //----------parse functions----------
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
     var commentDateFormat = d3.time.format("%d %B %Y, %I:%M %p, %A");
-    function parseDate(date) {
-        //turns a string into a Date() object
-        //parseDate('2013-01-01 12:00:00') returns Date {Tue Jan 01 2013 12:00:00 GMT-0500 (EST)}
-        var dateObj = d3.time.format('%Y-%m-%d %H:%M:%S').parse(date);
-        return dateObj;
-    }
-
 
     //Set up scales (to map input data to output in pixels)
     //----------scales----------
@@ -164,12 +157,12 @@ var Timeline = function() {
     //---------------------------------------------------------------------
     //Global variables carried over from last version
     var settings = [];
-    var data = [];
+    //var data = [];
     var colourCount = 0;
     var comments = [];
-    var commentsCreated = false;
+    //var commentsCreated = false;
     var tags = [];
-    var tagsCreated = false;
+    //var tagsCreated = false;
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
@@ -182,7 +175,6 @@ var Timeline = function() {
 
     var loadAnswersInitial = function(ajaxPath) {
         //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
-        //console.log(results);
 
         ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         patient = ajaxPath.split('=')[1];
@@ -224,7 +216,7 @@ var Timeline = function() {
         });
 
     };
-
+    //localStorage.setItem('graphColors', JSON.stringify(graphColors));
     function makeGraph() {
         var colourCount = 0;
 
@@ -264,25 +256,25 @@ var Timeline = function() {
 
                     focus.select("#data_" + initialData[i].id).attr("d", areaFill);
 
-                     //-----------Append dots for datapoints on line graphs-------------
-                    var dots  = focus.selectAll(".dot_" + initialData[i].id)
-                    .data(initialData[i]["results"], function(d) {return d.date;});
+                    //-----------Append dots for datapoints on line graphs-------------
+                    // var dots  = focus.selectAll(".dot_" + initialData[i].id)
+                    // .data(initialData[i]["results"], function(d) {return d.date;});
 
-                    dots.enter().append('circle')
-                    .style('fill', initialData[i].colour)
-                    .attr('class', "dot_" + initialData[i].id)
-                    .attr('clip-path', 'url(#clip)')
-                    .attr('cx', function(d) {
-                            return xScale(d.date);
-                        })
-                    .attr('cy', function(d) {
-                            return yScale(d.Data);
-                        })
-                    .attr('r', function(d) {
-                            return 1;
-                        });
+                    // dots.enter().append('circle')
+                    // .style('fill', initialData[i].colour)
+                    // .attr('class', "dot_" + initialData[i].id)
+                    // .attr('clip-path', 'url(#clip)')
+                    // .attr('cx', function(d) {
+                    //         return xScale(d.date);
+                    //     })
+                    // .attr('cy', function(d) {
+                    //         return yScale(d.Data);
+                    //     })
+                    // .attr('r', function(d) {
+                    //         return 1;
+                    //     });
 
-                    dots.exit().remove();
+                    // dots.exit().remove();
 
                 }
             } //end if initialData[i].id != comments, sessions, notes
@@ -291,16 +283,15 @@ var Timeline = function() {
             else if (initialData[i].id == 'uniqueTags') {
                 initialDataTagIndex = i; //remember the index for the tags
 
-                for (var j = 0; j < initialData[i].results.length; j++) {
+                for (var j = 0; j < initialData[initialDataTagIndex].results.length; j++) {
                     //Convert date in initialData to a d3 readable format
-                    jQuery.each(initialData[i].results[j].results, function(i, d) {
+                    jQuery.each(initialData[initialDataTagIndex].results[j].results, function(i, d) {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
                     });
 
-                    var thisTag = initialData[i].results[j].tag;
+                    var thisTag = initialData[initialDataTagIndex].results[j].tag;
                     var thisColour;
 
-                    //$("#"+settings[i].tag+"_div").css("background-color",colour);
                     //simple loop to check if colour exists in menu's graphColor object, if yes sync
                     for (var k = 0; k < tagColors.length; k++) {
                         if (tagColors[k].id == thisTag){
@@ -315,7 +306,7 @@ var Timeline = function() {
                     //      thisColour = colours[0];
 
                     //append rects for each tag group. In d3 fashion first bind the data
-                    var rects = tagFocus.selectAll(".rect_" + thisTag).data(initialData[i].results[j].results, function(d) { return d.date; });
+                    var rects = tagFocus.selectAll(".rect_" + thisTag).data(initialData[initialDataTagIndex].results[j].results, function(d) { return d.date; });
 
                     //Append rects for all binded data entering the graph
                     rects.enter().append('rect')
@@ -475,10 +466,10 @@ var Timeline = function() {
             // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
 
             //Update dots on line graphs
-            var dots = focus.selectAll(".dot_" + settings[i].id);
-            if (!dots.empty()) {
-                dots.attr("cx", function(d) { return xScale(d.date); });
-            }
+            // var dots = focus.selectAll(".dot_" + settings[i].id);
+            // if (!dots.empty()) {
+            //     dots.attr("cx", function(d) { return xScale(d.date); });
+            // }
         } //end for settings length
 
         //Update comments
@@ -520,8 +511,6 @@ var Timeline = function() {
         
         var bisect; //define bisect function depending if midpoint tuner strip is to the right of the last point in graph
         var commentIndex; //index of comment to be displayed
-
-        //if (initialData[initialDataCommentIndex].results.length ==0) return;
 
         //if tuner strip is to the left of last data entry in graph (within range)
         if (midpointDate < lastDateinDomain){
@@ -632,11 +621,10 @@ var Timeline = function() {
             }
             else if (type !="tag"){
                 //Update line graphs and dots
-            
                 $("#data_"+id).css("fill",thisColour);
                 $("#data_"+id).css("stroke",thisColour);
 
-                $(".dot_"+id).css("fill",thisColour);
+                //$(".dot_"+id).css("fill",thisColour);
             }
            
         } //end for settings length
