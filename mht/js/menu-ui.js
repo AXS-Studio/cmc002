@@ -233,7 +233,7 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 					}
 					
 					$('#legend-header').append('<li id="legend-'+id+'" class="legend-popup" style="display:none;"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
-					$('#swtchs-legend').append('<li id="legend-menu-'+id+'"><span class="swatches id="swatch-' + id + '"></span><span>' + name + '</span></li>');
+					$('#swtchs-legend').append('<li id="legend-menu-'+id+'"><span class="swatches" id="swatch-' + id + '"></span><span>' + name + '</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" class="swatches" id="swatch-' + id + '"></a><span id="text-' + id +'">' + name + '</span></li>');
 
 					// if(IsTransparent(id)) {
@@ -336,6 +336,7 @@ var AddColourPicker  = (function() {
 		$("#tags-edit .swatches").spectrum({
 			color: "red",
 			showPalette: true,
+			allowEmpty: true,
 			change: function(color) {
 				if(color == null) color = "rgba(0,0,0,0)";	
 
@@ -344,6 +345,12 @@ var AddColourPicker  = (function() {
 				StoreTagColor(id,color.toString());
 
 				timeline.onEditGraph();
+			},
+			show: function() {
+				$("#bgplate").show();
+			},
+			hide: function () {
+				$("#bgplate").hide();	
 			}
 		});
 	});
