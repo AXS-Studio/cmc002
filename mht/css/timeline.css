@@ -1,11 +1,5 @@
-/*body { font: 12px Helvetica,Arial,sans-serif;}*/
-#graph-header {
-	font-size: 13px;
-}
-
-#graph-header li{
-	margin: 15px 20px 15px 0px;
-	display: inline;
+#tagFocus_bg{
+	fill: url(#gray-gradient);
 }
 
 #graph-header .headerDiv{
@@ -20,7 +14,7 @@
 #commentDiv {
 	border: 0;
 	margin: 0;
-	font-size: 13px;
+	/*font-size: 13px;*/
 }
 
 #commentDiv #commentDateDiv {
