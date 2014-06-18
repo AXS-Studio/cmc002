@@ -234,6 +234,10 @@ ul#legend-header li span.swatches {
     border-radius:10px;
 }
 
+#legend-header .legend-popup {
+    cursor:pointer;
+}
+
 #legend-popup .close-popup {float:right; text-decoration: none; color:#333;}
 
 .ui-colorpicker, ui-dialog.ui-colorpicker {
