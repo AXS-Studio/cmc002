@@ -202,6 +202,16 @@ ul#legend-header li span.swatches {
     margin-top: 0;
 }
 
+#cfg {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#cfgGraphs {
+
+    
+}
+
 #bgplate {
     background: rgba(0,0,0,0.5);
     width:100%;

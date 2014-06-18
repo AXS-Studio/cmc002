@@ -210,7 +210,8 @@ var GenerateSwatches = (function() {
 
  })();
 
-	
+var defaultQuestions = ["QIDS_5","ASRM_1","ASRM_4", "ASRM_0"];
+var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)','rgba(199,244,100,1.0)','rgba(78,205,196,1.0)']; 
 
 function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
 		for (var i = 0; i < questions.length; i++) {
@@ -228,6 +229,11 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 
 						var newGraphColor = new GraphColor (id);
 						newGraphColor.color = "rgba(0,0,0,0)";
+
+						if($.inArray(id,defaultQuestions) != -1) {
+							newGraphColor.color = defaultColors[$.inArray(id,defaultQuestions)];
+						}
+
 						if(graphColors == null) graphColors = new Array();
 						graphColors.push(newGraphColor);
 					}
