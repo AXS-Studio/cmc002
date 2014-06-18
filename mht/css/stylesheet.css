@@ -869,7 +869,7 @@ div.shareAlert {
   
   #page_graph #commentDiv {
 	  line-height: 20px;
-	  border-top:1px solid #ccc;
+	  /*border-top:1px solid #ccc;*/
   }
   
   #art-forgot {margin:20px 20px 0px 20px;}
