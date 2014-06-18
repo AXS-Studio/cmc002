@@ -219,8 +219,12 @@ var Timeline = function() {
     };
     
     function makeGraph() {
-        var colourCount = 0;
+        //clear graph
+        focus.selectAll("*").remove();
+        tagFocus.selectAll("*").remove();
 
+        var colourCount = 0;
+        var tagRowcounter = 0;
         for (var i = 0; i < initialData.length; i++) {
             
             //---Plot survey data---------------------------------------------------------------------------
@@ -325,7 +329,7 @@ var Timeline = function() {
                             return xScale(d.date)-tagDim.width/2;
                         })
                         .attr('y', function(d) {
-                            return j*tagDim.height;
+                            return tagRowcounter*tagDim.height;
                         })
                         .attr('width', function(d) {
                             return tagDim.width;
@@ -336,7 +340,7 @@ var Timeline = function() {
                         
                         rects.exit().remove();
 
-                        
+                        tagRowcounter++;
                     }
                 } //end for
 
@@ -446,10 +450,10 @@ var Timeline = function() {
     }
 
     function onEditGraph() {
-        console.log("graphSettings", graphSettings);
-        changeColours();
-        updateGraph();
-        
+        //console.log("graphSettings", graphSettings);
+        //changeColours();
+        //updateGraph();
+        makeGraph();
     }
 
     //----------Update whole graph-------------------------------------------------------------
@@ -480,15 +484,15 @@ var Timeline = function() {
             // }
 
             if (type=="tag"){
-                tagRowcounter++;
+                
                 var rects = tagFocus.selectAll('.rect_' + tag);
                 if (!rects.empty()) {
                     
-                    if ( colour == "rgba(0,0,0,0)")
-                    rects.remove();//delete
-                    else
-                    rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; })
-                    .attr('y', function() { return tagRowcounter*tagDim.height });
+                    //if ( colour == "rgba(0,0,0,0)")
+                    //rects.remove();//delete
+                    //else
+                    rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; });;
+                    //.attr('y', function() { return tagRowcounter*tagDim.height });
                 }
             }
 
