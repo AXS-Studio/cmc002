@@ -344,6 +344,11 @@ var Timeline = function() {
                     }
                 } //end for
 
+                tagFocusDim.height = tagRowcounter*tagDim.height;
+                svgDim.height= focusDim.height + tagFocusDim.height  + focusMargin.top + focusMargin.bottom + tagFocusMargin.top  + tagFocusMargin.bottom;
+
+                d3.select("#cfgGraphs svg").attr("height", svgDim.height );
+                console.log("height changed", tagFocusDim.height);
 
             } //end if initialData[i].id == 'tags'
             //---Plot comments---------------------------------------------------------------------------
@@ -393,6 +398,13 @@ var Timeline = function() {
                     'y': 0,
                     'id': 'tuner'
                 });
+        
+        // overlay.append("path")
+        // .style('fill','rgba(0,0,0,1)')
+        //  .attr({
+        //     "transform": "translate(" + focusDim.width/2 + "," + svgDim.height + ")",
+        //     'd': "M 10 0 L 0 -10 L -10 0 l 10 0"
+        //  });
 
         //Axis
         if (d3.select('#xAxis_g').empty()) {
