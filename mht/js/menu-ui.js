@@ -575,6 +575,11 @@ var IsTransparent = function (id)
 	return false;
 }
 
+function ToFrom () {
+	this.to = "";
+	this.from = "";
+}
+
     
 function GraphColor (id) 
 {

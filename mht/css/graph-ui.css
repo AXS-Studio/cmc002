@@ -176,11 +176,16 @@ ul.tags li a.swatches {
     width: 20px !important;	
 }*/
 
+ul#legend-header {
+    padding:10px 5px 0px 5px;
+}
+
 ul#legend-header li  {
     margin:0px;
     float:left;
     clear:none;
-    padding:3px;
+    padding:0px 3px;
+    /*line-height: 24px;*/
 }
 
 ul#legend-header li span {
