@@ -156,7 +156,8 @@ var Timeline = function() {
     
     //---------------------------------------------------------------------
     //Global variables carried over from last version
-    var settings = [];
+    var graphSettings = [];
+    //graphSettings.tags = [];
     //var data = [];
     var colourCount = 0;
     var comments = [];
@@ -216,7 +217,7 @@ var Timeline = function() {
         });
 
     };
-    //localStorage.setItem('graphColors', JSON.stringify(graphColors));
+    
     function makeGraph() {
         var colourCount = 0;
 
@@ -233,14 +234,14 @@ var Timeline = function() {
                     });
 
                     // ...create an object in settings for the collected data.
-                    settings.push({
+                    graphSettings.push({
                         "id": initialData[i].id,
                         "name": initialData[i].name//,"colour": initialData[i].colour
                     });
-
+                   
                     // Scale the range of the data
                     // TODO: will need to remember the largest domain if datasets have different extents
-                    xScale.domain(d3.extent(initialData[i]["results"], function(d) {
+                    xScale.domain(d3.extent(initialData[i].results, function(d) {
                         return d.date;
                     }));
                     yScale.domain([0, 100]);
@@ -284,6 +285,7 @@ var Timeline = function() {
                 initialDataTagIndex = i; //remember the index for the tags
 
                 for (var j = 0; j < initialData[initialDataTagIndex].results.length; j++) {
+                    
                     //Convert date in initialData to a d3 readable format
                     jQuery.each(initialData[initialDataTagIndex].results[j].results, function(i, d) {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
@@ -292,50 +294,50 @@ var Timeline = function() {
                     var thisTag = initialData[initialDataTagIndex].results[j].tag;
                     var thisColour;
 
-                    //simple loop to check if colour exists in menu's graphColor object, if yes sync
+                    //simple loop to check if colour exists in tag's graphColor object, if yes sync
                     for (var k = 0; k < tagColors.length; k++) {
                         if (tagColors[k].id == thisTag){
                            thisColour = tagColors[k].color;
                         }
                     }
-                    // var colour = settings[i].colour;
 
-                    // if (j < colours.length)
-                    //     thisColour = colours[j];
-                    // else
-                    //      thisColour = colours[0];
+                    if (thisColour != "rgba(0,0,0,0)" && thisColour != null){
+                        
+                        //Create an object in graphSettings
+                        graphSettings.push({
+                            "id": "tag_"+thisTag,
+                            "tag": thisTag,
+                            "colour": thisColour
+                        });
 
-                    //append rects for each tag group. In d3 fashion first bind the data
-                    var rects = tagFocus.selectAll(".rect_" + thisTag).data(initialData[initialDataTagIndex].results[j].results, function(d) { return d.date; });
+                        //graphSettings.tags.push(thisTag);//add to list of tags displayed
 
-                    //Append rects for all binded data entering the graph
-                    rects.enter().append('rect')
-                    .style('fill', thisColour)
-                    .style('stroke', 'rgba(256,256,256,1.0)')
-                    .attr('class', "rect_" + thisTag)
-                    .attr("data-sessionID", function(d) { return d.SessionID; })
-                    .attr('x', function(d) {
-                        return xScale(d.date)-tagDim.width/2;
-                    })
-                    .attr('y', function(d) {
-                        return j*tagDim.height;
-                    })
-                    .attr('width', function(d) {
-                        return tagDim.width;
-                    })
-                    .attr('height', function(d) {
-                        return tagDim.height;
-                    });
-                    
-                    rects.exit().remove();
+                        //append rects for each tag group. In d3 fashion first bind the data
+                        var rects = tagFocus.selectAll(".rect_" + thisTag).data(initialData[initialDataTagIndex].results[j].results, function(d) { return d.date; });
 
-                    // ...create an object in settings for the collected data.
-                    settings.push({
-                        "id": "tag_"+initialData[i].results[j].tag,
-                        "tag": initialData[i].results[j].tag,
-                        "colour": thisColour
-                    });
-                    
+                        //Append rects for all binded data entering the graph
+                        rects.enter().append('rect')
+                        .style('fill', thisColour)
+                        .style('stroke', 'rgba(256,256,256,1.0)')
+                        .attr('class', "rect_" + thisTag)
+                        .attr("data-sessionID", function(d) { return d.SessionID; })
+                        .attr('x', function(d) {
+                            return xScale(d.date)-tagDim.width/2;
+                        })
+                        .attr('y', function(d) {
+                            return j*tagDim.height;
+                        })
+                        .attr('width', function(d) {
+                            return tagDim.width;
+                        })
+                        .attr('height', function(d) {
+                            return tagDim.height;
+                        });
+                        
+                        rects.exit().remove();
+
+                        
+                    }
                 } //end for
 
 
@@ -444,8 +446,10 @@ var Timeline = function() {
     }
 
     function onEditGraph() {
-        updateGraph();
+        console.log("graphSettings", graphSettings);
         changeColours();
+        updateGraph();
+        
     }
 
     //----------Update whole graph-------------------------------------------------------------
@@ -457,20 +461,38 @@ var Timeline = function() {
     function updateGraph() {
 
         //Update all line graphs currently rendered
-        for (var i = 0; i < settings.length; i++) {
-            var id = settings[i].id;
-            var colour = settings[i].colour;
+        for (var i = 0; i < graphSettings.length; i++) {
+            var id = graphSettings[i].id;
+            var colour = graphSettings[i].colour;
+            var type = id.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
+            var tag = id.split("_")[1];
+
+            var tagRowcounter = 0;
 
             //Update line graph
-            focus.select("#data_" + settings[i].id).attr("d", areaFill);
+            focus.select("#data_" + graphSettings[i].id).attr("d", areaFill);
             // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
 
             //Update dots on line graphs
-            // var dots = focus.selectAll(".dot_" + settings[i].id);
+            // var dots = focus.selectAll(".dot_" + graphSettings[i].id);
             // if (!dots.empty()) {
             //     dots.attr("cx", function(d) { return xScale(d.date); });
             // }
-        } //end for settings length
+
+            if (type=="tag"){
+                tagRowcounter++;
+                var rects = tagFocus.selectAll('.rect_' + tag);
+                if (!rects.empty()) {
+                    
+                    if ( colour == "rgba(0,0,0,0)")
+                    rects.remove();//delete
+                    else
+                    rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; })
+                    .attr('y', function() { return tagRowcounter*tagDim.height });
+                }
+            }
+
+        } //end for graphSettings length
 
         //Update comments
         var commentRects = tagFocus.selectAll('.rect_comment');
@@ -479,15 +501,15 @@ var Timeline = function() {
         }
 
         //Update all tags
-        for (var j = 0; j < initialData[initialDataTagIndex].results.length; j++) {
+        // for (var j = 0; j < initialData[initialDataTagIndex].results.length; j++) {
 
-            var rects = tagFocus.selectAll('.rect_' + initialData[initialDataTagIndex].results[j].tag);
+        //     var rects = tagFocus.selectAll('.rect_' + initialData[initialDataTagIndex].results[j].tag);
 
-            if (!rects.empty()) {
-                rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; });
-                // .attr('y', function(d, i) { return j * 21; });
-            }
-        }
+        //     if (!rects.empty()) {
+        //         rects.attr('x', function(d) { return xScale(d.date)-tagDim.width/2; });
+        //         // .attr('y', function(d, i) { return j * 21; });
+        //     }
+        // }
 
         focus.select(".x.axis").call(xAxis);
 
@@ -590,9 +612,9 @@ var Timeline = function() {
     //----------Change all colours of graphs and tags-------------------------------------------------------------
     function changeColours() {
        
-        for (var i = 0; i < settings.length; i++) {
+        for (var i = 0; i < graphSettings.length; i++) {
             
-            var id = settings[i].id; 
+            var id = graphSettings[i].id; 
             var type = id.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
             var tag = id.split("_")[1];
 
@@ -600,7 +622,7 @@ var Timeline = function() {
             if (type != "tag"){
                 for (var j = 0; j < graphColors.length; j++) {
                     if (graphColors[j].id == id){
-                        settings[i].colour = graphColors[j].color;
+                        graphSettings[i].colour = graphColors[j].color;
                     }
                 }
             }
@@ -608,16 +630,16 @@ var Timeline = function() {
                 //simple loop to check if colour exists in menu's tagColor object, if yes sync
                 for (var j = 0; j < tagColors.length; j++) {
                     if (tagColors[j].id == tag){
-                        settings[i].colour = tagColors[j].color;
+                        graphSettings[i].colour = tagColors[j].color;
                     }
                 }
             }
-            var thisColour = settings[i].colour;
+            var thisColour = graphSettings[i].colour;
 
             //Update tags
-            if (type == "tag" && settings[i].hasOwnProperty('tag')){             
-                $(".rect_"+settings[i].tag).css("fill",thisColour);
-                $("#div_"+settings[i].tag).css("background-color",thisColour);//item+"_div",
+            if (type == "tag" && graphSettings[i].hasOwnProperty('tag')){             
+                $(".rect_"+ graphSettings[i].tag).css("fill",thisColour);
+                $("#div_"+ graphSettings[i].tag).css("background-color",thisColour);//item+"_div",
             }
             else if (type !="tag"){
                 //Update line graphs and dots
@@ -627,15 +649,15 @@ var Timeline = function() {
                 //$(".dot_"+id).css("fill",thisColour);
             }
            
-        } //end for settings length
+        } //end for graphSettings length
     }//end changeColours
 
     function updateHeader() {
-        for (var i = 0; i < settings.length; i++) {
+        for (var i = 0; i < graphSettings.length; i++) {
 
-            var qid = settings[i].id; 
+            var qid = graphSettings[i].id; 
             var type = qid.split("_")[0]; //either: QIDS, SCORE, VAS, ASRM, tag
-            var colour = settings[i].colour;
+            var colour = graphSettings[i].colour;
 
             if (colour!= "rgba(0,0,0,0)" && type !="tag"){
                 //console.log("colour", colour);
