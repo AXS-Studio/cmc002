@@ -188,7 +188,7 @@ ul#legend-header li span {
     margin-left:2px;
 }
 
-ul#legend-header li span.swatches {
+ul#legend-header li span.swatches, span.popupColor {
     height:8px !important;
     width: 8px !important;
     line-height: auto;
@@ -196,6 +196,19 @@ ul#legend-header li span.swatches {
     border:none;
     float:none;
 
+}
+
+span.popupColor  {display: inline-block;
+    border-radius:10px;
+    float:left;
+    line-height: 25px;
+    margin-top:3px;
+    margin-right:5px;
+}
+
+p.popupHeading {
+    font-size:12px;
+    color:#999;
 }
 
 #top-legend > ul {

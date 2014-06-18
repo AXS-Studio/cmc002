@@ -376,11 +376,94 @@ function TurnOff(id) {
 
 }
 
+var idName = function(id) {
+	var result = $.grep(answerData, function(e){ return e.id == id; });
+	return result[0].name;
+}
+
+var idColor = function(id) {
+	var result = $.grep(graphColors, function(e){ return e.id == id; });
+	return result[0].color;
+}
+
+var resultsFromSession = function(id, sessionID) {
+	var loc = $.grep(answerData, function(e){ return e.id == id; });
+	// // var loc = $.inArray(answerData,id);
+	// alert(loc);
+	// console.log(loc);
+	alert(sessionID);
+	for(var i = 0; i<loc[0].results.length; i++) {
+		// console.log(Date.parse(loc[0].results[i].Date) + "==" + targetDate);
+		if(loc[0].results[i].SessionID == sessionID ) {
+			return loc[0].results[i].Data;
+		} 
+	}
+
+	return "";
+	// var result = $.grep(loc[0].results, function(e){return e.Date == date;});
+	// console.log(result);
+	// return result[0].Data;
+}
+
+
+var resultsFromDate = function(id, targetDate) {
+	var loc = $.grep(answerData, function(e){ return e.id == id; });
+	// // var loc = $.inArray(answerData,id);
+	// alert(loc);
+	// console.log(loc);
+	// alert(targetDate);
+	for(var i = 0; i<loc[0].results.length; i++) {
+		
+		var compareDate = Date.parse(loc[0].results[i].Date);
+		compareDate.set({second:00});
+		console.log(compareDate + "==" + targetDate);
+		if(compareDate.equals(targetDate) ) {
+			// Alert("Match found");
+			return loc[0].results[i].Data;
+		} 
+	}
+
+	return "";
+	// var result = $.grep(loc[0].results, function(e){return e.Date == date;});
+	// console.log(result);
+	// return result[0].Data;
+}
+
+function populatePopUpLegend(id) {
+	var name = idName(id);
+	var cleanName = name.split("_");
+	name = cleanName[cleanName.length-1];
+	var getDate = $("#commentDateDiv").html();
+	if(getDate != "Date") {
+		var newDate =  Date.parse(getDate);
+		if(newDate != null) {
+		newDate.set({second:00});
+		var data = resultsFromDate(id,newDate);
+		}
+		else
+		{
+			data = "";
+		}
+	} 
+	else 
+	{
+		data = "";
+	}
+
+	var color = idColor(id);
+
+	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p><p class='popupHeading'>Range</p><p>100 = <br/>0 = </p><p class='popupHeading'>Response</p><p>"+ data + "</p>";
+	$("#legend-popup-content").html(newHtml);
+
+}
+
 function addPopUpLegend() {
 
 
 	$("#legend-header .legend-popup").live('click', function(e) {
-
+		var id = $(this).attr("id");
+		var id = id.replace("legend-", "");
+		populatePopUpLegend(id);
 		$("#legend-popup").show();
 		$("#bgplate").show();
 		});
