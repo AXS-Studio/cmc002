@@ -442,7 +442,7 @@ var Timeline = function() {
                 "transform": "translate(" + 0 + "," + -10 + ")",
                 'd': "M -10 0 L 0 -10 L 10 0"
             }); 
-        }
+        }//end if tuner empty
 
 
         //Axis
