@@ -5,7 +5,7 @@ global $mysqli;
 
 $patientID		=	$_REQUEST["patientID"];
 $tags = array();
-$q = "SELECT DISTINCT(`Tag`) FROM `questiontags` WHERE PatientID='$patientID'";
+$q = "SELECT DISTINCT(`Tag`) FROM `Tags` WHERE PatientID='$patientID'";
 if ($result = $mysqli->query($q)){	
 	while($row = $result->fetch_assoc()){
 		$jsonArray[] = $row['Tag'];

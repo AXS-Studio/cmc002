@@ -141,7 +141,7 @@ function getCommentsTags($patientID){
 			
 			//Grab tags
 			$sessionID = $row['SessionID'];
-			$q2 = "SELECT `Tag` FROM `questionTags` WHERE `PatientID` = '$patientID' AND `SessionID` = '$sessionID'";
+			$q2 = "SELECT `Tag` FROM `Tags` WHERE `PatientID` = '$patientID' AND `SessionID` = '$sessionID'";
 
 			if ($result2 = $mysqli->query($q2)){	
 				while($row2 = $result2->fetch_assoc()){
@@ -191,7 +191,7 @@ function getTags($patientID){
 	global $mysqli;
 	$answerArray = array();
 
-	$q = "SELECT `Date`, `Tag` FROM `questiontags`
+	$q = "SELECT `Date`, `Tag` FROM `Tags`
 	WHERE `PatientID` = '$patientID' ORDER BY `Date`";
 	if ($result = $mysqli->query($q)){
 		while($row = $result->fetch_assoc()){
@@ -213,7 +213,7 @@ function getUniqueTagList($patientID){
 	global $mysqli;
 	$answerArray = array();
 
-	$q = "SELECT `Tag`, COUNT(*) as `Count` FROM `questionTags` WHERE `PatientID` = '$patientID' GROUP BY `Tag`";
+	$q = "SELECT `Tag`, COUNT(*) as `Count` FROM `Tags` WHERE `PatientID` = '$patientID' GROUP BY `Tag`";
 
 	if ($result = $mysqli->query($q)){
 		while($row = $result->fetch_assoc()){
@@ -239,7 +239,7 @@ function getUniqueTags($patientID){
 	$tagBus = array();
 
 	//Get list of unique tags first
-	$q = "SELECT `Tag`, COUNT(*) as `Count` FROM `questionTags` WHERE `PatientID` = '$patientID' GROUP BY `Tag`";
+	$q = "SELECT `Tag`, COUNT(*) as `Count` FROM `Tags` WHERE `PatientID` = '$patientID' GROUP BY `Tag`";
 	if ($result = $mysqli->query($q)){
 		while($row = $result->fetch_assoc()){
 			$bus = array('Tag' => nl2br($row['Tag']),
@@ -255,7 +255,7 @@ function getUniqueTags($patientID){
     	//Perform query for each tag
 		$thisTag = $uniqueTags[$i]['Tag'];
 
-		$q = "SELECT * FROM `questionTags` WHERE `PatientID` = '$patientID' AND `Tag` = '$thisTag' ORDER BY `Date`";
+		$q = "SELECT * FROM `Tags` WHERE `PatientID` = '$patientID' AND `Tag` = '$thisTag' ORDER BY `Date`";
 		if ($result = $mysqli->query($q)){
 			while($row = $result->fetch_assoc()){
 				$bus = array(	'PatientID' => $row['PatientID'],

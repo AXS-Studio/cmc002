@@ -107,6 +107,10 @@ var Quiz = (function() {
 								"id": "comments",
 								"answer": null
 							});
+							results.answers.push({
+								"id": "tags",
+								"answer": null
+							});
 						}
 						results.answers[id].id = 'comments';
 						results.answers[id].answer = $('#comments').val();
@@ -151,112 +155,114 @@ var Quiz = (function() {
 		});
 		
 	};
-	
-	var submit = function(id) {
-		$('#art-').attr('id', 'art-' + id);
-		$('#back-').attr('id', 'back-' + id);
-		back(id);
-		// Add the 'pos2' class to the new article
-		// $('#art-' + id).addClass(pos);
-		// Apply the height to the article wrapper...
-		// $('#acWrap').height(height);
-		$('#art-' + id + ' .btnSubmit').click(function() {
-			
-			//Cindy: Add in comments from textarea (this function doesn't seem to be used, see .btnSubmit below)
-			for (i = 0; i < results.answers.length; i++){
-				console.log("results", results.answers[i].id);
-				if (results.answers[i].id == "comments")
-				results.answers[i].answer = $('#comments').val();
-			}
 
-			results.date = new Date();
-			var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!
-			localStorage.setItem('lsResults', rJson);
-			// console.log(localStorage.getItem('lsResults'));
-			// $('#art-' + id).attr('class', 'o0');
-			$('#art-' + id).removeClass('o1').addClass('o0');
+//Cindy: This seems unused
+	// var submit = function(id) {
+	// 	$('#art-').attr('id', 'art-' + id);
+	// 	$('#back-').attr('id', 'back-' + id);
+	// 	back(id);
+	// 	// Add the 'pos2' class to the new article
+	// 	// $('#art-' + id).addClass(pos);
+	// 	// Apply the height to the article wrapper...
+	// 	// $('#acWrap').height(height);
+	// 	$('#art-' + id + ' .btnSubmit').click(function() {
 			
-			// $('#art-' + id).remove();
-			// $('header.mht').after(Pages.loading);
-			// Resize.setSizes();
-			// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
-			/*$('#art-loading').show().attr('class', 'o1');
-			Middle.init();*/
-			setTimeout(function() {
-				$('#art-' + id).remove();
-				$('header.mht').after(Pages.loading);
-				// Resize.setSizes();
-				// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
-				$('#art-loading').show().attr('class', 'o1');
-				Middle.init();
-				$.ajax({
-					type: 'POST',
-					url: 'php/submit.php',
-					data: {
-						"results": rJson
-					},
-					// dataType: 'json',
-					success: function(message) {
-						localStorage.removeItem('lsResults');
-						/*if ($('html').hasClass('blackberry')) {	// ALERT: Added this condition to accomodate BlackBerrys
-							$('#art-loading').remove();
-							$('header.mht').after(Pages.thanks);
-							// Resize.setSizes();
-							// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
-							$('#art-thanks').attr('class', 'o1').show();
-							Middle.init();
-						} else {
-							$('#art-loading').attr('class', 'o0');
-							setTimeout(function() {
-								$('#art-loading').remove();
-								$('header.mht').after(Pages.thanks);
-								// Resize.setSizes();
-								// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
-								$('#art-thanks').show().attr('class', 'o1');
-								Middle.init();
-							}, 250);
-						}*/
-						$('#art-loading').attr('class', 'o0');
-						setTimeout(function() {
-							$('#art-loading').remove();
-							$('header.mht').after(Pages.thanks);
-							// Resize.setSizes();
-							// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
-							$('#art-thanks').show().attr('class', 'o1');
-							Middle.init();
-						}, 250);
-					},
-					error: function() {
-						$('#art-loading').attr('class', 'o0');
-						$('header.mht').after(Pages.noConnection);
-						$('#art-nc').show().attr('class', 'o1');
-					}
-				});
-			}, 250);
-			return false;
-		});
-		// Show and fade in the header and article wrapper...
-		if (loggedIn == false) {
-			if ($('html').hasClass('blackberry')) {	// ALERT: Added this condition to accomodate BlackBerrys
-				//$('header.mht').attr('class', 'mht o1').show();
-			} else {
-				//$('header.mht').show().removeClass('o0').addClass('o1');
-			}
-			// $('header.mht').show().removeClass('o0').addClass('o1');
-			loggedIn = true;
-		}
-		// $('#art-' + id).show().attr('class', 'o1');
-		if ($('html').hasClass('blackberry')) {	// ALERT: Added this condition to accomodate BlackBerrys
-			$('#art-' + id).attr('class', 'message o1').show();
-		} else {
-			$('#art-' + id).show().removeClass('o0').addClass('o1');
-		}
-		// $('#art-' + id).show().removeClass('o0').addClass('o1');
-		Middle.init();
-		// Set the sizes for the browser contents based on the device\'™s orientation...
-		// Resize.setSizes();
-	};
-	
+	// 		//Cindy: Add in comments from textarea (this function doesn't seem to be used, see .btnSubmit below)
+	// 		for (i = 0; i < results.answers.length; i++){
+	// 			console.log("results", results.answers[i].id);
+	// 			if (results.answers[i].id == "comments")
+	// 			results.answers[i].answer = $('#comments').val();
+	// 		}
+
+	// 		results.date = new Date();
+	// 		var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!
+	// 		localStorage.setItem('lsResults', rJson);
+	// 		// console.log(localStorage.getItem('lsResults'));
+	// 		// $('#art-' + id).attr('class', 'o0');
+	// 		$('#art-' + id).removeClass('o1').addClass('o0');
+			
+	// 		// $('#art-' + id).remove();
+	// 		// $('header.mht').after(Pages.loading);
+	// 		// Resize.setSizes();
+	// 		// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
+	// 		/*$('#art-loading').show().attr('class', 'o1');
+	// 		Middle.init();*/
+	// 		setTimeout(function() {
+	// 			$('#art-' + id).remove();
+	// 			$('header.mht').after(Pages.loading);
+	// 			// Resize.setSizes();
+	// 			// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
+	// 			$('#art-loading').show().attr('class', 'o1');
+	// 			Middle.init();
+	// 			$.ajax({
+	// 				type: 'POST',
+	// 				url: 'php/submit.php',
+	// 				data: {
+	// 					"results": rJson
+	// 				},
+	// 				// dataType: 'json',
+	// 				success: function(message) {
+	// 					localStorage.removeItem('lsResults');
+	// 					if ($('html').hasClass('blackberry')) {	// ALERT: Added this condition to accomodate BlackBerrys
+	// 						$('#art-loading').remove();
+	// 						$('header.mht').after(Pages.thanks);
+	// 						// Resize.setSizes();
+	// 						// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
+	// 						$('#art-thanks').attr('class', 'o1').show();
+	// 						Middle.init();
+	// 					} else {
+	// 						$('#art-loading').attr('class', 'o0');
+	// 						setTimeout(function() {
+	// 							$('#art-loading').remove();
+	// 							$('header.mht').after(Pages.thanks);
+	// 							// Resize.setSizes();
+	// 							// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
+	// 							$('#art-thanks').show().attr('class', 'o1');
+	// 							Middle.init();
+	// 						}, 250);
+	// 					}
+	// 					$('#art-loading').attr('class', 'o0');
+	// 					setTimeout(function() {
+	// 						$('#art-loading').remove();
+	// 						$('header.mht').after(Pages.thanks);
+	// 						// Resize.setSizes();
+	// 						// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
+	// 						$('#art-thanks').show().attr('class', 'o1');
+	// 						Middle.init();
+	// 					}, 250);
+	// 				},
+	// 				error: function() {
+	// 					$('#art-loading').attr('class', 'o0');
+	// 					$('header.mht').after(Pages.noConnection);
+	// 					$('#art-nc').show().attr('class', 'o1');
+	// 				}
+	// 			});
+	// 		}, 250);
+	// 		return false;
+	// 	});
+	// 	// Show and fade in the header and article wrapper...
+	// 	if (loggedIn == false) {
+	// 		if ($('html').hasClass('blackberry')) {	// ALERT: Added this condition to accomodate BlackBerrys
+	// 			//$('header.mht').attr('class', 'mht o1').show();
+	// 		} else {
+	// 			//$('header.mht').show().removeClass('o0').addClass('o1');
+	// 		}
+	// 		// $('header.mht').show().removeClass('o0').addClass('o1');
+	// 		loggedIn = true;
+	// 	}
+	// 	// $('#art-' + id).show().attr('class', 'o1');
+	// 	if ($('html').hasClass('blackberry')) {	// ALERT: Added this condition to accomodate BlackBerrys
+	// 		$('#art-' + id).attr('class', 'message o1').show();
+	// 	} else {
+	// 		$('#art-' + id).show().removeClass('o0').addClass('o1');
+	// 	}
+	// 	// $('#art-' + id).show().removeClass('o0').addClass('o1');
+	// 	Middle.init();
+	// 	// Set the sizes for the browser contents based on the device\'™s orientation...
+	// 	// Resize.setSizes();
+	// };
+//end unused
+
 	var comment = function(id, pos) {
 		$('#art-').attr('id', 'art-' + id);
 		$('#back-').attr('id', 'back-' + id);
@@ -285,6 +291,10 @@ var Quiz = (function() {
 				"id": "comments",
 				"answer": ""
 			});
+			results.answers.push({
+				"id": "tags",
+				"answer": ""
+			});
 		}
 
 
@@ -310,7 +320,7 @@ var Quiz = (function() {
 
 		$('.add-tag').click(function(){
 			if($('#tags').val() != ''){
-				var tag = $('#tags').val();
+				var tag = $('#tags').val().replace(/ /g,''); //remove white spaces for tags
 				$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
 				$('#tags').val('');
 
@@ -329,12 +339,19 @@ var Quiz = (function() {
 
 		$('.btnSubmit').click(function() {
 			
-			//Cindy: Add in comments from textarea
+			//Cindy: Add in comments from textarea, and tags with class .tag
 			for (i = 0; i < results.answers.length; i++){
 				if (results.answers[i].id == "comments")
 				results.answers[i].answer = $('#comments').val();
-			}
-
+			
+				if (results.answers[i].id == "tags"){
+					var $tag_object = $(".tag");
+					$tag_object.each( function(index, value) {  
+						results.answers[i].answer += " "+$(this).text().slice(0, - 1); //remove x at the end
+					} );
+					results.answers[i].answer = results.answers[i].answer.substring(1);//remove space at the beginning
+				}			
+			}//end for
 
 			results.date = new Date();
 			var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!

@@ -45,12 +45,13 @@ if (isset($_REQUEST['results']))
 	//For aggregate score
 	$answerArray = array(); //associative array which contains all answers from current session
 	$dateArray = array(); //associative array which contains all dates from current session
-	
+	$tagString =""; //store tags
+
 	//Create prepared mysqli statement
 	global $mysqli;
 	if ($stmt = $mysqli->prepare("INSERT INTO `Answers`(`PatientID`, `SessionID`, `Date`, `QuestionID`, `Answer`, `Flipped`) VALUES (?,?,?,?,?,?)")) {
-	$stmt->bind_param('sisssi', $patientID, $sessionID, $date, $id, $answer, $flipped );	// Bind our param as string
-	
+		$stmt->bind_param('sisssi', $patientID, $sessionID, $date, $id, $answer, $flipped );	// Bind our param as string
+		
 		//Iterate through Answer array, and write to database
 		foreach($answers as $key => $value){
 			$object = $value;
@@ -66,12 +67,16 @@ if (isset($_REQUEST['results']))
 			
 			//Convert answer of QIDS and ASRM to numerical
 			//$answer = convertAnswer($answer, $id);
-			
-			$stmt->execute();
-			
-			//Insert value into associative array for aggregate score
-			$answerArray[$id] = $answer;
-			$dateArray[$id] = $date;
+			if ($id == "tags"){
+				$tagString = $answer;
+			}
+			else{
+				$stmt->execute();
+				
+				//Insert value into associative array for aggregate score
+				$answerArray[$id] = $answer;
+				$dateArray[$id] = $date;
+			}
 			
 		}//end foreach
 		$stmt->close();
@@ -85,10 +90,24 @@ if (isset($_REQUEST['results']))
 		
 		//$myResponse['debug'] = $mysqli->error;
 		
+		//Insert tags
+		if ($tagString!=""){
+			$tagArray = explode(" ", $tagString);
+
+			if ($stmt = $mysqli->prepare("INSERT INTO `Tags`(`PatientID`, `SessionID`, `Tag`, `Date`) VALUES (?,?,?,?)")) {
+				$stmt->bind_param('siss', $patientID, $sessionID, $tag, $date );
+				
+				foreach($tagArray as $value){
+					$tag = $value;
+					$stmt->execute();
+				}
+				$stmt->close();
+			}//end if mysqli->prepare
+		}
+
+
 		$myResponse['result'] = 1;
-	}//end if $stmt
-	
-	
+	}//end if $stmt=mysqli->prepare
 	
 	//Update Session_MHT as Completed
 	if ($stmt = $mysqli->prepare("UPDATE `Sessions_MHT` SET `Completed` = ?  WHERE `SessionID` = '$sessionID'")){ 
