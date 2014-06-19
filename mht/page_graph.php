@@ -13,7 +13,9 @@
 	</nav>
 	<div id="content">
 		<div id="legend_content" class="tab_content active"></div>
-			<div id="edit_content" class="tab_content"></div>
+			<div id="edit_content" class="tab_content">
+				
+			</div>
 			<div id="share_content" class="tab_content"></div>
 		</div>
 	</aside>

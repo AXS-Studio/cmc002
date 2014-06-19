@@ -300,6 +300,7 @@ function addTagSwatches() {
 				return false;
 			});
 		}
+		
 	}
 }
 
