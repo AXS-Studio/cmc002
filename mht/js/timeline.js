@@ -9,7 +9,7 @@ var Timeline = function() {
     //         "answers": []
     //     };
     // }
-    //----------default colours----------
+//----------default colours----------
     var colours = [
         'rgba(85,98,112,1.0)', // Mighty Slate
         'rgba(255,107,107,1.0)', // Cheery Pink
@@ -152,7 +152,7 @@ var Timeline = function() {
             .attr("id", "overlay_g")
             .attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
 
-//focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom
+    //focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom
 
     svg.append("linearGradient")                
         .attr("id", "gray-gradient")            
@@ -235,7 +235,7 @@ var Timeline = function() {
 
     };
 
-    function makeGraph() {
+function makeGraph() {
         //clear graph
         focus.selectAll("*").remove();
         tagFocus.selectAll("*").remove();
@@ -563,6 +563,9 @@ var Timeline = function() {
     //----------Retrieve a comment based on closest entry to the midpoint, move the tuner----------------------
 
     function getComment() {
+
+        console.log("initialData", initialData);
+
         //Get where the date the midpoint (ie. the ticker) has landed
         var midpointDate = xScale.invert(focusDim.width / 2);
 

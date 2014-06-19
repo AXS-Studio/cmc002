@@ -152,7 +152,7 @@ var Login = (function() {
 					}
 				});
 			}
-			questionnaire.questions.push({"questionID": "comment"}, {"questionID": "submit"});
+			questionnaire.questions.push({"questionID": "comments"}, {"questionID": "submit"});
 			currQuest = 0;
 			nextQuest = 1;
 			lastQuest = questionnaire.questions.length - 1;

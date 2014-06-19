@@ -149,6 +149,7 @@ var Quiz = (function() {
 			}
 			return false;
 		});
+		
 	};
 	
 	var submit = function(id) {
@@ -160,6 +161,14 @@ var Quiz = (function() {
 		// Apply the height to the article wrapper...
 		// $('#acWrap').height(height);
 		$('#art-' + id + ' .btnSubmit').click(function() {
+			
+			//Cindy: Add in comments from textarea (this function doesn't seem to be used, see .btnSubmit below)
+			for (i = 0; i < results.answers.length; i++){
+				console.log("results", results.answers[i].id);
+				if (results.answers[i].id == "comments")
+				results.answers[i].answer = $('#comments').val();
+			}
+
 			results.date = new Date();
 			var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!
 			localStorage.setItem('lsResults', rJson);
@@ -273,7 +282,7 @@ var Quiz = (function() {
 		// $('#art-' + id).show().removeClass('o0').addClass('o1');
 		if (!results.answers[id]) {
 			results.answers.push({
-				"id": "comment",
+				"id": "comments",
 				"answer": ""
 			});
 		}
@@ -319,6 +328,14 @@ var Quiz = (function() {
 		localStorage.setItem('lsResults', rJson);
 
 		$('.btnSubmit').click(function() {
+			
+			//Cindy: Add in comments from textarea
+			for (i = 0; i < results.answers.length; i++){
+				if (results.answers[i].id == "comments")
+				results.answers[i].answer = $('#comments').val();
+			}
+
+
 			results.date = new Date();
 			var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!
 			localStorage.setItem('lsResults', rJson);
@@ -750,7 +767,7 @@ var Quiz = (function() {
 	var typeArt = function(id) {
 		
 			var qstn = questionnaire.questions[id].questionID;
-			if (qstn == 'comment') {
+			if (qstn == 'comments') {
 				$('#content_quiz').html(Pages.comment);
 				comment(id);
 			} else if (qstn == 'submit') {	// submit
