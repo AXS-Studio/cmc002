@@ -300,7 +300,7 @@ function addTagSwatches() {
 				return false;
 			});
 		}
-		
+
 	}
 }
 
@@ -459,7 +459,13 @@ function populatePopUpLegend(id) {
 
 	var popupText = $.grep(PopUps, function(e){ return e.id == id; });
 
-	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p><p class='popupHeading'>Range</p><p>" + popupText[0].description +"</p><p class='popupHeading'>Response</p><p>"+ data + " = " + popupText[0].response + " </p>";
+	if(data != ""){
+		data = Math.round(data);
+		var resultsIndex = $.inArray(parseFloat(data),popupText[0].responseIndex);
+		console.log(popupText[0].responseIndex + "," +data + "," +resultsIndex);
+	}
+
+	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p><p class='popupHeading'>Range</p><p>" + popupText[0].description +"</p><p class='popupHeading'>Response</p><p>"+ data + " = " + popupText[0].response[resultsIndex] + " </p>";
 	$("#legend-popup-content").html(newHtml);
 
 }
