@@ -8,7 +8,8 @@ License: MIT
 .sp-container {
     position:absolute;
     width:80%;
-    height:63%;
+    /*height:63%;*/
+    padding-bottom:50px;
     min-height: 403px;
     top:5%;
     left:10%;

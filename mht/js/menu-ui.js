@@ -376,6 +376,10 @@ function TurnOff(id) {
 
 }
 
+var RangeDescription = {
+
+}
+
 var idName = function(id) {
 	var result = $.grep(answerData, function(e){ return e.id == id; });
 	return result[0].name;
@@ -452,7 +456,9 @@ function populatePopUpLegend(id) {
 
 	var color = idColor(id);
 
-	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p><p class='popupHeading'>Range</p><p>100 = <br/>0 = </p><p class='popupHeading'>Response</p><p>"+ data + "</p>";
+	var popupText = $.grep(PopUps, function(e){ return e.id == id; });
+
+	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p><p class='popupHeading'>Range</p><p>" + popupText[0].description +"</p><p class='popupHeading'>Response</p><p>"+ data + " = " + popupText[0].response + " </p>";
 	$("#legend-popup-content").html(newHtml);
 
 }
@@ -575,9 +581,10 @@ var IsTransparent = function (id)
 	return false;
 }
 
-function ToFrom () {
-	this.to = "";
-	this.from = "";
+function PopUpObject () {
+	this.id = "";
+	this.description = "";
+	this.responseDescription = "";
 }
 
     

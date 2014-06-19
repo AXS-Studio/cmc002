@@ -112,6 +112,7 @@ if ($detect -> isTablet()) {
 		<script src="js/min/scripts-min.js"></script>
 		<script src="js/preloadGraphics.js"></script>
 		<script src="js/pages.js"></script>
+		<script src="js/popups.js"></script>
 		<script src="js/mc.js"></script>
 		<script src="js/range.js"></script>
 		<script src="js/middle.js"></script>
