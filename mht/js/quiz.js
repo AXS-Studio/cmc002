@@ -505,9 +505,9 @@ var Quiz = (function() {
 		Mc.init(id);
 		
 			
-		$('.radioCheck, .label').click(function(){
+		$('.radioCheckInput, .labelInput').click(function(){
 			$('.row').removeClass('rowActive');
-			$(this).parent().addClass('rowActive');
+			$(this).parent().parent().addClass('rowActive');
 		});
 		// Set the sizes for the browser contents based on the device\'s orientation...
 		// Resize.setSizes();
@@ -604,9 +604,9 @@ var Quiz = (function() {
 		Mc.init(id);
 	
 		
-		$('.radioCheck, .label').click(function(){
+		$('.radioCheckInput, .labelInput').click(function(){
 			$('.row').removeClass('rowActive');
-			$(this).parent().addClass('rowActive');
+			$(this).parent().parent().addClass('rowActive');
 		});
 		// Set the sizes for the browser contents based on the device\'s orientation...
 		// Resize.setSizes();
@@ -698,9 +698,9 @@ var Quiz = (function() {
 		// Run the multiple four choices set-up functionality...
 		Mc.init(id);
 
-		$('.radioCheck, .label').click(function(){
+		$('.radioCheckInput, .labelInput').click(function(){
 			$('.row').removeClass('rowActive');
-			$(this).parent().addClass('rowActive');
+	$(this).parent().parent().addClass('rowActive');
 		});
 		
 		// Set the sizes for the browser contents based on the device\'s orientation...

@@ -406,7 +406,11 @@ article, div.message {
       article form fieldset label, div.message form fieldset label {
         font-size: 0.9em;
         position: relative;
-        top: 6px; }
+        display: block;
+        top: 6px; 
+/*        width:100%;
+        height: 100%;*/
+              }
         article form fieldset label[for="remember"], div.message form fieldset label[for="remember"] {
           top: 3px; }
       article form fieldset input[type='checkbox'] + label, div.message form fieldset input[type='checkbox'] + label {
@@ -884,3 +888,4 @@ div.shareAlert {
 	 padding:0px;
 	 list-style: none;
   }
+
