@@ -32,7 +32,7 @@ var Timeline = function() {
 //Set up graph layout parameters
 
     var focusMargin = {
-        top: 10,
+        top: 20,
         right: 10,
         bottom: 20,
         left: 30
@@ -61,7 +61,7 @@ var Timeline = function() {
     }
 
     var tagDim = {
-        width: 5,
+        width: 3,
         height: 20
     }
 
@@ -77,7 +77,7 @@ var Timeline = function() {
     //----------axis----------
     var xAxis = d3.svg.axis().scale(xScale).ticks(4).orient("bottom");
 
-    var yAxis = d3.svg.axis().scale(yScale).orient("left");
+    var yAxis = d3.svg.axis().scale(yScale).ticks(5).orient("left").tickSize(-focusDim.width, 0);
 
     //----------mean line----------
     var alpha = 0.5;
@@ -124,12 +124,31 @@ var Timeline = function() {
         .attr("width", focusDim.width)
         .attr("height", focusDim.height);
 
+    //Gradient for tagFocus_bg
+    //TODO: lower stops don't seem to be update when bounding box changes
+    svg.append("defs")
+        .append("linearGradient")                
+        .attr("id", "gray-gradient")            
+        .attr("gradientUnits", "objectBoundingBox")    
+        // .attr("x1", "0%").attr("y1","0%")         
+        .attr("x2", "0%").attr("y2", "100%")      
+        .selectAll("stop")                      
+        .data([                             
+            {offset: "0%", color: 'rgba(200,200,200,1)'},
+            {offset: "2%", color: 'rgba(230,230,230,1)'},
+            {offset: "90%", color: 'rgba(230,230,230,1)'},       
+            {offset: "92%", color: 'rgba(200,200,200,1)'}   
+        ])                  
+        .enter().append("stop")         
+        .attr("offset", function(d) { return d.offset; })   
+        .attr("stop-color", function(d) { return d.color; });   
+
     svg.append("rect")
         .attr("id", "tagFocus_bg")
-        // .style("fill", "rgba(0,0,0,0.1)")
+        .attr("fill", "url(#gray-gradient)")
         .attr("transform", "translate(0," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")")
         .attr("width", svgDim.width)
-        .attr("height", focusDim.height);
+        .attr("height", tagFocusDim.height+ tagFocusMargin.top + tagFocusMargin.bottom);
 
     var focus = d3.select('#focus_g');
     if (focus.empty())
@@ -149,25 +168,12 @@ var Timeline = function() {
     var overlay = d3.select('#overlay_g');
     if (overlay.empty())
         overlay = svg.append("g")
-            .attr("id", "overlay_g")
-            .attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
+            .attr("id", "overlay_g");
+            //.attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
 
     //focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom
 
-    svg.append("linearGradient")                
-        .attr("id", "gray-gradient")            
-        .attr("gradientUnits", "userSpaceOnUse")    
-        .attr("x1", 0).attr("y1","0%")         
-        .attr("x2", 0).attr("y2", "100%")      
-        .selectAll("stop")                      
-        .data([                             
-            {offset: "0%", color: "white"},       
-            {offset: "90%", color: "gray"},    
-            {offset: "100%", color: "gray"}    
-        ])                  
-        .enter().append("stop")         
-        .attr("offset", function(d) { return d.offset; })   
-        .attr("stop-color", function(d) { return d.color; });   
+    
                
     var x0; //This copy of x captures the original domain setup
 
@@ -260,13 +266,6 @@ function makeGraph() {
                         "name": initialData[i].name //,"colour": initialData[i].colour
                     });
 
-                    // Scale the range of the data
-                    // TODO: will need to remember the largest domain if datasets have different extents
-                    xScale.domain(d3.extent(initialData[i].results, function(d) {
-                        return d.date;
-                    }));
-                    yScale.domain([0, 100]);
-
                     //----------Add a filled svg path for data in Focus--------------
                     focus.append('path')
                         .datum(initialData[i]["results"]) //use datum to bind to single svg element
@@ -341,13 +340,13 @@ function makeGraph() {
                         //Append rects for all binded data entering the graph
                         rects.enter().append('rect')
                             .style('fill', thisColour)
-                            .style('stroke', 'rgba(256,256,256,1.0)')
+                            // .style('stroke', 'rgba(256,256,256,1.0)')
                             .attr('class', "rect_" + thisTag)
                             .attr("data-sessionID", function(d) {
                                 return d.SessionID;
                             })
                             .attr('x', function(d) {
-                                return xScale(d.date) - tagDim.width / 2;
+                                return xScale(d.date) - tagDim.width/2;
                             })
                             .attr('y', function(d) {
                                 return tagRowcounter * tagDim.height;
@@ -371,7 +370,7 @@ function makeGraph() {
 
                 d3.select("#cfgGraphs svg").attr("height", svgDim.height);
                 d3.select("#tagFocus_bg").attr("height", tagFocusDim.height+ tagFocusMargin.top + tagFocusMargin.bottom);
-
+                d3.select("#tagFocus_bg").attr("fill", "url(#gray-gradient)");
             } //end if initialData[i].id == 'tags'
             //---Plot comments---------------------------------------------------------------------------
             else if (initialData[i].id == 'comment') {
@@ -388,8 +387,8 @@ function makeGraph() {
                     });
 
                 commentRects.enter().append('rect')
-                    .style('fill', 'rgba(200,200,200,1.0)')
-                    .style('stroke', 'rgba(256,256,256,1.0)')
+                    .style('fill', 'rgba(100,100,100,1.0)')
+                    // .style('stroke', 'rgba(256,256,256,1.0)')
                     .attr('class', "rect_comment")
                     .attr("data-sessionID", function(d) {
                         return d.SessionID;
@@ -405,6 +404,13 @@ function makeGraph() {
             }
         } //end for initialData.length
 
+        // Scale the range of the data
+        // Using comment data as domain
+        xScale.domain(d3.extent(initialData[initialDataCommentIndex].results, function(d) {
+            return d.date;
+        }));
+        yScale.domain([0, 100]);
+
         //Call zoom
         zoom.x(xScale);
 
@@ -412,6 +418,9 @@ function makeGraph() {
         //-----------Graph elements - axis, tuner strip, transparent zoom rect-----------
 
         //Add a radio tuner style strip
+        //Shift overlay up or down
+        overlay .attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
+
         if (overlay.select('#tuner').empty()) {
             
             var tunerHeight = focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom;
@@ -425,25 +434,31 @@ function makeGraph() {
                     'x': 0,//focusDim.width / 2
                     'y': -1*tunerHeight
                 });
+            
+            overlay.append("path")
+            .style('stroke','rgba(192,192,192,1)')
+            .attr({
+                'id': 'horizontal_tuner_line',
+                'd': "M "+ (-svgDim.width/2-focusMargin.left)+" 0 L "+ (svgDim.width/2+focusMargin.right) +" 0"
+             });
 
             overlay.append("path")
             .style('fill','rgba(256,256,256,1)')
             .attr({
                 'id': 'triangle',
-                "transform": "translate(" + 0 + "," + -10 + ")",
+                "transform": "translate(" + 0 + "," + 0 + ")",
                 'd': "M -10 0 L 0 -10 L 10 0 L -10 0"
              });
 
             overlay.append("path")
-            .style('stroke','rgba(100,100,100,1)')
+            .style('stroke','rgba(192,192,192,1)')
             .style('fill',"none")
             .attr({
                 'id': 'triangleStroke',
-                "transform": "translate(" + 0 + "," + -10 + ")",
+                "transform": "translate(" + 0 + "," + 0 + ")",
                 'd': "M -10 0 L 0 -10 L 10 0"
             }); 
         }//end if tuner empty
-
 
         //Axis
         if (d3.select('#xAxis_g').empty()) {
@@ -467,6 +482,8 @@ function makeGraph() {
 
         //Apply colours
         changeColours();
+        
+        updateGraph();
 
     } //end makeGraph function
 
@@ -563,8 +580,6 @@ function makeGraph() {
     //----------Retrieve a comment based on closest entry to the midpoint, move the tuner----------------------
 
     function getComment() {
-
-        console.log("initialData", initialData);
 
         //Get where the date the midpoint (ie. the ticker) has landed
         var midpointDate = xScale.invert(focusDim.width / 2);

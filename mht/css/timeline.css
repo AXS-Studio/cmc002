@@ -1,5 +1,17 @@
-#tagFocus_bg{
+/*#tagFocus_bg{
 	fill: url(#gray-gradient);
+}*/
+
+.y.axis path {
+	stroke: none;
+}
+
+.x.axis path {
+	stroke: none;
+}
+
+.y.axis line {
+	stroke-opacity: .25;
 }
 
 #graph-header .headerDiv{
