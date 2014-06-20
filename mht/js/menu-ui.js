@@ -345,10 +345,15 @@ var AddColourPicker  = (function() {
 			showPalette: true,
 			allowEmpty: true,
 			change: function(color) {
+
+				id = $(this).attr('id').replace("swatch-tag-", "");
 				if(color == null) color = "rgba(0,0,0,0)";	
 
-				$(this).css('background', color);
-				id = $(this).attr('id').replace("swatch-tag-", "");
+				// $(this).css('background', color);
+				
+				
+				SetTagColor(id, color)
+
 				StoreTagColor(id,color.toString());
 
 				timeline.onEditGraph();
@@ -519,6 +524,23 @@ function ParseTagColors() {
 		SetTagColor(tagColors[i].id, tagColors[i].color);
 	}
 }
+
+ 
+
+function SetTagColor(id,color)
+ {
+ 	var swatchID = '#swatch-tag-' + id.toString();
+ 	var legendID = '#swatch-menu-tag-' + id.toString();
+     $('.swatches ' + swatchID).css('background',color);
+     	if(color == "rgba(0,0,0,0)") {
+ 			$('.swatches ' + swatchID).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');
+ 			$('#legend_content').find(legendID).hide();
+ 		}
+ 		else
+ 	{
+ 		$('#legend_content').find(legendID).show();
+ 	}
+ }  
        
  function SetSwatchColor(id,color)
  {
@@ -562,20 +584,7 @@ function ParseTagColors() {
  	$("#swtchs-edit " + swatchID).spectrum("disable");
  }
  
-function SetTagColor(id,color)
- {
- 	var swatchID = '#swatch-tag-' + id.toString();
- 	var legendID = '#swatch-menu-tag-' + id.toString();
-     $('.swatches ' + swatchID).css('background',color);
-     	if(color == "rgba(0,0,0,0)") {
- 			$('.swatches ' + swatchID).css('background-image', 'url(./images/visualizer_colour_select_transparent.gif)');
- 			$('#legend_content').find(legendID).hide();
- 		}
- 		else
- 	{
- 		$('#legend_content').find(legendID).show();
- 	}
- }   
+ 
    
  var IsInGraphColors = function (id) 
 {
