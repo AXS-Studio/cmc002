@@ -1,146 +1,81 @@
 /*#tagFocus_bg{
 	fill: url(#gray-gradient);
 }*/
+/* #graph-header .headerDiv {
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+}*/
 
-.y.axis path {
-	stroke: none;
+div#cfgGraphs {
+    padding: 0px;
+    margin: 0px;
 }
 
-.x.axis path {
-	stroke: none;
-}
-
-.y.axis line {
-	stroke-opacity: .25;
-}
-
-#graph-header .headerDiv{
-	display: inline-block;
-	margin: 0px 10px 0px 0px;
-	width: 15px;
-	height: 15px;
-	border-radius: 7px;
-
-}
-
+/*------------------Comments------------------*/
 #commentDiv {
-	border: 0;
-	margin: 0;
-	/*font-size: 13px;*/
+    border: 0;
+    margin: 0;
 }
-
 #commentDiv #commentDateDiv {
-	margin: 15px 20px 15px 20px;
-	color: grey;
+    margin: 15px 20px 15px 20px;
+    color: grey;
 }
-
 #commentDiv #commentDataDiv {
-	margin: 15px 20px 15px 20px;
-
+    margin: 15px 20px 15px 20px;
 }
-
 #commentDiv #commentTagDiv {
-	margin: 15px 20px 15px 20px;
-
+    margin: 15px 20px 15px 20px;
 }
-
-#commentDiv #commentTagUL{
-	padding: 0px;
-	list-style-type: none;
+#commentDiv #commentTagUL {
+    padding: 0px;
+    list-style-type: none;
 }
-
-#commentDiv #commentTagUL li{
-	margin: 15px 20px 15px 0px;
-	display: inline;
+#commentDiv #commentTagUL li {
+    margin: 15px 20px 15px 0px;
+    display: inline;
 }
-
-#commentDiv #commentTagUL li .tagDiv{
-	display: inline-block;
-	margin: 0px 10px 0px 0px;
-	width: 15px;
-	height: 15px;
-	border: 1px solid gray;
+#commentDiv #commentTagUL li .tagDiv {
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid gray;
 }
-div#cfgGraphs{
-	padding: 0px;
-	margin: 0px;
-}
-
+/*------------------Graph styling------------------C*/
 svg .areaFill {
-	    /*fill: steelblue;
-	    stroke: steelblue;*/
-	    fill-opacity: 0.5;
-	    stroke-width: 1;
-	    stroke-opacity: 0.75;
-	}
-
-svg .axis path,
-	.axis line {
-	    fill: none;
-	    stroke: grey;
-	    stroke-width: 1;
-	    shape-rendering: crispEdges;
-	}
-
+    fill-opacity: 0.25;
+    stroke-width: 0;
+    stroke-opacity: 0;
+    stroke: none;
+}
+svg .meanline {
+    stroke-width: 1.5;
+    fill: none;
+    opacity: 1;
+}
+svg .y.axis path {
+    stroke: none;
+}
+svg .x.axis path {
+    stroke: none;
+}
+svg .y.axis line {
+    stroke-opacity: .25;
+}
+svg .axis path, svg .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
 svg .axis text {
-  		font: 10px sans-serif;
-	}
-
-/*---------------NOT USED FOR NOW-----------------*/
-	.path1 { 
-	    stroke: steelblue;
-	    stroke-width: 1;
-	    fill: none;
-		opacity: 0.5;
-	}
-	.path2 { 
-	    stroke: red;
-	    stroke-width: 1;
-	    fill: none;
-		opacity: 0.5;
-	}
-	.mean1 { 
-	    stroke: steelblue;
-	    stroke-width: 2;
-	    stroke-opacity: 1;
-	    fill: none;
-	}
-	.mean2 { 
-	    stroke: darkred;
-	    stroke-width: 2;
-	    stroke-opacity: 1;
-	    fill: none;
-	}
-	.area1 {
-	    fill: steelblue;
-	    /*stroke: steelblue;
-	    stroke-width: 1;
-	    stroke-opacity: 0.5;*/
-		fill-opacity: 0.25;
-	}
-	.area2 {
-	    fill: darkred;
-	    /*stroke: darkred;
-	    stroke-width: 1;
-	    stroke-opacity: 0.5;*/
-		fill-opacity: 0.25;
-	}
-
-	
-
-	.rangeSlider {
-		display: inline-block;
-		margin-bottom: -5px;
-	}
-
-	.brush .extent {
-	  stroke: #fff;
-	  fill-opacity: .10;
-	  shape-rendering: crispEdges;
-	}
-
-	rect.pane {
-  	cursor: move;
-  	fill: none;
-  	pointer-events: all;
-	}
+    font: 10px sans-serif;
+}
+rect.pane {
+    cursor: move;
+    fill: none;
+    pointer-events: all;
+}

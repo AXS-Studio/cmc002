@@ -9,7 +9,7 @@ var Timeline = function() {
     //         "answers": []
     //     };
     // }
-//----------default colours----------
+    //----------default colours----------
     var colours = [
         'rgba(85,98,112,1.0)', // Mighty Slate
         'rgba(255,107,107,1.0)', // Cheery Pink
@@ -28,8 +28,8 @@ var Timeline = function() {
         'rgba(116,212,216,1.0)' // Teal
     ];
 
-//-----------------------------------------------------------------------------
-//Set up graph layout parameters
+    //-----------------------------------------------------------------------------
+    //Set up graph layout parameters
 
     var focusMargin = {
         top: 20,
@@ -83,7 +83,8 @@ var Timeline = function() {
     var alpha = 0.5;
     var ypre, xpre;
     var meanline = d3.svg.line()
-        .interpolate("basis")
+        .interpolate("bundle")
+        .tension(0.85)
         .x(function(d, i) {
             return xScale(d.date);
         })
@@ -127,28 +128,39 @@ var Timeline = function() {
     //Gradient for tagFocus_bg
     //TODO: lower stops don't seem to be update when bounding box changes
     svg.append("defs")
-        .append("linearGradient")                
-        .attr("id", "gray-gradient")            
-        .attr("gradientUnits", "objectBoundingBox")    
-        // .attr("x1", "0%").attr("y1","0%")         
-        .attr("x2", "0%").attr("y2", "100%")      
-        .selectAll("stop")                      
-        .data([                             
-            {offset: "0%", color: 'rgba(200,200,200,1)'},
-            {offset: "2%", color: 'rgba(230,230,230,1)'},
-            {offset: "90%", color: 'rgba(230,230,230,1)'},       
-            {offset: "92%", color: 'rgba(200,200,200,1)'}   
-        ])                  
-        .enter().append("stop")         
-        .attr("offset", function(d) { return d.offset; })   
-        .attr("stop-color", function(d) { return d.color; });   
+        .append("linearGradient")
+        .attr("id", "gray-gradient")
+        .attr("gradientUnits", "objectBoundingBox")
+    // .attr("x1", "0%").attr("y1","0%")         
+    .attr("x2", "0%").attr("y2", "100%")
+        .selectAll("stop")
+        .data([{
+            offset: "0%",
+            color: 'rgba(200,200,200,1)'
+        }, {
+            offset: "2%",
+            color: 'rgba(230,230,230,1)'
+        }, {
+            offset: "90%",
+            color: 'rgba(230,230,230,1)'
+        }, {
+            offset: "92%",
+            color: 'rgba(200,200,200,1)'
+        }])
+        .enter().append("stop")
+        .attr("offset", function(d) {
+            return d.offset;
+        })
+        .attr("stop-color", function(d) {
+            return d.color;
+        });
 
     svg.append("rect")
         .attr("id", "tagFocus_bg")
         .attr("fill", "url(#gray-gradient)")
         .attr("transform", "translate(0," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")")
         .attr("width", svgDim.width)
-        .attr("height", tagFocusDim.height+ tagFocusMargin.top + tagFocusMargin.bottom);
+        .attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
 
     var focus = d3.select('#focus_g');
     if (focus.empty())
@@ -169,15 +181,15 @@ var Timeline = function() {
     if (overlay.empty())
         overlay = svg.append("g")
             .attr("id", "overlay_g");
-            //.attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
+    //.attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
 
     //focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom
 
-    
-               
+
+
     var x0; //This copy of x captures the original domain setup
 
-//---------------------------------------------------------------------
+    //---------------------------------------------------------------------
     //Global variables carried over from last version
     var graphSettings = [];
     //graphSettings.tags = [];
@@ -241,7 +253,7 @@ var Timeline = function() {
 
     };
 
-function makeGraph() {
+    function makeGraph() {
         //clear graph
         focus.selectAll("*").remove();
         tagFocus.selectAll("*").remove();
@@ -260,7 +272,7 @@ function makeGraph() {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
                     });
 
-                    // ...create an object in settings for the collected data.
+                    // Create a settings object for the collected data.
                     graphSettings.push({
                         "id": initialData[i].id,
                         "name": initialData[i].name //,"colour": initialData[i].colour
@@ -269,13 +281,19 @@ function makeGraph() {
                     //----------Add a filled svg path for data in Focus--------------
                     focus.append('path')
                         .datum(initialData[i]["results"]) //use datum to bind to single svg element
-                    .attr("id", "data_" + initialData[i].id)
+                        .attr("id", "data_" + initialData[i].id)
                         .classed('areaFill', true)
                         .attr('clip-path', 'url(#clip)');
-                    //.style('fill', initialData[i].colour)
-                    //.style('stroke', initialData[i].colour); //.attr("class", "areaFill")
 
                     focus.select("#data_" + initialData[i].id).attr("d", areaFill);
+
+                    //----------Add just a line path for smoothed data--------------
+                    focus.append("path")
+                        .attr("id", "data_" + initialData[i].id + "_smoothed")
+                        .classed('meanline', true)
+                        .attr('clip-path', 'url(#clip)')
+                        .datum(initialData[i]["results"])
+                        .attr("d", meanline);
 
                     //-----------Append dots for datapoints on line graphs-------------
                     // var dots  = focus.selectAll(".dot_" + initialData[i].id)
@@ -340,13 +358,13 @@ function makeGraph() {
                         //Append rects for all binded data entering the graph
                         rects.enter().append('rect')
                             .style('fill', thisColour)
-                            // .style('stroke', 'rgba(256,256,256,1.0)')
-                            .attr('class', "rect_" + thisTag)
+                        // .style('stroke', 'rgba(256,256,256,1.0)')
+                        .attr('class', "rect_" + thisTag)
                             .attr("data-sessionID", function(d) {
                                 return d.SessionID;
                             })
                             .attr('x', function(d) {
-                                return xScale(d.date) - tagDim.width/2;
+                                return xScale(d.date) - tagDim.width / 2;
                             })
                             .attr('y', function(d) {
                                 return tagRowcounter * tagDim.height;
@@ -369,7 +387,7 @@ function makeGraph() {
                 svgDim.height = focusDim.height + tagFocusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusMargin.bottom;
 
                 d3.select("#cfgGraphs svg").attr("height", svgDim.height);
-                d3.select("#tagFocus_bg").attr("height", tagFocusDim.height+ tagFocusMargin.top + tagFocusMargin.bottom);
+                d3.select("#tagFocus_bg").attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
                 d3.select("#tagFocus_bg").attr("fill", "url(#gray-gradient)");
             } //end if initialData[i].id == 'tags'
             //---Plot comments---------------------------------------------------------------------------
@@ -388,8 +406,8 @@ function makeGraph() {
 
                 commentRects.enter().append('rect')
                     .style('fill', 'rgba(100,100,100,1.0)')
-                    // .style('stroke', 'rgba(256,256,256,1.0)')
-                    .attr('class', "rect_comment")
+                // .style('stroke', 'rgba(256,256,256,1.0)')
+                .attr('class', "rect_comment")
                     .attr("data-sessionID", function(d) {
                         return d.SessionID;
                     })
@@ -419,46 +437,46 @@ function makeGraph() {
 
         //Add a radio tuner style strip
         //Shift overlay up or down
-        overlay .attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
+        overlay.attr("transform", "translate(" + (focusMargin.left + focusDim.width / 2) + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")"); //
 
         if (overlay.select('#tuner').empty()) {
-            
+
             var tunerHeight = focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom;
-            
+
             overlay.append("rect")
                 .style('fill', 'rgba(0,0,0,0.5)')
                 .attr({
                     'id': 'tuner',
                     'width': 1,
                     'height': tunerHeight,
-                    'x': 0,//focusDim.width / 2
-                    'y': -1*tunerHeight
+                    'x': 0, //focusDim.width / 2
+                    'y': -1 * tunerHeight
                 });
-            
-            overlay.append("path")
-            .style('stroke','rgba(192,192,192,1)')
-            .attr({
-                'id': 'horizontal_tuner_line',
-                'd': "M "+ (-svgDim.width/2-focusMargin.left)+" 0 L "+ (svgDim.width/2+focusMargin.right) +" 0"
-             });
 
             overlay.append("path")
-            .style('fill','rgba(256,256,256,1)')
-            .attr({
-                'id': 'triangle',
-                "transform": "translate(" + 0 + "," + 0 + ")",
-                'd': "M -10 0 L 0 -10 L 10 0 L -10 0"
-             });
+                .style('stroke', 'rgba(192,192,192,1)')
+                .attr({
+                    'id': 'horizontal_tuner_line',
+                    'd': "M " + (-svgDim.width / 2 - focusMargin.left) + " 0 L " + (svgDim.width / 2 + focusMargin.right) + " 0"
+                });
 
             overlay.append("path")
-            .style('stroke','rgba(192,192,192,1)')
-            .style('fill',"none")
-            .attr({
-                'id': 'triangleStroke',
-                "transform": "translate(" + 0 + "," + 0 + ")",
-                'd': "M -10 0 L 0 -10 L 10 0"
-            }); 
-        }//end if tuner empty
+                .style('fill', 'rgba(256,256,256,1)')
+                .attr({
+                    'id': 'triangle',
+                    "transform": "translate(" + 0 + "," + 0 + ")",
+                    'd': "M -10 0 L 0 -10 L 10 0 L -10 0"
+                });
+
+            overlay.append("path")
+                .style('stroke', 'rgba(192,192,192,1)')
+                .style('fill', "none")
+                .attr({
+                    'id': 'triangleStroke',
+                    "transform": "translate(" + 0 + "," + 0 + ")",
+                    'd': "M -10 0 L 0 -10 L 10 0"
+                });
+        } //end if tuner empty
 
         //Axis
         if (d3.select('#xAxis_g').empty()) {
@@ -482,7 +500,7 @@ function makeGraph() {
 
         //Apply colours
         changeColours();
-        
+
         updateGraph();
 
     } //end makeGraph function
@@ -539,7 +557,7 @@ function makeGraph() {
 
             //Update line graph
             focus.select("#data_" + graphSettings[i].id).attr("d", areaFill);
-            // focus.select("#mean1").attr("d", meanline(data1)); //update meanline when in place
+            focus.select("#data_" + graphSettings[i].id + "_smoothed").attr("d", meanline); //update meanline when in place
 
             //Update dots on line graphs
             // var dots = focus.selectAll(".dot_" + graphSettings[i].id);
@@ -703,6 +721,8 @@ function makeGraph() {
                 $("#data_" + id).css("fill", thisColour);
                 $("#data_" + id).css("stroke", thisColour);
 
+                $("#data_" + id + "_smoothed").css("stroke", thisColour);
+
                 //$(".dot_"+id).css("fill",thisColour);
             }
 
@@ -717,7 +737,7 @@ function makeGraph() {
             var colour = graphSettings[i].colour;
 
             if (colour != "rgba(0,0,0,0)" && type != "tag") {
-                
+
                 //If header does not contain the graph item
                 if (jQuery("#" + qid + "_header_li").length == 0) {
                     jQuery('<li/>', {
