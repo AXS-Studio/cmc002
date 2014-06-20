@@ -518,7 +518,7 @@ function AddSmoothingSlider () {
 	$("#smoothGraph").val = timeline.getAlpha() * 100;
 
 	$("#smoothGraph").on("change mousemove", function() {
-		var newAlpha = $(this).val() / 100;
+		var newAlpha = 1- ($(this).val() / 100);
 		// alert(newAlpha + "," + timeline.alpha );
 		timeline.setAlpha(newAlpha);
 		timeline.onEditGraph();
