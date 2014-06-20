@@ -1,3 +1,5 @@
+var quizInProgress = false;
+
 var Quiz = (function() {
 	
 	var transitioning = false;
@@ -404,11 +406,13 @@ var Quiz = (function() {
 						setTimeout(function() {
 							$('#art-loading').remove();
 							$('#content_quiz').html(Pages.thanks);
+
 							// Resize.setSizes();
 							// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
 							$('#art-thanks').show().attr('class', 'o1');
 							Middle.init();
 
+							quizInProgress = false;	
 
 							$('.end-survey').click(function(){
 								window.location.href = 'index.php';
@@ -824,8 +828,11 @@ var Quiz = (function() {
 		$('.start-quiz').show();
 		$('.start-survey').click(function(){
 			typeArt(currQuest);
+			quizInProgress = true;
 		});
 		
+		
+
 		console.log("Started the quiz");
 /*
 

@@ -57,31 +57,13 @@ var initGraphMenu =(function() {
 
 });
 
-
-
-var initAppMenu = (function() {
-	
-		$('#nav-survey').click(function(){
-			$('.nav li a').removeClass('active');
-			$(this).addClass('active');
-			
-			$('#page_login').hide();
-			$('#page_graph').hide();
-			$('#page_quiz').show();
-			$('#page_settings').hide();
-
-		});
-
-		$('#nav-timeline').click(function(){
-			$('.nav li a').removeClass('active');
-			$(this).addClass('active');
-
-			$('#page_login').hide();
+function GotoTimeline () {
+	$('.nav li a').removeClass('active');
+			$('#nav-timeline').addClass('active');
+	$('#page_login').hide();
 			$('#page_graph').show();
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
-			
-		
 			timeline.loadQuestionsInitial();
 
 		 	initGraphMenu();
@@ -97,13 +79,11 @@ var initAppMenu = (function() {
 
 				
 			}, 250);
+}
 
-
-		});
-
-		$('#nav-settings').click(function(){
-			$('.nav li a').removeClass('active');
-			$(this).addClass('active');
+function GotoSettings () {
+		$('.nav li a').removeClass('active');
+			$('#nav-settings').addClass('active');
 			
 			$('#page_login').hide();
 			$('#page_graph').hide();
@@ -112,7 +92,80 @@ var initAppMenu = (function() {
 			
 			$('#art-settings').removeClass('o0').addClass('o1');
 		
-			settings();			
+			settings();	
+
+}
+
+var initAppMenu = (function() {
+	
+		$('#nav-survey').click(function(){
+			$('.nav li a').removeClass('active');
+			$(this).addClass('active');
+			
+			$('#page_login').hide();
+			$('#page_graph').hide();
+			$('#page_quiz').show();
+			$('#page_settings').hide();
+
+		});
+
+		$('#nav-timeline').click(function(){
+			
+			if(quizInProgress) {
+				    $( "#dialog-confirm" ).dialog({
+				      resizable: false,
+				      height:140,
+				      modal: true,
+				      buttons: {
+				        "Leave Anyway": function() {
+				          $( this ).dialog( "close" );
+				          quizInProgress = false;
+				          	GotoTimeline();	
+				        },
+				        Cancel: function() {
+				          $( this ).dialog( "close" );
+				          return;
+				        }
+				      }
+				    });
+
+
+			} else {
+					GotoTimeline();	
+			}
+
+
+
+			
+		
+
+
+
+		});
+
+		$('#nav-settings').click(function(){
+				if(quizInProgress) {
+				    $( "#dialog-confirm" ).dialog({
+				      resizable: false,
+				      height:140,
+				      modal: true,
+				      buttons: {
+				        "Leave Anyway": function() {
+				          $( this ).dialog( "close" );
+				          quizInProgress = false;
+				          	GotoSettings();
+				        },
+				        Cancel: function() {
+				          $( this ).dialog( "close" );
+				          return;
+				        }
+				      }
+				    });
+				} else {
+					GotoSettings();
+				}
+
+			
 		
 		});
 		

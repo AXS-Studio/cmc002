@@ -215,6 +215,9 @@ if ($detect -> isTablet()) {
 			});
 			
 		</script>
+			<div id="dialog-confirm" title="Survey in Progress">
+			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Your answers are not subbmited until you complete the survey.</p>
+			</div>
 		<div id="bgplate" style="display:none;"></div>
 	</body>
 </html>
