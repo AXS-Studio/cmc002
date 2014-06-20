@@ -255,10 +255,21 @@ article, div.message {
         margin-top: 20px;
         margin-bottom: 40px; }
     article div.about p, div.message div.about p {
-      margin: 0; }
+      margin: 0px 0px 10px 0px; line-height: 20px; }
   article .faq p, div.message .faq p {
     margin: 0;
     padding: 1em; }
+  article .faq p.faq-q {
+    margin-bottom:0px;
+    padding-bottom:0px;
+    color:#999;
+    }
+
+    article .faq p.faq-a {
+      padding-top:0px;
+      margin-top:0px;
+    }
+
   article div.change-pwd, div.message div.change-pwd {
     padding: 1em; }
   article div#middle, div.message div#middle {
@@ -888,4 +899,5 @@ div.shareAlert {
 	 padding:0px;
 	 list-style: none;
   }
+
 
