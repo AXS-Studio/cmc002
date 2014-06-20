@@ -114,7 +114,6 @@ var initAppMenu = (function() {
 			if(quizInProgress) {
 				    $( "#dialog-confirm" ).dialog({
 				      resizable: false,
-				      height:140,
 				      modal: true,
 				      buttons: {
 				        "Leave Anyway": function() {
@@ -147,7 +146,6 @@ var initAppMenu = (function() {
 				if(quizInProgress) {
 				    $( "#dialog-confirm" ).dialog({
 				      resizable: false,
-				      height:140,
 				      modal: true,
 				      buttons: {
 				        "Leave Anyway": function() {

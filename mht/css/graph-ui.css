@@ -277,3 +277,68 @@ p.popupHeading {
 	text-align: center;
 	padding:20px 0px 0px 0px;
 }
+
+.ui-dialog {
+    background:#fff;
+    border: 1px solid #ccc;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: #fff;
+    color : #333;
+    font-size:14px;
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    border:none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+}
+
+.ui-dialog .ui-dialog-content {
+    min-height: 70px;
+    line-height: 20px;
+    font-size:12px;
+}
+
+
+.ui-dialog .ui-dialog-titlebar-close {
+    display: none;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+  text-align: center;
+  color: #9e9e9e;
+  border-radius: 30px;
+  font-size:16px;
+  background: #FDFDFD;
+  background: -moz-linear-gradient(top, #fdfdfd 0%, #d6d8d9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd), color-stop(100%, #d6d8d9));
+  background: -webkit-linear-gradient(top, #fdfdfd 0%, #d6d8d9 100%);
+  background: -o-linear-gradient(top, #fdfdfd 0%, #d6d8d9 100%);
+  background: linear-gradient(to bottom, #fdfdfd 0%, #d6d8d9 100%);
+  -webkit-transition: color 0.25s, background-color 0.25s ease-out;
+  -moz-transition: color 0.25s, background-color 0.25s ease-out;
+  -o-transition: color 0.25s, background-color 0.25s ease-out;
+  -ms-transition: color 0.25s, background-color 0.25s ease-out;
+  transition: color 0.25s, background-color 0.25s ease-out; }
+}
+
+/*.ui-dialog .ui-dialog-buttonpane button: hover{
+  
+}*/
+
+.ui-dialog .ui-dialog-buttonpane button:hover, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+ text-align: center;
+  color: #fff;
+  border-radius: 30px;
+border:1px solid #ccc;
+  background: #B6D897;
+  background: -moz-linear-gradient(top, #b6d897 0%, #7ab842 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b6d897), color-stop(100%, #7ab842));
+  background: -webkit-linear-gradient(top, #b6d897 0%, #7ab842 100%);
+  background: -o-linear-gradient(top, #b6d897 0%, #7ab842 100%);
+  background: linear-gradient(to bottom, #b6d897 0%, #7ab842 100%); }
+
+}
+
+
