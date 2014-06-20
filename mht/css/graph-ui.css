@@ -222,6 +222,11 @@ p.popupHeading {
 }
 
 #cfg {
+    /*overflow-y: scroll;*/
+    /*-webkit-overflow-scrolling: touch;*/
+}
+
+#content_graph {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }

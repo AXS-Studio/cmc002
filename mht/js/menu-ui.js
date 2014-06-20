@@ -465,7 +465,24 @@ function populatePopUpLegend(id) {
 		console.log(popupText[0].responseIndex + "," +data + "," +resultsIndex);
 	}
 
-	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p><p class='popupHeading'>Range</p><p>" + popupText[0].description +"</p><p class='popupHeading'>Response</p><p>"+ data + " = " + popupText[0].response[resultsIndex] + " </p>";
+	var rangeText = "";
+	if(popupText[0].description != "" && popupText[0].description != null ) {
+		rangeText = "<p class='popupHeading'>Range</p><p>" + popupText[0].description +"</p>";
+	}
+
+	var responseText = "";
+
+	if(popupText[0].response[resultsIndex] != "" && popupText[0].response[resultsIndex]  != null)
+	{
+		responseText =  " = " + popupText[0].response[resultsIndex] + "";
+	}
+
+	var responseSection = "";
+	if(data != "" || responseText != "") {
+		responseSection = "<p class='popupHeading'>Response</p><p>"+ data + responseText + " </p>";
+	}
+
+	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p>" + rangeText + responseSection ;
 	$("#legend-popup-content").html(newHtml);
 
 }
