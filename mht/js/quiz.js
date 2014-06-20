@@ -312,7 +312,9 @@ var Quiz = (function() {
 			},
 			success: function(message) {
 				tags_arr = jQuery.parseJSON(message);
-				$("#tags").autocompleteArray(	tags_arr	);
+				
+				if (tags_arr!=null)
+				$("#tags").autocompleteArray(tags_arr);
 			},
 			error: function() {
 			}

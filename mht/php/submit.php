@@ -10,12 +10,20 @@ if (isset($_REQUEST['results']))
 {
 	//JSON decode results
 	$results = $_REQUEST['results'];
+	$myResponse['rawresults'] = $results;
 	
-	$results = $mysqli->real_escape_string($results);
+	//$results = $mysqli->real_escape_string($results);
+
+	//$myResponse['afterrealescape'] = $results;
+
 	$results = stripslashes($results);
 	
+	$myResponse['afterstripslashes'] = $results;
+	
 	$results = json_decode($results);
+	
 	if ($results == NULL){
+		$myResponse['error'] = "json decode failed";
 		echo json_encode($myResponse);
 		exit();
 	}
