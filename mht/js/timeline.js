@@ -537,6 +537,14 @@ var Timeline = function() {
         makeGraph();
     }
 
+    function setAlpha(input) {
+        alpha = input;
+    }
+
+    function getAlpha() {
+        return alpha;
+    }
+    
     //----------Update whole graph-------------------------------------------------------------
     //Global to capture x-pixel of current comment
     var xCommentDate = focusDim.width / 2;
@@ -760,7 +768,9 @@ var Timeline = function() {
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
         loadQuestionsInitial: loadQuestionsInitial,
-        onEditGraph: onEditGraph
+        onEditGraph: onEditGraph,
+        setAlpha: setAlpha,
+        getAlpha: getAlpha
     };
 
 }; //end var Timeline
