@@ -24,7 +24,9 @@
 		</div>
 		<div id="commentDiv">
 			<div id="commentDateDiv">Date</div>
-			<div id="commentDataDiv">This section displays comments for the questionnaire</div>
+			<h4 class="graphSubheading">Comments</h4>
+			<div id="commentDataDiv"></div>
+			<h4 class="graphSubheading">Tags</h4>
 			<div id="commentTagDiv">
 				<ul id="commentTagUL">
 

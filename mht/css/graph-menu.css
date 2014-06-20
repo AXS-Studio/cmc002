@@ -147,7 +147,6 @@
 }
 
 
-
 #graph-menu h3 {
 	clear:both;
 }
@@ -169,6 +168,24 @@
 
 #graph-menu #smoothGraph {
 	width:100%;
+}
+
+#embededTagHeading {
+ 	position: absolute;
+ 	bottom:0px;
+ 	right:0px;
+ 	padding:10px;
+}
+
+div#cfgGraphs {
+	position: relative;
+}
+
+h4.graphSubheading { 
+	color:#999;
+	font-size:12px;
+	margin:0px 0px 0px 20px;
+	padding:0px;
 }
 	
 /*	@media 
