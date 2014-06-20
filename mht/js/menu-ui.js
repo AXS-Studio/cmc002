@@ -39,8 +39,8 @@ var initGraphMenu =(function() {
 	$("footer .nav").show();
 	
 	
-	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-legend"></ul><ul class="swatches tags"><h3>Tags</h3></ul>');
-	$('#edit_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul><ul class="swatches tags" id="tags-edit"><h3>Tags</h3></ul>');
+	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-legend"></ul><h3>Tags</h3><ul class="swatches tags"></ul>');
+	$('#edit_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul><h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
 	$('#share_content').append('<ul><li><button>Save As PDF</button></li><li><button>Email PDF</button></li></ul></div></ul></li>');
 		
 	GenerateSwatches.questionSwatches();
@@ -50,6 +50,8 @@ var initGraphMenu =(function() {
 	GenerateSwatches.filterSwatches();
 
 	addPopUpLegend();
+
+	AddSmoothingSlider();
 
 });
 
@@ -382,9 +384,6 @@ function TurnOff(id) {
 
 }
 
-var RangeDescription = {
-
-}
 
 var idName = function(id) {
 	var result = $.grep(answerData, function(e){ return e.id == id; });
@@ -507,6 +506,12 @@ function addPopUpLegend() {
 		$("#legend-popup").hide();
 		$("#bgplate").hide();
 	});
+}
+
+function AddSmoothingSlider () {
+	var sliderHTML = '<h3>Graph smoothing</h3><form class="smooth"><fieldset><input type="range" name="smoothGraph" id="smoothGraph"></fieldset></form><ul class="smoothLevels"><li>Off</li><li>Low</li><li>Middle</li><li>High</li></ul>';
+
+	$("#edit_content").append(sliderHTML);
 }
 	
 function ParseGraphColors() {

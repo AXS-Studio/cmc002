@@ -134,11 +134,42 @@
 		display: block;
 	}
 	
-#graph-menu .tags {
-	clear:both;
-	border-top:1px solid #ccc;
+ #graph-menu #legend_content ul.tags {
+	/*clear:both;*/
+	/*border-top:1px solid #ccc;*/
+	border:none;
 }	
 
+
+#graph-menu ul.swatches {
+	border-bottom: 1px solid #ccc;
+	margin-bottom:10px;
+}
+
+
+
+#graph-menu h3 {
+	clear:both;
+}
+
+#graph-menu ul.smoothLevels {
+	list-style: none;
+	margin:0px;
+	padding:0px 0px 20px 0px;
+}
+
+#graph-menu ul.smoothLevels li {
+	display: inline;
+	margin-right:15%;
+}
+
+#graph-menu ul.smoothLevels li:last-child {
+	margin-right:0;
+}
+
+#graph-menu #smoothGraph {
+	width:100%;
+}
 	
 /*	@media 
 	(-webkit-min-device-pixel-ratio: 2), 

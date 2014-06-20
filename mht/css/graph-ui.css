@@ -114,7 +114,7 @@ ul.swatches li {
 	margin:0px;
 	padding:0px;
 	/* line-height: 30px; */
-	float:left;
+	/*float:left;*/
 	clear:both;
 	margin-bottom: 10px;
 }
