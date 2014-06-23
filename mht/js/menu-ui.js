@@ -214,8 +214,8 @@ var GenerateSwatches = (function() {
 
  })();
 
-var defaultQuestions = ["QIDS_5","ASRM_1","ASRM_4", "ASRM_0"];
-var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)','rgba(199,244,100,1.0)','rgba(78,205,196,1.0)']; 
+var defaultQuestions = ["SCORE_0","VAS_0"]; //"ASRM_4", "ASRM_0"
+var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)'];  //,'rgba(199,244,100,1.0)','rgba(78,205,196,1.0)'
 
 function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
 		for (var i = 0; i < questions.length; i++) {
@@ -260,15 +260,19 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 					if(IsInGraphColors("SCORE_0")) {
 							/// do.. nothing I suppose.
 						} else { 
-
 						var newGraphColor = new GraphColor ("SCORE_0");
 						newGraphColor.color = "rgba(0,0,0,0)";
+
+						if($.inArray("SCORE_0",defaultQuestions) != -1) {
+							newGraphColor.color = defaultColors[$.inArray("SCORE_0",defaultQuestions)];
+						}
+
 						if(graphColors == null) graphColors = new Array();
 						graphColors.push(newGraphColor);
 					}
 					
 
-					$('#legend-header').append('<li id="legend-SCORE_0" class="legend-popup" style="display:none;">><span class="swatches" id="swatch-SCORE_0"></span><span>QIDS Score</span></li>');
+					$('#legend-header').append('<li id="legend-SCORE_0" class="legend-popup" style="display:none;"><span class="swatches" id="swatch-SCORE_0"></span><span>QIDS Score</span></li>');
 					$('#swtchs-legend').append('<li id="legend-menu-SCORE_0"><span class="swatches" id="swatch-SCORE_0"></span> <span>QIDS Score</span></li>');
 					$('#swtchs-edit').append('<li><a href="#" title="Change QIDS Score\'s colour" class="swatches" id="swatch-SCORE_0"></a><span id="text-SCORE_0">QIDS Score</span></li>');
 					//$('#swtchs-edit').append('<li><a href="#" title="Change ' + name + '\'s colour" id="swatch-' + id + '"></a> <span>' + name + '</span></li>');
