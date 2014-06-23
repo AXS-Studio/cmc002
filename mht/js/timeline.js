@@ -480,7 +480,7 @@ var Timeline = function() {
         else{
             //readjust tuner height
             var tunerHeight = focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom;
-            overlay.select('#tuner').attr({'height': tunerHeight});
+            overlay.select('#tuner').attr({'height': tunerHeight, 'y': -1 * tunerHeight});
         }
 
         //Axis
