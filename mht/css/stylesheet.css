@@ -140,7 +140,7 @@ body {
   color: #000;
   background-color: white; }
   body .page-wrap {
-    min-height: 100%;
+    height: 100%;
     margin-bottom: -40px; }
   body div#plg {
     width: 1px;
@@ -899,5 +899,7 @@ div.shareAlert {
 	 padding:0px;
 	 list-style: none;
   }
+
+  #page_graph {min-height: 1000px;}
 
 
