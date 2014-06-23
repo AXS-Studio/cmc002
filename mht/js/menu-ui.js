@@ -57,14 +57,53 @@ var initGraphMenu =(function() {
 
 });
 
+function GotoTimeline () {
+	$('.nav li a').removeClass('active');
+			$('#nav-timeline').addClass('active');
+	$('#page_login').hide();
+			$('#page_graph').show();
+			$('#page_quiz').hide();
+			$('#page_settings').hide();
+			timeline.loadQuestionsInitial();
+
+		 	initGraphMenu();
+
+		$('#art-loading').removeClass('o1').addClass('o0');
+			setTimeout(function() {
+
+				$('#art-loading').remove();
+
+				$('#art-timeline').removeClass('o0').addClass('o1').show();
+
+				$('html').removeClass('no-js').addClass('js');
+
+
+			}, 250);
+}
+
+function GotoSettings () {
+		$('.nav li a').removeClass('active');
+			$('#nav-settings').addClass('active');
+
+			$('#page_login').hide();
+			$('#page_graph').hide();
+			$('#page_quiz').hide();
+			$('#page_settings').show();		
+
+			$('#art-settings').removeClass('o0').addClass('o1');
+
+			settings();	
+
+}
+
 
 
 var initAppMenu = (function() {
-	
+
 		$('#nav-survey').click(function(){
 			$('.nav li a').removeClass('active');
 			$(this).addClass('active');
-			
+
 			$('#page_login').hide();
 			$('#page_graph').hide();
 			$('#page_quiz').show();
@@ -73,50 +112,57 @@ var initAppMenu = (function() {
 		});
 
 		$('#nav-timeline').click(function(){
-			$('.nav li a').removeClass('active');
-			$(this).addClass('active');
 
-			$('#page_login').hide();
-			$('#page_graph').show();
-			$('#page_quiz').hide();
-			$('#page_settings').hide();
-			
-		
-			timeline.loadQuestionsInitial();
+			if(quizInProgress) {
+				    $( "#dialog-confirm" ).dialog({
+				      resizable: false,
+				      modal: true,
+				      buttons: {
+				        "Leave Anyway": function() {
+				          $( this ).dialog( "close" );
+				          quizInProgress = false;
+				          	GotoTimeline();	
+				        },
+				        Cancel: function() {
+				          $( this ).dialog( "close" );
+				          return;
+				        }
+				      }
+				    });
 
-		 	initGraphMenu();
 
-		$('#art-loading').removeClass('o1').addClass('o0');
-			setTimeout(function() {
-	
-				$('#art-loading').remove();
-	
-				$('#art-timeline').removeClass('o0').addClass('o1').show();
-								
-				$('html').removeClass('no-js').addClass('js');
-
-				
-			}, 250);
-
+			} else {
+					GotoTimeline();	
+			}
 
 		});
 
 		$('#nav-settings').click(function(){
-			$('.nav li a').removeClass('active');
-			$(this).addClass('active');
-			
-			$('#page_login').hide();
-			$('#page_graph').hide();
-			$('#page_quiz').hide();
-			$('#page_settings').show();		
-			
-			$('#art-settings').removeClass('o0').addClass('o1');
-		
-			settings();			
-		
+				if(quizInProgress) {
+				    $( "#dialog-confirm" ).dialog({
+				      resizable: false,
+				      modal: true,
+				      buttons: {
+				        "Leave Anyway": function() {
+				          $( this ).dialog( "close" );
+				          quizInProgress = false;
+				          	GotoSettings();
+				        },
+				        Cancel: function() {
+				          $( this ).dialog( "close" );
+				          return;
+				        }
+				      }
+				    });
+				} else {
+					GotoSettings();
+				}
+
+
+
 		});
-		
-	
+
+
 });
 
 
