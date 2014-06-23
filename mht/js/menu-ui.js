@@ -384,10 +384,10 @@ var AddColourPicker  = (function() {
 				timeline.onEditGraph();
 			},
 			show: function() {
-				$("#bgplate").show();
+				//$("#bgplate").show();
 			},
 			hide: function () {
-				$("#bgplate").hide();	
+				//$("#bgplate").hide();	
 			}
 
 		});
@@ -413,10 +413,10 @@ var AddColourPicker  = (function() {
 				timeline.onEditGraph();
 			},
 			show: function() {
-				$("#bgplate").show();
+				//$("#bgplate").show();
 			},
 			hide: function () {
-				$("#bgplate").hide();	
+				//$("#bgplate").hide();	
 			}
 		});
 	});
@@ -551,12 +551,12 @@ function addPopUpLegend() {
 		var id = id.replace("legend-", "");
 		populatePopUpLegend(id);
 		$("#legend-popup").show();
-		$("#bgplate").show();
+		// $("#bgplate").show();
 		});
 
 		$("#legend-popup .close-popup").live('click', function(e) {
 		$("#legend-popup").hide();
-		$("#bgplate").hide();
+		// $("#bgplate").hide();
 	});
 }
 
