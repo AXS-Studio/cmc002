@@ -227,6 +227,7 @@ p.popupHeading {
 }
 
 #content_graph {
+    min-height: 2000px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
