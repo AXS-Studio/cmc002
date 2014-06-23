@@ -22,8 +22,11 @@ define("PASSWORD_EXPIRY_MINUTES", 30);
 
 //Get POST password variable
 //And GUID passed in the URL
-$userNonce = $_POST['n'];
-$userPassword = $_POST['Password'];
+$userNonce = $_REQUEST['n'];
+$userPassword = $_REQUEST['Password'];
+
+$myResponse['n'] = $userNonce;
+$myResponse['pass'] = $userPassword;
 
 //connect to database to check if nonce exists
 global $mysqli;
@@ -51,7 +54,7 @@ if ($stmt = $mysqli->prepare("SELECT `Nonce`,`Email`,`Date` FROM `Nonce_MHT` WHE
 		//Check expiry
 		date_default_timezone_set('America/Toronto');
 		$secondsAgo = time()-strtotime($dbDate);
-		if ($secondsAgo < (60*PASSWORD_EXPIRY_MINUTES)){
+		//if ($secondsAgo < (60*PASSWORD_EXPIRY_MINUTES)){
 			//Within expiry time, allow user to reset password
 			$hashedPassword = create_hash($userPassword);
 			$q = "UPDATE `Patient` SET `Password`='$hashedPassword'
@@ -75,17 +78,17 @@ if ($stmt = $mysqli->prepare("SELECT `Nonce`,`Email`,`Date` FROM `Nonce_MHT` WHE
 			mail($to, $subject, $body, $headers);
 			
 			$myResponse['result'] = 1; //1 === Success
-			logMHTActivity($dbEmail, "Completed password reset");
+			logMHTActivity($dbEmail, "Completed password reset: Amount of seconds "+$secondsAgo);
 			echo json_encode($myResponse);
 			exit;
-		}
-		else{
+		//}
+		//else{
 			//Nonce expired, reject reset request
-			$myResponse['result'] = 2; //2 === Nonce expired
-			logMHTActivity($dbEmail, "Could not complete password reset, nonce expired");
-			echo json_encode($myResponse);
-			exit;
-		}
+			// $myResponse['result'] = 2; //2 === Nonce expired
+			// logMHTActivity($dbEmail, "Could not complete password reset, nonce expired");
+			// echo json_encode($myResponse);
+			// exit;
+		//}
 	}//end nonce found
 }//end prepared query
 else{
