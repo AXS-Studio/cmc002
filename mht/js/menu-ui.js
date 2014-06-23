@@ -260,8 +260,8 @@ var GenerateSwatches = (function() {
 
  })();
 
-var defaultQuestions = ["SCORE_0","VAS_0"]; //"ASRM_4", "ASRM_0"
-var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)'];  //,'rgba(199,244,100,1.0)','rgba(78,205,196,1.0)'
+var defaultQuestions = ["QIDS_0","VAS_0", "ASRM_0"]; //"ASRM_4", "ASRM_0"
+var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)','rgba(199,244,100,1.0)'];  //,'rgba(78,205,196,1.0)'
 
 function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
 		for (var i = 0; i < questions.length; i++) {

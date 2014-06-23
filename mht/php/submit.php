@@ -107,6 +107,8 @@ if (isset($_REQUEST['results']))
 				
 				foreach($tagArray as $value){
 					$tag = $value;
+
+					if ($tag!="") //make sure not empty string
 					$stmt->execute();
 				}
 				$stmt->close();

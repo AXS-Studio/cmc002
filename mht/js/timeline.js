@@ -477,6 +477,11 @@ var Timeline = function() {
                     'd': "M -10 0 L 0 -10 L 10 0"
                 });
         } //end if tuner empty
+        else{
+            //readjust tuner height
+            var tunerHeight = focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom;
+            overlay.select('#tuner').attr({'height': tunerHeight});
+        }
 
         //Axis
         if (d3.select('#xAxis_g').empty()) {
