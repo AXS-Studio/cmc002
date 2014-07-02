@@ -324,8 +324,12 @@ var Quiz = (function() {
 
 		$('.add-tag').click(function(){
 			if($('#tags').val() != ''){
-				var tag = $('#tags').val().replace(/ /g,''); //remove white spaces for tags
+				var regex = /[^\w-]/gi; //only allow alpha numeric, hypen and underscore
+				var tag = $('#tags').val().replace(regex,'');
+				
+				if (tag!='')
 				$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
+				
 				$('#tags').val('');
 
 				$('.tag-close').click(function(){
