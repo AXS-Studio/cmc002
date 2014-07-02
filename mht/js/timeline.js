@@ -40,7 +40,7 @@ var Timeline = function() {
 
     var focusDim = {
         width: $(document).width() - focusMargin.right - focusMargin.left,
-        height: 200
+        height: $(document).height()*0.5//fixed at 200px originally
     }
 
     var tagFocusDim = {
