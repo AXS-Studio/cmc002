@@ -111,8 +111,8 @@ if ($detect -> isTablet()) {
 		<script src="js/d3.js"></script>		
 			<!--  <script src="js/min/scripts-min.js"></script> -->
 		<script src="js/zepto.js"></script>
-				<script src="js/json2.js"></script>
-						<script src="js/iscroll.js"></script>
+		<script src="js/json2.js"></script>
+		<script src="js/iscroll.js"></script>
 		<script src="js/preloadGraphics.js"></script>
 		<script src="js/pages.js"></script>
 		<script src="js/popups.js"></script>
