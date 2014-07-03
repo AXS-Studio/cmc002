@@ -833,11 +833,48 @@ var Quiz = (function() {
 		$('#content_quiz').html(Pages.startQuiz);
 		$('.start-quiz').show();
 		$('.start-survey').click(function(){
-			typeArt(currQuest);
-			quizInProgress = true;
-		});
-		
-		
+			//Cindy: Put call to download questionnaire and start session here
+			
+		// 	setTimeout(function() {
+			
+		// 	// Submit the Ajax for the login form...
+		// 	$.ajax({
+		// 		type: 'POST',
+		// 		url: 'php/login.php',
+		// 		data: data,
+		// 		dataType: 'json',
+		// 		success: function(json) {
+		// 			if (json.result === 1) {
+		// 				loginSuccess(json);
+		// 				console.log(json);
+		// 			} else if (json.result === 0) {
+		// 				// window.alert('Wrong username or password.');
+		// 				rerunLogin('cantConnect');
+		// 			} else if (json.result === 2) {
+		// 				// window.alert('Wrong username or password.');
+		// 				rerunLogin('wrongUserPassword');
+		// 			} else if (json.result === 3) {
+		// 				// window.alert('Wrong username or password.');
+		// 				rerunLogin('wrongUserPassword');
+		// 			} else if (json.result === 4) {
+		// 				// window.alert('Wrong username or password.');
+		// 				rerunLogin('userNotEnabled');
+		// 			} else {
+		// 				// window.alert('Can\'t connect to database.');
+		// 				rerunLogin('cantConnect');
+		// 			}
+		// 		},
+		// 		error: function() {
+		// 			// window.alert('Can\'t connect to database.');
+		// 			rerunLogin('cantConnect');
+		// 		}
+		// 	});
+		// 	}, 250);
+			
+		// 	//After AJAX call sucessful, continue here...
+		// 	typeArt(currQuest);
+		// 	quizInProgress = true;
+		// });
 
 		console.log("Started the quiz");
 /*
