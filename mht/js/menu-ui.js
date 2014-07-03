@@ -41,8 +41,8 @@ var initGraphMenu =(function() {
 	$("footer .nav").show();
 	
 	
-	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-legend"></ul><h3>Tags</h3><ul class="swatches tags"></ul>');
-	$('#edit_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul><h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
+	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul>');
+	$('#edit_content').append('<h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
 	$('#share_content').append('<ul><li><button>Save As PDF</button></li><li><button>Email PDF</button></li></ul></div></ul></li>');
 		
 	GenerateSwatches.questionSwatches();
@@ -567,7 +567,7 @@ function AddSmoothingSlider () {
 
 	var sliderHTML = '<h3>Graph smoothing</h3><input type="range" id="smoothGraph" min="0" max="100"><ul class="smoothLevels"><li>Off</li><li>Low</li><li>Middle</li><li>High</li></ul>';
 
-	$("#edit_content").append(sliderHTML);
+	$("#legend_content").append(sliderHTML);
 
 	$("#smoothGraph").val = timeline.getAlpha() * 100;
 

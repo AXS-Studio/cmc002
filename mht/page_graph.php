@@ -7,8 +7,8 @@
 		<aside id="graph-menu">
 	<nav id="graph-nav">
 		<a href="#" class="btnmenu internal"></a>
-		<a href="#" id="legend" class="tab selected">Legend</a>
-		<a href="#" id="edit" class="tab">Edit</a>
+		<a href="#" id="legend" class="tab selected">Graph</a>
+		<a href="#" id="edit" class="tab">Tags</a>
 		<a href="#" id="share" class="tab">Share</a>
 	</nav>
 	<div id="content">
