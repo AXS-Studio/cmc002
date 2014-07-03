@@ -14,7 +14,7 @@
 	<div id="content">
 		<div id="legend_content" class="tab_content active"></div>
 			<div id="edit_content" class="tab_content">
-				
+			
 			</div>
 			<div id="share_content" class="tab_content"></div>
 		</div>
@@ -39,6 +39,7 @@
 	<div id="legend-popup" style="display:none;"><a href="#" class="close-popup">x</a>
 <div id="legend-popup-content"></div>
 	</div>
+
 </div>
 <?php
 	//include 'timeline.php';

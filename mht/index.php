@@ -104,12 +104,15 @@ if ($detect -> isTablet()) {
 		<?php include './footer.php'; ?>	
 			
 		<script src="js/jquery.min.js"></script>
-		<?php /*?><script src="js/jquery-ui-1.10.2.custom.js"></script>*/?>
+		<?php /*?><script src="js/jquery-ui-1.10.2.custom.js"></script>*/?>	
 		<script src="js/jquery-ui-1.10.4.custom.js"></script>
-		<script src="js/jquery.colorpicker.js"></script>
+		<!-- <script src="js/jquery.colorpicker.js"></script> -->
 		<script type="text/javascript" src="js/date.js"></script>
 		<script src="js/d3.js"></script>		
-		<script src="js/min/scripts-min.js"></script>
+			<!--  <script src="js/min/scripts-min.js"></script> -->
+		<script src="js/zepto.js"></script>
+				<script src="js/json2.js"></script>
+						<script src="js/iscroll.js"></script>
 		<script src="js/preloadGraphics.js"></script>
 		<script src="js/pages.js"></script>
 		<script src="js/popups.js"></script>
@@ -130,6 +133,8 @@ if ($detect -> isTablet()) {
 		<script src="js/settings.js"></script>
 		<script src="js/timeline.js"></script>
 		<script src="js/menu-ui.js"></script>
+		<script src="js/rangeslider.min.js"></script>
+
 
 		<?php
 			if ($page == 'reset') {
@@ -191,8 +196,9 @@ if ($detect -> isTablet()) {
 			echo '""';
 		
 			?>;
-			
-			$(document).ready(function() {
+				  
+			$(document).ready(function() {	 
+			// $("#smoothGraph").rangeslider();
 				$('html').removeClass('no-js').addClass('js');
 				PreloadGraphics.init();
 				initAppMenu();
@@ -213,11 +219,12 @@ if ($detect -> isTablet()) {
 		
 			?>
 			});
-			
+				
 		</script>
 			<div id="dialog-confirm" title="Survey in Progress" style="display:none;">
 			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Your answers are not submited until you complete the survey.</p>
 			</div>
 		<div id="bgplate" style="display:none;"></div>
+
 	</body>
 </html>

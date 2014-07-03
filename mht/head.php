@@ -13,4 +13,5 @@
 		<link rel="stylesheet" media="screen" href="css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="css/timeline.css">
 		<link rel="stylesheet" media="screen" href="css/spectrum.css">
+		<link rel="stylesheet" media="screen" href="css/rangeslider.css">
 	</head>

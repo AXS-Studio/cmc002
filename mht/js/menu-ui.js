@@ -561,7 +561,8 @@ function addPopUpLegend() {
 }
 
 function AddSmoothingSlider () {
-	var sliderHTML = '<h3>Graph smoothing</h3><form class="smooth"><fieldset><input type="range" name="smoothGraph" id="smoothGraph" step="10" min="0" max="100"></fieldset></form><ul class="smoothLevels"><li>Off</li><li>Low</li><li>Middle</li><li>High</li></ul>';
+
+	var sliderHTML = '<h3>Graph smoothing</h3><input type="range" id="smoothGraph" min="0" max="100"><ul class="smoothLevels"><li>Off</li><li>Low</li><li>Middle</li><li>High</li></ul>';
 
 	$("#edit_content").append(sliderHTML);
 
@@ -574,6 +575,8 @@ function AddSmoothingSlider () {
 		timeline.onEditGraph();
 		// alert("RAAAA");
 	});
+$("#smoothGraph").rangeslider();
+
 }
 
 
