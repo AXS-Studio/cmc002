@@ -28,10 +28,12 @@ var initGraphMenu =(function() {
 
 	$(".btnmenu.external").click(function(e) {
 		$('#graph-menu').animate({right: '0'});
+		$("#bgplate").show();
 	});
 	
 	$(".btnmenu.internal").click(function(e) {
 		$('#graph-menu').animate({right: graphMenuWidth});
+		$("#bgplate").hide();
 	});
 	
 	$(".forgot").hide();
@@ -384,10 +386,10 @@ var AddColourPicker  = (function() {
 				timeline.onEditGraph();
 			},
 			show: function() {
-				//$("#bgplate").show();
+				$("#bgplate").show();
 			},
 			hide: function () {
-				//$("#bgplate").hide();	
+				$("#bgplate").hide();	
 			}
 
 		});
@@ -413,10 +415,10 @@ var AddColourPicker  = (function() {
 				timeline.onEditGraph();
 			},
 			show: function() {
-				//$("#bgplate").show();
+				$("#bgplate").show();
 			},
 			hide: function () {
-				//$("#bgplate").hide();	
+				$("#bgplate").hide();	
 			}
 		});
 	});
@@ -550,13 +552,14 @@ function addPopUpLegend() {
 		var id = $(this).attr("id");
 		var id = id.replace("legend-", "");
 		populatePopUpLegend(id);
+			$("#bgplate").show();
 		$("#legend-popup").show();
-		// $("#bgplate").show();
+	
 		});
 
 		$("#legend-popup .close-popup").live('click', function(e) {
 		$("#legend-popup").hide();
-		// $("#bgplate").hide();
+		$("#bgplate").hide();
 	});
 }
 

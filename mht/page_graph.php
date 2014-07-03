@@ -37,9 +37,10 @@
 	</article>
 
 	<div id="legend-popup" style="display:none;"><a href="#" class="close-popup">x</a>
-<div id="legend-popup-content"></div>
+	<div id="legend-popup-content"></div>
+	
 	</div>
-
+<div id="bgplate" style="display:none;"></div>
 </div>
 <?php
 	//include 'timeline.php';
