@@ -840,11 +840,12 @@ var Quiz = (function() {
 			//Submit the Ajax for the login form...
 			$.ajax({
 				type: 'POST',
-				url: 'php/query_questionnaire.php',
+				url: './php/query_questionnaire.php',
 				data: results,
 				dataType: 'json',
 				success: function(json) {
-					console.log(json);
+					console.log("results", results);
+					console.log("json", json);
 
 					// if (json.result === 1) {
 					// 	loginSuccess(json);
