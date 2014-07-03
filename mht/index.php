@@ -110,7 +110,7 @@ if ($detect -> isTablet()) {
 		<script type="text/javascript" src="js/date.js"></script>
 		<script src="js/d3.js"></script>		
 			<!--  <script src="js/min/scripts-min.js"></script> -->
-		<script src="js/zepto.js"></script>
+		<script src="js/zepto.min.js"></script>
 		<script src="js/json2.js"></script>
 		<script src="js/iscroll.js"></script>
 		<script src="js/preloadGraphics.js"></script>
