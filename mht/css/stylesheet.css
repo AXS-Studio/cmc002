@@ -427,7 +427,7 @@ article, div.message {
       article form fieldset input[type='checkbox'] + label, div.message form fieldset input[type='checkbox'] + label {
         margin: 0;
         clear: none;
-        height: 25px;
+        height: 18px;
         background: transparent url("../images/checkbox.png") no-repeat top left;
         padding: 3px 10px 4px 35px;
         cursor: pointer; }
