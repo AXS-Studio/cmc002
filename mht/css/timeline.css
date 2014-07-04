@@ -24,12 +24,13 @@ div#cfgGraphs {
     color: grey;
 }
 #commentDiv #commentDataDiv {
-    margin: 15px 20px 15px 20px;
+    margin: 5px 20px 20px 20px;
 }
 #commentDiv #commentTagDiv {
-    margin: 15px 20px 15px 20px;
+    margin: 5px 20px 20px 20px;
 }
 #commentDiv #commentTagUL {
+    margin-top:5px;
     padding: 0px;
     list-style-type: none;
 }
