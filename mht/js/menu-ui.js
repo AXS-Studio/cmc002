@@ -345,9 +345,9 @@ function addTagSwatches() {
 				} else { 
 
 					var newTagColor = new GraphColor (tags[j]);
-					newTagColor.color = defaultColours[defaultColorIndex]; //"rgba(0,0,0,0)";
+					newTagColor.color = defaultColors[defaultColorIndex]; //"rgba(0,0,0,0)";
 					defaultColorIndex++;
-					if(defaultColorIndex > defaultColours.length) defaultColorIndex = 0;
+					if(defaultColorIndex > defaultColors.length) defaultColorIndex = 0;
 					if(tagColors == null) tagColors = new Array();
 					tagColors.push(newTagColor);
 				}
