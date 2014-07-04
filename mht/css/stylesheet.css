@@ -610,7 +610,7 @@ article, div.message {
       article div.qCont div.question h1 em, div.message div.qCont div.question h1 em {
         font-style: normal; }
     article div.qCont div.question p, div.message div.qCont div.question p {
-      color: gray; }
+      color: #6f6f6f; }
       article div.qCont div.question p.instruction, div.message div.qCont div.question p.instruction {
         margin: 1em 1em 1.5em;
         padding-bottom: 1.5em;
