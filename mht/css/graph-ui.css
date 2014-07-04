@@ -232,6 +232,10 @@ p.popupHeading {
     -webkit-overflow-scrolling: touch;
 }
 
+#content_quiz {
+    padding-bottom:50px;
+}
+
 #cfgGraphs {
 
     

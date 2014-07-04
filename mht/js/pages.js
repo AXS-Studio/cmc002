@@ -56,6 +56,7 @@ var Pages = {
 				</p>\
 			</div>\
 			<!-- end markers -->\
+			<div class="clear"></div>\
 		</article>',
 	startQuiz: '<article class="start-quiz" style="display: none;">\
 			<button class="start-survey">Start survey</button>\
