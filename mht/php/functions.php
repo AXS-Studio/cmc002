@@ -152,7 +152,32 @@ function createSessionArray($userEmail){
 	return $myResponse;
 }//end createSession
 
-//Get complete set of Questions for $query = patientID
+//Called during login to return a patientID from email
+function getPatientID($userEmail){
+	global $mysqli;
+
+	$myResponse	= array();
+	$myResponse["result"] = 0; 	//Set default return value to Fail, Pass if function gets to the end
+
+	//Get PatientID
+	$q = "SELECT MedicalRecordNum FROM `Patient` WHERE `Email` = '$userEmail'";
+	if ($result = $mysqli->query($q)){
+		$row = $result->fetch_assoc();
+		$patientID = $row['MedicalRecordNum'];
+		$result->free();
+
+		$myResponse["result"] = 1;
+		$myResponse["patientID"]= $patientID;
+		$myResponse["patientEmail"]= $userEmail;
+	}
+	else{
+		return $myResponse;
+	}
+
+	return $myResponse;
+}
+
+//Get complete set of Questions
 function getQuestions($userEmail, $infreqBool){
 	global $mysqli;
 	//Get PatientID

@@ -60,8 +60,9 @@ else if($result == 1 ) {
 		deleteCookie($userEmail);
 	}
 	
-	$myResponse = createResponse($userEmail);
-	
+	//$myResponse = createResponse($userEmail); //instead of downloading all the questions and creating a new questionnaire session during login...
+	$myResponse = getPatientID($userEmail); //Now only return the PatientID for further use
+
 	echo json_encode($myResponse);
 	exit();
 }

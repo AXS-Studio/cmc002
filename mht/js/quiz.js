@@ -792,7 +792,7 @@ var Quiz = (function() {
 	};
 	
 	var typeArt = function(id) {
-		
+
 			var qstn = questionnaire.questions[id].questionID;
 			if (qstn == 'comments') {
 				$('#content_quiz').html(Pages.comment);
@@ -821,6 +821,7 @@ var Quiz = (function() {
 
 	};
 
+
 	var startQuiz = function(){
 	
 		$('#page_login').hide();
@@ -844,28 +845,78 @@ var Quiz = (function() {
 				data: results,
 				dataType: 'json',
 				success: function(json) {
-					console.log("results", results);
-					console.log("json", json);
+					
+				questionnaire = json;
 
-					// if (json.result === 1) {
-					// 	loginSuccess(json);
-					// 	console.log(json);
-					// } else if (json.result === 0) {
-					// 	// window.alert('Wrong username or password.');
-					// 	rerunLogin('cantConnect');
-					// } else if (json.result === 2) {
-					// 	// window.alert('Wrong username or password.');
-					// 	rerunLogin('wrongUserPassword');
-					// } else if (json.result === 3) {
-					// 	// window.alert('Wrong username or password.');
-					// 	rerunLogin('wrongUserPassword');
-					// } else if (json.result === 4) {
-					// 	// window.alert('Wrong username or password.');
-					// 	rerunLogin('userNotEnabled');
-					// } else {
-					// 	// window.alert('Can\'t connect to database.');
-					// 	rerunLogin('cantConnect');
-					// }
+				console.log("This is results", results);
+				console.log("This is questionnaire", questionnaire);
+
+				if (questionnaire.questions.length < 1) {
+					$('#art-loading').removeClass('o1').addClass('o0');
+					setTimeout(function() {
+						// Remove the Loading spinner icon...
+						$('#art-loading').remove();
+						// Add the logged in header and the article wrapper to the beginning of the <body>...
+						$('body').prepend(Pages.sbHeader);
+						// Apply a height style to the new header (didn\'t take from the CSS for some reason)...
+						$('header.mht').css({
+							height: '0px',
+							display: 'none'
+						});
+
+						//$('header.mht').show().removeClass('o0').addClass('o1');
+						$('header.mht').after(Pages.noQuestions);
+						$('#art-nq').show().attr('class', 'o1');
+						Middle.init();
+					}, 250);
+				} else {
+					results.patientID = questionnaire.patientID;
+					results.sessionID = questionnaire.sessionID;
+					if (questionnaire.randomize == 1) 
+						questionnaire.questions = fisherYates(questionnaire.questions);
+					if (questionnaire.flip == 1) {
+						$.each(questionnaire.questions, function(i, q) {
+							var type = q.questionID.split('_')[0];
+							if (type == 'vas') {
+								q["flipped"] = null;
+								q.flipped = Math.round(Math.random());
+								if (q.flipped == 1) 
+									q.anchors.reverse();
+							}
+						});
+					}
+					questionnaire.questions.push({"questionID": "comments"}, {"questionID": "submit"});
+					currQuest = 0;
+					nextQuest = 1;
+					lastQuest = questionnaire.questions.length - 1;
+					// Fade out the Loading spinner icon...
+					$('#art-loading').removeClass('o1').addClass('o0');
+					// After the Loading spinner icon fades out...
+					setTimeout(function() {
+						// // Remove the Loading spinner icon...
+						// $('#art-loading').remove();
+						// // Add the logged in header and the article wrapper to the beginning of the <body>...
+						// $('body').prepend(Pages.sbHeader);
+						// // Apply a height style to the new header (didn\'t take from the CSS for some reason)...
+						// $('header.mht').css({
+						// 	height: '0px',
+						// 	display: 'none'
+						// });// Apply some additional styles to the header\'s <img> (didn\'t take from the CSS for some reason)...
+						// /*$('header.mht img').css({
+						// 	margin: '-13px 0px 0px -40px',
+						// 	position: 'absolute',
+						// 	left: '50%',
+						// 	top: '50%'
+						// });*/
+						//Quiz.init();
+						
+						//After AJAX call sucessful, continue here...
+						typeArt(currQuest);
+						quizInProgress = true;
+
+					}, 250);
+				}
+
 				},
 				error: function() {
 					// window.alert('Can\'t connect to database.');
@@ -874,9 +925,9 @@ var Quiz = (function() {
 			});
 			}, 250);
 			
-			//After AJAX call sucessful, continue here...
-			typeArt(currQuest);
-			quizInProgress = true;
+			// //After AJAX call sucessful, continue here...
+			// typeArt(currQuest);
+			// quizInProgress = true;
 		});
 
 		console.log("Started the quiz");
@@ -940,6 +991,20 @@ var Quiz = (function() {
 		// typeArt(nextQuest, true, 'pos3');
 
 	};
+
+function fisherYates(myArray) {
+		var i = myArray.length;
+		if (i == 0) 
+			return false;
+		while (--i ) {
+			var j = Math.floor(Math.random() * (i + 1));
+			var tempi = myArray[i];
+			var tempj = myArray[j];
+			myArray[i] = tempj;
+			myArray[j] = tempi;
+		}
+		return myArray;
+	}
 
 
 /*
