@@ -1,16 +1,21 @@
 <?php include './head.php'; ?>
 
 	<body>
-		<div class="containerForGraphs" id="cfg"><div id="cfgGraphs">&nbsp;</div></div>
+		<div class="containerForGraphs" id="cfg">
+		<div id="cfgGraphs">
+		</div>
 		<div id="commentDiv">
 			<div id="commentDateDiv">Date</div>
-			<div id="commentDataDiv">This section displays comments for the questionnaire</div>
+			<h4 class="graphSubheading">Comments</h4>
+			<div id="commentDataDiv"></div>
+			<h4 class="graphSubheading">Tags</h4>
 			<div id="commentTagDiv">
 				<ul id="commentTagUL">
 
 				</ul>
 			</div>
 		</div>
+	</div>
 	</body>
 
 	<script src="js/jquery.min.js"></script>
@@ -34,7 +39,12 @@
 
 
 	<script src="js/timeline.js"></script>
+	<? php
+		$patientID=$_REQUEST["patientID"];
+		if (isset $patientID)
+	?>
+	
 	<script>
 		var timeline = new Timeline();
-		timeline.loadQuestionsInitial();//.loadDataInitial();//DataVisualizationInitialization.
+		timeline.loadQuestionsInitial();
 	</script>
