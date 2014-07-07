@@ -10,7 +10,8 @@ var Quiz = (function() {
 	};
 	
 	var back = function(id) {
-		// console.log('back();');
+		console.log('back();');
+
 		$('#back-' + id)/*.swipeRight(function() {
 		})*/.click(function() {
 			if ($(this).hasClass('active')) {
@@ -88,6 +89,8 @@ var Quiz = (function() {
 			}
 			return false;
 		});
+
+
 	};
 	
 	var next = function(id) {
@@ -305,7 +308,6 @@ var Quiz = (function() {
 		}
 
 		var tags_arr = new Array();
-		var current_tags_arr = new Array();
 
 		$.ajax({
 			type: 'POST',
@@ -324,39 +326,23 @@ var Quiz = (function() {
 		});
 
 		$('.add-tag').click(function(){
-			if($('#tags').val() != '' )
-			{
+			if($('#tags').val() != ''){
 				var regex = /[^\w-]/gi; //only allow alpha numeric, hypen and underscore
 				var tag = $('#tags').val().replace(regex,'');
-				console.log("in here");
-
-				if (tag!='' && current_tags_arr.indexOf(tag)==-1)//only append if not empty and not found in list
-				{
-					console.log("added tag", tag);
-					$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
-					current_tags_arr.push(tag); //Add to current tag array for checking duplicates
-				}
-
-				$('#tags').val(''); //Reset tag entry field
+				
+				if (tag!='')
+				$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
+				
+				$('#tags').val('');
 
 				$('.tag-close').click(function(){
-
-					//Remove from current tag array
-					var removedTag = $(this).parent().text().slice(0, - 1); //remove x at the end
-					var tagIndex = current_tags_arr.indexOf(removedTag); //Find index
-					if (tagIndex > -1) {
-					    current_tags_arr.splice(tagIndex, 1);
-					}
-
-					//Remove from DOM
 					$(this).parent().remove();
-
 					return false;
 				});
 			}
 
 			return false;
-		}); //end click
+		});
 
 		results.date = new Date();
 		var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!
@@ -835,6 +821,8 @@ var Quiz = (function() {
 					other(id);
 				}
 			}
+			
+			$(":checked").parent().parent().addClass('rowActive');
 
 	};
 
@@ -947,7 +935,7 @@ var Quiz = (function() {
 			// quizInProgress = true;
 		});
 
-		//console.log("Started the quiz");
+		console.log("Started the quiz");
 /*
 
 		$('#nav-survey').click(function(){
