@@ -21,7 +21,8 @@ $defaultQuestionArray = array("QIDS_0","SCORE_0","VAS_0","ASRM_0"); //Array cont
 $fullQuestionArray = array(	"QIDS_0", "QIDS_1","QIDS_2","QIDS_3","QIDS_4","QIDS_5","QIDS_6","QIDS_7","QIDS_8","QIDS_9","QIDS_10","QIDS_11",
 							"ASRM_0", "ASRM_1","ASRM_2","ASRM_3","ASRM_4",
 							"OTHER_0","OTHER_1",
-							"VAS_0","VAS_1","VAS_2","VAS_3","VAS_4","VAS_5","VAS_8");
+							"VAS_0","VAS_1","VAS_2","VAS_3","VAS_4","VAS_5","VAS_8",
+							"SCORE_0");
 											
 //-------------------------------------------------
 //Grab initial load of data

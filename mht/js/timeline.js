@@ -222,7 +222,7 @@ var Timeline = function() {
             dataType: 'json',
             success: function(response) {
                 initialData = response;
-                //console.log("query_answers_timeline success", initialData);
+                console.log("query_answers_timeline success", initialData);
             },
             complete: function() {
                 makeGraph();
