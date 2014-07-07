@@ -67,7 +67,7 @@ var Timeline = function() {
 
     //----------parse functions----------
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
-    var commentDateFormat = d3.time.format("%d %B %Y, %I:%M %p, %A");
+    var commentDateFormat = d3.time.format("%a, %d %b %Y, %-I:%M %p");
 
     //Set up scales (to map input data to output in pixels)
     //----------scales----------
