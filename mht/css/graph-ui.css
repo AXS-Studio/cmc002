@@ -217,6 +217,10 @@ p.popupHeading {
     color:#999;
 }
 
+p.popupDescription {
+    line-height: 20px;
+}
+
 #top-legend > ul {
     margin-top: 0;
 }

@@ -43,8 +43,16 @@ var initGraphMenu =(function() {
 	
 	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul>');
 	$('#edit_content').append('<h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
-	$('#share_content').append('<ul><li><button>Save As PDF</button></li><li><button>Email PDF</button></li></ul></div></ul></li>');
+	$('#share_content').append('<ul><li><button id="saveAsPdf">Save As PDF</button></li><li><button id="emailAsPdf">Email PDF</button></li></ul></div></ul></li>');
 		
+	$('#saveAsPdf').click(function(e) {
+		console.log("Save as PDF");
+	});
+
+	$('#emailAsPdf').click(function(e) {
+		console.log("Email as PDF");
+	});
+
 	GenerateSwatches.questionSwatches();
 	
 	GenerateSwatches.tagSwatches();
@@ -529,7 +537,7 @@ function populatePopUpLegend(id) {
 
 	var rangeText = "";
 	if(popupText[0].description != "" && popupText[0].description != null ) {
-		rangeText = "<p class='popupHeading'>Range</p><p>" + popupText[0].description +"</p>";
+		rangeText = "<p class='popupHeading'>Range</p><p class='popupDescription'>" + popupText[0].description +"</p>";
 	}
 
 	var responseText = "";
@@ -541,7 +549,7 @@ function populatePopUpLegend(id) {
 
 	var responseSection = "";
 	if(data != "" || responseText != "") {
-		responseSection = "<p class='popupHeading'>Response</p><p>"+ data + responseText + " </p>";
+		responseSection = "<p class='popupHeading'>Response</p><p class='popupDescription'>"+ data + responseText + " </p>";
 	}
 
 	if(responseSection == "" &&  rangeText == "") rangeText = "No entry for this date";
