@@ -131,8 +131,8 @@ var Timeline = function() {
         .append("linearGradient")
         .attr("id", "gray-gradient")
         .attr("gradientUnits", "objectBoundingBox")
-    // .attr("x1", "0%").attr("y1","0%")         
-    .attr("x2", "0%").attr("y2", "100%")
+        // .attr("x1", "0%").attr("y1","0%")         
+        .attr("x2", "0%").attr("y2", "100%")
         .selectAll("stop")
         .data([{
             offset: "0%",
@@ -181,58 +181,15 @@ var Timeline = function() {
     if (overlay.empty())
         overlay = svg.append("g")
             .attr("id", "overlay_g");
-    //.attr("transform", "translate(" + (focusMargin.left+focusDim.width/2)  +"," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")");//
-
-    //focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom
-
-
-
+    
     var x0; //This copy of x captures the original domain setup
 
     //---------------------------------------------------------------------
     //Global variables carried over from last version
-    var graphSettings = [];
-    //graphSettings.tags = [];
-    //var data = [];
-    var colourCount = 0;
-    var comments = [];
-    //var commentsCreated = false;
-    var tags = [];
-    //var tagsCreated = false;
+    var graphSettings = []; //Keep track of all graphs being plotted
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
-
-    //Load dataset from database for current user and on success call makeGraph()
-    //var DataVisualizationInitialization = (function() {
-    //query_answers_initial.php was written originally for PATH, returns a set of default questions and their results
-    //and for non-default questions, returns the length of their results so that null sets can be greyed out
-    //Will need to rewrite the php for returning the entire bank of answers for use in the app as a one time download
-
-    var loadAnswersInitial = function(ajaxPath) {
-        //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
-
-        ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
-        patient = ajaxPath.split('=')[1];
-        // console.log(patient);
-
-        $.ajax({
-            url: ajaxPath,
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                initialData = response;
-                //console.log("initialData", initialData);
-            },
-            complete: function() {
-                makeGraph();
-            },
-            error: function() {
-                window.alert('Error loadAnswersInitial!');
-            }
-        });
-
-    };
 
     var loadQuestionsInitial = function() {
         $.ajax({
@@ -241,24 +198,50 @@ var Timeline = function() {
             dataType: 'json',
             success: function(response) {
                 questions = response;
-                console.log("questions", questions);
+                //console.log("query_questions success", questions);
             },
             complete: function() {
                 loadAnswersInitial();
             },
             error: function() {
-                window.alert('Error loadQuestionsInitial!');
+                window.alert('Error survey cannot be loaded from database!');
             }
         });
 
     };
 
+    //Load dataset from database for current user and on success call makeGraph()
+    var loadAnswersInitial = function(ajaxPath) {
+       
+        ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
+        patient = ajaxPath.split('=')[1];
+        
+        $.ajax({
+            url: ajaxPath,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                initialData = response;
+                //console.log("query_answers_timeline success", initialData);
+            },
+            complete: function() {
+                makeGraph();
+            },
+            error: function() {
+                window.alert('Error answers cannot be loaded from database!');
+            }
+        });
+
+    };
+
+    
+    //Plot and render the graph from scratch
     function makeGraph() {
         //clear graph
         focus.selectAll("*").remove();
         tagFocus.selectAll("*").remove();
 
-        var colourCount = 0;
+        //var colourCount = 0;
         var tagRowcounter = 0;
         for (var i = 0; i < initialData.length; i++) {
 
@@ -358,8 +341,7 @@ var Timeline = function() {
                         //Append rects for all binded data entering the graph
                         rects.enter().append('rect')
                             .style('fill', thisColour)
-                        // .style('stroke', 'rgba(256,256,256,1.0)')
-                        .attr('class', "rect_" + thisTag)
+                            .attr('class', "rect_" + thisTag)
                             .attr("data-sessionID", function(d) {
                                 return d.SessionID;
                             })
@@ -390,6 +372,7 @@ var Timeline = function() {
                 d3.select("#tagFocus_bg").attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
                 d3.select("#tagFocus_bg").attr("fill", "url(#gray-gradient)");
             } //end if initialData[i].id == 'tags'
+
             //---Plot comments---------------------------------------------------------------------------
             else if (initialData[i].id == 'comment') {
                 initialDataCommentIndex = i;
@@ -406,8 +389,7 @@ var Timeline = function() {
 
                 commentRects.enter().append('rect')
                     .style('fill', 'rgba(100,100,100,1.0)')
-                // .style('stroke', 'rgba(256,256,256,1.0)')
-                .attr('class', "rect_comment")
+                    .attr('class', "rect_comment")
                     .attr("data-sessionID", function(d) {
                         return d.SessionID;
                     })
@@ -433,11 +415,20 @@ var Timeline = function() {
         zoom.x(xScale);
 
         x0 = xScale.copy(); //keep a copy of original domain
+
         //-----------Graph elements - axis, tuner strip, transparent zoom rect-----------
 
         //Add a radio tuner style strip
         //Shift overlay up or down
         overlay.attr("transform", "translate(" + (focusMargin.left + focusDim.width / 2) + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusDim.height + tagFocusMargin.bottom) + ")"); //
+
+        //Shift gradient of tag bg
+        svg.select("#tagFocus_bg")
+        .attr("fill", "url(#gray-gradient)")
+        .attr("transform", "translate(0," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")")
+        .attr("width", svgDim.width)
+        .attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
+
 
         if (overlay.select('#tuner').empty()) {
 
@@ -538,6 +529,7 @@ var Timeline = function() {
         zoom.translate([0, 0]);
     }
 
+    //----------When menu changed-------------------------------------------------------------
     function onEditGraph() {
         makeGraph();
     }
@@ -628,6 +620,7 @@ var Timeline = function() {
             commentIndex = bisect(initialData[initialDataCommentIndex].results, midpointDate);
 
             //--Snapping based on direction of scroll right or left  - if user scrolled graph for an older date, snap to left
+            // Works better for mouse-zoome wheels
             // if (commentIndex > 0 && midpointDate<lastMidpointDate){
             //         commentIndex = commentIndex-1;
             // }

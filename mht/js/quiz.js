@@ -305,6 +305,7 @@ var Quiz = (function() {
 		}
 
 		var tags_arr = new Array();
+		var current_tags_arr = new Array();
 
 		$.ajax({
 			type: 'POST',
@@ -323,14 +324,18 @@ var Quiz = (function() {
 		});
 
 		$('.add-tag').click(function(){
-			if($('#tags').val() != ''){
+			if($('#tags').val() != '' )
+			{
 				var regex = /[^\w-]/gi; //only allow alpha numeric, hypen and underscore
 				var tag = $('#tags').val().replace(regex,'');
 				
-				if (tag!='')
-				$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
-				
-				$('#tags').val('');
+				if (tag!='' && current_tags_arr.index(tag)==-1)//only append if not empty and not found in list
+				{
+					$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
+					current_tags_arr.push(tag); //Add to current array of tags for checking duplicates
+				}
+
+				$('#tags').val(''); //Reset tag entry field
 
 				$('.tag-close').click(function(){
 					$(this).parent().remove();
@@ -930,7 +935,7 @@ var Quiz = (function() {
 			// quizInProgress = true;
 		});
 
-		console.log("Started the quiz");
+		//console.log("Started the quiz");
 /*
 
 		$('#nav-survey').click(function(){
