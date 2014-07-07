@@ -227,9 +227,13 @@ p.popupHeading {
 }
 
 #content_graph {
-    min-height: 2000px;
+    min-height: 100%
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+#content_quiz {
+    padding-bottom:50px;
 }
 
 #cfgGraphs {
