@@ -328,23 +328,35 @@ var Quiz = (function() {
 			{
 				var regex = /[^\w-]/gi; //only allow alpha numeric, hypen and underscore
 				var tag = $('#tags').val().replace(regex,'');
-				
-				if (tag!='' && current_tags_arr.index(tag)==-1)//only append if not empty and not found in list
+				console.log("in here");
+
+				if (tag!='' && current_tags_arr.indexOf(tag)==-1)//only append if not empty and not found in list
 				{
+					console.log("added tag", tag);
 					$('.tag-container').append('<div class="tag">'+tag+'<span class="tag-close">x</span></div>');
-					current_tags_arr.push(tag); //Add to current array of tags for checking duplicates
+					current_tags_arr.push(tag); //Add to current tag array for checking duplicates
 				}
 
 				$('#tags').val(''); //Reset tag entry field
 
 				$('.tag-close').click(function(){
+
+					//Remove from current tag array
+					var removedTag = $(this).parent().text().slice(0, - 1); //remove x at the end
+					var tagIndex = current_tags_arr.indexOf(removedTag); //Find index
+					if (tagIndex > -1) {
+					    current_tags_arr.splice(tagIndex, 1);
+					}
+
+					//Remove from DOM
 					$(this).parent().remove();
+
 					return false;
 				});
 			}
 
 			return false;
-		});
+		}); //end click
 
 		results.date = new Date();
 		var rJson = JSON.stringify(results);	// ALERT: Stringify function already happening here!!!
