@@ -13,4 +13,18 @@
 		<link rel="stylesheet" media="screen" href="css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="css/timeline.css">
 		<link rel="stylesheet" media="screen" href="css/spectrum.css">
+
+		<?php 
+			if($desktop == true)
+			{
+				?>
+
+					<link rel="stylesheet" media="screen" href="css/desktop.css">
+
+				<?php
+
+
+			}
+		?>
+
 	</head>

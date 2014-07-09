@@ -11,11 +11,17 @@ var initGraphMenu =(function() {
 	var graphMenuWidth =  $(document).width() - ( $(document).width() *0.15) + 10;// $('#graph-menu').width() + 10;
 	graphMenuWidth = -graphMenuWidth;
 
+	if ($("html").hasClass("desktop")) {
+
+	} 
+	else
+	{
 	$('#graph-menu').css({
-	"right" : graphMenuWidth,
-	"display" : "block"
+		"right" : graphMenuWidth,
+		"display" : "block"
 	});
-	
+	}
+
 	$(".tab").click(function(e) {
 		$(".tab").removeClass('selected');
 		$(".tab_content").removeClass('active');
@@ -26,6 +32,13 @@ var initGraphMenu =(function() {
 		$(modID).addClass('active');
 	})
 
+	if ($("html").hasClass("desktop")) {
+		$(".btnmenu.external").hide();
+		$(".btnmenu.internal").hide();
+	} 
+	else
+	{
+
 	$(".btnmenu.external").click(function(e) {
 		$('#graph-menu').animate({right: '0'});
 		$("#bgplate").show();
@@ -35,6 +48,8 @@ var initGraphMenu =(function() {
 		$('#graph-menu').animate({right: graphMenuWidth});
 		$("#bgplate").hide();
 	});
+
+	}
 	
 	$(".forgot").hide();
 	

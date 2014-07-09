@@ -1,0 +1,45 @@
+form#login {
+  width: 300px;
+  margin:50px auto;
+}
+
+.qCont {
+  width:700px;
+  margin:0px auto;
+}
+
+#graph-menu {
+  width:300px;
+  position: absolute;
+  overflow-y: none;
+  float:right;
+  right:0px;
+  top:46px;
+  display:block;
+  box-shadow:  none;
+    height: auto;
+    border-left: 1px solid #ccc;
+    min-height: 100%;
+    padding-bottom: 12%;
+}
+
+#graph-header {
+  background: #eee;
+}
+
+#graph-nav a.tab {
+  width: 33%;
+}
+
+#graph-nav a.tab.selected:last-child {
+  border-right:none;
+
+}
+
+#graph-menu #content {
+  overflow-y: visible;
+}
+
+#graph-menu {
+
+}
