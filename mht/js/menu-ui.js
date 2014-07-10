@@ -62,6 +62,10 @@ var initGraphMenu =(function() {
 		
 	$('#saveAsPdf').click(function(e) {
 		console.log("Save as PDF");
+		
+		graphCont = $('.containerForGraphs').html();
+		compileHtml("patient", graphCont);
+
 	});
 
 	$('#emailAsPdf').click(function(e) {
@@ -81,6 +85,87 @@ var initGraphMenu =(function() {
 	AddTagsHeading();
 
 });
+
+//For submission to php for pdf printing
+function post_to_url(path, params, method) {
+		method = method || 'post'; // Set method to post by default if not specified.
+	
+		// The rest of this code assumes you are not using a library.
+		// It can be made less wordy if you use one.
+		var form = document.createElement('form');
+		form.setAttribute('id', 'postForm');
+		form.setAttribute('method', method);
+		form.setAttribute('action', path);
+		form.setAttribute('action', path);
+	
+		for (var key in params) {
+			if (params.hasOwnProperty(key)) {
+				var hiddenField = document.createElement('input');
+				hiddenField.setAttribute('type', 'hidden');
+				hiddenField.setAttribute('name', key);
+				hiddenField.setAttribute('value', params[key]);
+				form.appendChild(hiddenField);
+			 }
+		}
+	
+		document.body.appendChild(form);
+		form.submit();
+		$('#postForm').remove();
+	}
+
+//Compile HTML page for printing purposes
+function compileHtml(patient, graphCont) {
+		var html = '<!DOCTYPE html>\
+			<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->\
+			<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->\
+			<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->\
+			<!--[if IE 9]>	  <html class="no-js ie9" lang="en"> <![endif]-->\
+			<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->\
+				<head>\
+					<meta charset="utf-8">\
+					<title>MHTV Printout</title>\
+					<meta name="robots" content="noindex, nofollow">\
+					<link rel="stylesheet" media="all" href="../../css/stylesheet.css">\
+					<link rel="stylesheet" media="all" href="../../css/graph-ui.css">\
+					<link rel="stylesheet" media="all" href="../../css/timeline.css">\
+					<link rel="stylesheet" media="all" href="../../css/spectrum.css">\
+				</head>';
+			html += '<body>\
+					<header>\
+						<h1><strong>MHTV Printout</strong></h1>\
+					</header>';
+			html += '<div class="containerForGraphs" id="cfg">\
+					' + graphCont + '</div>\
+				</body>\
+			</html>';
+
+		  // Submit for conversion to pdf
+		  // $.ajax({
+		  //            url: 'php/submit_print.php',
+		  //            type: 'POST',
+		  //            dataType: 'json',
+		  //            data: {
+				// 			"html": html,
+				// 			"userEmail": results.patientEmail
+				// 	 },
+		  //            success: function(response) { 
+		  //            	console.log(response);
+		  //            },
+		  //            complete: function () { 
+		  //            },
+		  //            error: function(response) {
+		  //                window.alert('Error: '+response);
+		  //                console.log(response);
+		  //            }
+	      //       	});//end ajax
+
+		post_to_url('php/submit_print.php',
+			{
+				"html": html,
+				"userEmail": results.patientEmail
+			}
+		);
+}
 
 function GotoTimeline () {
 	$('.nav li a').removeClass('active');

@@ -43,10 +43,10 @@ else if($result == 4){
 }
 else if($result == 1 ) {
 	// Username and password correct, register session variables
-	//$_SESSION['userId'] = $userEmail;
-
 	session_regenerate_id();
-	
+	//$_SESSION['userID'] = $userEmail;
+	setcookie("OUTPUTSESSID", create_hash($userEmail), 0, "/");
+
 	// http://stackoverflow.com/questions/9998900/maintain-php-session-in-web-app-on-iphone/14594908#14594908
 	$cookieLifetime = 1 * 24 * 60 * 60; // A day in seconds
 	setcookie(session_name(),session_id(),time()+$cookieLifetime);
