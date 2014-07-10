@@ -3,8 +3,41 @@ form#login {
   margin:50px auto;
 }
 
+header.sb {
+  background: none;
+  border:none;
+}
+
+#content_quiz {
+  width:800px;
+  margin:0px auto;
+}
+
 .qCont {
-  width:700px;
+  width:800px;
+  margin:0px auto;
+}
+
+article form fieldset div.rowActive {
+  border-radius:20px;
+}
+
+article nav.backNext {
+  position: absolute;
+  width:800px;
+  /*margin:0px auto;*/
+  bottom:-100px;
+  background:none;
+  box-shadow: none;
+  border-bottom: none;
+}
+
+article div#middle {
+  top:20%;
+}
+
+#page_settings {
+  width:800px;
   margin:0px auto;
 }
 
@@ -14,7 +47,8 @@ form#login {
   overflow-y: none;
   float:right;
   right:0px;
-  top:46px;
+  top:0px;
+  border-top:1px solid #ccc;
   display:block;
   box-shadow:  none;
     height: auto;
@@ -24,7 +58,7 @@ form#login {
 }
 
 #graph-header {
-  background: #eee;
+  background: #fff;
 }
 
 #graph-nav a.tab {
@@ -42,4 +76,59 @@ form#login {
 
 #graph-menu {
 
+}
+
+body .page-wrap {
+  padding-top:  40px;
+}
+
+footer {
+  position: fixed;
+  top:0px;
+  left:0px;
+  border-bottom: 1px solid #ccc;
+  z-index: 2000;
+
+  /*right:15px;*/
+  /*width:300px;*/
+}
+
+footer .nav::before {
+  content: "";
+  background: url("../images/MHT_logo.png") no-repeat;
+  background-size: 66px 22px;
+  margin:7px 20px 0px 0px;
+  width: 66px;
+  height:25px;
+  display: block;
+  float:left;
+}
+
+footer .nav {
+  position: absolute;
+  left:20px;
+}
+
+footer .nav li {
+  width:100px;
+
+}
+
+footer .nav li a {
+  border-top:none;
+  /*padding-top: 28px;*/
+}
+
+footer .nav li a#nav-settings {
+  border-right:1px solid #BCBEC0;
+}
+
+footer .nav li a#nav-timeline {
+  border-left:1px solid #BCBEC0;
+}
+
+article p.forgot {
+  float:right;
+  line-height: 40px;
+  margin:0px 10px;
 }
