@@ -241,6 +241,10 @@ var Timeline = function() {
         focus.selectAll("*").remove();
         tagFocus.selectAll("*").remove();
 
+        //Adjust width of graph if changed
+        focusDim.width = $(document).width() - focusMargin.right - focusMargin.left;
+        focusDim.height = $(document).height()*0.5;
+
         //var colourCount = 0;
         var tagRowcounter = 0;
         for (var i = 0; i < initialData.length; i++) {

@@ -65,12 +65,15 @@ var initGraphMenu =(function() {
 
 		graphContent = $('.containerForGraphs').html();
 		graphContent = graphContent + $('#graph-header').html();
-		createPDF("patient", graphContent);
-
+		createPDF(false, graphContent); //params: sendEmail, html content
 	});
 
 	$('#emailAsPdf').click(function(e) {
 		console.log("Email as PDF");
+
+		graphContent = $('.containerForGraphs').html();
+		graphContent = graphContent + $('#graph-header').html();
+		createPDF(true, graphContent); //params: sendEmail, html content
 	});
 
 	GenerateSwatches.questionSwatches();
@@ -115,7 +118,7 @@ function post_to_url(path, params, method) {
 	}
 
 //Compile HTML page for printing purposes
-function createPDF(patient, graphCont) {
+function createPDF(sendEmail, graphCont) {
 		var html = '<!DOCTYPE html>\
 			<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->\
 			<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->\
@@ -140,32 +143,38 @@ function createPDF(patient, graphCont) {
 				</body>\
 			</html>';
 
-		  // Submit for conversion to pdf  class="containerForGraphs" id="cfg"
-		  // $.ajax({
-		  //            url: 'php/submit_print.php',
-		  //            type: 'POST',
-		  //            dataType: 'json',
-		  //            data: {
-				// 			"html": html,
-				// 			"userEmail": results.patientEmail
-				// 	 },
-		  //            success: function(response) { 
-		  //            	console.log(response);
-		  //            },
-		  //            complete: function () { 
-		  //            },
-		  //            error: function(response) {
-		  //                window.alert('Error: '+response);
-		  //                console.log(response);
-		  //            }
-	      //       	});//end ajax
-
-		post_to_url('php/submit_print.php',
-			{
-				"html": html,
-				"userEmail": results.patientEmail
-			}
-		);
+		if (sendEmail){
+			// Submit for conversion to pdf
+			$.ajax({
+			         url: 'php/submit_print.php',
+			         type: 'POST',
+			         dataType: 'json',
+			         data: {
+							"sendEmail": sendEmail,
+							"html": html,
+							"userEmail": results.patientEmail
+					 },
+			         success: function(response) { 
+			         	console.log(response);
+			         },
+			         complete: function () { 
+			         },
+			         error: function(response) {
+			             window.alert('Error: '+response);
+			             console.log(response);
+			         }
+			});//end ajax
+		}
+		else{
+			// Submit for conversion to pdf 
+			post_to_url('php/submit_print.php',
+				{
+					"sendEmail": sendEmail,
+					"html": html,
+					"userEmail": results.patientEmail
+				}
+			);
+		}
 }
 
 function GotoTimeline () {
