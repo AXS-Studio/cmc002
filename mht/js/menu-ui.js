@@ -62,9 +62,10 @@ var initGraphMenu =(function() {
 		
 	$('#saveAsPdf').click(function(e) {
 		console.log("Save as PDF");
-		
-		graphCont = $('.containerForGraphs').html();
-		compileHtml("patient", graphCont);
+
+		graphContent = $('.containerForGraphs').html();
+		graphContent = graphContent + $('#graph-header').html();
+		createPDF("patient", graphContent);
 
 	});
 
@@ -114,7 +115,7 @@ function post_to_url(path, params, method) {
 	}
 
 //Compile HTML page for printing purposes
-function compileHtml(patient, graphCont) {
+function createPDF(patient, graphCont) {
 		var html = '<!DOCTYPE html>\
 			<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->\
 			<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->\
@@ -134,12 +135,12 @@ function compileHtml(patient, graphCont) {
 					<header>\
 						<h1><strong>MHTV Printout</strong></h1>\
 					</header>';
-			html += '<div class="containerForGraphs" id="cfg">\
+			html += '<div id="content_graph">\
 					' + graphCont + '</div>\
 				</body>\
 			</html>';
 
-		  // Submit for conversion to pdf
+		  // Submit for conversion to pdf  class="containerForGraphs" id="cfg"
 		  // $.ajax({
 		  //            url: 'php/submit_print.php',
 		  //            type: 'POST',
