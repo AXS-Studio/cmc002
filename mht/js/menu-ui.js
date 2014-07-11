@@ -92,7 +92,7 @@ var initGraphMenu =(function() {
 
 });
 
-//For submission to php for pdf printing
+//For PDF downloading via Save-As dialog
 function post_to_url(path, params, method) {
 		method = method || 'post'; // Set method to post by default if not specified.
 	
@@ -145,8 +145,10 @@ function createPDF(sendEmail, graphCont) {
 				</body>\
 			</html>';
 
-		if (sendEmail){
-			// Submit for conversion to pdf
+		// Submit for conversion to pdf
+		//if sendEmail=true, we use AJAX and return JSON response if email is successful
+		//else sendEmail=false, php returns a header to trigger Save-As dialog
+		if (sendEmail){	
 			$.ajax({
 			         url: 'php/submit_print.php',
 			         type: 'POST',
@@ -168,7 +170,7 @@ function createPDF(sendEmail, graphCont) {
 			});//end ajax
 		}
 		else{
-			// Submit for conversion to pdf 
+			// if success, triggers Save-As dialog for PDF donwload
 			post_to_url('php/submit_print.php',
 				{
 					"sendEmail": sendEmail,
@@ -177,7 +179,7 @@ function createPDF(sendEmail, graphCont) {
 				}
 			);
 		}
-}
+}//end createPDF()
 
 function GotoTimeline () {
 	$('.nav li a').removeClass('active');

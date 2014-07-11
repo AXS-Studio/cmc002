@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once("password_hash.php");
-require_once('PHPMailer/PHPMailerAutoload.php')
+require_once("PHPMailer/PHPMailerAutoload.php");
+
 
 //------------------Send PDF functionality from menu-ui.js------------------
 //Steps
@@ -10,7 +11,7 @@ require_once('PHPMailer/PHPMailerAutoload.php')
 //3. Run page in phantomjs to create screencapture
 //4. Send back to client
 
-//Exit if error
+//Exit if error (for sendEmail=false)
 function exitWithError($errorMessage){
 	echo '<script>';
 	echo 'alert("'.$errorMessage.'");';
@@ -18,7 +19,7 @@ function exitWithError($errorMessage){
 	echo '</script>';
 	exit;
 }
-
+//Exit with JSON response if error (for sendEmail=true)
 function exitWithErrorJSON($errorMessage){
 	$myResponse['error'] = "Error - Please contact pathadmin@sunnybrook.ca. ".$errorMessage;
  	echo json_encode($myResponse);
@@ -30,6 +31,11 @@ $html = $_POST["html"];
 $userEmail = $_POST["userEmail"];
 $sendEmail = $_POST["sendEmail"];
 
+//For testing
+// $html = "Hello World";
+// $userEmail = "Michael.Kent@axs3d.com";
+// $sendEmail = true;
+
 if (!isset($html) || !isset($userEmail) || !isset($sendEmail)){
 	//echo var_dump($_POST); //FOR DEBUG
 
@@ -39,7 +45,7 @@ if (!isset($html) || !isset($userEmail) || !isset($sendEmail)){
 	exitWithError("Error - Missing data. Please contact pathadmin@sunnybrook.ca");
 }
 
-//Authenticate user via hashed cookie of email (michael.kent@axs3d.com)
+//-----Authenticate user via hashed cookie of email (michael.kent@axs3d.com)---------------------
 $cookie = $_COOKIE['OUTPUTSESSID'];
 
 if (!isset($cookie) || empty($cookie)) {
@@ -57,43 +63,32 @@ else if (!(validate_password($userEmail, $cookie))){
  	exitWithError("Error - Unauthorized");
 }
 
-
 //-----Create html page locally---------------------------------------------------------------
 //$filepath= $_SERVER['DOCUMENT_ROOT']."/path/database";
-//$filename = "/screenshots/test.html";
 
 $completeFilePath = $_SERVER['DOCUMENT_ROOT']."/mht/php/screenshots/"; //use on public server
 $relativeFilePath = "screenshots/"; //Use in localhost (eg. MAMP)
 $filename = uniqid('graph_', false); 
-
+$file = $relativeFilePath.$filename;
 //str_replace('.', '_',uniqid())
 
-if (!$handle = fopen($relativeFilePath.$filename.'.html', 'w')) { 
-	//$myResponse['error'] = "ERROR - Cannot open file ($filename). Please contact pathadmin@sunnybrook.ca ".error_get_last();
-	//exit;
+if (!$handle = fopen($file.'.html', 'w')) { 
 	if ($sendEmail)
-	exitWithErrorJSON("Cannot open file ($filename)");
+	exitWithErrorJSON("Cannot open file ($filename) ".error_get_last());
 	else
 	exitWithError("ERROR - Cannot open file ($filename). Please contact pathadmin@sunnybrook.ca ".error_get_last()); 
 } 
 if (fwrite($handle, $html) === false) {
-	// $myResponse['error'] = "ERROR - Cannot write to file ($filename). Please contact pathadmin@sunnybrook.ca ".error_get_last();
-	// exit; 
 	if ($sendEmail)
-	exitWithErrorJSON("Cannot write to file ($filename)");
+	exitWithErrorJSON("Cannot write to file ($filename) ".error_get_last());
 	else
 	exitWithError("ERROR - Cannot write to file ($filename). Please contact pathadmin@sunnybrook.ca ".error_get_last()); 
 }
 
 fclose($handle);
 
-//FOR DEBUG - Redirect the user to the html page 
-//header("location: screenshots/test.html"); 
-
 //-----Run phantomJS and ImageMagick Convert shell script to render PDF-----------------------
 //session_write_close();
-
-$file = $relativeFilePath.$filename;
 
 //Run phantomJS to screenshot local html page into png
 //$command = "sudo /usr/bin/phantomjs rasterize.js ".$file.".html ".$file.".png 2>&1 1> /dev/null"; //server version
@@ -164,11 +159,11 @@ else if (!sendEmail){
 	unlink($file.'.png');
 	unlink($file.'.html');
 }
-
 exit;
 
 //Exit here for now
 // $myResponse['result'] = "success with file creation";
 // echo json_encode($myResponse);
 // exit;
+
 ?>
