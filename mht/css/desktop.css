@@ -29,7 +29,7 @@ article div.change-pwd, div.message div.change-pwd {
    background-size: 25px 150px;
     width:25px;
     height:150px;
-    
+
   }
 
 
@@ -114,6 +114,12 @@ article div#middle {
 
 #graph-menu {
 
+}
+
+.sp-container {
+  width:350px;
+  left:auto;
+  right:400px;
 }
 
 body .page-wrap {
