@@ -1,12 +1,23 @@
-form#login {
+@media (min-width: 900px) {
+
+form#login, form#reset {
   width: 300px;
   margin:50px auto;
 }
 
-header.sb {
+article div.change-pwd, div.message div.change-pwd {
+  width:300px;
+  margin: 0px auto;
+}
+
+#graph-nav a.btnmenu, #graph-header a.btnmenu{
+  display: none;
+}
+
+/*header.sb {
   background: none;
   border:none;
-}
+}*/
 
 #content_quiz {
   width:800px;
@@ -42,19 +53,19 @@ article div#middle {
 }
 
 #graph-menu {
-  width:300px;
+  width:300px!important;
   position: absolute;
   overflow-y: none;
   float:right;
-  right:0px;
-  top:0px;
-  border-top:1px solid #ccc;
+  right:0px!important;
+  top:0px!important;
+  /*border-top:1px solid #ccc;*/
   display:block;
   box-shadow:  none;
-    height: auto;
-    border-left: 1px solid #ccc;
-    min-height: 100%;
-    padding-bottom: 12%;
+  height: auto;
+  border-left: 1px solid #ccc;
+  min-height: 100%;
+  padding-bottom: 12%;
 }
 
 #graph-header {
@@ -79,19 +90,22 @@ article div#middle {
 }
 
 body .page-wrap {
-  padding-top:  40px;
+  /*padding-top:  40px;*/
 }
 
 footer {
   position: fixed;
-  top:0px;
   left:0px;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   z-index: 2000;
-
-  /*right:15px;*/
-  /*width:300px;*/
 }
+
+/* top */ 
+footer {
+    /*border-bottom: 1px solid #ccc;
+    top:0px;*/
+}
+
 
 footer .nav::before {
   content: "";
@@ -131,4 +145,6 @@ article p.forgot {
   float:right;
   line-height: 40px;
   margin:0px 10px;
+}
+
 }
