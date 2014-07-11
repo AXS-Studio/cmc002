@@ -1,4 +1,4 @@
-@media (min-width: 900px) {
+@media (min-width: 800px) {
 
 form#login, form#reset {
   width: 300px;
@@ -10,9 +10,35 @@ article div.change-pwd, div.message div.change-pwd {
   margin: 0px auto;
 }
 
+
+
 #graph-nav a.btnmenu, #graph-header a.btnmenu{
-  display: none;
+  /*display: none;*/
+
 }
+
+#graph-header a.btnmenu.external {
+  top:0px;
+  right:0px;
+  /*position: fixed;*/
+  z-index: 10;
+}
+
+#graph-nav  a.btnmenu.internal, #graph-header a.btnmenu.external  { 
+   background-image: url("../images/drawer-button.png");
+   background-size: 25px 150px;
+    width:25px;
+    height:150px;
+    
+  }
+
+
+#graph-nav a.btnmenu.internal{
+  left:-26px;
+  top:0px;
+
+}
+
 
 /*header.sb {
   background: none;
@@ -53,12 +79,12 @@ article div#middle {
 }
 
 #graph-menu {
-  width:300px!important;
+  width:300px; /*!important; */
   position: absolute;
   overflow-y: none;
   float:right;
-  right:0px!important;
-  top:0px!important;
+  right:0px; /*!important; */
+  top:0px; /*!important; */
   /*border-top:1px solid #ccc;*/
   display:block;
   box-shadow:  none;
@@ -70,6 +96,7 @@ article div#middle {
 
 #graph-header {
   background: #fff;
+  position: static;
 }
 
 #graph-nav a.tab {

@@ -41,7 +41,9 @@ var initGraphMenu =(function() {
 
 	$(".btnmenu.external").click(function(e) {
 		$('#graph-menu').animate({right: '0'});
-		$("#bgplate").show();
+		if($(window).width() < 800) {
+			$("#bgplate").show();
+		}
 	});
 	
 	$(".btnmenu.internal").click(function(e) {
