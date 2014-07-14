@@ -600,4 +600,11 @@ h4.graphSubheading {
 #smoothGraph ::-webkit-slider-thumb:before {
   background-color: yellow;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
  

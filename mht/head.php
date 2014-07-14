@@ -4,27 +4,12 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="apple-touch-icon" href="images/57.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="images/114.png">
-		<!-- <link rel="apple-touch-startup-image" href="images/startup.png"> -->
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title>MHT</title>
 		<link rel="stylesheet" media="screen" href="css/stylesheet.css">
 		<link rel="stylesheet" media="screen" href="css/graph-ui.css">
-		<!-- <link rel="stylesheet" media="screen" href="css/graph.css"> -->
 		<link rel="stylesheet" media="screen" href="css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="css/timeline.css">
 		<link rel="stylesheet" media="screen" href="css/spectrum.css">
 		<link rel="stylesheet" media="screen" href="css/desktop.css">
-<!-- 		<?php 
-		//	if($desktop == true)
-			{
-				?>
-
-					
-
-				<?php
-
-
-			}
-		?> -->
-
 	</head>
