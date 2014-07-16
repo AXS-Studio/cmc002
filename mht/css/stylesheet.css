@@ -317,7 +317,14 @@ article, div.message {
     margin:3%;}
   article p.alert, div.message p.alert {
     color: red;
-    -webkit-transition: opacity 0.5s ease-out; }
+    -webkit-transition: opacity 0.5s ease-out; 
+
+  }
+
+  article p.alert {
+        text-align: center;
+    margin:10px 0;
+  }
   article p a, div.message p a {
     color: #0b67b1; }
   article div#middle p a, div.message div#middle p a {
