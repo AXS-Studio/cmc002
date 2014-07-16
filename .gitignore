@@ -2,3 +2,7 @@ mht/php/database.php
 mht/php/password_hash.php
 mht/php/cron.php
 mht/graph_cindy_v1.php
+
+mht/php/EmailText_axs.php
+
+mht/php/EmailText_sunnybrook.php

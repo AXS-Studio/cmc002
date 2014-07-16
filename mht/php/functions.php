@@ -109,7 +109,7 @@ function createSessionArray($userEmail){
 	$myResponse["test"]= "test";
 	//Check if today is scheduled for infrequent survey
 	//eg. Infreq surveys set to every 3 days, today is 6 days since startDate ($days == 3, $daysDiff == 6), return true
-	if ($daysDiff % $days == 0){
+	if ($days>0 && $daysDiff % $days == 0){
 		//Infrequent survey day. Since patients can do multiple surveys per day
 		//Will have to check if user has already done infreq survey on this day
 		$q = "SELECT * FROM `Sessions_MHT` WHERE DATE_FORMAT(`Date`,'%Y-%m-%d') = '$now'

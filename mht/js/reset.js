@@ -25,6 +25,7 @@ var Reset = (function() {
 			$('header.sb').after(Pages.loading);
 			$('#art-loading').show().attr('class', 'o1');
 			Middle.init();
+			
 			$.ajax({
 				type: 'POST',
 				url: 'php/reset_password.php',

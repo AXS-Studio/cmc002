@@ -206,8 +206,7 @@ if ($detect -> isTablet()) {
 			<?php
 			if ($page == 'reset') {
 				echo "
-						Reset.init();
-						// Resize.init();";
+						Reset.init();";
 			// } else if ($desktop == true || $tablet == true) {
 			// 	echo "
 			// 			Middle.init();";
