@@ -6,3 +6,15 @@ mht/graph_cindy_v1.php
 mht/php/EmailText_axs.php
 
 mht/php/EmailText_sunnybrook.php
+
+mht/.project
+
+mht/.settings/.jsdtscope
+
+*.component
+
+mht/.settings/org.eclipse.wst.common.project.facet.core.xml
+
+mht/.settings/org.eclipse.wst.jsdt.ui.superType.container
+
+mht/.settings/org.eclipse.wst.jsdt.ui.superType.name
