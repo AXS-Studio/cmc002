@@ -5,9 +5,14 @@ form#login, form#reset {
   margin:50px auto;
 }
 
-article div.change-pwd, div.message div.change-pwd {
+article div.change-pwd, div.message div.change-pwd, #art-forgot{
   width:300px;
   margin: 0px auto;
+}
+
+#art-forgot {
+  margin-top:10px;
+
 }
 
 
