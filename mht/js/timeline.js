@@ -145,7 +145,7 @@ var Timeline = function() {
             color: 'rgba(230,230,230,1)'
         }, {
             offset: "92%",
-            color: 'rgba(200,200,200,1)'
+            color: 'rgba(230,230,230,1)'
         }])
         .enter().append("stop")
         .attr("offset", function(d) {

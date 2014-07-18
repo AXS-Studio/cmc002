@@ -13,9 +13,10 @@ require_once("PHPMailer/PHPMailerAutoload.php");
 
 //Exit if error (for sendEmail=false)
 function exitWithError($errorMessage){
+
 	echo '<script>';
-	echo 'alert("'.$errorMessage.'");';
-	echo 'location.href="../index.php"';
+	echo 'alert("'Error'");';//.$errorMessage.
+	echo 'location.href="../index.php";';
 	echo '</script>';
 	exit;
 }
@@ -30,6 +31,11 @@ function exitWithErrorJSON($errorMessage){
 $html = $_POST["html"];
 $userEmail = $_POST["userEmail"];
 $sendEmail = $_POST["sendEmail"];
+
+if ($sendEmail == "false")
+$sendEmail = false;
+else
+$sendEmail = true;
 
 //For testing
 // $html = "Hello World";
