@@ -391,8 +391,9 @@ var Timeline = function() {
                         return d.date;
                     });
 
+                //Opacity set to 0 to hide from patients per Jason's request
                 commentRects.enter().append('rect')
-                    .style('fill', 'rgba(100,100,100,1.0)')
+                    .style('fill', 'rgba(100,100,100,0)')
                     .attr('class', "rect_comment")
                     .attr("data-sessionID", function(d) {
                         return d.SessionID;
