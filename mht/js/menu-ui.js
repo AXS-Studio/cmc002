@@ -51,6 +51,8 @@ var initGraphMenu =(function() {
 		$("#bgplate").hide();
 	});
 
+	
+	
 	// }
 	
 	$(".forgot").hide();
@@ -91,6 +93,11 @@ var initGraphMenu =(function() {
 	AddTagsHeading();
 
 });
+
+function RegenerateMenus () {
+	
+	
+}
 
 //For PDF downloading via Save-As dialog
 function post_to_url(path, params, method) {
@@ -512,10 +519,10 @@ var AddColourPicker  = (function() {
 				timeline.onEditGraph();
 			},
 			show: function() {
-				$("#bgplate").show();
+				//$("#bgplate").show();
 			},
 			hide: function () {
-				$("#bgplate").hide();	
+				//$("#bgplate").hide();	
 			}
 
 		});
@@ -541,10 +548,10 @@ var AddColourPicker  = (function() {
 				timeline.onEditGraph();
 			},
 			show: function() {
-				$("#bgplate").show();
+			//	$("#bgplate").show();
 			},
 			hide: function () {
-				$("#bgplate").hide();	
+				//$("#bgplate").hide();	
 			}
 		});
 	});
