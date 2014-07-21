@@ -584,7 +584,7 @@ article, div.message {
         display: inline-block;
         overflow: hidden;
         position: absolute;
-        top: -8px; }
+        top: -7px; }
       article div.markers p.range.left, div.message div.markers p.range.left {
         text-align: left;
         float: left;
