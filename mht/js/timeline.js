@@ -225,7 +225,10 @@ var Timeline = function() {
                 console.log("query_answers_timeline success", initialData);
             },
             complete: function() {
+                if (initialData!=null)
                 makeGraph();
+                else
+                window.alert("Error answers cannot be loaded from database!");
             },
             error: function() {
                 window.alert('Error answers cannot be loaded from database!');
@@ -252,7 +255,7 @@ var Timeline = function() {
             //---Plot survey data---------------------------------------------------------------------------
             if (initialData[i].id != 'comment' && initialData[i].id != 'tags' && initialData[i].id != 'uniqueTags' && initialData[i].id != 'notes' && initialData[i].id != 'sessions') {
 
-                if (initialData[i].results != null) {
+                if (initialData[i].results != null && initialData[i].results.length>0) {
 
                     //Convert date in initialData to a d3 readable format
                     jQuery.each(initialData[i].results, function(i, d) {
@@ -504,6 +507,9 @@ var Timeline = function() {
 
         updateGraph();
 
+        if (graphSettings.length == 0){
+            window.alert("No data available to graph, until at least one survey completed");
+        }
     } //end makeGraph function
 
     //----------Setup brush-------------------------------------------------------------
