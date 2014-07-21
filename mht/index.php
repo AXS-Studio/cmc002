@@ -103,7 +103,8 @@ if ($detect -> isTablet()) {
 		
 		<?php include './footer.php'; ?>	
 			
-		<script src="js/jquery.min.js"></script>
+		<!--  <script src="js/jquery.min.js"></script> Cindy: Need dev jQuery code to debug-->
+		<script src="js/jquery-1.11.1.js"></script>
 		<?php /*?><script src="js/jquery-ui-1.10.2.custom.js"></script>*/?>	
 		<script src="js/jquery-ui-1.10.4.custom.js"></script>
 		<!-- <script src="js/jquery.colorpicker.js"></script> -->

@@ -31,11 +31,12 @@ var Login = (function() {
 		if (id == 'dontMatch') {
 			$('#Password, #confirmPassword').animate({
 				'background-color': '#ffecec'
-			}, 250, 'ease-out');
+			}, 250);//Removed easing for all animations, 'ease-out' error
 		} else if (id == 'wrongUserPassword') {
-			$('#userId, #password').animate({
+			$('#userId').animate({
 				'background-color': '#ffecec'
-			}, 250, 'ease-out');
+			}, 250);
+
 		} else if (id == 'cantConnect') {
 			/*$('#userId, #password').animate({
 				'background-color': '#ffecec'
@@ -47,7 +48,7 @@ var Login = (function() {
 		} else {
 			$('#' + id).animate({
 				'background-color': '#ffecec'
-			}, 250, 'ease-out');
+			}, 250);
 		}
 		setTimeout(function() {
 			$('#alert-' + id).attr('class', 'alert o0');
