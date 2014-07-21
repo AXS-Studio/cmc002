@@ -49,6 +49,29 @@ var Range = (function() {
 			}).on('touchend', function() {
 				rangeVal(id.split('g-')[1]);
 			});
+			
+		} else if ($('html').hasClass('desktop')) {
+			clicking = false;
+			$('#' + id).mousedown(function(event) {
+			//	event.preventDefault();
+				clicking = true;
+			}).mousemove(function(event) {
+				if(clicking) {
+				var $rb = $(this).parent();
+				var leftPos = left($rb, event, false);
+				if (leftPos >= 0 && leftPos <= $rb.width()) {
+					leftPos = adjLp(leftPos);
+					// console.log(leftPos + 'px');
+					$(this).css('left', leftPos + 'px');
+				}
+				}
+			}).mouseup(function() {
+				rangeVal(id.split('g-')[1]);
+				clicking = false;
+			}).mouseleave(function() {
+				rangeVal(id.split('g-')[1]);
+				clicking = false;
+			});
 		} else {	// BlackBerry that doesn\'t support touch or desktop browser
 			// window.alert('BlackBerry no touch.');
 			$('#rb-' + id.split('g-')[1]).on('click', function(event) {
