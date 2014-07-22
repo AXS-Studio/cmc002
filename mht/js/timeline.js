@@ -80,7 +80,10 @@ var Timeline = function() {
     var yAxis = d3.svg.axis().scale(yScale).ticks(5).orient("left").tickSize(-focusDim.width, 0);
 
     //----------mean line----------
-    var alpha = 0.5;
+    //Graph smoothing constant set to localStorage, or default to 0.5 if NA
+    var alpha = JSON.parse(localStorage.getItem("graphSmoothing"));
+    if (alpha == null) alpha = 0.5;
+
     var ypre, xpre;
     var meanline = d3.svg.line()
         .interpolate("bundle")
