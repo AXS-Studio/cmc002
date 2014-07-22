@@ -329,7 +329,7 @@ var GenerateSwatches = (function() {
      var questionSwatches = function() {
      
      	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
-     	 console.log(graphColors);
+//     	 console.log(graphColors);
      
          $.ajax({
              url: 'php/query_questions.php',
@@ -397,6 +397,7 @@ var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)','rgba(199,24
 var defaultColorIndex = 0;
 
 function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
+	if(questions == null ) return;
 		for (var i = 0; i < questions.length; i++) {
 			var category = questions[i].category;
 			if (category != 'Aggregate Scores' /* && (category != 'OTHER' || (category == 'OTHER' && otherCount == 0))*/) {
@@ -464,6 +465,8 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 }	
 
 function addTagSwatches() {	
+	if(tags == null ) return;
+	
 	if (tags.length > 0) {
 		for (var j = 0; j < tags.length; j++) {
 				//var id = tags[j];
@@ -683,7 +686,7 @@ function populatePopUpLegend(id) {
 function addPopUpLegend() {
 
 
-	$("#legend-header .legend-popup").live('click', function(e) {
+	$("#legend-header .legend-popup").on('click', function(e) {
 		var id = $(this).attr("id");
 		var id = id.replace("legend-", "");
 		populatePopUpLegend(id);
@@ -692,7 +695,7 @@ function addPopUpLegend() {
 	
 		});
 
-		$("#legend-popup .close-popup").live('click', function(e) {
+		$("#legend-popup .close-popup").on('click', function(e) {
 		$("#legend-popup").hide();
 		$("#bgplate").hide();
 	});
@@ -704,16 +707,26 @@ function AddSmoothingSlider () {
 
 	$("#legend_content").append(sliderHTML);
 
-	$("#smoothGraph").val = timeline.getAlpha() * 100;
-
-	$("#smoothGraph").on("change mousemove", function() {
+	 var storedAlpha = JSON.parse(localStorage.getItem("graphSmoothing"));
+	console.log(storedAlpha + "," + localStorage.getItem("graphSmoothing"));
+	if(storedAlpha == null) {
+		$("#smoothGraph").val = timeline.getAlpha() * 100;
+	} else {
+		$("#smoothGraph").val = storedAlpha * 100;
+		//timeline.setAlpha(storedAlpha);
+		//timeline.onEditGraph();
+	}
+	
+	$("#smoothGraph").on("change", function() {
 		var newAlpha = 1- ($(this).val() / 100);
 		// alert(newAlpha + "," + timeline.alpha );
 		timeline.setAlpha(newAlpha);
 		timeline.onEditGraph();
+		localStorage.setItem('graphSmoothing',JSON.stringify(newAlpha));
+		console.log(newAlpha);
 		// alert("RAAAA");
 	});
-$("#smoothGraph").rangeslider();
+	$("#smoothGraph").rangeslider();
 
 }
 
