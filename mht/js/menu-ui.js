@@ -5,7 +5,10 @@ var timeline = new Timeline();
 
 var initGraphMenu =(function() {
 
-	if(graphMenuActive) return;
+	if(graphMenuActive)  {
+		RegenerateMenus();
+		return;
+	}
 	graphMenuActive = true;
 	
 	var graphMenuWidth =  $(document).width() - ( $(document).width() *0.15) + 10;// $('#graph-menu').width() + 10;
@@ -60,9 +63,9 @@ var initGraphMenu =(function() {
 	$("footer .nav").show();
 	
 	
-	$('#legend_content').append('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul>');
-	$('#edit_content').append('<h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
-	$('#share_content').append('<ul><li><button id="saveAsPdf">Save As PDF</button></li><li><button id="emailAsPdf">Email PDF</button></li></ul></div></ul></li>');
+	$('#legend_content').html('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul>');
+	$('#edit_content').html('<h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
+	$('#share_content').html('<ul><li><button id="saveAsPdf">Save As PDF</button></li><li><button id="emailAsPdf">Email PDF</button></li></ul></div></ul></li>');
 		
 	$('#saveAsPdf').click(function(e) {
 		console.log("Save as PDF");
@@ -95,7 +98,18 @@ var initGraphMenu =(function() {
 });
 
 function RegenerateMenus () {
+	$('#legend_content').html('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul>');
+	$('#edit_content').html('<h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
 	
+	GenerateSwatches.questionSwatches();
+	
+	GenerateSwatches.tagSwatches();
+
+	GenerateSwatches.filterSwatches();
+	
+	addPopUpLegend();
+
+	AddSmoothingSlider();
 	
 }
 
