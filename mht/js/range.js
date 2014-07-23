@@ -50,27 +50,40 @@ var Range = (function() {
 				rangeVal(id.split('g-')[1]);
 			});
 			
-		} else if ($('html').hasClass('desktop')) {
+		} else if ($('html').hasClass('desktop')) { //Desktop
 			clicking = false;
 			$('#' + id).mousedown(function(event) {
-			//	event.preventDefault();
+				//event.preventDefault();
 				clicking = true;
-			}).mousemove(function(event) {
+			});
+			
+			//Set a bigger area to capture mouse-move, if user drags too fast
+			$("#content_quiz").mousemove(function(event) {
 				if(clicking) {
-				var $rb = $(this).parent();
-				var leftPos = left($rb, event, false);
-				if (leftPos >= 0 && leftPos <= $rb.width()) {
-					leftPos = adjLp(leftPos);
-					// console.log(leftPos + 'px');
-					$(this).css('left', leftPos + 'px');
+					var $rb = $('#' + id).parent();
+					//var $rb = $(this).parent();
+					var leftPos = left($rb, event, false);
+					if (leftPos >= 0 && leftPos <= $rb.width()) {
+						leftPos = adjLp(leftPos);
+						$('#' + id).css('left', leftPos + 'px');
+						//$(this).css('left', leftPos + 'px');
+					}
+				}//end clicking
+			});
+			
+			//Even bigger area to capture mouse-up
+			$(document).mouseup(function() {
+				if(clicking) {
+					rangeVal(id.split('g-')[1]);
+					clicking = false;
 				}
+			});
+
+			$("#content_quiz").mouseleave(function() {
+				if(clicking) {
+					rangeVal(id.split('g-')[1]);
+					clicking = false;
 				}
-			}).mouseup(function() {
-				rangeVal(id.split('g-')[1]);
-				clicking = false;
-			}).mouseleave(function() {
-				rangeVal(id.split('g-')[1]);
-				clicking = false;
 			});
 		} else {	// BlackBerry that doesn\'t support touch or desktop browser
 			// window.alert('BlackBerry no touch.');

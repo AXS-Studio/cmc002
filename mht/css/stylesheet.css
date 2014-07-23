@@ -36,7 +36,15 @@ html, body {
 body {
   font: 100%/1em sans-serif;
   word-wrap: break-word;
-  -webkit-text-size-adjust: none; }
+  -webkit-text-size-adjust: none; 
+  /*Disable selection of text*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
@@ -501,7 +509,17 @@ article, div.message {
           position: absolute;
           left: 140px;
           top: -36px;
+          /*Disable selection of grip div*/
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer; 
+
           -webkit-transition: opacity 1s ease-out; }
+
           article form fieldset div.rangeBar div.grip.op0, div.message form fieldset div.rangeBar div.grip.op0 {
             opacity: 0.0; }
           article form fieldset div.rangeBar div.grip.op1, div.message form fieldset div.rangeBar div.grip.op1 {
