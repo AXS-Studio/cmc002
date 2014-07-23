@@ -193,6 +193,7 @@ var Timeline = function() {
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
+    var initialData;
 
     var loadQuestionsInitial = function() {
         $.ajax({
@@ -218,9 +219,10 @@ var Timeline = function() {
        
         ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         patient = ajaxPath.split('=')[1];
-        
+
         $.ajax({
             url: ajaxPath,
+
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -782,7 +784,8 @@ var Timeline = function() {
         loadQuestionsInitial: loadQuestionsInitial,
         onEditGraph: onEditGraph,
         setAlpha: setAlpha,
-        getAlpha: getAlpha
+        getAlpha: getAlpha,
+        initialData: initialData
     };
 
 }; //end var Timeline
