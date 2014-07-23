@@ -72,7 +72,7 @@ table {
   font-weight: normal;
   font-family: 'ubunturegular', sans-serif; }
 
-.uMed, .formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article div#middle p a, div.message div#middle p a, article div#middle p strong, div.message div#middle p strong {
+.uMed, .formButton,.ui-button, .ui-button:hover, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article div#middle p a, div.message div#middle p a, article div#middle p strong, div.message div#middle p strong {
   font-weight: normal;
   font-family: 'ubuntu_lightbold', sans-serif; }
 
@@ -93,7 +93,7 @@ table {
 .botMarg, article h1, div.message h1, article p, div.message p, article ol li, div.message ol li {
   margin: 0 0 0.3em; }
 
-.formInputs, .formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article form fieldset input[type="text"], article form fieldset input[type="password"], article form fieldset input[type="email"], article form fieldset textarea, div.message form fieldset input[type="text"], div.message form fieldset input[type="password"], div.message form fieldset input[type="email"], div.message form fieldset textarea, .sp-container button {
+.formInputs, .formButton, .ui-button, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .ui-button:hover, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article form fieldset input[type="text"], article form fieldset input[type="password"], article form fieldset input[type="email"], article form fieldset textarea, div.message form fieldset input[type="text"], div.message form fieldset input[type="password"], div.message form fieldset input[type="email"], div.message form fieldset textarea, .sp-container button {
   -webkit-appearance: none;
   margin-bottom: 0;
   padding-top: 0.7em;
@@ -105,7 +105,7 @@ table {
   margin: 0;
   list-style: none; }
 
-.formButton, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .sp-container button, .sp-cancel {
+.formButton, .ui-button, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .sp-container button, .sp-cancel {
   margin-top: 2em;
   padding: 11px 30px;
   text-align: center;
@@ -123,7 +123,7 @@ table {
   -ms-transition: color 0.25s, background-color 0.25s ease-out;
   transition: color 0.25s, background-color 0.25s ease-out; }
 
-.formButton:hover, article form fieldset input[type="submit"]:hover, div.message form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, .sp-container button:hover, .sp-cancel:hover {
+.formButton:hover,.ui-button:hover, article form fieldset input[type="submit"]:hover, div.message form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, .sp-container button:hover, .sp-cancel:hover {
   margin-top: 2em;
   padding: 11px 30px;
   text-align: center;
@@ -199,16 +199,19 @@ ul.ui-autocomplete {
   list-style: none;
   padding: 0;
   margin: 0; 
-  width: 200px;
+  width: 198px;
+  border:1px solid #ccc;
+  border-bottom:none;
+  background:#fff;
   }
 
 .ui-menu .ui-menu-item{
   margin: 0px;
-  padding: 0.2em 0em 0.2em 1em;
+  padding: 10px;
+  font-size:15px;
   border-bottom: 1px solid #CCC;
   cursor: pointer;
   display: block;
-  font-size: 0.9em;
   overflow: hidden;
   }
 
@@ -216,7 +219,7 @@ ul.ui-autocomplete {
   background: none;
   background-color: #7cc144;
   color: #FFF;
-  border: none;
+
 }
 /*------------------------*/
 /*Cindy: Defunct, #ac not in use in newest jQueryUI css*/
@@ -953,5 +956,7 @@ div.shareAlert {
   }
 
   #page_graph {min-height: 1000px;}
+  
+
 
 

@@ -205,7 +205,7 @@ function createPDF(sendEmail, graphCont) {
 function GotoTimeline () {
 	$('.nav li a').removeClass('active');
 			$('#nav-timeline').addClass('active');
-	$('#page_login').hide();
+			$('#page_login').hide();
 			$('#page_graph').show();
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
@@ -259,6 +259,7 @@ var initAppMenu = (function() {
 		$('#nav-timeline').click(function(){
 
 			if(quizInProgress) {
+					$("#bgplate").show();
 				    $( "#dialog-confirm" ).dialog({
 				      resizable: false,
 				      modal: true,
@@ -266,10 +267,12 @@ var initAppMenu = (function() {
 				        "Leave Anyway": function() {
 				          $( this ).dialog( "close" );
 				          quizInProgress = false;
+				          $("#bgplate").hide();
 				          	GotoTimeline();	
 				        },
 				        Cancel: function() {
 				          $( this ).dialog( "close" );
+				          $("#bgplate").hide();
 				          return;
 				        }
 				      }
@@ -284,6 +287,7 @@ var initAppMenu = (function() {
 
 		$('#nav-settings').click(function(){
 				if(quizInProgress) {
+					$("#bgplate").show();
 				    $( "#dialog-confirm" ).dialog({
 				      resizable: false,
 				      modal: true,
@@ -291,10 +295,12 @@ var initAppMenu = (function() {
 				        "Leave Anyway": function() {
 				          $( this ).dialog( "close" );
 				          quizInProgress = false;
+				          $("#bgplate").hide();
 				          	GotoSettings();
 				        },
 				        Cancel: function() {
 				          $( this ).dialog( "close" );
+				          $("#bgplate").hide();
 				          return;
 				        }
 				      }
