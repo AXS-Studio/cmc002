@@ -8,9 +8,9 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="images/114.png">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title>MHT</title>
+		<link rel="stylesheet" media="screen" href="css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="css/stylesheet.css">
 		<link rel="stylesheet" media="screen" href="css/graph-ui.css">
-		<link rel="stylesheet" media="screen" href="css/jquery-ui-styles.css">
 		<link rel="stylesheet" media="screen" href="css/timeline.css">
 		<link rel="stylesheet" media="screen" href="css/spectrum.css">
 		<link rel="stylesheet" media="screen" href="css/desktop.css">

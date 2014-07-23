@@ -185,6 +185,33 @@ header {
     header.mht img {
       display: none; }
 
+/*---Cindy: AutoComplete----*/
+ul.ui-autocomplete {
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0; 
+  width: 200px;
+  }
+
+.ui-menu .ui-menu-item{
+  margin: 0px;
+  padding: 0.2em 0em 0.2em 1em;
+  border-bottom: 1px solid #CCC;
+  cursor: pointer;
+  display: block;
+  font-size: 0.9em;
+  overflow: hidden;
+  }
+
+.ui-menu .ui-state-focus{
+  background: none;
+  background-color: #7cc144;
+  color: #FFF;
+  border: none;
+}
+/*------------------------*/
+/*Cindy: Defunct, #ac not in use in newest jQueryUI css*/
 div#acWrap {
   overflow: hidden;
   position: relative;
@@ -233,7 +260,7 @@ div#ac {
 .ac_over {
   background-color: #7cc144;
   color: #FFF; }
-
+/*------------------------*/
 article, div.message {
 /*   margin: 20px 20px 0 20px; */
   position: relative;
