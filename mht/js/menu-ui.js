@@ -707,12 +707,15 @@ function AddSmoothingSlider () {
 
 	$("#legend_content").append(sliderHTML);
 
+	$("#smoothGraph").rangeslider();
+	
 	 var storedAlpha = JSON.parse(localStorage.getItem("graphSmoothing"));
 	console.log(storedAlpha + "," + localStorage.getItem("graphSmoothing"));
 	if(storedAlpha == null) {
-		$("#smoothGraph").val = timeline.getAlpha() * 100;
+		$("#smoothGraph").val((1 - timeline.getAlpha()) * 100).change();
 	} else {
-		$("#smoothGraph").val = storedAlpha * 100;
+		$("#smoothGraph").val((1 - storedAlpha) * 100).change();
+		console.log("Changed value to " + storedAlpha * 100);
 		//timeline.setAlpha(storedAlpha);
 		//timeline.onEditGraph();
 	}
@@ -726,7 +729,7 @@ function AddSmoothingSlider () {
 		console.log(newAlpha);
 		// alert("RAAAA");
 	});
-	$("#smoothGraph").rangeslider();
+	
 
 }
 
