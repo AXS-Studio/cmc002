@@ -195,6 +195,7 @@ var Timeline = function() {
     var initialDataCommentIndex;
     var initialData;
 
+    //Not needed this for the graph
     var loadQuestionsInitial = function() {
         $.ajax({
             url: 'php/query_questions.php',
@@ -230,8 +231,10 @@ var Timeline = function() {
                 console.log("query_answers_timeline success", initialData);
             },
             complete: function() {
-                if (initialData!=null)
-                makeGraph();
+                if (initialData!=null){
+                    makeGraph();
+                    initGraphMenu();//in menu-ui.js
+                }
                 else
                 window.alert("Error answers cannot be loaded from database!");
             },
@@ -779,13 +782,18 @@ var Timeline = function() {
         }
     } //end updateHeaders
 
+    function getInitialData(){
+        return initialData;
+    }
+
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
-        loadQuestionsInitial: loadQuestionsInitial,
+         // loadQuestionsInitial: loadQuestionsInitial,
+         loadAnswersInitial: loadAnswersInitial,
         onEditGraph: onEditGraph,
         setAlpha: setAlpha,
         getAlpha: getAlpha,
-        initialData: initialData
+        getInitialData: getInitialData
     };
 
 }; //end var Timeline

@@ -4,7 +4,6 @@ var tagColors = new Array();
 var timeline = new Timeline();
 
 var initGraphMenu =(function() {
-
 	if(graphMenuActive)  {
 		RegenerateMenus();
 		return;
@@ -54,8 +53,6 @@ var initGraphMenu =(function() {
 		$("#bgplate").hide();
 	});
 
-	
-	
 	// }
 	
 	$(".forgot").hide();
@@ -83,11 +80,11 @@ var initGraphMenu =(function() {
 		createPDF(true, graphContent); //params: sendEmail, html content
 	});
 
-	GenerateSwatches.questionSwatches();
+	GenerateSwatches().questionSwatches();
 	
-	GenerateSwatches.tagSwatches();
+	GenerateSwatches().tagSwatches(); //Calls updateGraph after done
 
-	GenerateSwatches.filterSwatches();
+	GenerateSwatches().filterSwatches(); //Set null sets to transparent
 
 	addPopUpLegend();
 
@@ -101,11 +98,11 @@ function RegenerateMenus () {
 	$('#legend_content').html('<h3>Survey Questions</h3><ul class="swatches" id="swtchs-edit"></ul>');
 	$('#edit_content').html('<h3>Tags</h3><ul class="swatches tags" id="tags-edit"></ul>');
 	
-	GenerateSwatches.questionSwatches();
+	GenerateSwatches().questionSwatches();
 	
-	GenerateSwatches.tagSwatches();
+	GenerateSwatches().tagSwatches();
 
-	GenerateSwatches.filterSwatches();
+	GenerateSwatches().filterSwatches();
 	
 	addPopUpLegend();
 
@@ -202,6 +199,7 @@ function createPDF(sendEmail, graphCont) {
 		}
 }//end createPDF()
 
+//Handle click on timeline button at the bottom
 function GotoTimeline () {
 	$('.nav li a').removeClass('active');
 			$('#nav-timeline').addClass('active');
@@ -209,9 +207,10 @@ function GotoTimeline () {
 			$('#page_graph').show();
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
-			timeline.loadQuestionsInitial();
 
-		 	initGraphMenu();
+			console.log("calling timeline.loadAnswersInitial from menu-ui");
+			timeline.loadAnswersInitial();
+		 	// initGraphMenu();
 
 		$('#art-loading').removeClass('o1').addClass('o0');
 			setTimeout(function() {
@@ -221,7 +220,6 @@ function GotoTimeline () {
 				$('#art-timeline').removeClass('o0').addClass('o1').show();
 
 				$('html').removeClass('no-js').addClass('js');
-
 
 			}, 250);
 }
@@ -309,41 +307,44 @@ var initAppMenu = (function() {
 					GotoSettings();
 				}
 
-
-
 		});
 
 
 });
 
+var GenerateSwatches = function() {
+    console.log("Generate Swatches");
+	
+	// Trace stack
+	// e = new Error();
+	// console.log(e.stack);
 
-
-var GenerateSwatches = (function() {
-   //  console.log(graphColors);
-
-      var filterSwatches = function() {
+    var filterSwatches = function() {
         //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
-        //console.log(results);
+        
+        answerData = timeline.getInitialData();
+		patient = results.patientID;
 
-        ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
-        patient = ajaxPath.split('=')[1];
-        // console.log(patient);
+		DisableSwatches();
+		
 
-        $.ajax({
-            url: ajaxPath,
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                answerData = response;
-                console.log("answerData", answerData);
-                //makeGraph();
-               DisableSwatches();
-            },
-            error: function() {
-                window.alert('Error loadAnswersInitial!');
-            }
-        });
-
+        // ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
+        // patient = ajaxPath.split('=')[1];
+       
+        // $.ajax({
+        //     url: ajaxPath,
+        //     type: 'GET',
+        //     dataType: 'json',
+        //     success: function(response) {
+        //         answerData = response;
+        //         console.log("answerData", answerData);
+        //         //makeGraph();
+        //        DisableSwatches();
+        //     },
+        //     error: function() {
+        //         window.alert('Error loadAnswersInitial!');
+        //     }
+        // });
     };
      
      var questionSwatches = function() {
@@ -378,7 +379,7 @@ var GenerateSwatches = (function() {
     var tagSwatches = (function(){
     
     	 tagColors = JSON.parse(localStorage.getItem("tagColors"));
-		 console.log(tagColors);
+		 console.log("tagColors", tagColors);
 		$.ajax({
 			type: 'GET',
 			url: 'php/get_tags.php',
@@ -394,7 +395,9 @@ var GenerateSwatches = (function() {
 				
 			},
 			     complete: function () {
-			     		AddColourPicker.tagSwatches();	
+			     		AddColourPicker.tagSwatches();
+
+			     		timeline.onEditGraph();
 			     },
 			error: function() {
 			 	window.alert('Error: Could not retrieve tags to generate swatches!');
@@ -409,7 +412,7 @@ var GenerateSwatches = (function() {
          filterSwatches : filterSwatches
      };
 
- })();
+ };//() //end Generate swatches
 
 var defaultQuestions = ["QIDS_0","VAS_0", "ASRM_0"]; //"ASRM_4", "ASRM_0"
 var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)','rgba(199,244,100,1.0)','rgba(78,205,196,1.0)'];  //,'rgba(78,205,196,1.0)'
@@ -729,8 +732,8 @@ function AddSmoothingSlider () {
 
 	$("#smoothGraph").rangeslider();
 	
-	 var storedAlpha = JSON.parse(localStorage.getItem("graphSmoothing"));
-	console.log(storedAlpha + "," + localStorage.getItem("graphSmoothing"));
+	var storedAlpha = JSON.parse(localStorage.getItem("graphSmoothing"));
+	console.log("storedAlpha", storedAlpha + "," + localStorage.getItem("graphSmoothing"));
 	if(storedAlpha == null) {
 		$("#smoothGraph").val((1 - timeline.getAlpha()) * 100).change();
 	} else {
@@ -814,6 +817,7 @@ function SetTagColor(id,color)
  		}
  }   
 
+ //Set empty sets of data to transparent
  function DisableSwatches () {
  	for (var i = 0; i < answerData.length; i++) {
  		if (answerData[i].id != 'comment' && answerData[i].id != 'tags' && answerData[i].id != 'uniqueTags' && answerData[i].id != 'notes' && answerData[i].id != 'sessions') {
