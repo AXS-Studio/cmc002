@@ -707,21 +707,24 @@ function populatePopUpLegend(id) {
 }
 
 function addPopUpLegend() {
+	setTimeout(function() {
+		$("#legend-header .legend-popup").on('click', function(e) {
+			var id = $(this).attr("id");
+			var id = id.replace("legend-", "");
+			populatePopUpLegend(id);
+				$("#bgplate").show();
+			$("#legend-popup").show();
+		
+			});
 
-
-	$("#legend-header .legend-popup").on('click', function(e) {
-		var id = $(this).attr("id");
-		var id = id.replace("legend-", "");
-		populatePopUpLegend(id);
-			$("#bgplate").show();
-		$("#legend-popup").show();
-	
+			$("#legend-popup .close-popup").on('click', function(e) {
+			$("#legend-popup").hide();
+			$("#bgplate").hide();
 		});
 
-		$("#legend-popup .close-popup").on('click', function(e) {
-		$("#legend-popup").hide();
-		$("#bgplate").hide();
-	});
+	}, 250);
+
+
 }
 
 function AddSmoothingSlider () {
