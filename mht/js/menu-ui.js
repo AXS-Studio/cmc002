@@ -82,9 +82,9 @@ var initGraphMenu =(function() {
 
 	GenerateSwatches().questionSwatches();
 	
-	GenerateSwatches().tagSwatches(); //Calls updateGraph after done
+	//GenerateSwatches().tagSwatches(); //Calls updateGraph after done
 
-	GenerateSwatches().filterSwatches(); //Set null sets to transparent
+	//GenerateSwatches().filterSwatches(); //Set null sets to transparent
 
 	addPopUpLegend();
 
@@ -100,9 +100,9 @@ function RegenerateMenus () {
 	
 	GenerateSwatches().questionSwatches();
 	
-	GenerateSwatches().tagSwatches();
+	//GenerateSwatches().tagSwatches();
 
-	GenerateSwatches().filterSwatches();
+	//GenerateSwatches().filterSwatches();
 	
 	addPopUpLegend();
 
@@ -313,8 +313,7 @@ var initAppMenu = (function() {
 });
 
 var GenerateSwatches = function() {
-    console.log("Generate Swatches");
-	
+
 	// Trace stack
 	// e = new Error();
 	// console.log(e.stack);
@@ -326,7 +325,7 @@ var GenerateSwatches = function() {
 		patient = results.patientID;
 
 		DisableSwatches();
-		
+		console.log("filterSwatches complete");
 
         // ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         // patient = ajaxPath.split('=')[1];
@@ -350,7 +349,7 @@ var GenerateSwatches = function() {
      var questionSwatches = function() {
      
      	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
-//     	 console.log(graphColors);
+		 console.log("questionSwatches start");
      
          $.ajax({
              url: 'php/query_questions.php',
@@ -362,10 +361,16 @@ var GenerateSwatches = function() {
                  ParseGraphColors();
              },
              complete: function () {
-	             
-/* 	             AddColourPicker(); */
+				/*AddColourPicker(); */
+				AddColourPicker.questionSwatches();
 
-			AddColourPicker.questionSwatches();	
+ 				tagSwatches(); //Calls updateGraph after done
+	 			filterSwatches(); //Set null sets to transparent
+
+				
+			    console.log("questionSwatches complete");
+
+				
              },
              error: function() {
                  window.alert('Error: Could not retrieve questions to generate swatches!');
@@ -379,7 +384,7 @@ var GenerateSwatches = function() {
     var tagSwatches = (function(){
     
     	 tagColors = JSON.parse(localStorage.getItem("tagColors"));
-		 console.log("tagColors", tagColors);
+		 console.log("tagSwatches start");
 		$.ajax({
 			type: 'GET',
 			url: 'php/get_tags.php',
@@ -387,18 +392,18 @@ var GenerateSwatches = function() {
 				patientID:results.patientID
 			},
 			success: function(message) {
-				console.log(message);
+				console.log("tagSwatches success", message);
 				tags = jQuery.parseJSON(message);
 				addTagSwatches();
 				ParseTagColors();
 				//AddColourPickerTags();
 				
 			},
-			     complete: function () {
+			complete: function () {
 			     		AddColourPicker.tagSwatches();
-
+			     		console.log("tagSwatches complete, call timeline onEditGraph");
 			     		timeline.onEditGraph();
-			     },
+			},
 			error: function() {
 			 	window.alert('Error: Could not retrieve tags to generate swatches!');
 			}
@@ -707,6 +712,8 @@ function populatePopUpLegend(id) {
 }
 
 function addPopUpLegend() {
+	console.log("addPopUp start");
+
 	setTimeout(function() {
 		$("#legend-header .legend-popup").on('click', function(e) {
 			var id = $(this).attr("id");
@@ -728,7 +735,7 @@ function addPopUpLegend() {
 }
 
 function AddSmoothingSlider () {
-
+	console.log("addSmoothing start");
 	var sliderHTML = '<h3>Graph smoothing</h3><input type="range" id="smoothGraph" min="0" max="100"><ul class="smoothLevels"><li>Off</li><li>Low</li><li>Middle</li><li>High</li></ul>';
 
 	$("#legend_content").append(sliderHTML);

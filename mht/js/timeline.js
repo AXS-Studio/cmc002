@@ -195,25 +195,25 @@ var Timeline = function() {
     var initialDataCommentIndex;
     var initialData;
 
-    //Not needed this for the graph
-    var loadQuestionsInitial = function() {
-        $.ajax({
-            url: 'php/query_questions.php',
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                questions = response;
-                //console.log("query_questions success", questions);
-            },
-            complete: function() {
-                loadAnswersInitial();
-            },
-            error: function() {
-                window.alert('Error survey cannot be loaded from database!');
-            }
-        });
+    //Question loading done in menu-ui, not needed anymore
+    // var loadQuestionsInitial = function() {
+    //     $.ajax({
+    //         url: 'php/query_questions.php',
+    //         type: 'GET',
+    //         dataType: 'json',
+    //         success: function(response) {
+    //             questions = response;
+    //             //console.log("query_questions success", questions);
+    //         },
+    //         complete: function() {
+    //             loadAnswersInitial();
+    //         },
+    //         error: function() {
+    //             window.alert('Error survey cannot be loaded from database!');
+    //         }
+    //     });
 
-    };
+    // };
 
     //Load dataset from database for current user and on success call makeGraph()
     var loadAnswersInitial = function(ajaxPath) {
@@ -722,16 +722,20 @@ var Timeline = function() {
 
             //simple loop to check if colour exists in menu's graphColor object, if yes sync
             if (type != "tag") {
-                for (var j = 0; j < graphColors.length; j++) {
-                    if (graphColors[j].id == id) {
-                        graphSettings[i].colour = graphColors[j].color;
+                if (graphColors!=null){
+                    for (var j = 0; j < graphColors.length; j++) {
+                        if (graphColors[j].id == id) {
+                            graphSettings[i].colour = graphColors[j].color;
+                        }
                     }
                 }
             } else if (type == "tag") {
                 //simple loop to check if colour exists in menu's tagColor object, if yes sync
-                for (var j = 0; j < tagColors.length; j++) {
-                    if (tagColors[j].id == tag) {
-                        graphSettings[i].colour = tagColors[j].color;
+                if (tagColors!=null){
+                    for (var j = 0; j < tagColors.length; j++) {
+                        if (tagColors[j].id == tag) {
+                            graphSettings[i].colour = tagColors[j].color;
+                        }
                     }
                 }
             }
@@ -788,8 +792,7 @@ var Timeline = function() {
 
     //----------Return values for var Timeline-------------------------------------------------------------
     return {
-         // loadQuestionsInitial: loadQuestionsInitial,
-         loadAnswersInitial: loadAnswersInitial,
+        loadAnswersInitial: loadAnswersInitial,
         onEditGraph: onEditGraph,
         setAlpha: setAlpha,
         getAlpha: getAlpha,

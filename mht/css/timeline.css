@@ -47,6 +47,7 @@ div#cfgGraphs {
 }
 /*------------------Graph styling------------------C*/
 svg .areaFill {
+    fill: none;
     fill-opacity: 0.25;
     stroke-width: 0;
     stroke-opacity: 0;
