@@ -75,7 +75,7 @@
 
         return [
             "<div class='sp-container sp-hidden'>",
-            	"<div class='transparent-button'><button type='button' class='sp-clear sp-clear-display sp-set-graph-invisible'>Set graph invisible</button><p>or choose a graph colour:</p></div>",
+            	"<div class='transparent-button'><button type='button' class='sp-clear sp-clear-display sp-set-graph-invisible'>Hide this item</button><p>or choose a graph colour:</p></div>",
                 "<div class='sp-picker-container'>",
                     "<div class='sp-top sp-cf'>",
                         "<div class='sp-fill'></div>",
