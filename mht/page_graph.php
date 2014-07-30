@@ -42,6 +42,3 @@
 	</div>
 <div id="bgplate" style="display:none;"></div>
 </div>
-<?php
-	//include 'timeline.php';
-?>

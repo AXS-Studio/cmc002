@@ -208,7 +208,7 @@ function GotoTimeline () {
 			$('#page_quiz').hide();
 			$('#page_settings').hide();
 
-			console.log("calling timeline.loadAnswersInitial from menu-ui");
+			//Instruct timeline to load answers and create the graph
 			timeline.loadAnswersInitial();
 		 	// initGraphMenu();
 
@@ -314,7 +314,7 @@ var initAppMenu = (function() {
 
 var GenerateSwatches = function() {
 
-	// Trace stack
+	// Trace stack for debugging
 	// e = new Error();
 	// console.log(e.stack);
 
@@ -325,8 +325,8 @@ var GenerateSwatches = function() {
 		patient = results.patientID;
 
 		DisableSwatches();
-		console.log("filterSwatches complete");
-
+		
+		// This is unused after we consolidated the AJAX calls. Access the same data from Timeline.getInitialData
         // ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         // patient = ajaxPath.split('=')[1];
        
@@ -349,8 +349,7 @@ var GenerateSwatches = function() {
      var questionSwatches = function() {
      
      	 graphColors = JSON.parse(localStorage.getItem("graphColors"));
-		 console.log("questionSwatches start");
-     
+		 
          $.ajax({
              url: 'php/query_questions.php',
              type: 'GET',
@@ -364,12 +363,8 @@ var GenerateSwatches = function() {
 				/*AddColourPicker(); */
 				AddColourPicker.questionSwatches();
 
- 				tagSwatches(); //Calls updateGraph after done
+ 				tagSwatches(); //Create tag swtaches. Calls updateGraph after done
 	 			filterSwatches(); //Set null sets to transparent
-
-				
-			    console.log("questionSwatches complete");
-
 				
              },
              error: function() {
@@ -378,7 +373,6 @@ var GenerateSwatches = function() {
          });
 
      };
-     
      
      
     var tagSwatches = (function(){
@@ -392,7 +386,6 @@ var GenerateSwatches = function() {
 				patientID:results.patientID
 			},
 			success: function(message) {
-				console.log("tagSwatches success", message);
 				tags = jQuery.parseJSON(message);
 				addTagSwatches();
 				ParseTagColors();
@@ -401,7 +394,8 @@ var GenerateSwatches = function() {
 			},
 			complete: function () {
 			     		AddColourPicker.tagSwatches();
-			     		console.log("tagSwatches complete, call timeline onEditGraph");
+			     		
+			     		//Refresh graph after tag swatches created
 			     		timeline.onEditGraph();
 			},
 			error: function() {
@@ -417,14 +411,14 @@ var GenerateSwatches = function() {
          filterSwatches : filterSwatches
      };
 
- };//() //end Generate swatches
+ };//end Generate swatches
 
 var defaultQuestions = ["QIDS_0","VAS_0", "ASRM_0"]; //"ASRM_4", "ASRM_0"
 var defaultColors = ['rgba(85,98,112,1.0)', 'rgba(255,107,107,1.0)','rgba(199,244,100,1.0)','rgba(78,205,196,1.0)'];  //,'rgba(78,205,196,1.0)'
 
 var defaultColorIndex = 0;
 
-function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. */
+function addSwatches() {
 	if(questions == null ) return;
 		for (var i = 0; i < questions.length; i++) {
 			var category = questions[i].category;
@@ -434,8 +428,8 @@ function addSwatches() {	/* ALERT: Big problem in here regarding the swatches. *
 					var name = questions[i].type[j].name;
 				
 					if(IsInGraphColors(id)) {
+							
 							/// do.. nothing I suppose.
-
 
 						} else { 
 

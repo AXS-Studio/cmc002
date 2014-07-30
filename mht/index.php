@@ -146,9 +146,7 @@ if ($detect -> isTablet()) {
 		</script>
 <!-- 		<script src="js/questionnaire.js"></script> -->
 		<script>
-/* 			console.log(results); */
-			
-/* 			console.log(questionnaire);		 */
+
 			var questionnaire;
 			var results = {
 				"patientID": null,

@@ -1,6 +1,6 @@
 var Timeline = function() {
 
-    //Session data hardcoded for now
+    //Session data hardcoded for debugging
     // if (results == null){
     //     var results = {
     //         "patientID": "Record09",
@@ -583,7 +583,7 @@ var Timeline = function() {
             focus.select("#data_" + graphSettings[i].id).attr("d", areaFill);
             focus.select("#data_" + graphSettings[i].id + "_smoothed").attr("d", meanline); //update meanline when in place
 
-            //Update dots on line graphs
+            //Update dots on line graphs (not used)
             // var dots = focus.selectAll(".dot_" + graphSettings[i].id);
             // if (!dots.empty()) {
             //     dots.attr("cx", function(d) { return xScale(d.date); });
@@ -692,11 +692,6 @@ var Timeline = function() {
             }
         }
 
-        //Get tags and values of graphs
-        // var sID = initialData[initialDataCommentIndex].results[commentIndex].SessionID;
-        // var thisRect = tagFocus.select("rect[data-sessionID='"+sID+"']");
-        // thisRect.attr('sessionID', function(d) { return d.SessionID; });
-
     } //end getComment
 
     //----------Shift the graph to snap to selected comment-------------------------------------------------------------
@@ -752,7 +747,7 @@ var Timeline = function() {
 
                 $("#data_" + id + "_smoothed").css("stroke", thisColour);
 
-                //$(".dot_"+id).css("fill",thisColour);
+                //$(".dot_"+id).css("fill",thisColour); //dots on line graphs are hidden
             }
 
         } //end for graphSettings length
