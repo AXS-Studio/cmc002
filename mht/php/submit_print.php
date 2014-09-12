@@ -15,14 +15,15 @@ require_once("PHPMailer/PHPMailerAutoload.php");
 function exitWithError($errorMessage){
 
 	echo '<script>';
-	echo 'alert("'Error'");';//.$errorMessage.
-	echo 'location.href="../index.php";';
+	echo 'alert('.'"Save PDF '.$errorMessage.'"'.')'.';';
+	echo 'location.href="../index.php"'.';';
 	echo '</script>';
 	exit;
 }
+
 //Exit with JSON response if error (for sendEmail=true)
 function exitWithErrorJSON($errorMessage){
-	$myResponse['error'] = "Error - Please contact pathadmin@sunnybrook.ca. ".$errorMessage;
+	$myResponse['error'] = "Email PDF Error - Please contact pathadmin@sunnybrook.ca. ".$errorMessage;
  	echo json_encode($myResponse);
 	exit;
 }
@@ -34,7 +35,7 @@ $sendEmail = $_POST["sendEmail"];
 
 if ($sendEmail == "false")
 $sendEmail = false;
-else
+else if ($sendEmail == "true")
 $sendEmail = true;
 
 //For testing
@@ -97,8 +98,9 @@ fclose($handle);
 //session_write_close();
 
 //Run phantomJS to screenshot local html page into png
-//$command = "sudo /usr/bin/phantomjs rasterize.js ".$file.".html ".$file.".png 2>&1 1> /dev/null"; //server version
-$command = "bin/phantomjs bin/rasterize.js ".$file.".html ".$file.".pdf '8.5in*11in' 2>&1 1> /dev/null"; //localhost version
+//Cannot use phantomjs from bin (built for windows/OSX), must install linus version of phantomjs into server
+$command = "sudo /usr/bin/phantomjs bin/rasterize.js ".$file.".html ".$file.".pdf '8.5in*11in' 2>&1 1> /dev/null"; //server version
+//$command = "bin/phantomjs bin/rasterize.js ".$file.".html ".$file.".pdf '8.5in*11in' 2>&1 1> /dev/null"; //localhost version
 $output = shell_exec($command);
 
 //Check if file is a regular file
@@ -110,7 +112,7 @@ if ( !is_file($file.".pdf")){
 }
 
 //if sendEmail, send file as email and return JSON response
-if (sendEmail){
+if ($sendEmail){
 
   	$mail = new PHPMailer;
 
@@ -139,7 +141,7 @@ if (sendEmail){
 	}
 
 }
-else if (!sendEmail){
+else if (!$sendEmail){
 	//-----Return pdf file to client---------------------------------------------------------------
 	header('Content-type: application/pdf');
 	header('Content-Disposition: attachment; filename="MHTV_graphs.pdf"');
@@ -165,6 +167,7 @@ else if (!sendEmail){
 	unlink($file.'.png');
 	unlink($file.'.html');
 }
+
 exit;
 
 //Exit here for now

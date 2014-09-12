@@ -17,7 +17,7 @@ require_once('EmailText.php');
 
  
 //Get POST email variable
-$userEmail = $_POST['Email'];
+$userEmail = $_REQUEST['Email'];
 
 //Send email to that account with a unique url which expires
 global $mysqli;
@@ -47,8 +47,7 @@ if ($stmt = $mysqli->prepare("SELECT `FirstName` FROM `Patient` WHERE `Email` = 
 		$randomNonce = uniqid();
 		date_default_timezone_set('America/Toronto');
 		$now = date(DATE_ISO8601);
-		$q = "INSERT INTO `Nonce_MHT`(`Email`, `Nonce`, `Date`)
-		VALUES ('$userEmail','$randomNonce','$now')";
+		$q = "INSERT INTO `Nonce_MHT`(`Email`, `Nonce`, `Date`) VALUES ('$userEmail','$randomNonce','$now')";
 		
 		if ($result = $mysqli->query($q)){
 			//Send email to user with URL containing unique nonce
@@ -56,14 +55,16 @@ if ($stmt = $mysqli->prepare("SELECT `FirstName` FROM `Patient` WHERE `Email` = 
 			$to = $userEmail;
 		
 			$subject = EmailText::getSubject();
-			$body = EmailText::getText(EmailText::EMAIL_PASSWORD, array(
-			'FirstName' => $dbFirstName,
-			'Nonce' => $randomNonce
-			));
+			$body = EmailText::getText(EmailText::EMAIL_PASSWORD, array( 'FirstName' => $dbFirstName, 'Nonce' => $randomNonce ));
+			//$body = "Hello ,\n\nTo reset your password, please visit the following link: http://www.google.com\n\nIf you were not trying to reset your password, don't worry. Your current password is still secure. It cannot be changed unless you access the link above and enter a new one.\n\nSincerely,\nMHTVP System Administrator";
+	
 			$headers = EmailText::getHeader();
 			
-			mail($to, $subject, $body, $headers);
-	
+			$mailResult = mail($to, $subject, $body, $headers);
+			$myResponse['to'] = $to;
+			$myResponse['firstName'] = $dbFirstName;
+			$myResponse['body'] = $body;
+			$myResponse['mail'] = $mailResult;
 			$myResponse['result'] = 1; //1 === Success
 			
 			logMHTActivity($userEmail, "Submitted password reset");

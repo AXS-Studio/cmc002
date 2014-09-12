@@ -11,6 +11,7 @@ require_once('EmailText.php');
 
 define("PASSWORD_EXPIRY_MINUTES", 30);
 
+
 //------------------On submission of reset password form------------------
 //Return values
 //1 === Success
@@ -71,8 +72,10 @@ if ($stmt = $mysqli->prepare("SELECT `Nonce`,`Email`,`Date` FROM `Nonce_MHT` WHE
 			$to = $dbEmail;
 			$subject = EmailText::getSubject();		
 			//$body = "Hello $firstName!\n\nYour password has been reset.\n\nIf you received this email in error please contact your admin at Mental Health Telemetry.";
-			$body = EmailText::getText(EmailText::RESET_PASSWORD, array(
-			'FirstName' => $firstName));
+			$body = EmailText::getText(EmailText::RESET_PASSWORD, array('FirstName' => $firstName));
+			
+			
+			//$body = "hello";
 			$headers = EmailText::getHeader();
 			
 			mail($to, $subject, $body, $headers);

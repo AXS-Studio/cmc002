@@ -319,7 +319,6 @@ var GenerateSwatches = function() {
 	// console.log(e.stack);
 
     var filterSwatches = function() {
-        //ajaxPath = 'php/query_answers_initial.php?patientID=Record09&sessionName=Pink&clinicianID=dkreindler';  
         
         answerData = timeline.getInitialData();
 		patient = results.patientID;
