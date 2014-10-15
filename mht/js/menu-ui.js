@@ -174,7 +174,9 @@ function createPDF(sendEmail, graphCont) {
 			         data: {
 							"sendEmail": sendEmail,
 							"html": html,
-							"userEmail": results.patientEmail
+							"userEmail": results.patientEmail,
+							"width": $(document).width(), //(window.innerWidth > 0) ? window.innerWidth : window.screen.width,
+							"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
 					 },
 			         success: function(response) { 
 			         	console.log(response);
@@ -189,11 +191,14 @@ function createPDF(sendEmail, graphCont) {
 		}
 		else{
 			// if success, triggers Save-As dialog for PDF donwload
+			//console.log('Width: '+ (window.innerWidth > 0) ? window.innerWidth : window.screen.width);
 			post_to_url('php/submit_print.php',
 				{
 					"sendEmail": sendEmail,
 					"html": html,
-					"userEmail": results.patientEmail
+					"userEmail": results.patientEmail,
+					"width": $(document).width(), //(window.innerWidth > 0) ? window.innerWidth : window.screen.width,
+					"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
 				}
 			);
 		}

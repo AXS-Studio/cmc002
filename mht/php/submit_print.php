@@ -32,6 +32,8 @@ function exitWithErrorJSON($errorMessage){
 $html = $_POST["html"];
 $userEmail = $_POST["userEmail"];
 $sendEmail = $_POST["sendEmail"];
+$windowWidth = $_POST["width"];
+$windowHeight = $_POST["height"];
 
 if ($sendEmail == "false")
 $sendEmail = false;
@@ -49,7 +51,7 @@ if (!isset($html) || !isset($userEmail) || !isset($sendEmail)){
 	if ($sendEmail)
 	exitWithErrorJSON("Missing data");
 	else
-	exitWithError("Error - Missing data. Please contact pathadmin@sunnybrook.ca");
+	exitWithError("Error - Missing data currently debug. Please contact pathadmin@sunnybrook.ca" );
 }
 
 //-----Authenticate user via hashed cookie of email (michael.kent@axs3d.com)---------------------
@@ -98,8 +100,8 @@ fclose($handle);
 //session_write_close();
 
 //Run phantomJS to screenshot local html page into png
-//Cannot use phantomjs from bin (built for windows/OSX), must install linus version of phantomjs into server
-$command = "sudo /usr/bin/phantomjs bin/rasterize.js ".$file.".html ".$file.".pdf '8.5in*11in' 2>&1 1> /dev/null"; //server version
+//Cannot use phantomjs from bin (built for windows/OSX), must install linux version of phantomjs into server
+$command = "sudo /usr/bin/phantomjs bin/rasterize.js ".$file.".html ".$file.".pdf '".$windowWidth/72.0."in*".$windowHeight/72.0."in' 2>&1 1> /dev/null"; //server version
 //$command = "bin/phantomjs bin/rasterize.js ".$file.".html ".$file.".pdf '8.5in*11in' 2>&1 1> /dev/null"; //localhost version
 $output = shell_exec($command);
 
@@ -119,7 +121,7 @@ if ($sendEmail){
 	$mail->From = 'pathadmin@sunnybrook.ca';
 	$mail->FromName = 'MHTV';
 	$mail->addAddress($userEmail);     // Add a recipient
-	$mail->addAddress('cindy.lau@axs3d.com');     // Add a recipient
+	//$mail->addAddress('cindy.lau@axs3d.com');     // Add a recipient
 	$mail->addReplyTo('pathadmin@sunnybrook.ca');
 	
 	$mail->addAttachment($file.".pdf");         // Add attachments
@@ -137,6 +139,11 @@ if ($sendEmail){
 	} else {
 	    $myResponse['result'] = "Email sucessfully sent";
 	 	echo json_encode($myResponse);
+
+	 	//Delete files afterward
+		unlink($file.'.pdf');
+		unlink($file.'.png');
+		unlink($file.'.html');
 		exit;
 	}
 

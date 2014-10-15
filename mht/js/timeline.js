@@ -40,7 +40,7 @@ var Timeline = function() {
 
     var focusDim = {
         width: $(document).width() - focusMargin.right - focusMargin.left,
-        height: $(document).height()*0.5//fixed at 200px originally
+        height: $(document).height()*0.4//fixed at 200px originally
     }
 
     var tagFocusDim = {
@@ -117,7 +117,7 @@ var Timeline = function() {
         svg = d3.select("#cfgGraphs").append("svg")
         //.style("background-color", "rgba(0,0,0,0.1)")
         .attr("width", svgDim.width)
-            .attr("height", svgDim.height);
+        .attr("height", svgDim.height);
     }
 
     //----------groups----------
@@ -190,10 +190,12 @@ var Timeline = function() {
     //---------------------------------------------------------------------
     //Global variables carried over from last version
     var graphSettings = []; //Keep track of all graphs being plotted
+    var tagRowcounter = 0;  //Keep track of number of tag rows
+    var initialData;        //Stores data downloaded from server
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
-    var initialData;
+   
 
     //Question loading done in menu-ui, not needed anymore
     // var loadQuestionsInitial = function() {
@@ -245,19 +247,34 @@ var Timeline = function() {
 
     };
 
-    
+    function updateDimensions(){
+        //Adjust width of graph if changed
+        focusDim.width = document.body.clientWidth - focusMargin.right - focusMargin.left; //$(document).width() not working in firefox
+        focusDim.height = document.body.clientHeight*0.4;
+
+        //console.log(document.body.clientWidth);
+
+        //Change height of tag area depending on number of tags
+        tagFocusDim.height = tagRowcounter * tagDim.height;
+        svgDim.height = focusDim.height + tagFocusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusMargin.bottom;
+
+        d3.select("#cfgGraphs svg").attr("height", svgDim.height);
+        d3.select("#tagFocus_bg").attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
+        d3.select("#tagFocus_bg").attr("fill", "url(#gray-gradient)");
+
+        d3.select("#tagFocus_g").attr("transform", "translate(" + focusMargin.left + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")");
+    }
+
+
     //Plot and render the graph from scratch
     function makeGraph() {
         //clear graph
         focus.selectAll("*").remove();
         tagFocus.selectAll("*").remove();
-
-        //Adjust width of graph if changed
-        focusDim.width = $(document).width() - focusMargin.right - focusMargin.left;
-        focusDim.height = $(document).height()*0.5;
+        tagRowcounter = 0;
 
         //var colourCount = 0;
-        var tagRowcounter = 0;
+       
         for (var i = 0; i < initialData.length; i++) {
 
             //---Plot survey data---------------------------------------------------------------------------
@@ -380,12 +397,9 @@ var Timeline = function() {
                 } //end for
 
                 //Change height of tag area depending on number of tags
-                tagFocusDim.height = tagRowcounter * tagDim.height;
-                svgDim.height = focusDim.height + tagFocusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusMargin.bottom;
+                //Moved to updateDimensions()
+               updateDimensions();
 
-                d3.select("#cfgGraphs svg").attr("height", svgDim.height);
-                d3.select("#tagFocus_bg").attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
-                d3.select("#tagFocus_bg").attr("fill", "url(#gray-gradient)");
             } //end if initialData[i].id == 'tags'
 
             //---Plot comments---------------------------------------------------------------------------
