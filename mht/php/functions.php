@@ -27,6 +27,7 @@ function confirmUser($userEmail, $password, $remember){
 	
 	//Create prepared mysqli statement to prevent hacking by injection
 	global $mysqli;
+	
 	if ($stmt = $mysqli->prepare("SELECT `Password`,`Enabled` FROM `Patient` WHERE `Email` = ?")) {
 		$stmt->bind_param('s', $userEmail);	// Bind our param as string
 		$stmt->execute();					// Execute the prepared Statement
@@ -47,6 +48,7 @@ function confirmUser($userEmail, $password, $remember){
 		$stmt->close();	// Close the statement
 	}
 	else{
+			//echo "error " .$mysqli->error;
 			return 0; //Database call error
 	}
 }//end confirmUser
