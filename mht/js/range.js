@@ -1,5 +1,7 @@
 var Range = (function() {
 	
+
+	
 	// Sets the value for the hidden range meter...
 	function rangeVal(id) {
 		var val = Math.round(parseInt($('#g-' + id).css('left').split('px')[0]) / 2.52);
@@ -18,6 +20,7 @@ var Range = (function() {
 	
 	// Offset function to center the position of the DOM range grip...
 	function left($ele, event, touch) {
+		// console.log($ele);
 		var offset = $ele.offset();
 		var leftPos;
 		if (touch) {
@@ -51,35 +54,37 @@ var Range = (function() {
 			});
 			
 		} else if ($('html').hasClass('desktop')) { //Desktop
-			clicking = false;
+
+				clicking = false;
+		
 			$('#' + id).mousedown(function(event) {
 				//event.preventDefault();
 				clicking = true;
 			});
 			
 			//Set a bigger area to capture mouse-move, if user drags too fast
-			$("#content_quiz").mousemove(function(event) {
+			$('#' + id).mousemove(function(event) { //"#content_quiz" -- switched 10-16-2014 mk
 				if(clicking) {
-					var $rb = $('#' + id).parent();
-					//var $rb = $(this).parent();
+					// var $rb = $('#' + id).parent();  -- switched 10-16-2014 mk
+					var $rb = $(this).parent();
 					var leftPos = left($rb, event, false);
 					if (leftPos >= 0 && leftPos <= $rb.width()) {
 						leftPos = adjLp(leftPos);
-						$('#' + id).css('left', leftPos + 'px');
-						//$(this).css('left', leftPos + 'px');
+						// $('#' + id).css('left', leftPos + 'px');
+						$(this).css('left', leftPos + 'px');
 					}
 				}//end clicking
 			});
 			
 			//Even bigger area to capture mouse-up
-			$(document).mouseup(function() {
+			$('#' + id).mouseup(function() { //document
 				if(clicking) {
 					rangeVal(id.split('g-')[1]);
 					clicking = false;
 				}
 			});
 
-			$("#content_quiz").mouseleave(function() {
+			$('#' + id).mouseleave(function() { //"#content_quiz"
 				if(clicking) {
 					rangeVal(id.split('g-')[1]);
 					clicking = false;
