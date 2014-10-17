@@ -166,7 +166,8 @@ function createPDF(sendEmail, graphCont) {
 		// Submit for conversion to pdf
 		//if sendEmail=true, we use AJAX and return JSON response if email is successful
 		//else sendEmail=false, php returns a header to trigger Save-As dialog
-		if (sendEmail){	
+		if (sendEmail){
+			
 			$.ajax({
 			         url: 'php/submit_print.php',
 			         type: 'POST',
@@ -179,12 +180,13 @@ function createPDF(sendEmail, graphCont) {
 							"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
 					 },
 			         success: function(response) { 
+			         	window.alert('A PDF has been emailed to you');
 			         	console.log(response);
 			         },
 			         complete: function () { 
 			         },
 			         error: function(response) {
-			             window.alert('Error: '+response);
+			             window.alert('PDF Email Error: '+response);
 			             console.log(response);
 			         }
 			});//end ajax
@@ -192,16 +194,33 @@ function createPDF(sendEmail, graphCont) {
 		else{
 			// if success, triggers Save-As dialog for PDF donwload
 			//console.log('Width: '+ (window.innerWidth > 0) ? window.innerWidth : window.screen.width);
-			post_to_url('php/submit_print.php',
-				{
-					"sendEmail": sendEmail,
-					"html": html,
-					"userEmail": results.patientEmail,
-					"width": $(document).width(), //(window.innerWidth > 0) ? window.innerWidth : window.screen.width,
-					"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
-				}
-			);
-		}
+
+			//http://stackoverflow.com/questions/7411662/simple-way-to-identify-ios-user-agent-in-a-jquery-if-then-statement
+			if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+				if (window.confirm("Warning: This action will log you out of MHTV. Save PDF?")) { 
+	 					post_to_url('php/submit_print.php',
+						{
+							"sendEmail": sendEmail,
+							"html": html,
+							"userEmail": results.patientEmail,
+							"width": $(document).width(), //(window.innerWidth > 0) ? window.innerWidth : window.screen.width,
+							"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
+						});
+				}//end window.confirm
+			}
+			else{
+
+				post_to_url('php/submit_print.php',
+						{
+							"sendEmail": sendEmail,
+							"html": html,
+							"userEmail": results.patientEmail,
+							"width": $(document).width(), //(window.innerWidth > 0) ? window.innerWidth : window.screen.width,
+							"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
+						});
+			}
+
+	}		
 }//end createPDF()
 
 //Handle click on timeline button at the bottom
@@ -375,7 +394,6 @@ var GenerateSwatches = function() {
                  window.alert('Error: Could not retrieve questions to generate swatches!');
              }
          });
-
      };
      
      
