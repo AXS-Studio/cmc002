@@ -4,7 +4,7 @@ var Forgot = (function() {
 		$('#art-loading').removeClass('o1').addClass('o0');
 		setTimeout(function() {
 			$('#art-loading').remove();
-			$('body').append(Pages.forgot);
+		//	$('body').append(Pages.forgot);
 			$('header, article').show().removeClass('o0').addClass('o1');
 			Middle.init();
 			Login.loginFields();
