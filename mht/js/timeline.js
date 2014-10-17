@@ -30,7 +30,6 @@ var Timeline = function() {
 
     //-----------------------------------------------------------------------------
     //Set up graph layout parameters
-
     var focusMargin = {
         top: 20,
         right: 10,
@@ -39,14 +38,15 @@ var Timeline = function() {
     };
 
     var focusDim = {
-        width: $(document).width() - focusMargin.right - focusMargin.left,
-        height: $(document).height()*0.4//fixed at 200px originally
-    }
+        width: document.body.clientWidth - focusMargin.right - focusMargin.left,
+        height:document.body.clientHeight*0.4
+        // $(document).height()
+    };
 
     var tagFocusDim = {
         width: focusDim.width,
         height: 50
-    }
+    };
 
     var tagFocusMargin = {
         top: 10,
@@ -71,13 +71,12 @@ var Timeline = function() {
 
     //Set up scales (to map input data to output in pixels)
     //----------scales----------
-    var xScale = d3.time.scale().range([0, focusDim.width]);
-    var yScale = d3.scale.linear().range([focusDim.height, 0]);
+    var xScale; //defined in defineGraphElements()
+    var yScale;
 
     //----------axis----------
-    var xAxis = d3.svg.axis().scale(xScale).ticks(4).orient("bottom");
-
-    var yAxis = d3.svg.axis().scale(yScale).ticks(5).orient("left").tickSize(-focusDim.width, 0);
+    var xAxis; //defined in defineGraphElements()
+    var yAxis;
 
     //----------mean line----------
     //Graph smoothing constant set to localStorage, or default to 0.5 if NA
@@ -85,30 +84,10 @@ var Timeline = function() {
     if (alpha == null) alpha = 0.5;
 
     var ypre, xpre;
-    var meanline = d3.svg.line()
-        .interpolate("bundle")
-        .tension(0.85)
-        .x(function(d, i) {
-            return xScale(d.date);
-        })
-        .y(function(d, i) {
-            if (i == 0)
-                ypre = yScale(d.Data);
-
-            var ythis = alpha * yScale(d.Data) + (1.0 - alpha) * ypre;
-            ypre = ythis;
-            return ythis;
-        });
+    var meanline; //defined in defineGraphElements()
 
     //----------area fill----------
-    var areaFill = d3.svg.area()
-        .x(function(d) {
-            return xScale(d.date);
-        })
-        .y0(focusDim.height)
-        .y1(function(d) {
-            return yScale(d.Data);
-        });
+    var areaFill; //defined in defineGraphElements()
 
     //Setup groups to organize layout, brush areas and perform clipping
     //----------svg container----------
@@ -173,7 +152,6 @@ var Timeline = function() {
 
     var tagFocus = d3.select('#tagFocus_g');
     if (tagFocus.empty()) {
-
         tagFocus = svg.append("g")
             .attr("id", "tagFocus_g")
             .attr("transform", "translate(" + focusMargin.left + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")")
@@ -195,31 +173,11 @@ var Timeline = function() {
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
-   
-
-    //Question loading done in menu-ui, not needed anymore
-    // var loadQuestionsInitial = function() {
-    //     $.ajax({
-    //         url: 'php/query_questions.php',
-    //         type: 'GET',
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             questions = response;
-    //             //console.log("query_questions success", questions);
-    //         },
-    //         complete: function() {
-    //             loadAnswersInitial();
-    //         },
-    //         error: function() {
-    //             window.alert('Error survey cannot be loaded from database!');
-    //         }
-    //     });
-
-    // };
 
     //Load dataset from database for current user and on success call makeGraph()
     var loadAnswersInitial = function(ajaxPath) {
-       
+        console.log("loadAnswersInitial");
+
         ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         patient = ajaxPath.split('=')[1];
 
@@ -234,7 +192,7 @@ var Timeline = function() {
             },
             complete: function() {
                 if (initialData!=null){
-                    makeGraph();
+                   // makeGraph();
                     initGraphMenu();//in menu-ui.js
                 }
                 else
@@ -244,37 +202,98 @@ var Timeline = function() {
                 window.alert('Error answers cannot be loaded from database!');
             }
         });
-
     };
 
-    function updateDimensions(){
-        //Adjust width of graph if changed
-        focusDim.width = document.body.clientWidth - focusMargin.right - focusMargin.left; //$(document).width() not working in firefox
-        focusDim.height = document.body.clientHeight*0.4;
+    //Graph elements (axis, graphs scaling) change depending on window size
+    //Hence call this on makeGraph() (and in the future when window resized)
+    function defineGraphElements(){
 
-        //console.log(document.body.clientWidth);
+        //Adjust dimensions of graph if changed
+        focusDim.width = document.body.clientWidth - focusMargin.right - focusMargin.left; //$(document).width() not working in firefox
+        focusDim.height = document.body.clientHeight*0.4;//document.body.clientHeight*0.4;//$(document).height()*0.4;//document.body.clientHeight*0.4;
+
+        yScale = d3.scale.linear().range([focusDim.height, 0]);
+        xScale = d3.time.scale().range([0, focusDim.width]);
+        
+        xAxis = d3.svg.axis().scale(xScale).ticks(4).orient("bottom");
+        yAxis = d3.svg.axis().scale(yScale).ticks(5).orient("left").tickSize(-focusDim.width, 0);
+
+        meanline = d3.svg.line()
+        .interpolate("bundle")
+        .tension(0.85)
+        .x(function(d, i) {
+            return xScale(d.date);
+        })
+        .y(function(d, i) {
+            if (i == 0)
+            ypre = yScale(d.Data);
+
+            var ythis = alpha * yScale(d.Data) + (1.0 - alpha) * ypre;
+            ypre = ythis;
+            return ythis;
+        });
+
+        areaFill = d3.svg.area()
+        .x(function(d) {
+            return xScale(d.date);
+        })
+        .y0(focusDim.height)
+        .y1(function(d) {
+            return yScale(d.Data);
+        });
+
+        zoom = d3.behavior.zoom().x(xScale)
+        .scaleExtent([0.1, 1000])
+        .center([focusMargin.left + focusDim.width / 2, 0])
+        .on("zoom", zoomed)
+        .on("zoomend", zoomEnded);
+
+        lastMidpointDate = xScale.invert(focusDim.width / 2);
+
+       //focus
+       //.attr("transform", "translate(" + focusMargin.left + "," + focusMargin.top + ")")
+       d3.select('#focus_g')
+       .attr("width", focusDim.width)
+       .attr("height", focusDim.height);
+
+    }
+
+    function updateDimensions(){
 
         //Change height of tag area depending on number of tags
         tagFocusDim.height = tagRowcounter * tagDim.height;
+        
         svgDim.height = focusDim.height + tagFocusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top + tagFocusMargin.bottom;
 
-        d3.select("#cfgGraphs svg").attr("height", svgDim.height);
-        d3.select("#tagFocus_bg").attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
-        d3.select("#tagFocus_bg").attr("fill", "url(#gray-gradient)");
+        //Apply changes to SVG elements
+        d3.select("#cfgGraphs svg")
+        .attr("width", svgDim.width)
+        .attr("height", svgDim.height);
 
-        d3.select("#tagFocus_g").attr("transform", "translate(" + focusMargin.left + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")");
+        d3.select("#tagFocus_bg")
+        .attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom)
+        .attr("width", svgDim.width)
+        .attr("transform", "translate(0," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")")
+        .attr("fill", "url(#gray-gradient)");
+
+       // d3.select("#tagFocus_g")
+        tagFocus.attr("transform", "translate(" + focusMargin.left + "," + (focusDim.height + focusMargin.top + focusMargin.bottom + tagFocusMargin.top) + ")");
     }
 
 
     //Plot and render the graph from scratch
     function makeGraph() {
+
+        console.log("make graph called");
+
         //clear graph
         focus.selectAll("*").remove();
         tagFocus.selectAll("*").remove();
         tagRowcounter = 0;
 
         //var colourCount = 0;
-       
+        defineGraphElements();
+
         for (var i = 0; i < initialData.length; i++) {
 
             //---Plot survey data---------------------------------------------------------------------------
@@ -537,11 +556,13 @@ var Timeline = function() {
     //----------Setup brush-------------------------------------------------------------
 
     //.x(x).scaleExtent([1,10]) limits zoom from 1X to 10X
-    var zoom = d3.behavior.zoom().x(xScale)
-        .scaleExtent([0.1, 1000])
-        .center([focusMargin.left + focusDim.width / 2, 0])
-        .on("zoom", zoomed)
-        .on("zoomend", zoomEnded);
+    var zoom;
+
+    // var zoom = d3.behavior.zoom().x(xScale)
+    //     .scaleExtent([0.1, 1000])
+    //     .center([focusMargin.left + focusDim.width / 2, 0])
+    //     .on("zoom", zoomed)
+    //     .on("zoomend", zoomEnded);
 
     //----------Setup zoom-------------------------------------------------------------
 
@@ -631,7 +652,9 @@ var Timeline = function() {
 
 
     //Global to capture last midpointDate for snapping to right or left
-    var lastMidpointDate = xScale.invert(focusDim.width / 2);
+    var lastMidpointDate;
+
+    //var lastMidpointDate = xScale.invert(focusDim.width / 2);
 
     //----------Retrieve a comment based on closest entry to the midpoint, move the tuner----------------------
 
