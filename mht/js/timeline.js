@@ -505,7 +505,7 @@ var Timeline = function() {
                 .attr({
                     'id': 'triangle',
                     "transform": "translate(" + 0 + "," + 0 + ")",
-                    'd': "M -10 0 L 0 -10 L 10 0 L -10 0"
+                    'd': "M -10 1 L 0 -10 L 10 1 L -10 1"
                 });
 
             overlay.append("path")
