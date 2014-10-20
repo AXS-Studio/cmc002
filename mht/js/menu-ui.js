@@ -677,15 +677,19 @@ function populatePopUpLegend(id) {
 	var cleanName = name.split("_");
 	name = cleanName[cleanName.length-1];
 	var getDate = $("#commentDateDiv").html();
+	console.log("|" + getDate + "|");
 	if(getDate != "Date") {
 		var newDate =  Date.parse(getDate);
+		console.log("Parsed Date " + newDate);
 		if(newDate != null) {
-		newDate.set({second:00});
-		var data = resultsFromDate(id,newDate);
+			newDate.set({second:00});
+			console.log(newDate);
+			var data = resultsFromDate(id,newDate);
 		}
 		else
 		{
 			data = "";
+			console.log("Date not parsed");
 		}
 	} 
 	else 
@@ -720,7 +724,7 @@ function populatePopUpLegend(id) {
 		responseSection = "<p class='popupHeading'>Response</p><p class='popupDescription'>"+ data + responseText + " </p>";
 	}
 
-	if(responseSection == "" &&  rangeText == "") rangeText = "No entry for this date";
+	if(responseSection == "") responseSection = "<p class='popupHeading'>Response</p><p class='popupDescription'>No entry for this date" + data + "</p>"; // &&  rangeText == ""
 
 	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p>" + rangeText + responseSection ;
 	$("#legend-popup-content").html(newHtml);
