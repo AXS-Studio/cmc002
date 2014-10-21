@@ -317,6 +317,12 @@
                 isEmpty = true;
                 move();
 
+                //Cindy: Allow 'Set Invisible' to instantly update colour and close window
+                set($(this).data("color"));
+                updateOriginalInput(true);
+                hide();
+                //End instant change
+
                 if(flat) {
                     //for the flat style, this is a change event
                     updateOriginalInput(true);

@@ -724,7 +724,8 @@ function populatePopUpLegend(id) {
 		responseSection = "<p class='popupHeading'>Response</p><p class='popupDescription'>"+ data + responseText + " </p>";
 	}
 
-	if(responseSection == "") responseSection = "<p class='popupHeading'>Response</p><p class='popupDescription'>No entry for this date" + data + "</p>"; // &&  rangeText == ""
+	//Cindy: Just removed the "+ data'" in the text, was showing 0 whenever it happened
+	if(responseSection == "") responseSection = "<p class='popupHeading'>Response</p><p class='popupDescription'>No entry for this date" + "</p>"; // data + &&  rangeText == ""
 
 	var newHtml = "<span class='popupColor' style='background:" + color + "'> </span><p>" + name + "</p>" + rangeText + responseSection ;
 	$("#legend-popup-content").html(newHtml);
