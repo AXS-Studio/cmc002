@@ -62,7 +62,7 @@ var Timeline = function() {
 
     var tagDim = {
         width: 3,
-        height: 20
+        height: 15
     }
 
     //----------parse functions----------

@@ -849,11 +849,15 @@ footer {
 /*         border-left: 1px solid #BCBEC0; */
         border-right: 1px solid #BCBEC0; }
       footer .nav li a#nav-timeline {
-        background: transparent url("../images/timeline-icon.png") no-repeat center 5px; }
+        background: transparent url("../images/timeline-icon@2x.png") no-repeat center 5px;
+        background-size: 25px 17px;}
       footer .nav li a#nav-survey {
-        background: transparent url("../images/survey-icon.png") no-repeat center 5px; }
+        background: transparent url("../images/survey-icon@2x.png") no-repeat center 5px;
+         background-size: 25px 17px; }
       footer .nav li a#nav-settings {
-        background: transparent url("../images/settings-icon.png") no-repeat center 5px; border-right:none;}
+        background: transparent url("../images/settings-icon@2x.png") no-repeat center 5px; 
+         background-size: 25px 17px;
+         border-right:none;}
       footer .nav li a.active {
         background-color: white !important;
 /*         border-left: 1px solid #BCBEC0; */
