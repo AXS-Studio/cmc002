@@ -548,6 +548,9 @@ var Timeline = function() {
 
         updateGraph();
 
+        //Reset graph for scaling and translation. Empty Comments section.
+        reset();
+
         if (graphSettings.length == 0){
             window.alert("No data available to graph, until at least one survey completed");
         }
@@ -577,10 +580,15 @@ var Timeline = function() {
 
         changeColours();
     }
-
+    
+    //Reset graph for scaling and translation. Empty Comments section.
     function reset() {
         zoom.scale(1);
         zoom.translate([0, 0]);
+
+        $("#commentDateDiv").html("Date");
+        $("#commentDataDiv").html("");
+        $("#commentTagUL").html(""); //reset comment list
     }
 
     //----------When menu changed-------------------------------------------------------------
@@ -602,7 +610,6 @@ var Timeline = function() {
     var commentDate;
 
     //Update graph while panning and zooming and after snapping to closest comment
-
     function updateGraph() {
 
         //Update all line graphs currently rendered
@@ -625,7 +632,6 @@ var Timeline = function() {
             // }
 
             if (type == "tag") {
-
                 var rects = tagFocus.selectAll('.rect_' + tag);
                 if (!rects.empty()) {
 
