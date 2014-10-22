@@ -108,26 +108,25 @@ var Timeline = function() {
         .attr("height", focusDim.height);
 
     //Gradient for tagFocus_bg
-    //TODO: lower stops don't seem to be update when bounding box changes
     svg.append("defs")
         .append("linearGradient")
         .attr("id", "gray-gradient")
         .attr("gradientUnits", "objectBoundingBox")
-        // .attr("x1", "0%").attr("y1","0%")         
-        .attr("x2", "0%").attr("y2", "100%")
+        .attr("x1", "0").attr("y1","0")         
+        .attr("x2", "0").attr("y2", "1")
         .selectAll("stop")
         .data([{
             offset: "0%",
             color: 'rgba(200,200,200,1)'
         }, {
-            offset: "2%",
-            color: 'rgba(230,230,230,1)'
+            offset: "5%",
+            color: 'rgba(240,240,240,1)'
         }, {
             offset: "90%",
             color: 'rgba(230,230,230,1)'
         }, {
-            offset: "92%",
-            color: 'rgba(230,230,230,1)'
+            offset: "95%",
+            color: 'rgba(200,200,200,1)'
         }])
         .enter().append("stop")
         .attr("offset", function(d) {
