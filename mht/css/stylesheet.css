@@ -959,7 +959,10 @@ div.shareAlert {
 	 list-style: none;
   }
 
-  #page_graph {min-height: 1000px;}
+  #page_graph {min-height: 1000px;
+overflow-y: scroll;
+-webkit-overflow-scrolling: touch;
+  }
   
 
 
