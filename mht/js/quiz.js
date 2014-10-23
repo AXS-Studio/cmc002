@@ -217,10 +217,8 @@ var Quiz = (function() {
 
                 if (tags_arr != null)
                 $( "#tags" ).autocomplete({
-      				source: tags_arr,
-                    autoFocus : true
+      				source: tags_arr, 
     			});
-                //$("#tags").autocompleteArray(tags_arr); //original autocomplete from prev jQueryUI
             },
             error: function() {}
         });

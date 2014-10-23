@@ -105,10 +105,10 @@ if ($detect -> isTablet()) {
 			
 		<!--  <script src="js/jquery.min.js"></script> Cindy: Need dev jQuery code to debug-->
 		<script src="js/jquery-1.11.1.js"></script>
-		<script src="js/jquery-ui-1.11.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/date.js"></script>
-		<script src="js/d3.js"></script>		
-			<!--  <script src="js/min/scripts-min.js"></script> -->
+		<script src="js/d3.js"></script>
+		<!--  <script src="js/min/scripts-min.js"></script> -->
 		<script src="js/zepto.min.js"></script>
 		<script src="js/json2.js"></script>
 		<script src="js/iscroll.js"></script>

@@ -195,11 +195,11 @@ header {
 
 /*---Cindy: AutoComplete----*/
 ul.ui-autocomplete {
-  list-style-position: outside;
-  list-style: none;
+/*  list-style-position: outside;
+  list-style: none;*/
   padding: 0;
   margin: 0; 
-  width: 198px;
+  /*width: 198px;*/
   border:1px solid #ccc;
   border-bottom:none;
   background:#fff;
@@ -210,67 +210,17 @@ ul.ui-autocomplete {
   padding: 10px;
   font-size:15px;
   border-bottom: 1px solid #CCC;
-  cursor: pointer;
+  /*cursor: pointer;
   display: block;
-  overflow: hidden;
+  overflow: hidden;*/
   }
 
 .ui-menu .ui-state-focus{
-  background: none;
+ /* background: none;*/
   background-color: #7cc144;
   color: #FFF;
-
 }
-/*------------------------*/
-/*Cindy: Defunct, #ac not in use in newest jQueryUI css*/
-div#acWrap {
-  overflow: hidden;
-  position: relative;
-  -webkit-transition: opacity 0.25s ease-out; }
 
-div#ac {
-  position: absolute;
-  top: 0; }
-
-#content article {
-  margin: 0; }
-
-.ac_results {
-  padding: 0px;
-  background-color: Window;
-  overflow: hidden; }
-
-.ac_results ul {
-  width: 100%;
-  list-style-position: outside;
-  list-style: none;
-  padding: 0;
-  margin: 0; }
-
-.ac_results iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  filter: mask();
-  width: 3000px;
-  height: 3000px; }
-
-.ac_results li {
-  margin: 0px;
-  padding: 0.7em 1em;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  font: menu;
-  font-size: 18px;
-  overflow: hidden;
-  border-bottom: 1px solid #FFF;
-  width: 200px; }
-
-.ac_over {
-  background-color: #7cc144;
-  color: #FFF; }
 /*------------------------*/
 article, div.message {
 /*   margin: 20px 20px 0 20px; */
@@ -360,7 +310,7 @@ article, div.message {
   }
 
   article p.alert {
-        text-align: center;
+    text-align: center;
     margin:10px 0;
   }
   article p a, div.message p a {
