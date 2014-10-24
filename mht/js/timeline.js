@@ -38,10 +38,14 @@ var Timeline = function() {
     };
 
     var focusDim = {
-        width: document.body.clientWidth - focusMargin.right - focusMargin.left,
+        width: window.innerWidth,
         height:document.body.clientHeight*0.4
+        //width: document.body.clientWidth - focusMargin.right - focusMargin.left,
+        //height:document.body.clientHeight*0.4
         // $(document).height()
     };
+
+
 
     var tagFocusDim = {
         width: focusDim.width,
@@ -320,13 +324,15 @@ var Timeline = function() {
 
                     focus.select("#data_" + initialData[i].id).attr("d", areaFill);
 
-                    //----------Add just a line path for smoothed data--------------
+                    //----------Add a line path for smoothed data--------------
+                    if (alpha!=1) {
                     focus.append("path")
                         .attr("id", "data_" + initialData[i].id + "_smoothed")
                         .classed('meanline', true)
                         .attr('clip-path', 'url(#clip)')
                         .datum(initialData[i]["results"])
                         .attr("d", meanline);
+                    }
 
                     //-----------Append dots for datapoints on line graphs-------------
                     // var dots  = focus.selectAll(".dot_" + initialData[i].id)
