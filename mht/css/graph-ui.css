@@ -591,27 +591,26 @@ h4.graphSubheading {
 
    #smoothGraph {
   width: 80%;
-  -webkit-appearance: none !important;
+     -webkit-appearance: none ; 
   height:10px;
   border-radius: 8px;
   background:-webkit-gradient(linear,center top, center bottom, from(#CFDCDD),to(#DFE9EA),color-stop(50%,#DFE9EA));
--webkit-transition: background 450ms;
+    -webkit-transition: background 450ms;
   transition: background 450ms;
-
+  margin-bottom: 5px;
 }
 
+
 /* Change the Slider Button Color Here */
-#smoothGraph ::-webkit-slider-thumb {
-    -webkit-appearance: none !important;
+#smoothGraph::-webkit-slider-thumb {
+   -webkit-appearance: none ; 
     background:#B6D897;
     height:30px;
     width:30px;
     border-radius: 15px;
+    border:1px solid #eee;
 }
 
-#smoothGraph ::-webkit-slider-thumb:before {
-  background-color: yellow;
-}
 
 input:focus,
 select:focus,
