@@ -752,22 +752,6 @@ var Quiz = (function() {
                             $('#art-loading').removeClass('o1').addClass('o0');
                             // After the Loading spinner icon fades out...
                             setTimeout(function() {
-                                // // Remove the Loading spinner icon...
-                                // $('#art-loading').remove();
-                                // // Add the logged in header and the article wrapper to the beginning of the <body>...
-                                // $('body').prepend(Pages.sbHeader);
-                                // // Apply a height style to the new header (didn\'t take from the CSS for some reason)...
-                                // $('header.mht').css({
-                                // 	height: '0px',
-                                // 	display: 'none'
-                                // });// Apply some additional styles to the header\'s <img> (didn\'t take from the CSS for some reason)...
-                                // /*$('header.mht img').css({
-                                // 	margin: '-13px 0px 0px -40px',
-                                // 	position: 'absolute',
-                                // 	left: '50%',
-                                // 	top: '50%'
-                                // });*/
-                                //Quiz.init();
 
                                 //After AJAX call sucessful, continue here...
                                 typeArt(currQuest);
@@ -778,7 +762,7 @@ var Quiz = (function() {
 
                     },
                     error: function() {
-                        // window.alert('Can\'t connect to database.');
+                        window.alert('Cannot connect to the MHT server to load survey. Please check your internet connection.');
                         //rerunLogin('cantConnect');
                     }
                 });

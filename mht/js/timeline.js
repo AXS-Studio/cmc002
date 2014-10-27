@@ -198,11 +198,9 @@ var Timeline = function() {
                    // makeGraph();
                     initGraphMenu();//in menu-ui.js
                 }
-                else
-                window.alert("Error answers cannot be loaded from database!");
             },
             error: function() {
-                window.alert('Error answers cannot be loaded from database!');
+                window.alert('Cannot connect to the MHT server to download data. Please check your internet connection.');
             }
         });
     };

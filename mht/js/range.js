@@ -130,7 +130,7 @@ var Range = (function() {
 				setTimeout(function() {
 					var quest = parseInt(id.split('-')[1]);
 					Quiz.next(quest);
-				}, 1000);
+				}, 500); //Cindy: Set timeout faster, feels longer than the other questions.
 			});
 		} else {	// BlackBerry that doesn\'t support touch or desktop browser
 			// window.alert('BlackBerry no touch.');
@@ -158,7 +158,7 @@ var Range = (function() {
 				setTimeout(function() {
 					var quest = parseInt(id.split('-')[1]);
 					Quiz.next(quest);
-				}, 1000);
+				}, 500);
 			});
 			
 		}
