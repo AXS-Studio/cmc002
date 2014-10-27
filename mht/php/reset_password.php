@@ -81,7 +81,7 @@ if ($stmt = $mysqli->prepare("SELECT `Nonce`,`Email`,`Date` FROM `Nonce_MHT` WHE
 			mail($to, $subject, $body, $headers);
 			
 			$myResponse['result'] = 1; //1 === Success
-			logMHTActivity($dbEmail, "Completed password reset: Amount of seconds "+$secondsAgo);
+			logMHTActivity($dbEmail, "Completed password reset: Amount of seconds ".$secondsAgo);
 			echo json_encode($myResponse);
 			exit;
 		//}

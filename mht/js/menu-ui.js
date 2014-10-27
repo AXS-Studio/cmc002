@@ -186,9 +186,11 @@ function createPDF(sendEmail, graphCont) {
 							"width": $(document).width(), //(window.innerWidth > 0) ? window.innerWidth : window.screen.width,
 							"height": $(document).height() //(window.innerHeight > 0) ? window.innerHeight : window.screen.height
 					 },
+					 beforeSend: function(response){
+					 	window.alert('A PDF has been emailed to you');
+					 },
 			         success: function(response) { 
-			         	window.alert('A PDF has been emailed to you');
-			         	console.log(response);
+			         	console.log("PDF Email Sent " + response);
 			         },
 			         complete: function () { 
 			         },
