@@ -67,16 +67,22 @@ var initGraphMenu =(function() {
 	$('#saveAsPdf').click(function(e) {
 		console.log("Save as PDF");
 
-		graphContent = $('.containerForGraphs').html();
-		graphContent = graphContent + $('#graph-header').html();
+		graphContent = $('#graph-header').html();
+		graphContent = graphContent + $('.containerForGraphs').html();
+		
 		createPDF(false, graphContent); //params: sendEmail, html content
 	});
 
 	$('#emailAsPdf').click(function(e) {
 		console.log("Email as PDF");
 
-		graphContent = $('.containerForGraphs').html();
+				graphContent = $('#graph-header').html();
+		graphContent = graphContent + $('.containerForGraphs').html();	
+
+	/*
+	graphContent = $('.containerForGraphs').html();
 		graphContent = graphContent + $('#graph-header').html();
+*/
 		createPDF(true, graphContent); //params: sendEmail, html content
 	});
 
@@ -153,6 +159,7 @@ function createPDF(sendEmail, graphCont) {
 					<link rel="stylesheet" media="all" href="../../css/graph-ui.css">\
 					<link rel="stylesheet" media="all" href="../../css/timeline.css">\
 					<link rel="stylesheet" media="all" href="../../css/spectrum.css">\
+					<link rel="stylesheet" media="all" href="../../css/print.css">\
 				</head>';
 			html += '<body>\
 					<header>\

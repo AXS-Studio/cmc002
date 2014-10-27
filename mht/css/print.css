@@ -1,0 +1,24 @@
+.nav { display: none;}
+
+.btnmenu.external {display: none;}
+
+ul#legend-header {
+	float:left;
+}
+
+div#cfgGraphs {
+	padding-top:15px;
+	
+}
+
+#commentDiv {
+clear:both;
+}
+
+header h1 {
+	margin-left:10px;
+}
+
+#content_graph {
+	position: relative;
+}
