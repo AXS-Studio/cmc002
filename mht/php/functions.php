@@ -4,6 +4,8 @@ error_reporting(0);
 require_once("database.php");
 require_once("password_hash.php");
 
+if(count(get_included_files()) ==1) exit("Error, direct access prohibited");
+
 //------------------Functions called from login------------------
 
 //Autheticate user against database
@@ -361,4 +363,10 @@ function deleteCookie($userEmail){
 	
 	return $result;
 }//end createCookie
+
+//------------------Password reset functions------------------
+function resetPassword($userEmail){
+
+}
+
 ?>

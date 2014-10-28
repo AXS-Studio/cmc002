@@ -72,6 +72,7 @@ table {
   font-weight: normal;
   font-family: 'ubunturegular', sans-serif; }
 
+article form fieldset input[type="button"],
 .uMed, .formButton,.ui-button, .ui-button:hover, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article div#middle p a, div.message div#middle p a, article div#middle p strong, div.message div#middle p strong {
   font-weight: normal;
   font-family: 'ubuntu_lightbold', sans-serif; }
@@ -93,6 +94,7 @@ table {
 .botMarg, article h1, div.message h1, article p, div.message p, article ol li, div.message ol li {
   margin: 0 0 0.3em; }
 
+article form fieldset input[type="button"],
 .formInputs, .formButton, .ui-button, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .ui-button:hover, .formButton:hover, article form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, article form fieldset input[type="text"], article form fieldset input[type="password"], article form fieldset input[type="email"], article form fieldset textarea, div.message form fieldset input[type="text"], div.message form fieldset input[type="password"], div.message form fieldset input[type="email"], div.message form fieldset textarea, .sp-container button {
   -webkit-appearance: none;
   margin-bottom: 0;
@@ -105,6 +107,7 @@ table {
   margin: 0;
   list-style: none; }
 
+article form fieldset input[type="button"],
 .formButton, .ui-button, article form fieldset input[type="submit"], div.message form fieldset input[type="submit"], article button, div.message button, .sp-container button, .sp-cancel {
   margin-top: 2em;
   padding: 11px 30px;
@@ -123,6 +126,7 @@ table {
   -ms-transition: color 0.25s, background-color 0.25s ease-out;
   transition: color 0.25s, background-color 0.25s ease-out; }
 
+article form fieldset input[type="button"]:hover,
 .formButton:hover,.ui-button:hover, article form fieldset input[type="submit"]:hover, div.message form fieldset input[type="submit"]:hover, article button:hover, div.message button:hover, .sp-container button:hover, .sp-cancel:hover {
   margin-top: 2em;
   padding: 11px 30px;

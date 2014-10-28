@@ -51,7 +51,7 @@ var settings = function() {
 				// $('#art-settings').html(Pages.about).removeClass('o0').addClass('o1');
 				// $('#art-about').removeClass('o0').addClass('o1').show();
 					$('#art-about').removeClass('o0').addClass('o1');
-				$('.cancel').click(function(){
+					$('.cancel').click(function(){
 					// alert("CLICKED");
 					// settings();
 					$('#art-about').hide();
@@ -67,8 +67,8 @@ var settings = function() {
 		});
 
 		$('.change-setting').click(function(){
-$('#art-settings').hide();
-				$('#art-change').show();
+			$('#art-settings').hide();
+			$('#art-change').show();
 					
 			// $('#art-loading').removeClass('o1').addClass('o0');
 			// setTimeout(function() {
@@ -84,6 +84,74 @@ $('#art-settings').hide();
 
 			// }, 250);
 		});
+
+		//Cindy: Implement password change
+		$('#btnChangePw').click(function() {
+						
+			//Reset.init();
+			
+			$('#login input.top, #login input.bottom').css('background-color', '#fff');
+			var password = $('#passwordNew').val();
+			var confirmP = $('#confirmP').val();
+			console.log(password, confirmP);
+
+			validate(password, confirmP);
+			return false;
+
+			//window.alert("Your password has been changed");
+		});
+
+	//Based on existing function from reset.js
+	function validate(password, confirmP) {
+			var valid = true;
+			// Email check
+			if (password == 0) {
+				Login.showAlerts('password');
+				valid = false;
+			}
+			// Password check
+			if (confirmP == 0) {
+				Login.showAlerts('confirmP');
+				valid = false;
+			}
+			if ((password != 0) && (confirmP != 0) && (password != confirmP)) {
+				Login.showAlerts('dontMatch');
+				valid = false;
+			}
+			if (valid == false) 
+				return false;
+			else {
+				var data = {
+					n: "sha256:1000:TuDhDJ/3S/K7ANQTqWjzaGmBdu9S5uzo:mTf2rzh5m4uDGR9EOF1+loxeewZ0uzUS",
+					patientID: results.patientID,
+					Password: password
+				};
+				validated(data);
+			}
+	}//end validate
+
+	//Based on existing function from reset.js
+	function validated(data) {
+		$.ajax({
+			type: 'POST',
+			url: 'php/reset_password.php',
+			data: data,
+			dataType: 'json',
+			success: function(json) {
+				if (json.result === 1) {
+					//resetSuccess(json);
+					window.alert("Your password has been changed.");
+				} else if (json.result === 3) {
+					window.alert('Error connecting to database.');
+				} else {
+					window.alert('Error returning results from database.');
+				}
+			},
+			error: function() {
+				window.alert('Error connecting to database.');
+			}
+		});
+	}//end validated
 
 //	}, 250);
 

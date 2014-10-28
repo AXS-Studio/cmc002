@@ -200,7 +200,7 @@ var Timeline = function() {
                 }
             },
             error: function() {
-                window.alert('Cannot connect to the MHT server to download data. Please check your internet connection.');
+                window.alert('Cannot connect to the MHTVP server to download data. Please check your internet connection.');
             }
         });
     };

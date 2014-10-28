@@ -37,7 +37,7 @@ var Reset = (function() {
 					} else if (json.result === 2) {
 						window.alert('Password reset link expired.');
 					} else {
-						window.alert('Can\'t connect to database.');
+						window.alert('Error connecting to database');
 					}
 				},
 				error: function() {

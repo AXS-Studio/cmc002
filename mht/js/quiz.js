@@ -242,9 +242,9 @@ var Quiz = (function() {
             return false;
         });
 
-        results.date = new Date();
-        var rJson = JSON.stringify(results); // ALERT: Stringify function already happening here!!!
-        localStorage.setItem('lsResults', rJson);
+        // results.date = new Date();
+        // var rJson = JSON.stringify(results); // ALERT: Stringify function already happening here!!!
+        // localStorage.setItem('lsResults', rJson);
 
         $('.btnSubmit').click(function() {
 
@@ -762,7 +762,7 @@ var Quiz = (function() {
 
                     },
                     error: function() {
-                        window.alert('Cannot connect to the MHT server to load survey. Please check your internet connection.');
+                        window.alert('Cannot connect to the MHTVP server to load survey. Please check your internet connection.');
                         //rerunLogin('cantConnect');
                     }
                 });

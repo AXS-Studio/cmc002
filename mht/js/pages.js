@@ -223,13 +223,13 @@ var Pages = {
 	noConnection: '<article class="message o0" id="art-nc" style="display: none;">\
 			<div id="middle">\
 				<h2>There was a problem</h2>\
-				<p>¦and your questionnaire didn\'t submit. Your answers to this questionnaire will submit automatically the next time you successfully log in.</p>\
+				<p>¦Your survey did not submit. Your answers to this survey will submit automatically the next time you successfully log in.</p>\
 			</div>\
 			<!-- end middle -->\
 		</article>',
 	noQuestions: '<article class="message o0" id="art-nq" style="display: none;">\
 			<div id="middle">\
-				<h2>Questionnaire Missing</h2>\
+				<h2>Survey Missing</h2>\
 				<p>Contact your doctor.</p>\
 			</div>\
 			<!-- end middle -->\
@@ -258,7 +258,7 @@ var Pages = {
 		</article>',
 	fgThanks: '<article class="o0" id="art-fgThanks" style="display: none;">\
 			<div id="middle">\
-				<h2>You will recieve an email shortly containing directions on how to reset your account\'s password.</h2>\
+				<h2>You will recieve an email shortly containing directions on how to reset your account password.</h2>\
 			</div>\
 			<!-- end middle -->\
 		</article>',
@@ -351,7 +351,7 @@ var Pages = {
 				<div class="shareAlert o0" id="sa">\
 					<a href="#" class="img" id="btnCloseShare"><span>Close</span></a>\
 					<p>To install this Web site on your device as an app., please tap the <strong>Share</strong> button below and select <strong>œAdd to Home Screen</strong>.</p>\
-					<a href="#" id="ds">Don\'t show this message again.</a>\
+					<a href="#" id="ds">Do not show this message again.</a>\
 					<div>&nbsp;</div>\
 				</div>',
 	changePassword: '<article class="reset o1">\
@@ -366,7 +366,7 @@ var Pages = {
 						<h1 class="plain">Enter your new password:</h1>\
 						<p class="alert o0" id="alert-password" style="display: none;"><strong>New password</strong> is a required field.</p>\
 						<p class="alert o0" id="alert-confirmP" style="display: none;"><strong>Confirm new password</strong> is a required field.</p>\
-						<p class="alert o0" id="alert-dontMatch" style="display: none;">Your two password fields <strong>don\'t match</strong>. Please try again.</p>\
+						<p class="alert o0" id="alert-dontMatch" style="display: none;">Your two password fields <strong>do not match</strong>. Please try again.</p>\
 						<p class="alert o0" id="alert-cantConnect" style="display: none;">Cannot connect to the MHT server. <strong>Please check your internet connection.</strong></p>\
 						<p class="alert o0" id="alert-userNotEnabled" style="display: none;"><strong>User not enabled</strong></p>\
 						<form id="reset" action="#">\
