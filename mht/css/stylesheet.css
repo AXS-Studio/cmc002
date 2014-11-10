@@ -922,5 +922,16 @@ overflow-y: scroll;
   }
   
 
+.page-wrap {
+ overflow-y: scroll;
+-webkit-overflow-scrolling: touch;
 
+}
 
+#page_settings {
+  padding-bottom:100px;
+}
+
+.faq, .about{
+  padding-bottom:150px;
+}

@@ -20,18 +20,41 @@
 			<!-- end backNext -->
 			<div class="qCont">
 				<div class="faq">
-					<p class="faq-q">Lorem ipsum dolor sit amet?</p>
-					<p class="faq-a">Consectetur adipiscing elit. Morbi porta tortor ut semper tincidunt. Phasellus molestie et erat id porttitor. Vivamus quis magna justo. Quisque mattis metus pellentesque nunc dapibus, at ornare lectus cursus. Nulla facilisi. Praesent vestibulum sem a justo lacinia volutpat.</p>
-					<p class="faq-q">Curabitur pharetra lorem erat?</p>
-					<p class="faq-a">vel eleifend neque molestie eget. Aenean consectetur, diam ut tempus fringilla, orci ipsum sodales est, ut eleifend nunc dolor sit amet eros.</p>
-					<p class="faq-q">Maecenas molestie sollicitudin mauris?</p>
-					<p class="faq-a">Proin nec augue ultricies, ultrices purus vitae, lobortis nisl. Proin ac diam mauris. Nunc dignissim nisi a elit posuere suscipit.</p>
-					<p class="faq-q">Lorem ipsum dolor sit amet?</p>
-					<p ckass="faq-a">Consectetur adipiscing elit. Morbi porta tortor ut semper tincidunt. Phasellus molestie et erat id porttitor. Vivamus quis magna justo. Quisque mattis metus pellentesque nunc dapibus, at ornare lectus cursus. Nulla facilisi. Praesent vestibulum sem a justo lacinia volutpat.</p>
-					<p class="faq-q">Curabitur pharetra lorem erat?</p>
-					<p class="faq-a">vel eleifend neque molestie eget. Aenean consectetur, diam ut tempus fringilla, orci ipsum sodales est, ut eleifend nunc dolor sit amet eros.</p>
-					<p class="faq-q">Maecenas molestie sollicitudin mauris?</p>
-					<p class="faq-a">Proin nec augue ultricies, ultrices purus vitae, lobortis nisl. Proin ac diam mauris. Nunc dignissim nisi a elit posuere suscipit.</p>
+					<p class="faq-q">What if I don’t find my question listed here?</p>
+					<p class="faq-a">Please contact the MHTV administrator with your question and we’ll get you an answer as soon as possible: <a href="mailto:pathadmin@sunnybrook.ca">pathadmin@sunnybrook.ca</a></p>
+					<p class="faq-q">How do I change my user name and password?</p>
+					<p class="faq-a">Your user name should be the email address you gave the MHTV administrator to set up your account. Only the administrator can change your user name. To change your password, select Change password on the Settings tab and follow the instructions.<br/>You can also change your password by selecting Forgot you password? link on the login screen</p>
+					<p class="faq-q">Does my device support MHTV?</p>
+					<p class="faq-a">MHTV requires an HTML5-enabled Web browse and is supported by the following operatings systems:<br/>
+						Apple iOS 7, 8 / Safari<br/><br/>
+Apple OSX 10 / Safari 7<br/>
+Android 4.0 – 4.4 / Chrome<br/>
+Blackberry OS 10 (Z10) / native Web browser [Note: MHTV will function on the BB Torch, but performance is limited]<br/>
+Windows 7, 8 / Internet Explorer 9, 10, 11	<br/><br/>
+On an older model phone or tablet, you may experience slower performance using the Timeline graph functions
+					</p>
+					<p class="faq-q">Is my information safe within MHTV</p>
+					<p ckass="faq-a">Yes, your personal information is protected by the Sunnybrook Health Sciences Centre patient information security system. Only you and your doctor can view your information. We recommend logging out of MHTV after each session. If you remain logged in, anyone in possession of your device can view your information.</p>
+					<p class="faq-q">Why do I have to login again each time I leave the MHTV app, even if it’s just to view email or answer a phone call?</p>
+					<p class="faq-a">This is a security measure. When you leave the app, it automatically logs you out.</p>
+					<p class="faq-q">Who can I ask for help with MHTV?</p>
+					<p class="faq-a">Contact the MHTV administrator: <a href="mailto:pathadmin@sunnybrook.ca">pathadmin@sunnybrook.ca</a></p>
+					<p class="faq-q">How do I answer the survey questions that feature a slider?</p>
+					<p class="faq-a">Drag the green slider to a position between the two ends that best indicates your response.</p>
+					<p class="faq-q">Can I submit a survey without adding comments or tags?</p>
+					<p class="faq-a">Yes, comments and tags are not required. However, they can be useful for including information that is not covered in the questions.</p>
+					<p class="faq-q">Why is my Timeline blank?</p>
+					<p class="faq-a">Your Timeline will appear blank until you have completed and submitted at least two surveys. This is the minimum needed to plot a graph.</p>
+					<p class="faq-q">Why can’t I see all of the survey questions I answered when I view my Timeline?</p>
+					<p class="faq-a">You control which questions and tags are displayed by selecting them in the edit menu. Only questions and tags that have a colour beside them will be displayed. To turn a question or tag off in the edit menu, tap it’s colour and set it to <strong>invisible</strong>strong>.</p>
+					<p class="faq-q">What’s the difference between the solid and line graphs on the Timeline?</p>
+					<p class="faq-a">The solid (filled-in) graph is a plot of your actual responses to survey questions. The line graph is a smoothed version of the solid graph, intended to help you see longer-term trends in your responses. The degree of smoothing can be adjusted in the Edit menu, at the bottom of the Graph tab, and you can turn smooth off altogether.</p>
+					<p class="faq-q">Why is the Timeline sometimes slow to respond?</p>
+					<p class="faq-a">MHTV is a Web application. It reads your Timeline graph information live from the secure MHTV server. Timeline responsiveness depends on your device hardware, your Internet connection speed and the MHTV server’s Internet connection speed. Heavy Internet traffic can cause the Timeline to respond slowly at times.</p>
+					<p class="faq-q">What information gets shared when I Share As PDF or Email PDF?</p>
+					<p class="faq-a">The PDF is an image capture of the current view of your Timeline. If you want to share specific information with your doctor or a family member, turn on the Survey Questions and Tags you’d like displayed, scroll and zoom the timeline to the date range you want, then choose one of the two sharing options. Share As PDF allows you to save the PDF locally on your device. Email PDF automatically emails the PDF as an attachment to your email address.</p>
+					<p class="faq-q">Why does Share As PDF log me out of MHTV on my iPhone?</p>
+					<p class="faq-a">iPhone will not save a PDF within the MHTV app — it must leave the app to save a file. Once you’ve left the app, you must log in again. To avoid this, we recommend using Share As PDF only when you’re finished your current MHTV session. When you log in again, your Timeline settings will be preserved.</p>
 				</div>
 				<!-- end faq -->
 			</div>
