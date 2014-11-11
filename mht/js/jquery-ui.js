@@ -4654,6 +4654,11 @@ $.widget( "ui.autocomplete", {
 			.menu( "instance" );
 
 		this._on( this.menu.element, {
+			//Cindy: Added for mobile devices, as iOS translates hover events to clicks
+			//ie. Users have to click twice (first for hover, then the actual click)
+			touchend: function( event, ui ) {
+				this.menu.select( event );
+			},
 			mousedown: function( event ) {
 				// prevent moving focus out of the text field
 				event.preventDefault();
