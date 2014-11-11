@@ -10,15 +10,15 @@ if (isset($_REQUEST['results']))
 {
 	//JSON decode results
 	$results = $_REQUEST['results'];
-	$myResponse['rawresults'] = $results;
+	//$myResponse['rawresults'] = $results;
 	
 	//$results = $mysqli->real_escape_string($results);
 
 	//$myResponse['afterrealescape'] = $results;
 
-	$results = stripslashes($results);
+	//$results = stripslashes($results);
 	
-	$myResponse['afterstripslashes'] = $results;
+	//$myResponse['afterstripslashes'] = $results;
 	
 	$results = json_decode($results);
 	
