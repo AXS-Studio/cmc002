@@ -428,10 +428,13 @@ article, div.message {
         clear: none;
         height: 18px;
         background: transparent url("../images/checkbox.png") no-repeat top left;
+        background-size: 25px;
         padding: 3px 10px 4px 35px;
         cursor: pointer; }
       article form fieldset input[type='checkbox']:checked + label, div.message form fieldset input[type='checkbox']:checked + label {
-        background: transparent url("../images/checkbox.png") no-repeat left -25px; }
+        background: transparent url("../images/checkbox.png") no-repeat left -25px; 
+        background-size: 25px;
+      }
       article form fieldset div.rangeBar, div.message form fieldset div.rangeBar {
         width: 252px;
         height: 12px;

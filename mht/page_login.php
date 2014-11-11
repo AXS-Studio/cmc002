@@ -1,5 +1,5 @@
 	<header class="sb o1">
-				<img src="images/MHT_logo.png" class="mht-logo"/>
+				<img src="images/MHT_logo.png" class="mht-logo" width="133" height="45"/>
 			</header>
 			<div id="content"></div>
 			<!-- end sb -->
