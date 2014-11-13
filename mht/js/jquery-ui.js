@@ -1,7 +1,8 @@
 /*! jQuery UI - v1.11.2 - 2014-10-27
 * http://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, position.js, draggable.js, resizable.js, autocomplete.js, button.js, dialog.js, menu.js
-* Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
+* Copyright 2014 jQuery Foundation and other contributors; Licensed MIT 
+* IMPORTANT: Modified for MHTVP - autocomplete TapEnd callback*/
 
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {

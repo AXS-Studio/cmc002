@@ -380,7 +380,7 @@ var Pages = {
 					</article>',
 	loading: '<article class="o0" id="art-loading" style="display: none;">\
 			<div id="middle">\
-				<img src="images/ajax-loader.gif" alt="Loading" width="16" height="16">\
+				<img src="images/ajax-loader.gif" alt="Loading" width="64" height="64">\
 			</div>\
 			<!-- end middle -->\
 		</article>'

@@ -225,8 +225,19 @@ var Quiz = (function() {
 
         $('.add-tag').click(function() {
             if ($('#tags').val() != '') {
-                var regex = /[^\w-]/gi; //only allow alpha numeric, hypen and underscore
-                var tag = $('#tags').val().replace(regex, '');
+
+                //Strip illegal characters
+                var regex = /[^\w-]/gi; //only allow alpha numeric ( a-z, A-Z, 0-9), hypen and underscore
+                var tag = $('#tags').val().replace(regex, '');//Strip unwanted characters
+
+                //Search if there is another tag with the same case in tag_arr
+                // Iterate over tag_arr, select the first elements that equalsIgnoreCase the "tag" value                
+                $.each(tags_arr, function(index, value) { 
+                  if ( value.toLowerCase()=== tag.toLowerCase() ) {
+                    tag = value;
+                    //return false; //break
+                  }
+                });
 
                 if (tag != '')
                     $('.tag-container').append('<div class="tag">' + tag + '<span class="tag-close">x</span></div>');

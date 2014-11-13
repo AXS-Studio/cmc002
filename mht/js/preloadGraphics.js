@@ -2,7 +2,8 @@ var PreloadGraphics = (function() {
 	
 	var graphics = [
 		'slider_bar_252.png',
-		'slider_button_61.png',
+		'leaf-marker.png',
+		'checkmark.png',
 		'checkmark_shadow.png',
 		'anchor_box_arrow_left.png',
 		'anchor_box_arrow_right.png',
