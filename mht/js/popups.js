@@ -123,7 +123,7 @@ var PopUps = [
 },
 {
 	id: "VAS_4",
-	description: "100 = 24 hours <br/> 0 = 0 hours",
+	description: "100 = 12 or more <br/> 0 = 4 or less",
 	response: ""	
 },
 {
