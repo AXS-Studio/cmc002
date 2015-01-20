@@ -815,6 +815,8 @@ function ParseGraphColors() {
 }
 
 function ParseTagColors() {
+	if(tagColors == null) return false;
+	
 	for (i = 0; i < tagColors.length; i++) {
 		SetTagColor(tagColors[i].id, tagColors[i].color);
 	}
