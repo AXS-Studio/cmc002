@@ -232,12 +232,14 @@ var Quiz = (function() {
 
                 //Search if there is another tag with the same case in tag_arr
                 // Iterate over tag_arr, select the first elements that equalsIgnoreCase the "tag" value                
-                $.each(tags_arr, function(index, value) { 
-                  if ( value.toLowerCase()=== tag.toLowerCase() ) {
-                    tag = value;
-                    //return false; //break
-                  }
-                });
+                if (tags_arr!=null){
+                    $.each(tags_arr, function(index, value) { 
+                      if ( value.toLowerCase()=== tag.toLowerCase() ) {
+                        tag = value;
+                        //return false; //break
+                      }
+                    });
+                }
 
                 if (tag != '')
                     $('.tag-container').append('<div class="tag">' + tag + '<span class="tag-close">x</span></div>');
