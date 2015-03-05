@@ -943,3 +943,17 @@ overflow-y: scroll;
 .faq, .about{
   padding-bottom:150px;
 }
+
+/* Hide multiple scrollbars for Desktops and laptops*/
+@media only screen
+and (min-width : 1224px) { 
+  
+  html, body {
+    overflow-y:  hidden;
+  }
+
+  .page-wrap {
+      overflow-y: hidden;
+  }
+
+} 
