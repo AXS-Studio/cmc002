@@ -53,6 +53,12 @@ var initGraphMenu =(function() {
 		$("#bgplate").hide();
 	});
 
+	//Hide menu if bgplate clicked
+	$("#bgplate").click(function(e) {
+		$('#graph-menu').animate({right: graphMenuWidth});
+		$("#bgplate").hide();
+	});
+
 	// }
 	
 	$(".forgot").hide();
@@ -76,13 +82,13 @@ var initGraphMenu =(function() {
 	$('#emailAsPdf').click(function(e) {
 		console.log("Email as PDF");
 
-				graphContent = $('#graph-header').html();
+		graphContent = $('#graph-header').html();
 		graphContent = graphContent + $('.containerForGraphs').html();	
 
 	/*
-	graphContent = $('.containerForGraphs').html();
+		graphContent = $('.containerForGraphs').html();
 		graphContent = graphContent + $('#graph-header').html();
-*/
+	*/
 		createPDF(true, graphContent); //params: sendEmail, html content
 	});
 
@@ -357,25 +363,6 @@ var GenerateSwatches = function() {
 		patient = results.patientID;
 
 		DisableSwatches();
-		
-		// This is unused after we consolidated the AJAX calls. Access the same data from Timeline.getInitialData
-        // ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
-        // patient = ajaxPath.split('=')[1];
-       
-        // $.ajax({
-        //     url: ajaxPath,
-        //     type: 'GET',
-        //     dataType: 'json',
-        //     success: function(response) {
-        //         answerData = response;
-        //         console.log("answerData", answerData);
-        //         //makeGraph();
-        //        DisableSwatches();
-        //     },
-        //     error: function() {
-        //         window.alert('Error loadAnswersInitial!');
-        //     }
-        // });
     };
      
      var questionSwatches = function() {
