@@ -109,32 +109,45 @@ function createSessionArray($userEmail){
 	$startDate = strtotime($startDate);	//returns Unix timestamp of survey start date
     $daysDiff = abs($currentDate - $startDate);
    	$daysDiff = floor($daysDiff/(60*60*24));	//returns number of days between today and start date
-	//echo $startDate."  ".$currentDate."  ".$daysDiff." ".$days;
-	$myResponse["test"]= "test";
-	//Check if today is scheduled for infrequent survey
-	//eg. Infreq surveys set to every 3 days, today is 6 days since startDate ($days == 3, $daysDiff == 6), return true
-	if ($days>0 && $daysDiff % $days == 0){
-		//Infrequent survey day. Since patients can do multiple surveys per day
-		//Will have to check if user has already done infreq survey on this day
-		$q = "SELECT * FROM `Sessions_MHT` WHERE DATE_FORMAT(`Date`,'%Y-%m-%d') = '$now'
-		AND `PatientID` = '$patientID' AND `Infreq` = 1";
-		$result = $mysqli->query($q);
 		
-		if($result->num_rows >= 1){
-			$row = $result->fetch_array(MYSQLI_ASSOC);
+   	//Update for David (24 Feb 2015). Once approved, uncomment all lines 113-125 and line 150.
+   	//First check if any infreq surveys within one cycle ago (ie. today - LongFormFrequency)
+   	//$oneCycleAgo = strtotime ( '-'.$days.' day' , $currentDate ) ;
+   	//$oneCycleAgo = date('Y-m-d', $oneCycleAgo);
+
+   	//$q = "SELECT * FROM `Sessions_MHT` WHERE `Date` >= '$oneCycleAgo'  AND `Date` <= '$currentDate' AND `PatientID` = '$patientID' AND `Infreq` = 1";
+	//$result = $mysqli->query($q);
+
+	//if user has not completed any infreq surveys within one cycle, send infreq survey
+	//if($result->num_rows == 0)
+	//	$infreqBool = 1;
+	//else if($result->num_rows > 0)
+	//{
+		//Check if today is scheduled for infrequent survey
+		//eg. Infreq surveys set to every 3 days, today is 6 days since startDate ($days == 3, $daysDiff == 6), return true
+		if ($days>0 && $daysDiff % $days == 0){
+			//Infrequent survey day. Since patients can do multiple surveys per day
+			//Will have to check if user has already done infreq survey on this day
+			$q = "SELECT * FROM `Sessions_MHT` WHERE DATE_FORMAT(`Date`,'%Y-%m-%d') = '$now'
+			AND `PatientID` = '$patientID' AND `Infreq` = 1";
+			$result = $mysqli->query($q);
 			
-			if ($row['Completed'] != "0000-00-00 00:00:00"){ //Check if user completed the survey
-			$myResponse["completed"]= $row['Completed'];
-			$infreqBool = 0; //User already completed infreq survey on this day
-			}else{
-			$infreqBool = 1;
+			if($result->num_rows >= 1){
+				$row = $result->fetch_array(MYSQLI_ASSOC);
+				
+				if ($row['Completed'] != "0000-00-00 00:00:00"){ //Check if user completed the survey
+				$myResponse["completed"]= $row['Completed'];
+				$infreqBool = 0; //User already completed infreq survey on this day
+				}else{
+				$infreqBool = 1;
+				}
 			}
+			else{
+				$infreqBool = 1;
+			}
+			$result->free();
 		}
-		else{
-			$infreqBool = 1;
-		}
-		$result->free();
-	}
+	//}//end else if($result->num_rows > 0)
 	
 	//Insert session details into database
 	$sessionTime = date(DATE_ISO8601);
