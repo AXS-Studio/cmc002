@@ -745,7 +745,7 @@ var Quiz = (function() {
                             if (questionnaire.flip == 1) {
                                 $.each(questionnaire.questions, function(i, q) {
                                     var type = q.questionID.split('_')[0];
-                                    if (type == 'vas') {
+                                    if (type == 'VAS') {
                                         q["flipped"] = null;
                                         q.flipped = Math.round(Math.random());
                                         if (q.flipped == 1)

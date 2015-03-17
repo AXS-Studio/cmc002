@@ -104,11 +104,11 @@ if ($detect -> isTablet()) {
 		<?php include './footer.php'; ?>	
 			
 		<!--  <script src="js/jquery.min.js"></script> Cindy: Need dev jQuery code to debug-->
+		<!--  <script src="js/min/scripts-min.js"></script> -->
 		<script src="js/jquery-1.11.1.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/date.js"></script>
 		<script src="js/d3.js"></script>
-		<!--  <script src="js/min/scripts-min.js"></script> -->
 		<script src="js/zepto.min.js"></script>
 		<script src="js/json2.js"></script>
 		<script src="js/iscroll.js"></script>
@@ -144,7 +144,7 @@ if ($detect -> isTablet()) {
 			var lastQuest;
 			var lastCompQuest;
 		</script>
-<!-- 		<script src="js/questionnaire.js"></script> -->
+		<!--<script src="js/questionnaire.js"></script> -->
 		<script>
 
 			var questionnaire;
@@ -190,10 +190,10 @@ if ($detect -> isTablet()) {
 			?>;
 				  
 			$(document).ready(function() {	 
-			// $("#smoothGraph").rangeslider();
+				// $("#smoothGraph").rangeslider();
 				$('html').removeClass('no-js').addClass('js');
 				PreloadGraphics.init();
-				initAppMenu();
+				initAppMenu(); //from menu-ui.js
 				
 			<?php
 			if ($page == 'reset') {
@@ -201,7 +201,7 @@ if ($detect -> isTablet()) {
 						Reset.init();";
 			// } else if ($desktop == true || $tablet == true) {
 			// 	echo "
-			// 			Middle.init();";
+			// 	Middle.init();";
 			} else {
 				echo "
 						Login.loginFields();

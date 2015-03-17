@@ -13,7 +13,7 @@
 		<article id="art-faq" style="display: none;">
 			<nav class="backNext">
 				<ul>
-					<li class="back cancel"><a href="#" title="Cancel" class="active" id="cancel"><span>Cancel</span></a></li>
+					<li class="back cancel"><a href="#" title="Cancel" class="active" id="cancel"><span>Back</span></a></li>
 					<li class="setting-title">FAQ</li>
 				</ul>
 			</nav>
@@ -23,17 +23,17 @@
 					<p class="faq-q">What if I don’t find my question listed here?</p>
 					<p class="faq-a">Please contact the MHTV administrator with your question and we’ll get you an answer as soon as possible: <a href="mailto:pathadmin@sunnybrook.ca">pathadmin@sunnybrook.ca</a></p>
 					<p class="faq-q">How do I change my user name and password?</p>
-					<p class="faq-a">Your user name should be the email address you gave the MHTV administrator to set up your account. Only the administrator can change your user name. To change your password, select Change password on the Settings tab and follow the instructions.<br/>You can also change your password by selecting Forgot you password? link on the login screen</p>
+					<p class="faq-a">Your user name should be the email address you gave the MHTV administrator to set up your account. Only the administrator can change your user name. To change your password, select Change password on the Settings tab and follow the instructions.<br/>You can also change your password by selecting the Forgot your password? link on the login screen</p>
 					<p class="faq-q">Does my device support MHTV?</p>
-					<p class="faq-a">MHTV requires an HTML5-enabled Web browse and is supported by the following operatings systems:<br/>
-						Apple iOS 7, 8 / Safari<br/><br/>
+					<p class="faq-a">MHTV requires an HTML5-enabled Web browser and is supported by the following operating systems:<br/>
+						Apple iOS 7, 8 / Safari<br/>
 Apple OSX 10 / Safari 7<br/>
 Android 4.0 – 4.4 / Chrome<br/>
 Blackberry OS 10 (Z10) / native Web browser [Note: MHTV will function on the BB Torch, but performance is limited]<br/>
 Windows 7, 8 / Internet Explorer 9, 10, 11	<br/><br/>
 On an older model phone or tablet, you may experience slower performance using the Timeline graph functions
 					</p>
-					<p class="faq-q">Is my information safe within MHTV</p>
+					<p class="faq-q">Is my information safe within MHTV?</p>
 					<p ckass="faq-a">Yes, your personal information is protected by the Sunnybrook Health Sciences Centre patient information security system. Only you and your doctor can view your information. We recommend logging out of MHTV after each session. If you remain logged in, anyone in possession of your device can view your information.</p>
 					<p class="faq-q">Why do I have to login again each time I leave the MHTV app, even if it’s just to view email or answer a phone call?</p>
 					<p class="faq-a">This is a security measure. When you leave the app, it automatically logs you out.</p>
@@ -48,7 +48,7 @@ On an older model phone or tablet, you may experience slower performance using t
 					<p class="faq-q">Why can’t I see all of the survey questions I answered when I view my Timeline?</p>
 					<p class="faq-a">You control which questions and tags are displayed by selecting them in the edit menu. Only questions and tags that have a colour beside them will be displayed. To turn a question or tag off in the edit menu, tap it’s colour and set it to <strong>invisible</strong>strong>.</p>
 					<p class="faq-q">What’s the difference between the solid and line graphs on the Timeline?</p>
-					<p class="faq-a">The solid (filled-in) graph is a plot of your actual responses to survey questions. The line graph is a smoothed version of the solid graph, intended to help you see longer-term trends in your responses. The degree of smoothing can be adjusted in the Edit menu, at the bottom of the Graph tab, and you can turn smooth off altogether.</p>
+					<p class="faq-a">The solid (filled-in) graph is a plot of your actual responses to survey questions. The line graph is a smoothed version of the solid graph, intended to help you see longer-term trends in your responses. The degree of smoothing can be adjusted in the Edit menu, at the bottom of the Graph tab, and you can turn smoothing off altogether.</p>
 					<p class="faq-q">Why is the Timeline sometimes slow to respond?</p>
 					<p class="faq-a">MHTV is a Web application. It reads your Timeline graph information live from the secure MHTV server. Timeline responsiveness depends on your device hardware, your Internet connection speed and the MHTV server’s Internet connection speed. Heavy Internet traffic can cause the Timeline to respond slowly at times.</p>
 					<p class="faq-q">What information gets shared when I Share As PDF or Email PDF?</p>

@@ -1,3 +1,8 @@
+/** timeline.js
+* Module to creates timeline graphics and handles interactivity using d3.js 
+* Also makes calls to database and stores stores all timeline data in initialData
+*/
+
 var Timeline = function() {
 
     //Session data hardcoded for debugging
@@ -9,7 +14,7 @@ var Timeline = function() {
     //         "answers": []
     //     };
     // }
-    //----------default colours----------
+    //----------default colours for timeline graph----------
     var colours = [
         'rgba(85,98,112,1.0)', // Mighty Slate
         'rgba(255,107,107,1.0)', // Cheery Pink
@@ -40,12 +45,11 @@ var Timeline = function() {
     var focusDim = {
         width: window.innerWidth,
         height:document.body.clientHeight*0.4
+        
+        //Above seems to work best across all browsers and mobile setups
         //width: document.body.clientWidth - focusMargin.right - focusMargin.left,
-        //height:document.body.clientHeight*0.4
-        // $(document).height()
+        //$(document).height() not used, hardcode height of graph to 0.4 of body height
     };
-
-
 
     var tagFocusDim = {
         width: focusDim.width,
@@ -69,7 +73,7 @@ var Timeline = function() {
         height: 15
     }
 
-    //----------parse functions----------
+    //----------parse functions for dates----------
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
     var commentDateFormat = d3.time.format("%a, %d %b %Y, %-I:%M %p");
 
@@ -103,7 +107,7 @@ var Timeline = function() {
         .attr("height", svgDim.height);
     }
 
-    //----------groups----------
+    //----------groups to contain elements for graph----------
     svg.append("defs")
         .append("clipPath")
         .attr("id", "clip")
@@ -147,6 +151,7 @@ var Timeline = function() {
         .attr("width", svgDim.width)
         .attr("height", tagFocusDim.height + tagFocusMargin.top + tagFocusMargin.bottom);
 
+    //Focus is the timeline graph
     var focus = d3.select('#focus_g');
     if (focus.empty())
         focus = svg.append("g")
@@ -172,15 +177,14 @@ var Timeline = function() {
     //Global variables carried over from last version
     var graphSettings = []; //Keep track of all graphs being plotted
     var tagRowcounter = 0;  //Keep track of number of tag rows
-    var initialData;        //Stores data downloaded from server
+    var initialData;        //Stores data downloaded from server, also used by menu-ui.js to populate menu items
 
     var initialDataTagIndex;
     var initialDataCommentIndex;
 
     //Load dataset from database for current user and on success call makeGraph()
     var loadAnswersInitial = function(ajaxPath) {
-        console.log("loadAnswersInitial");
-
+       
         ajaxPath = 'php/query_answers_timeline.php?patientID=' + results.patientID;
         patient = ajaxPath.split('=')[1];
 
@@ -191,12 +195,12 @@ var Timeline = function() {
             dataType: 'json',
             success: function(response) {
                 initialData = response;
-                console.log("query_answers_timeline success", initialData);
+                //console.log("query_answers_timeline success", initialData);
             },
             complete: function() {
                 if (initialData!=null){
                    // makeGraph();
-                    initGraphMenu();//in menu-ui.js
+                   initGraphMenu();//in menu-ui.js
                 }
             },
             error: function() {
@@ -211,7 +215,7 @@ var Timeline = function() {
 
         //Adjust dimensions of graph if changed
         focusDim.width = document.body.clientWidth - focusMargin.right - focusMargin.left; //$(document).width() not working in firefox
-        focusDim.height = document.body.clientHeight*0.4;//document.body.clientHeight*0.4;//$(document).height()*0.4;//document.body.clientHeight*0.4;
+        focusDim.height = document.body.clientHeight*0.4;//$(document).height()*0.4;
 
         yScale = d3.scale.linear().range([focusDim.height, 0]);
         xScale = d3.time.scale().range([0, focusDim.width]);
@@ -252,7 +256,6 @@ var Timeline = function() {
         lastMidpointDate = xScale.invert(focusDim.width / 2);
 
        //focus
-       //.attr("transform", "translate(" + focusMargin.left + "," + focusMargin.top + ")")
        d3.select('#focus_g')
        .attr("width", focusDim.width)
        .attr("height", focusDim.height);
@@ -295,6 +298,7 @@ var Timeline = function() {
         //var colourCount = 0;
         defineGraphElements();
 
+        //For each survey item in the data 
         for (var i = 0; i < initialData.length; i++) {
 
             //---Plot survey data---------------------------------------------------------------------------
