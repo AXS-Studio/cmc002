@@ -13,6 +13,9 @@
         show: noop,
         hide: noop,
 
+        //original 4th colour: #e9187e
+        //original 10th colour: 
+
         // Options
         color: false,
         flat: false,
@@ -36,7 +39,7 @@
         replacerClassName: "",
         showAlpha: false,
         theme: "sp-light",
-        palette: [["#00a8de", "#333391", "#9c298c", "#e9187e", "#f190bc", "#231f20", "#eb2c3b", "#ef8031", "#fde92b", "#91be4a", "#00a055", "#00a9a3"]],
+        palette: [["#00a8de", "#333391", "#9c298c", "#ff6b6b", "#f190bc", "#231f20", "#eb2c3b", "#ef8031", "#fde92b", "#91be4a", "#00a055", "#00a9a3"]],
         selectionPalette: [],
         disabled: false
     },

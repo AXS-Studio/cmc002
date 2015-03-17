@@ -190,7 +190,6 @@ var Timeline = function() {
 
         $.ajax({
             url: ajaxPath,
-
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -310,7 +309,21 @@ var Timeline = function() {
                     jQuery.each(initialData[i].results, function(i, d) {
                         d.date = d3.time.format('%Y-%m-%d %H:%M:%S').parse(d["Date"]);
                     });
+                
+                var thisColour;
+                //simple loop to check if colour exists in LocalStorage's graphColor object, if yes sync
+                if (graphColors!= null){
+                    for (var k = 0; k < graphColors.length; k++) {
+                        if (graphColors[k].id == initialData[i].id) {
+                            thisColour = graphColors[k].color;
+                        }
+                    }
+                }
 
+                //If this graph is visible, add data to focus
+                if (thisColour != "rgba(0,0,0,0)" && thisColour != null) {
+                    //console.log("not pushed " + initialData[i].id);
+                
                     // Create a settings object for the collected data.
                     graphSettings.push({
                         "id": initialData[i].id,
@@ -356,6 +369,7 @@ var Timeline = function() {
 
                     // dots.exit().remove();
 
+                    }//end if thisColour...
                 }
             } //end if initialData[i].id != comments, sessions, notes
 
