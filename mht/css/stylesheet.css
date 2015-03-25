@@ -944,8 +944,8 @@ overflow-y: scroll;
   padding-bottom:150px;
 }
 
-/* Hide multiple scrollbars for Desktops and laptops and (min-width : 1224px)*/
-@media only screen
+/* Hide multiple scrollbars for Desktops and laptops */
+@media only screen and (min-width : 1224px)
  { 
   
   html, body {
