@@ -92,74 +92,16 @@ var Login = (function() {
 				url: 'php/submit.php',
 				data: {
 					"results": localStorage.getItem('lsResults')
-				}
-				/*,
+				},
 				// dataType: 'json',
 				success: function(message) {
-					// localStorage.removeItem('lsResults');
-					$('#art-loading').attr('class', 'o0');
-					setTimeout(function() {
-						$('#art-loading').remove();
-						$('header.mht').after(Pages.thanks);
-						// Resize.setSizes();
-						// $('#acWrap').css('height', $('#art-thanks').height() + 'px');
-						$('#art-thanks').show().attr('class', 'o1');
-						Middle.init();
-					}, 250);
+					localStorage.removeItem('lsResults');
 				},
 				error: function() {
-					window.alert('Error!');
-				}*/
+					window.alert('Error submitting previously saved survey!');
+				}
 			});
 		}
-		// questionnaire = json;
-		// // console.log(questionnaire);
-		// if (questionnaire.questions.length < 1) {
-		// 	$('#art-loading').removeClass('o1').addClass('o0');
-		// 	setTimeout(function() {
-		// 		// Remove the Loading spinner icon...
-		// 		$('#art-loading').remove();
-		// 		// Add the logged in header and the article wrapper to the beginning of the <body>...
-		// 		$('body').prepend(Pages.sbHeader);
-		// 		// Apply a height style to the new header (didn\'t take from the CSS for some reason)...
-		// 		$('header.mht').css({
-		// 			height: '0px',
-		// 			display: 'none'
-		// 		});// Apply some additional styles to the header\'s <img> (didn\'t take from the CSS for some reason)...
-		// 		/*$('header.mht img').css({
-		// 			margin: '-13px 0px 0px -40px',
-		// 			position: 'absolute',
-		// 			left: '50%',
-		// 			top: '50%'
-		// 		});*/
-		// 		//$('header.mht').show().removeClass('o0').addClass('o1');
-		// 		$('header.mht').after(Pages.noQuestions);
-		// 		$('#art-nq').show().attr('class', 'o1');
-		// 		Middle.init();
-		// 	}, 250);
-		// } else {
-		// 	results.patientID = questionnaire.patientID;
-		// 	results.sessionID = questionnaire.sessionID;
-		// 	if (questionnaire.randomize == 1) 
-		// 		questionnaire.questions = fisherYates(questionnaire.questions);
-		// 	if (questionnaire.flip == 1) {
-		// 		$.each(questionnaire.questions, function(i, q) {
-		// 			var type = q.questionID.split('_')[0];
-		// 			if (type == 'vas') {
-		// 				q["flipped"] = null;
-		// 				q.flipped = Math.round(Math.random());
-		// 				if (q.flipped == 1) 
-		// 					q.anchors.reverse();
-		// 				/*else {
-		// 					q["flipped"] = 0;
-		// 				}*/
-		// 			}
-		// 		});
-		// 	}
-		// 	questionnaire.questions.push({"questionID": "comments"}, {"questionID": "submit"});
-		// 	currQuest = 0;
-		// 	nextQuest = 1;
-		// 	lastQuest = questionnaire.questions.length - 1;
 			// Fade out the Loading spinner icon...
 			$('#art-loading').removeClass('o1').addClass('o0');
 			// After the Loading spinner icon fades out...
@@ -185,8 +127,6 @@ var Login = (function() {
 		// }
 	};//end loginSuccess
 
-
-	
 	
 	
 	function validated(data) {
@@ -215,8 +155,6 @@ var Login = (function() {
 					if (json.result === 1) {
 						loginSuccess(json);
 						//console.log("loginSuccess", json);
-						
-
 					} else if (json.result === 0) {
 						// window.alert('Wrong username or password.');
 						rerunLogin('cantConnect');
